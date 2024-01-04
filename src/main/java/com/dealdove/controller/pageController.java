@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class pageController {
-    //你媽的這個是什麼鬼
-    //branch test 新增 不該出現在dev
-    //dev 不會在main上更新 下午1:46更新第二次
 
 
     @GetMapping("/01_home_page")
