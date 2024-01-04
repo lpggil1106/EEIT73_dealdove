@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class pageController {
+    //你媽的這個是什麼鬼
 
     @GetMapping("/01_home_page")
     public String test(Model model){
