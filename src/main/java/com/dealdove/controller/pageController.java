@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class pageController {
-    //XDD
+    //XDD2
 
     @GetMapping("/01_home_page")
     public String test(Model model){
