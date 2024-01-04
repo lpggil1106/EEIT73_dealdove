@@ -1,0 +1,203 @@
+.register-title {
+    font-size: 50px;
+    display: block;
+    /* 确保元素是块级元素 */
+    width: 100%;
+    /* 宽度占满容器 */
+    text-align: center;
+    /* 文字居中 */
+    margin: 3px 0;
+    /* 上下外边距 */
+}
+
+.register-button {
+    height: 80px;
+    width: 120px;
+    background-color: #A2CAD3;
+    color: white;
+    /* 建议使用白色或其他高对比色，原先的 'color: A2CAD3;' 是无效的 */
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 42px;
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    /* 自动外边距用于水平居中 */
+}
+
+
+.register-button:hover {
+    background-color: blue;
+}
+
+.register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    font-size: 1em;
+    position: relative;
+    flex-direction: column;
+    height: 45vh;
+}
+
+.vertical-line-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1vh;
+    position: relative;
+}
+
+.vertical-line {
+    height: 40vh;
+    width: 0.7vw;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    background-color: #A2CAD3;
+    ;
+}
+
+.register-form {
+    display: flex;
+    align-items: center;
+    /* 水平居中对齐 */
+    justify-content: center;
+    /* 确保子元素间距均匀 */
+    /* 垂直居中对齐 */
+    flex-direction: row;
+    /* 水平排列 */
+    padding: 20px;
+    background-color: #fff;
+}
+
+.form-inputs {
+    width: 600px;
+    height: 300px;
+    flex: 1;
+    margin: 0 120px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    border-radius: 15px;
+}
+
+.form-inputs label {
+    color: #A2CAD3;
+    margin-bottom: 10px;
+}
+
+.form-inputs input {
+    font-size: 1em;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #A2CAD3;
+    background-color: #A2CAD3;
+    color: white;
+    border-radius: 15px;
+
+}
+
+.third-party-logins {
+    flex: 1;
+    margin: 0 120px;
+    padding: 0px 0px 60px 0px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+
+.google-login img,
+.facebook-login img {
+    height: 1em;
+    vertical-align: middle;
+}
+
+.google-login,
+.facebook-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 25px 20px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+}
+
+.google-login:hover,
+.facebook-login:hover {
+    border-color: #A2CAD3;
+}
+
+
+
+.account-options {
+    display: flex;
+    justify-content: space-between;
+    /* 讓按鈕分別靠左和靠右 */
+}
+
+.account-btn {
+    color: #A2CAD3;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    /* 為文字加上底線 */
+    cursor: pointer;
+    padding: 5px;
+}
+
+.account-btn.left {
+    text-align: left;
+    margin-right: auto;
+    /* 靠左 */
+}
+
+.account-btn.right {
+    text-align: right;
+    margin-left: 186px;
+    /* 靠右 */
+}
+
+.custom-checkbox {
+    display: none;
+    /* 隱藏原生checkbox */
+}
+
+.checkbox-label {
+    display: inline-block;
+    width: 30px;
+    /* 方框的寬度，根據需求調整 */
+    height: 30px;
+    /* 方框的高度，根據需求調整 */
+    border: 1px solid #ccc;
+    /* 方框的邊框 */
+    background-color: #ffdead;
+    /* 米色背景 */
+    vertical-align: middle;
+    /* 與文字垂直對齊 */
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-checkbox:checked+.checkbox-label::after {
+    content: '✓';
+    position: absolute;
+    font-size: 25px;
+    color: #333;
+    left: 5px;
+}

@@ -1,0 +1,178 @@
+.p{
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+    font-size: 2vw;
+    font-weight: 1000;
+}
+.seller {
+    width: 100%;
+    height: 12.1333vw;
+    padding: 2vw 0 0 4vw;
+    /* border: 1px solid red; */
+    border-radius: 12px;
+    margin-bottom: 2vw;
+    background-color: #F9F3E7;
+}
+
+.profileImage {
+    width: 100%;
+    height: 7vw;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin-right: 2vw;
+    margin-left: 1.3vw;
+}
+.profileImage img{
+    width: 100%;
+    height: 7vw;
+    border-radius: 50%;
+}
+
+.sellerName {
+    font-size: 1.3vw;
+    margin-top: 1vw;
+}
+
+.sellerName span {
+    margin-top: 1.5vw;
+    font-size: 1vw;
+    color: gray;
+}
+
+
+.sellerDecribe {
+    font-size: 1vw;
+    font-weight: bold;
+    padding-top: 2vw;
+}
+
+.collect{
+    margin-top: 1vw;
+}
+.collect a {
+    font-size: 1vw;
+    text-decoration: none;
+    color: grey;
+    margin-right: 1vw;
+}
+
+/* -------------------------------------------- */
+.coupon-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    max-width: 26vw;
+    margin: 20px;
+    border-radius: 10px;
+    vertical-align: middle;
+    background-color: #A2CAD3;
+    
+}
+.coupon-card img{
+    max-inline-size:6vw
+}
+.product-details {
+    flex-grow: 1;
+}
+
+
+
+.product-details {
+    flex-grow: 1;
+}
+
+.product-details h2 {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.product-details p {
+    margin: 5px 0;
+    color: #000000;
+}
+
+.product-pricing {
+    
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+}
+.get-coupon {
+    background-color: #F9F3E7;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.get-coupon:hover {
+    background-color: #F9F3E7; 
+    opacity: 0.3;
+}
+/* -------------------------------------------- */
+.test{
+    width: 100%;
+    height: 26vw;
+    border: 1px black solid;
+    margin-bottom: 1vw;
+}
+/* -------------------------------------------- */
+.sellItem{
+    width: 100%;
+    height: 4vw; 
+}
+.sellItem .selector{
+    height: 3vw;
+    font-size: 1vw;
+    font-weight: 500;
+    line-height: 3vw;
+    background-color: #F9F3E7;
+    border-radius: 23px 23px 0 0;
+}
+.selector span{
+    padding-right: 2vw;
+    padding-left: 1vw;
+    margin-left: 3vw;
+    border-width: 0px 1px 0px 0px;
+    border-style: solid;
+    border-color: black;
+}
+.itemSection{
+    width: 100%;
+    padding-left: 2vw;
+    padding-top: 2vw;
+    background-color: #F9F3E7;
+}
+.itemCategory{
+
+    margin-right: 5vw;
+    font-size: 1vw;
+    font-weight: 1000;
+    text-align: center;
+}
+.itemCategory form input{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+.item{
+   height: 11vw; 
+   margin:1vw 1vw 1vw 0vw;
+}
+.item img{
+    height: 11vw;
+    width: 100%;
+}
+.similarPage button{
+    font-size: 1.5vw;
+    border: none;
+    margin-bottom: 1vw;
+    color: black;
+    background-color: #F9F3E7;
+
+}

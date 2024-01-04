@@ -1,0 +1,41 @@
+.mesgContainer {
+    width: 100%;
+    height: 60vw;
+    margin-top: 1vw;
+    border-radius: 20px;
+    border: 6px #F9F3E7 solid;
+}
+
+.mesgTitle {
+    font-size: 2vw;
+    text-align: center;
+    margin: 5vw 0 3vw 0;
+}
+
+.mesgArea {
+    display: flex;
+    align-items: center;
+    margin-top: 2vw;
+}
+.mesgArea span{
+    padding-right: 2vw;
+}
+
+.setMesg {
+    resize: none;
+    padding: 0.5vw;
+}
+
+.saveMesg {
+    width: 6vw;
+    height: 3vw;
+    margin: 1vw 1vw;
+    padding: 0.5vw;
+    font-size: 1vw;
+    font-weight: 500;
+    border-radius: 10%;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+}

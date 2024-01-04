@@ -1,0 +1,72 @@
+.frame {
+    position: relative;
+    width: 30vw;
+    height: 30vw;
+    background-color: #ffffff;
+    border-radius: 1.56vw;
+    box-shadow: 0px 0.42vw 0.83vw rgba(0, 0, 0, 0.2);
+    margin: 0;
+    top: 18vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 1vw;
+    display: flex; /* Enabling flexbox layout */
+    flex-direction: column; /* Aligning items vertically */
+    align-items: center; /* Centering items horizontally */
+    justify-content: center; /* Centering items vertically */
+}
+.frame .rectangle {
+    width: 100%; /* Full width of the frame */
+    height: 0.31vw;
+    background-color: #a2cad3;
+    margin-bottom: 2vw; /* Space after the rectangle */
+    border-radius: 1.56vw;
+}
+.frame .text-wrapper-1,
+.frame .text-wrapper-2,
+.frame .text-wrapper-3{
+    height: 2vw;
+    font-size: 2vw;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #a2cad3;
+    margin-bottom: 1vw; /* Space between text and input */
+    
+}
+
+.frame .text .div {
+    position: relative;
+    height: 3vw;
+    width: 100%;
+    margin-bottom: 2vw;
+    background-color: #a2cad3;
+    border-radius: 1vw;
+    padding: 1vw;
+    font-size: 1.5vw;
+    color: white;
+    border: none;
+}
+.frame .view {
+    height: 15%;
+    width: 50%;
+    padding: 1vw;
+    text-align: center;
+    border-radius: 1.56vw;
+    background-color: #a2cad3; /* 如果需要背景色 */
+    /* 確保沒有邊線 */
+    border: none;
+}
+
+.frame .text-wrapper-4 {
+    height: 100%;
+    width: 100%;
+    font-size: 1.5vw;
+    color: white;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    margin-bottom: 1vw; /* Space between text and input */
+    background-color: #a2cad3;
+    border-radius: 1.56vw;
+    /* 確保沒有邊線 */
+    border: none;
+}

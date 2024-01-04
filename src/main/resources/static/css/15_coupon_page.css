@@ -1,0 +1,88 @@
+
+
+.divideline{
+    background-color: #F9F3E7;
+    width: 100%;
+    height: 10px;
+}
+
+
+.coupon-title{
+    background-color: #F9F3E7;
+    width: 100%;
+    height: 7vw;
+    border-radius: 8px;
+    vertical-align: middle;
+    line-height: 7vw;
+}
+
+.discount{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+.coupon-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    max-width: 26vw;
+    margin: 20px;
+    border-radius: 10px;
+    vertical-align: middle;
+    background-color: #A2CAD3;
+    
+}
+
+.details-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.product-details {
+    flex-grow: 1;
+}
+
+
+
+.product-details {
+    flex-grow: 1;
+}
+
+.product-details h2 {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.product-details p {
+    margin: 5px 0;
+    color: #000000;
+}
+
+.product-pricing {
+    
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+}
+
+.get-coupon {
+    background-color: #F9F3E7;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.get-coupon:hover {
+    background-color: #F9F3E7; 
+    opacity: 0.3;
+}

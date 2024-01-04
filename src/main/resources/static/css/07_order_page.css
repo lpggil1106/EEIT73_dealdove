@@ -1,0 +1,94 @@
+.order-container{
+    width:83vw;
+    margin:0;
+    padding:0;
+    
+}
+
+.order-selection-bar{
+    width: 83vw;
+    height:6.3vw;
+    background-color: #F9F3E7;
+    margin-bottom: 3vw;
+}
+
+.order-selection-bar ul {
+    height: 100%;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertical centering */
+}
+
+.order-selection-bar li {
+    text-align:center;
+    font-size: 1.5vw;
+    font-weight:600;
+    margin-left: 7vw;
+    margin-right: 7vw;
+    justify-content: center;
+    align-items: center; /* Vertical centering */
+}
+
+.cart-item-header{
+    display: flex;
+    
+    align-items: center;
+    border-bottom: 4px solid #FFFFFF;
+    padding: 0px 10px;
+    margin:0;
+
+    justify-content: space-between;
+            
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 避免圖像溢出 */
+}
+
+.user-name {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.action-button {
+    /* 添加按鈕的樣式 */
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.order-number {
+    /* 添加訂單編號的樣式 */
+}
+
+.item-product-model{
+    margin-right:0vw;
+    text-wrap:wrap;
+    width:20vw;
+}
+
+.item-product-unit{
+    margin-right:8vw;
+    text-wrap:wrap;
+    text-align: center;
+    width:6vw;
+}

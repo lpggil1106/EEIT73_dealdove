@@ -1,0 +1,97 @@
+.p{
+    font-size: 2vw;
+    font-weight: 2000;
+    margin-left: 2vw;
+}
+.p~a{
+    margin-left: auto;
+    margin-top: 2vw;
+    font-size: 1vw;
+    text-decoration: none;
+    color: #767676;
+    
+}
+.popularSeller{
+    /* height: 20vw; */
+    width: 100%;
+    background-color: #F9F3E7;
+    border-radius: 23px;
+}
+.popularSeller div{
+    margin-left: 3.5vw;
+    margin-top: 2vw;
+    height:17vw ;
+    width: 12vw;
+    text-align: center;
+}
+.popularSeller div img{
+    height: 11vw;
+    width: 12vw;
+}
+.popularSeller div span{
+    height: 1vw;
+    width: 12vw;
+    font-size: 1vw;
+}
+.popularSeller div button{
+    height: 2vw;
+    width: 10vw;
+    background-color: #E2C89C;
+    border: none;
+}
+/* ---------------------------------------------------- */
+.result{
+    width: 100%;
+    height: 4vw; 
+    margin-top: 4vw;
+}
+.result .selector{
+    height: 3vw;
+    font-size: 1vw;
+    font-weight: 500;
+    line-height: 3vw;
+    background-color: #F9F3E7;
+    border-radius: 13px;
+}
+.selector span{
+    padding-right: 1vw;
+    padding-left: 1vw;
+    margin-left: 1vw;
+    /* border-width: 0px 1px 0px 0px; */
+    /* border-style: solid; */
+    /* border-color: black; */
+    position: relative;
+}
+.selector .selector-item::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border: 1px solid gray; /* 边框宽度和颜色 */
+    pointer-events: none; 
+}
+.selector .selector-item:hover{
+    
+}
+.similar{
+    width: 100%;
+}
+
+.similar .similarProduct{
+    margin-bottom: 3vw;
+}
+.similar .similarProduct div{
+    height: 22vw;
+    border: 1px solid black;
+}
+.similarPage button{
+    font-size: 1.5vw;
+    border: none;
+    margin-bottom: 1vw;
+    color: black;
+    background-color: white;
+
+}
+
+
