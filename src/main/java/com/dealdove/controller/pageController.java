@@ -13,7 +13,7 @@ public class pageController {
         return "01_home_page";
     }
 
-//    test
+//    tt
     @GetMapping("/04_product_page")
     public String productPage(Model model){
         return "04_product_page";
