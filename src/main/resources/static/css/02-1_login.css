@@ -1,13 +1,9 @@
 .login-title {
     font-size: 50px;
     display: block;
-    /* 确保元素是块级元素 */
     width: 100%;
-    /* 宽度占满容器 */
     text-align: center;
-    /* 文字居中 */
     margin: 3px 0;
-    /* 上下外边距 */
 }
 
 .login-button {
@@ -15,7 +11,6 @@
     width: 120px;
     background-color: #A2CAD3;
     color: white;
-    /* 建议使用白色或其他高对比色，原先的 'color: A2CAD3;' 是无效的 */
     border: none;
     cursor: pointer;
     border-radius: 30px;
@@ -23,9 +18,7 @@
     display: block;
     text-align: center;
     margin: 20px auto;
-    /* 自动外边距用于水平居中 */
 }
-
 
 .login-button:hover {
     background-color: blue;
@@ -49,6 +42,7 @@
     height: 1vh;
     position: relative;
 }
+
 .vertical-line {
     height: 40vh;
     width: 0.7vw;
@@ -56,20 +50,15 @@
     position: absolute;
     transform: translateX(-50%);
     border-radius: 15px;
-    background-color: #A2CAD3;;
+    background-color: #A2CAD3;
+    ;
 }
-
-
 
 .login-form {
     display: flex;
     align-items: center;
-    /* 水平居中对齐 */
     justify-content: center;
-    /* 确保子元素间距均匀 */
-    /* 垂直居中对齐 */
     flex-direction: row;
-    /* 水平排列 */
     padding: 20px;
     background-color: #fff;
 }
@@ -146,7 +135,6 @@
 .captcha-group {
     display: flex;
     align-items: center;
-    /* 垂直對齊 */
 }
 
 .captchaimg {
@@ -154,10 +142,11 @@
     border: none;
     background-color: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 3px;
-    margin:0px 0px 12px 10px;
+    margin: 0px 0px 12px 10px;
     border-radius: 15px;
 
 }
+
 .captchaimg img {
     height: 5vh;
     width: 8vw;
@@ -167,7 +156,6 @@
 .account-options {
     display: flex;
     justify-content: space-between;
-    /* 讓按鈕分別靠左和靠右 */
 }
 
 .account-btn {
