@@ -1,9 +1,3 @@
-.content-wrapper {
-    min-height: calc(100vh - [Footer Height]);
-    /* 設置最小高度為視窗高度減去 footer 的高度 */
-    position: relative;
-}
-
 .login-title {
     text-align: center;
     font-size: 2rem;
@@ -31,42 +25,25 @@
     width: 1000px;
     margin: 10px 0;
     padding-top: 40px;
-    /* 根據需要調整寬度 */
     flex: 4;
-    /* 設定彈性佈局的放大比例 */
     display: flex;
-    /* 使用彈性盒子模型 */
     flex-direction: column;
-    /* 將按鈕垂直排列 */
     align-items: center;
-    /* 按鈕水平置中 */
     gap: 10px;
-    /* 按鈕之間添加間隙 */
 }
 
 .button {
     display: block;
-    /* 設置為塊級元素 */
     width: auto;
-    /* 從100%更改為自動 */
     max-width: 300px;
-    /* 設置最大寬度 */
     padding: 10px;
-    /* 設置內邊距 */
     margin: 10px 0;
-    /* 設置外邊距 */
     background-color: #F9F3E7;
-    /* 設置背景顏色 */
     border: none;
-    /* 移除邊框 */
     border-radius: 5px;
-    /* 設置邊框圓角 */
     font-family: "Inter-Regular", Helvetica;
-    /* 設置字體 */
     font-size: 24px;
-    /* 設置字體大小 */
     text-align: center;
-    /* 文字置中 */
 }
 
 .content-area {
@@ -80,61 +57,42 @@
     border-radius: 30px;
     padding: 20px;
     display: flex;
-    /* 添加此行以便於內部的 .content-section 元素並排顯示 */
     flex-wrap: wrap;
-    /* 允許內容換行 */
 }
 
 .content-section {
     display: flex;
-    /* 使用 flexbox */
     flex-direction: column;
-    /* 元素垂直排列 */
     justify-content: space-around;
-    /* 內部元素平均分布 */
     height: 70%;
-    /* 設定高度為100%，以充滿父容器 */
     padding: 20px;
-    /* 適當的內邊距 */
 }
 
 .content-section-list {
     display: flex;
-    /* 使用 flexbox */
     flex-direction: column;
     height: 100%;
-    /* 設定高度為100%，以充滿父容器 */
     padding: 0px 20px 20px 20px;
-    /* 適當的內邊距 */
 }
 
 .content-section-couponst {
     display: flex;
-    /* 使用 flexbox */
     flex-direction: column;
     height: 100%;
-    /* 設定高度為100%，以充滿父容器 */
     padding: 0px 20px 20px 20px;
-    /* 適當的內邊距 */
 }
 
 
 .content-section div {
     display: flex;
-    /* 使用彈性盒模型 */
-    /* 垂直置中對齊 */
     margin-bottom: 10px;
-    /* 底部間距 */
 }
 
 .content-section span {
     display: inline-block;
     width: 150px;
-    /* 設定寬度 */
     margin-right: 20px;
-    /* 右側間距 */
     text-align: left;
-    /* 文字靠右對齊 */
 }
 
 .content-section input[type="file"],
@@ -142,25 +100,17 @@
 .content-section input[type="email"],
 .content-section textarea {
     flex-grow: 1;
-    /* 彈性成長，佔據剩餘空間 */
     margin-left: 20px;
-    /* 左側間距 */
     background-color: #F9F3E7;
-    /* 設置背景顏色 */
     border: none;
-    /* 移除邊框 */
     border-radius: 5px;
-    /* 設置邊框圓角 */
 }
 
 .content-section button {
     margin: 5px 5px 5px 20px;
     background-color: #F9F3E7;
-    /* 設置背景顏色 */
     border: none;
-    /* 移除邊框 */
     border-radius: 5px;
-    /* 設置邊框圓角 */
 }
 
 .divider {
@@ -205,8 +155,6 @@
     background-color: #f9f3e7;
     border-radius: 30px;
 }
-
-
 
 .frame .text-wrapper {
     top: -1px;
@@ -266,21 +214,20 @@
     margin: 0;
     padding-top: 40px;
     background-color: #F9F3E7;
-    display: inline-flex; /* 修改為 inline-flex 以便使用 flexbox 屬性 */
+    display: inline-flex;
     align-items: center;
     gap: 10px;
     justify-content: space-around;
     padding: 0px;
-    border-radius: 15px 15px 0 0; /* 上方圓角，下方無圓角 */
+    border-radius: 15px 15px 0 0;
 }
 
 
 .btn {
     background-color: #007bff;
-    /* 藍色背景 */
     color: white;
     border: none;
-    margin: 10px 0 10px 20px ;
+    margin: 10px 0 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -292,113 +239,94 @@
 .list-content-component-pro {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     align-items: flex-start;
-    /* 子元素靠左對齊 */
     width: 800px;
-    /* 根據需要調整容器的寬度 */
     height: 180px;
-    /* 根據需要調整容器的高度 */
-
 }
 
 .content-section div {
     display: flex;
-    /* 使用彈性盒模型 */
-    /* 垂直置中對齊 */
     margin-bottom: 10px;
-    /* 底部間距 */
 }
 
 .item {
     display: flex;
     justify-content: flex-start;
-    /* 水平方向靠左對齊 */
-    /* 適當的間距 */
 }
 
 .item-image {
     width: 120px;
-    /* 圖片寬度 */
     height: 120px;
-    /* 圖片高度 */
     margin-right: 10px;
-    /* 圖片與文字之間的間隔 */
 }
 
 .item-text {
     display: flex;
     flex-direction: column;
-    /* 確保文字垂直排列 */
 }
 
 .bottom-text {
     align-self: flex-end;
-    /* 文字靠右對齊 */
     margin: 10px;
-    ;
-    /* 將文字推向底部 */
 }
 
 .yellow-line {
     height: 25px;
-    /* 黃線的高度 */
     background-color: #F9F3E7;
-    /* 黃線的顏色 */
     width: 100%;
-    /* 黃線的寬度與外層相同 */
     border-radius: 30px;
 }
 
 .container-coupons {
     display: flex;
-    height:800px;
+    height: 800px;
     width: 800px;
     flex-direction: column;
 
 }
+
 .top-section {
     display: flex;
 }
+
 .top-section img {
     width: 100%;
-    /* 或其他指定寬度 */
     height: auto;
-    /* 保持圖片比例 */
     padding: 0px 0px 30px 0px;
 }
 
 .bottom-section {
     width: 800px;
     height: 370px;
-    border: 20px solid #F9F3E7; /* 黃色邊界 */
-    border-width: 0 20px 20px; /* 上方無邊框，其他邊保持 20px */
-    display: flex; /* 採用 Flexbox 佈局 */
-    flex-wrap: wrap; /* 允許內容換行 */
-    justify-content: space-around; /* 水平方向上區塊平均分佈 */
-    align-content: space-around; /* 垂直方向上區塊平均分佈 */
-    border-radius:  0 0 15px 15px; /* 下方圓角 */
+    border: 20px solid #F9F3E7;
+    border-width: 0 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    border-radius: 0 0 15px 15px;
 }
 
 
 .coupon-block {
-    flex: 1 1 40%; /* 每個區塊佔據的空間和成長因子 */
-    display: flex; /* 使用 Flexbox 顯示圖片和文字 */
-    align-items: center; /* 垂直置中 */
-    margin: 10px; /* 在區塊之間添加一些間隔 */
+    flex: 1 1 40%;
+    display: flex;
+    align-items: center;
+    margin: 10px;
 }
 
 .coupon-block img {
 
     width: 150px;
     height: 150px;
-    width: 50%; /* 圖片佔據區塊的一半寬度 */
+    width: 50%;
 }
 
 .coupon-block p {
-    width: 50%; /* 文字區域佔據區塊的一半寬度 */
+    width: 50%;
 }
+
 .selected {
-    background-color: #F9F3E7; /* 選中按鈕的背景顏色 */
-    color: #A2CAD3; /* 選中按鈕的文字顏色 */
+    background-color: #F9F3E7;
+    color: #A2CAD3;
 }
