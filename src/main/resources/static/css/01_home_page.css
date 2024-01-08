@@ -1,35 +1,17 @@
-.carousel-control-prev,
-.carousel-control-next {justify-content: none;
-}
-/* 1 */
-body,
-html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-}
-
-/* 導航條基礎樣式 */
 .navigation {
     width: 71.5%;
     margin: 0 auto;
-    /* 同时设置左右自动边距来居中导航 */
     padding: 0;
     margin-bottom: 2px;
     border-radius: 15px;
     background-color: #F9F3E7;
-    /* overflow: visible; */
     white-space: nowrap;
     box-sizing: border-box;
     position: relative;
     z-index: 100;
-    /* 确保导航栏在上方 */
     display: flex;
-    /* 使用 Flexbox 布局 */
     justify-content: space-around;
-    /* 子元素均匀分布 */
     align-items: center;
-    /* 垂直居中对齐 */
 }
 
 .nav-item.dropdown:not(:first-child)::before {
@@ -39,22 +21,16 @@ html {
     top: 50%;
     transform: translateY(-50%);
     height: 20px;
-    /* 设置与文字大致相同的高度，根据需要调整 */
     border-left: 1px solid black;
-    /* 创建黑色垂直线 */
     width: 0;
-    /* 0 宽度 */
 }
 
-/* 移除第一个 .nav-item.dropdown 的左边框 */
 .nav-item.dropdown:first-child {
     border-left: none;
 }
 
-/* 導航項目樣式 */
 .nav-item {
     position: relative;
-    /* 为下拉内容定位做准备 */
     display: inline-block;
     color: black;
     text-align: center;
@@ -67,14 +43,12 @@ html {
     background-color: #ddd;
 }
 
-/* 特色內容區塊樣式 */
 .featured-content {
     height: 300px;
     background-color: #ffffff;
     border: 1px solid #e7e7e7;
 }
 
-/* 下拉按鈕樣式 */
 .dropbtn {
     display: inline-block;
     color: black;
@@ -84,7 +58,6 @@ html {
     border: none;
 }
 
-/* 下拉內容的容器，預設隱藏 */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -92,10 +65,8 @@ html {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 101;
-    /* 确保下拉内容覆盖其他元素 */
 }
 
-/* 下拉內容項目樣式 */
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
@@ -108,7 +79,6 @@ html {
     background-color: #ddd;
 }
 
-/* 懸停到下拉按鈕時顯示下拉內容 */
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -120,12 +90,9 @@ html {
     background-color: #ffffff;
 }
 
-/* 輪播圖 */
 .carousel {
     width: 71.5vw;
-    /* 使用視窗寬度的百分比 */
     height: 35vh;
-    /* 使用視窗高度的百分比 */
     margin-right: auto;
     margin-left: auto;
     padding: 0;
@@ -146,25 +113,19 @@ html {
     overflow: hidden;
     transition: transform 0.5s ease;
     padding: 0;
-    /* 確保容器沒有內邊距 */
     margin: 0;
-    /* 確保容器沒有外邊距 */
 }
 
 .carousel .container a {
     flex: 0 0 100%;
     margin: 0;
     padding: 0;
-    /* 確保連結沒有內邊距 */
     border: none;
-    /* 確保連結沒有邊框 */
 }
 
 .carousel .container a img {
     height: 100%;
-    /* 保持高度為容器的100% */
     width: 100%;
-    /* 保持寬度為容器的100% */
     object-fit: cover;
     object-position: center;
 }
@@ -222,13 +183,9 @@ html {
     width: 71.5vw;
     margin: 0 auto;
     display: flex;
-    /* Set the container as a flex container */
     flex-direction: column;
-    /* Stack children vertically */
     justify-content: center;
-    /* Vertically center the content */
     align-items: center;
-    /* Horizontally center the content */
     background-color: #F9F3E7;
     border-radius: 15px;
 }
@@ -237,9 +194,7 @@ html {
     font-size: 2vw;
     font-weight: 1000;
     margin-bottom: 10px;
-    /* Add unit to margin */
     text-align: center;
-    /* Center the text horizontally */
 }
 
 .hot.div {
@@ -253,30 +208,19 @@ html {
     background-color: #F9F3E7;
     border-radius: 15px;
     position: relative;
-    /* 其他样式保持不变 */
     display: flex;
-    /* 使用 Flexbox */
     flex-direction: row;
-    /* 水平排列 */
     justify-content: space-around;
-    /* 每个元素之间有平均间距 */
     align-items: center;
-    /* 垂直居中对齐 */
     width: 100%;
-    /* 或根据需要调整宽度 */
-    /* 其他样式保持不变 */
     height: 400px;
-    /* 高度保持不变 */
-
 }
 
 .hotpro p {
     font-size: 2vw;
     font-weight: 1000;
     margin-bottom: 10px;
-    /* Add unit to margin */
     text-align: center;
-    /* Center the text horizontally */
 }
 
 .hotpro.div {
@@ -289,111 +233,76 @@ html {
 .hotpro .item {
     display: flex;
     flex-direction: column;
-    /* 垂直排列图片和文本 */
     align-items: center;
-    /* 中心对齐 */
     flex-grow: 1;
-    /* 每个 item 都平均分配空间 */
     margin: 10px;
-    /* 或根据需要调整 */
 }
 
 .hotpro .item img {
     width: 100%;
-    /* 充满整个 item 区域 */
     height: auto;
-    /* 保持图片比例 */
     margin-bottom: 5px;
 }
 
 .hotpro .item p {
     font-size: 24px;
     text-align: center;
-    /* 其他样式根据需要添加 */
 }
 
 .hotpro .item img {
     width: 200px;
-    /* 设置固定宽度 */
     height: 200px;
-    /* 设置固定高度 */
     margin-bottom: 5px;
-
-    /* 可以添加 object-fit: cover; 如果想要图像覆盖整个区域但保持比例 */
 }
 
 .prev-button,
 .next-button {
     position: absolute;
-    /* 設置位置為絕對定位 */
     top: 50%;
-    /* 設置頂部位置，使按鈕垂直居中 */
     width: 30px;
-    /* 設置寬度 */
     height: 40px;
-    /* 設置高度 */
     background-color: #ffdead;
-    /* 設置背景顏色 */
     color: #A2CAD3;
-    /* 設置文字顏色 */
     text-align: center;
-    /* 文字居中對齊 */
     cursor: pointer;
-    /* 鼠標懸停時顯示指針 */
     user-select: none;
-    /* 禁止用戶選擇文本 */
     opacity: 0.5;
-    /* 設置透明度 */
     z-index: 10;
-    /* 設置層疊順序 */
     font-size: 20px;
-    /* 設置字體大小 */
     transform: translate(-50%, -50%) scale(1.5, 1.5);
-    /* 調整按鈕位置和大小 */
     border-radius: 15%;
-    /* 設置邊框圓角 */
 }
 
 .prev-button {
     left: 10px;
-    /* 按鈕放在左邊，根據需要調整 */
 }
 
 .next-button {
     right: 10px;
-    /* 按鈕放在右邊，根據需要調整 */
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    
     background-color: #ffdead;
-    /* 背景顏色設為透明 */
     color: #A2CAD3;
     align-items: center;
-   
+
 }
 
 .carousel-control-prev-icon::before,
 .carousel-control-next-icon::before {
     content: '';
-    /* 清除內容，使用自定義的箭頭或其他圖形 */
     font-size: 20px;
-    /* 設定字體大小 */
     color: white;
-    /* 設定箭頭顏色 */
     opacity: 0.5;
-    /* 設置透明度 */
     padding: auto;
     margin: auto;
 }
 
 .carousel-control-prev {
     left: 0px;
-    /* 將左側按鈕向內移 */
 }
 
 .carousel-control-next {
     right: 0px;
-    /* 將右側按鈕向內移 */
 }
