@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 public class User {
     @Id
     @Column(name = "userID" , nullable = false , unique = true)
-    private int userID;
+    private Integer userID;
 
     @Column(name = "userName" , nullable = false , unique = true)
     private String userName;
@@ -50,7 +50,7 @@ public class User {
         this.avatar = avatar;
     }
     // Constructor for User
-    public User(Integer ID, String userName, String password, String email, boolean status, int gender, ZonedDateTime birthday, ZonedDateTime createTime, ZonedDateTime lastEdit) {
+    public User(Integer ID, String userName, String password, String email, boolean status, int gender, ZonedDateTime birthday, ZonedDateTime createTime, ZonedDateTime lastEdit,String avatar) {
         this.userID = ID;
         this.userName = userName;
         this.password = password;
@@ -60,14 +60,15 @@ public class User {
         this.birthday = birthday;
         this.createTime = createTime;
         this.lastEdit = lastEdit;
+        this.avatar = avatar;
     }
 
 
-    public int getUserID() {
+    public Integer getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 

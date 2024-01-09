@@ -17,7 +17,8 @@ import java.util.List;
 public class pageController {
     @Autowired
     private UserService userService;
-
+    private  int id;
+    private String name;
 
     @GetMapping("/01_home_page")
     public String test(Model model){
