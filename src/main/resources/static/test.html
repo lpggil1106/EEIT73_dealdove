@@ -17,10 +17,11 @@
 
 <body>
 <script>
-    fetch("test")
+    fetch("/link")
         .then(response => response.json())
         .then(data => {
             data.forEach(user=>{
+                console.log(user);
                     let row = document.getElementById("table2");
                     let newRow = `<tr>
                     <td>${user.userID}</td>

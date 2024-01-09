@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class pageController {
 
     @Autowired
@@ -29,11 +29,11 @@ public class pageController {
         return "04_product_page";
     }
 
-    @RequestMapping("/test")
+    @RequestMapping("/link")
     public List<User> test2(){
-        System.out.println("test2 started");
         //回傳userService查詢到的資料
-        System.out.println(userService.findAllUsers());
+        System.out.println(userService.findAllUsers()+"123456789");
+        System.out.println("123456789");
         return userService.findAllUsers();
     }
 
