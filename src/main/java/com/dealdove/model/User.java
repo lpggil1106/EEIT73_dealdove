@@ -37,9 +37,18 @@ public class User {
     @Column(name = "createTime" , nullable = false)
     private ZonedDateTime createTime;
 
+    @Column(name = "avatar" , nullable = true)
+    private String avatar;
     public User() {
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
     // Constructor for User
     public User(Integer ID, String userName, String password, String email, boolean status, int gender, ZonedDateTime birthday, ZonedDateTime createTime, ZonedDateTime lastEdit) {
         this.userID = ID;

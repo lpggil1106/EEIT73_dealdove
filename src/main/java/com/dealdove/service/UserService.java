@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -22,9 +24,8 @@ public class UserService {
         userRepository.findByUsername(username);
     }
 
-    @Query(value = "select * from user")
-    public User findAll(){
-        return userRepository.findAll();
+    public List<User> findAllUsers() {
+        return userRepository.findAllUsers();
     }
 
 

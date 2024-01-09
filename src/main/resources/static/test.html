@@ -14,15 +14,16 @@
 
 <body>
 <script>
-    fetch("/test")
+    fetch("/test2")
         .then(response => response.json())
         .then(data => {
-            data.foreach(user=>{
-                const row = document.getElementById("table2");
-                const newRow = "<tr>" +
-                    "<td>" + user.id + "</td>" +
-                    "<td>" + user.userName + "</td>" +
-                    "</tr>";
+            data.forEach(user=>{
+                let row = document.getElementById("table2");
+                let newRow = `<tr>
+                    <td>${user.userID}</td>
+                    <td>${user.userName}</td>
+                    <td><img src="${user.avatar}" alt="Animated GIF"></td>
+                </tr>`;
                 row.innerHTML += newRow;
                 }
             )
