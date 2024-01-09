@@ -1,4 +1,4 @@
-package com.dealdove.controller;
+package com.dealdove.dealdove.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ public class pageController {
         return "01_home_page";
     }
 
-//    test123456
+    //    test123456
     @GetMapping("/04_product_page")
     public String productPage(Model model){
         return "04_product_page";
