@@ -1,8 +1,7 @@
-package com.dealdove.controller;
+package com.dealdove.dealdove.controller;
 
-import com.dealdove.interfaces.UserRepository;
-import com.dealdove.model.User;
-import com.dealdove.service.UserService;
+import com.dealdove.dealdove.model.User;
+import com.dealdove.dealdove.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,8 +44,15 @@ public class pageController {
     @RequestMapping("/test2")
     //接收成功時執行的method
     public List<User> test2(){
+        System.out.println("test2 started");
         //回傳userService查詢到的資料
         return userService.findAllUsers();
+    }
+
+    @GetMapping("/hello")
+    public String sayHello() {
+        System.out.println("Hello from your controller!");
+        return "Hello from your controller!";
     }
 }
 

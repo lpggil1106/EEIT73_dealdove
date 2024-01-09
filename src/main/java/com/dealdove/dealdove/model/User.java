@@ -1,4 +1,4 @@
-package com.dealdove.model;
+package com.dealdove.dealdove.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

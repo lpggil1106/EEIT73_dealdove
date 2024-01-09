@@ -1,7 +1,7 @@
-package com.dealdove.service;
+package com.dealdove.dealdove.service;
 
-import com.dealdove.interfaces.CouponRepository;
-import com.dealdove.model.Coupon;
+import com.dealdove.dealdove.interfaces.CouponRepository;
+import com.dealdove.dealdove.model.Coupon;
 
 public class couponService {
     private CouponRepository couponRepository;

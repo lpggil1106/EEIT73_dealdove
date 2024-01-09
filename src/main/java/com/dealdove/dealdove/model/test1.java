@@ -1,4 +1,4 @@
-package com.dealdove.model;
+package com.dealdove.dealdove.model;
 
 import java.time.ZonedDateTime;
 

@@ -1,6 +1,7 @@
-package com.dealdove.service;
+package com.dealdove.dealdove.service;
 
-import com.dealdove.interfaces.UserRepository;
+import com.dealdove.dealdove.interfaces.UserRepository;
+import com.dealdove.dealdove.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +10,9 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
 
-
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -21,7 +21,7 @@ public class UserService {
         userRepository.findByUsername(username);
     }
 
-    public List findAllUsers() {
+    public List<User> findAllUsers() {
         return userRepository.findAllUsers();
     }
 
