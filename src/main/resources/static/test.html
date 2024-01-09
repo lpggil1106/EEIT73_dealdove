@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--insert a table -->
+<table id = "table2">
+    <tr>
+        <th>userID</th>
+        <th>userName</th>
+        <th>avatar</th>
+    </tr>
+</table>
+
+<body>
+<script>
+    fetch("test")
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(user=>{
+                    let row = document.getElementById("table2");
+                    let newRow = `<tr>
+                    <td>${user.userID}</td>
+                    <td>${user.userName}</td>
+                    <td><img src="${user.avatar}" alt="Animated GIF"></td>
+                </tr>`;
+                    row.innerHTML += newRow;
+                }
+            )
+        }).catch(error => console.log(error));
+</script>
+</body>
+</html>
