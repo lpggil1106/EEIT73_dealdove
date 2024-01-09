@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--insert a table -->
+<table id = "table2">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+    </tr>
+</table>
+
+<body>
+<script>
+    fetch("/test")
+        .then(response => response.json())
+        .then(data => {
+            data.foreach(user=>{
+                const row = document.getElementById("table2");
+                const newRow = "<tr>" +
+                    "<td>" + user.id + "</td>" +
+                    "<td>" + user.userName + "</td>" +
+                    "</tr>";
+                row.innerHTML += newRow;
+                }
+            )
+            }).catch(error => console.log(error));
+</script>
+</body>
+</html>
