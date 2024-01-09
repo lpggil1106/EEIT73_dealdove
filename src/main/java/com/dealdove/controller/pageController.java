@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class pageController {
     @Autowired
     private UserService userService;
@@ -29,7 +30,7 @@ public class pageController {
         return "04_product_page";
     }
     @RequestMapping("/test")
-    private String test1(@RequestParam String name,Integer id){
+    public String test1(@RequestParam String name,Integer id){
 
         this.id = id;
         this.name=name;
