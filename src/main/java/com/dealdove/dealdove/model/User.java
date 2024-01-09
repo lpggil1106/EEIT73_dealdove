@@ -14,8 +14,8 @@ import java.time.ZonedDateTime;
         @Column(name = "userID" , nullable = false , unique = true)
         private Integer userID;
 
-        @Column(name = "userName" , nullable = false , unique = true)
-        private String userName;
+        @Column(name = "username" , nullable = false , unique = true)
+        private String username;
 
         @Column(name = "password" , nullable = false)
         private String password;
@@ -29,14 +29,17 @@ import java.time.ZonedDateTime;
         @Column(name = "gender" , nullable = true)
         private int gender;
 
-//        @Column(name = "birthDate" , nullable = true)
-//        private ZonedDateTime birthDate;
+        @Column(name = "birthdate" , nullable = true)
+        private ZonedDateTime birthdate;
 
-//        @Column(name = "createTime" , nullable = true)
-//        private ZonedDateTime createTime;
+        @Column(name = "createtime" , nullable = true)
+        private ZonedDateTime createtime;
 
         @Column(name = "avatar" , nullable = true)
         private String avatar;
+
+        @Column(name = "lastedit" , nullable = false)
+        private ZonedDateTime lastedit;
         public User() {
         }
 
@@ -48,16 +51,16 @@ import java.time.ZonedDateTime;
             this.avatar = avatar;
         }
         // Constructor for User
-        public User(Integer ID, String userName, String password, String email, boolean status, int gender, ZonedDateTime birthDate, ZonedDateTime createTime, ZonedDateTime lastEdit,String avatar) {
+        public User(Integer ID, String username, String password, String email, boolean status, int gender, ZonedDateTime birthdate, ZonedDateTime createtime, ZonedDateTime lastedit,String avatar) {
             this.userID = ID;
-            this.userName = userName;
+            this.username = username;
             this.password = password;
             this.email = email;
             this.status = status;
             this.gender = gender;
-//            this.birthDate = birthDate;
-//            this.createTime = createTime;
-//            this.lastEdit = lastEdit;
+            this.birthdate = birthdate;
+            this.createtime = createtime;
+            this.lastedit = lastedit;
             this.avatar = avatar;
         }
 
@@ -71,11 +74,11 @@ import java.time.ZonedDateTime;
         }
 
         public String getUserName() {
-            return userName;
+            return username;
         }
 
         public void setUserName(String userName) {
-            this.userName = userName;
+            this.username = userName;
         }
 
         public String getPassword() {
@@ -110,32 +113,31 @@ import java.time.ZonedDateTime;
             this.gender = gender;
         }
 
-//        public ZonedDateTime getBirthDate() {
-//            return birthDate;
-//        }
-//
-//        public void setBirthDate(ZonedDateTime birthDate) {
-//            this.birthDate = birthDate;
-//        }
+        public ZonedDateTime getBirthDate() {
+            return birthdate;
+        }
 
-//        public ZonedDateTime getCreateTime() {
-//            return createTime;
-//        }
-//
-//        public void setCreateTime(ZonedDateTime createTime) {
-//            this.createTime = createTime;
-//        }
+        public void setBirthDate(ZonedDateTime birthDate) {
+            this.birthdate = birthDate;
+        }
 
-//        public ZonedDateTime getLastEdit() {
-//            return lastEdit;
-//        }
-//
-//        public void setLastEdit(ZonedDateTime lastEdit) {
-//            this.lastEdit = lastEdit;
-//        }
-//
-//        @Column(name = "lastEdit" , nullable = false)
-//        private ZonedDateTime lastEdit;
+        public ZonedDateTime getCreateTime() {
+            return createtime;
+        }
+
+        public void setCreateTime(ZonedDateTime createTime) {
+            this.createtime = createTime;
+        }
+
+        public ZonedDateTime getLastEdit() {
+            return lastedit;
+        }
+
+        public void setLastEdit(ZonedDateTime lastEdit) {
+            this.lastedit = lastEdit;
+        }
+
+
 
     }
 
