@@ -26,8 +26,8 @@ public class MessageService {
         return messageRepository.getAllMessage();
     }
 
-    public Message getMessageByID(Integer id){
-        return messageRepository.getMessageByID(id);
+    public Message getMessageByID(Integer senderid ,Integer receiverid){
+        return messageRepository.getMessageByID(senderid,receiverid);
     }
 
     public void saveMessage(Integer senderID,Integer receiverID,String text){

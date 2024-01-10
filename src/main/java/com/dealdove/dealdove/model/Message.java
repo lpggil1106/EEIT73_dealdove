@@ -1,10 +1,12 @@
 package com.dealdove.dealdove.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.ZonedDateTime;
 
 @Entity
+@DynamicInsert //新增一筆資料時排除已有預設值或空欄位
 @Table(name = "message")
 public class Message {
     @Id

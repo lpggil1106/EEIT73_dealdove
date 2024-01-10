@@ -17,8 +17,10 @@ public interface MessageRepository extends JpaRepository<Message,Long> {
     @Query(value = "SELECT * FROM message",nativeQuery = true)
     List<Message> getAllMessage();
 
-    @Query(value = "SELECT * FROM message where messageID = :id",nativeQuery = true)
-    Message getMessageByID(@Param("id") Integer id);
+    @Query(value = "SELECT * FROM message where receiverID = :receiverid AND senderID= :senderID",nativeQuery = true)
+    Message getMessageByID(@Param("receiverid") Integer receiverid,@Param("senderID")Integer senderid);
 
+
+    //Insert a new row
     Message save(Message message);
 }

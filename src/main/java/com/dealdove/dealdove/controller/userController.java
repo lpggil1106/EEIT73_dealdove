@@ -39,10 +39,10 @@ public class userController {
     }
     @RequestMapping("/time")
     public List<Message> test3(){
-        Message message = messageService.getMessageByID(2);
+        Message message = messageService.getMessageByID(3,1);
         System.out.println(messageService.getAllMessage()+"123");
-        System.out.println(message.getMessageID());
-        messageService.saveMessage(1,2,"Saved123");
+        System.out.println(message.getText());
+        messageService.saveMessage(1,2,"Saveddefault");
         return messageService.findMessage();
     }
 
