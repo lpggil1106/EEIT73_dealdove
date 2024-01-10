@@ -17,10 +17,7 @@ public class userController {
     private UserService userService;
 
 
-    @GetMapping("/01_home_page")
-    public String test(Model model){
-        return "01_home_page";
-    }
+
 
     //    test123456
     @GetMapping("/04_product_page")
