@@ -32,6 +32,13 @@
                 }
             )
         }).catch(error => console.log(error));
+    fetch("/time")
+    .then(responce=>{responce.json()
+        .then(data=>{
+            data.forEach(message=>{
+                console.log(message);
+            })
+        })})
 </script>
 </body>
 </html>

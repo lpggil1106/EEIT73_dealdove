@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
-public class MessageService{
+public class MessageService {
 
     @Autowired
     MessageRepository messageRepository;
@@ -18,10 +18,26 @@ public class MessageService{
         this.messageRepository = messageRepository;
     }
 
-    public List<Message> findMessage(){
+    public List<Message> findMessage() {
         return messageRepository.findMessage();
     }
-    public ZonedDateTime setTaipeiTimezone(ZonedDateTime time){
-        return time.plusHours(8);
+
+    public List<Message> getAllMessage() {
+        return messageRepository.getAllMessage();
     }
+
+    public Message getMessageByID(Integer id){
+        return messageRepository.getMessageByID(id);
+    }
+
+    public void saveMessage(Integer senderID,Integer receiverID,String text,ZonedDateTime timeStamp){
+         Message message = new Message();
+         message.setSenderid(senderID);
+         message.setReceiverid(receiverID);
+         message.setText(text);
+         message.setTimestamp(timeStamp);
+
+        messageRepository.save(message);
+    }
+
 }

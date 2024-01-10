@@ -1,6 +1,8 @@
 package com.dealdove.dealdove.controller;
 
+import com.dealdove.dealdove.model.Message;
 import com.dealdove.dealdove.model.User;
+import com.dealdove.dealdove.service.MessageService;
 import com.dealdove.dealdove.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @RestController
@@ -15,7 +19,8 @@ public class userController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private MessageService messageService;
 
 
 
@@ -32,5 +37,14 @@ public class userController {
         System.out.println("123456789");
         return userService.findAllUsers();
     }
+    @RequestMapping("/time")
+    public List<Message> test3(){
+        Message message = messageService.getMessageByID(2);
+        System.out.println(messageService.getAllMessage()+"123");
+        System.out.println(message.getMessageID());
+        messageService.saveMessage(1,2,"Saved", ZonedDateTime.now());
+        return messageService.findMessage();
+    }
+
 
 }

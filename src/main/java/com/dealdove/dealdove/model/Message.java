@@ -8,6 +8,7 @@ import java.time.ZonedDateTime;
 @Table(name = "message")
 public class Message {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "messageID", nullable = false, unique = true)
     private Integer messageID;
 

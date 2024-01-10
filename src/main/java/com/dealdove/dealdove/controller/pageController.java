@@ -17,7 +17,12 @@ public class pageController {
         return "test";
     }
     @GetMapping("/Dealdove" )
-    public String test2(){
+    public String homePage(){
         return "01_home_page";
+    }
+
+    @GetMapping("/test2")
+    public String test2(){
+        return "test";
     }
 }
