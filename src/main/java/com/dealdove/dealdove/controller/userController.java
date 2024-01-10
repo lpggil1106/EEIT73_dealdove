@@ -42,7 +42,7 @@ public class userController {
         Message message = messageService.getMessageByID(2);
         System.out.println(messageService.getAllMessage()+"123");
         System.out.println(message.getMessageID());
-        messageService.saveMessage(1,2,"Saved", ZonedDateTime.now());
+        messageService.saveMessage(1,2,"Saved123");
         return messageService.findMessage();
     }
 

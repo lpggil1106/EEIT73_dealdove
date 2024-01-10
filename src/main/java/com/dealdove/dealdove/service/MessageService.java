@@ -30,12 +30,12 @@ public class MessageService {
         return messageRepository.getMessageByID(id);
     }
 
-    public void saveMessage(Integer senderID,Integer receiverID,String text,ZonedDateTime timeStamp){
+    public void saveMessage(Integer senderID,Integer receiverID,String text){
          Message message = new Message();
          message.setSenderid(senderID);
          message.setReceiverid(receiverID);
          message.setText(text);
-         message.setTimestamp(timeStamp);
+
 
         messageRepository.save(message);
     }

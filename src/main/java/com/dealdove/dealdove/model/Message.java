@@ -24,7 +24,7 @@ public class Message {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "timestamp", nullable = false)
+    @Column(name = "timestamp")
     private ZonedDateTime timestamp;
 
     public Message() {
