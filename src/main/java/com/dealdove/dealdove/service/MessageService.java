@@ -32,8 +32,8 @@ public class MessageService {
 
     public void saveMessage(Integer senderID,Integer receiverID,String text){
          Message message = new Message();
-         message.setSenderid(senderID);
-         message.setReceiverid(receiverID);
+         message.setSenderId(senderID);
+         message.setReceiverId(receiverID);
          message.setText(text);
 
 

@@ -14,11 +14,11 @@ public class Message {
     @Column(name = "messageID", nullable = false, unique = true)
     private Integer messageID;
 
-    @Column(name = "receiverid", nullable = false)
-    private Integer receiverid;
+    @Column(name = "receiverId", nullable = false)
+    private Integer receiverId;
 
-    @Column(name = "senderid", nullable = false)
-    private Integer senderid;
+    @Column(name = "senderId", nullable = false)
+    private Integer senderId;
 
     @Column(name = "text")
     private String text;
@@ -26,43 +26,44 @@ public class Message {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "timestamp")
-    private ZonedDateTime timestamp;
+    @Column(name = "timeStamp")
+    private ZonedDateTime timeStamp;
 
     public Message() {
 
     }
-    public Message(Integer messageID, Integer receiverid, Integer senderid, Boolean messagetype, String text, String image, ZonedDateTime timestamp) {
+    public Message(Integer messageID, Integer receiverId, Integer senderId,  String text, String image, ZonedDateTime timeStamp) {
         this.messageID = messageID;
-        this.receiverid = receiverid;
-        this.senderid = senderid;
+        this.receiverId = receiverId;
+        this.senderId = senderId;
         this.text = text;
         this.image = image;
-        this.timestamp = timestamp;
+        this.timeStamp = timeStamp;
     }
 
     public Integer getMessageID() {
         return messageID;
     }
 
+
     public void setMessageID(Integer messageID) {
         this.messageID = messageID;
     }
 
-    public Integer getReceiverid() {
-        return receiverid;
+    public Integer getReceiverId() {
+        return receiverId;
     }
 
-    public void setReceiverid(Integer receiverid) {
-        this.receiverid = receiverid;
+    public void setReceiverId(Integer receiverId) {
+        this.receiverId = receiverId;
     }
 
-    public Integer getSenderid() {
-        return senderid;
+    public Integer getSenderId() {
+        return senderId;
     }
 
-    public void setSenderid(Integer senderid) {
-        this.senderid = senderid;
+    public void setSenderId(Integer senderId) {
+        this.senderId = senderId;
     }
 
     public String getText() {
@@ -81,11 +82,11 @@ public class Message {
         this.image = image;
     }
 
-    public ZonedDateTime getTimestamp() {
-        return timestamp;
+    public ZonedDateTime getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setTimestamp(ZonedDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setTimeStamp(ZonedDateTime timeStamp) {
+        this.timeStamp = timeStamp;
     }
 }
