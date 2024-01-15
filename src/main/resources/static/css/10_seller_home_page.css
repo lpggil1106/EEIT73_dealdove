@@ -1,3 +1,9 @@
+.content{
+  display: none;
+}
+.selectp{
+  display: none;
+}
 /* -------------------賣家首頁------------------------- */
 .divider {
   width: 100%;
