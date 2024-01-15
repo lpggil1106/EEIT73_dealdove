@@ -133,11 +133,11 @@
                     <div class="vertical-line"></div>
                 </div>
 
-                <div class="third-party-logins">
+                <div id="google-signIn" type="button" class="third-party-logins">
                     <button class="google-login">
                         <img src="./images/google.png" alt="Google">Google登入
                     </button>
-                    <button class="facebook-login">
+                    <button id="facebook-signIn" type="button" class="facebook-login">
                         <img src="./images/facebook.svg" alt="Facebook">Facebook登入
                     </button>
                 </div>
@@ -190,8 +190,88 @@
             </div>
         </footer>
 
-        <!-- js -->
+    <!-- js -->
+    <script type="module">
+    // 導入所需的 Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+       // Firebase 配置
+        const firebaseConfig = {
+            apiKey: "AIzaSyA0xrDB28Kk2gvgj-Ho0wvTNemqqkqytuo",
+            authDomain: "dealdove-36d8c.firebaseapp.com",
+            projectId: "dealdove-36d8c",
+            storageBucket: "dealdove-36d8c.appspot.com",
+            messagingSenderId: "997598982157",
+            appId: "1:997598982157:web:8728a77f135fec514ba544",
+            measurementId: "G-7ZRGD1VDM6"
+        };
+
+        // 初始化 Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        // 綁定登入按鈕事件
+        document.getElementById('google-signIn').addEventListener('click', () => {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider).then(result => {
+                // 獲取用戶資訊
+                const user = result.user;
+                // 用戶的唯一 ID
+                const uid = user.uid;
+                // 用戶的名字
+                const displayName = user.displayName;
+                // 用戶的電子郵件
+                const email = user.email;
+                // 用戶的頭像 URL
+                const photoURL = user.photoURL;
+                // 用戶登入提供者的相關資料
+                const providerData = user.providerData;
+
+                console.log(email);
+                // 在這裡，您可以將用戶資料保存到狀態管理，或者發送到您的服務器進行進一步處理
+                // 例如：
+                // saveUserData(uid, displayName, email, photoURL);
+
+                // 或更新 UI 以反映用戶已登入
+                // updateUI(user);
+            }).catch(error => {
+
+            });
+        });
+
+        // <!----------------------------- facebook登入---------- -->
+
+
+        document.getElementById('facebook-signIn').addEventListener('click', () => {
+            const provider = new FacebookAuthProvider();
+            signInWithPopup(auth, provider).then(result => {
+                // 獲取用戶資訊
+                const user = result.user;
+                // 用戶的唯一 ID
+                const uid = user.uid;
+                // 用戶的名字
+                const displayName = user.displayName;
+                // 用戶的電子郵件
+                const email = user.email;
+                // 用戶的頭像 URL
+                const photoURL = user.photoURL;
+                // 用戶登入提供者的相關資料
+                const providerData = user.providerData;
+
+                console.log(email);
+                // 在這裡，您可以將用戶資料保存到狀態管理，或者發送到您的服務器進行進一步處理
+                // 例如：
+                // saveUserData(uid, displayName, email, photoURL);
+
+                // 或更新 UI 以反映用戶已登入
+                // updateUI(user);
+            }).catch(error => {
+
+            });
+        });
 
         </script>
 
