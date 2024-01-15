@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <header">
+    <header>
         <nav class="header">
             <div class="d-flex">
                 <a class="iconBorder" href=""><img class="icon" src="./images/icon.png"></a>
@@ -80,11 +80,11 @@
                 <div style="width: 100%; border-radius: 5px; height: 0px; border: 6px #F9F3E7 solid"></div>
                 <br><br>
                 <div class="second_bar">
-                    <button>全 部</button>
-                    <button>上架新品</button>
-                    <button>待 上 架</button>
-                    <button>審 核 中</button>
-                    <button>違規/刪除</button>
+                    <button id="allproduct">全 部</button>
+                    <button id="uploadnew">上架新品</button>
+                    <button id="readyupload">待 上 架</button>
+                    <button id="underreview">審 核 中</button>
+                    <button id="violate">違規/刪除</button>
                 </div>
                 <br><br>
                 <div class="container">
@@ -96,23 +96,73 @@
                             </div>
                         </div>
                     </div>
+                </div>
                     <br><br><br>
-                    <div class="product-card">
-                        <img src="./images/商品圖.png" alt="STARBUCKS HOUSE BLEND">
-                        <div class="product-details">
-                            <h2>STARBUCKS 星巴克</h2>
-                            <p>黃金烘焙咖啡豆</p>
-                            <div class="product-pricing">
-                                <p>商品數量: 50</p>
-                                <h3>$100</h3>
-                            </div>
-                            <hr class="divider-line">
-                            <div class="product-actions">
-                                <button>✏️</button>
-                                <button>🗑️</button>
+                    <div class="allproduct2">
+                        <div class="product-card" >
+                            <img src="./images/商品圖.png" alt="STARBUCKS HOUSE BLEND">
+                            <div class="product-details">
+                                <h2>STARBUCKS 星巴克</h2>
+                                <p>黃金烘焙咖啡豆</p>
+                                <div class="product-pricing">
+                                    <p>商品數量: 50</p>
+                                    <h3>$100</h3>
+                                </div>
+                                <hr class="divider-line">
+                                <div class="product-actions">
+                                    <button>✏️</button>
+                                    <button>🗑️</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="readyupload2" style="display:none">
+                        <div class="product-card">
+                            <img src="./images/商品圖2.jpg">
+                            <div class="product-details">
+                                <h2>STARBUCKS 星巴克</h2>
+                                <p>經典咖啡豆</p>
+                                <div class="product-pricing">
+                                    <p>商品數量: 87</p>
+                                    <h3>$666</h3>
+                                </div>
+                                <hr class="divider-line">
+                                <div class="product-actions">
+                                    <button>✏️</button>
+                                    <button>🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="underreview2" style="display:none">
+                    <div class="product-card">
+                        <img src="./images/商品圖3.jpg">
+                        <div class="product-details">
+                            <h2>STARBUCKS 星巴克</h2>
+                            <p>咖啡牛奶</p>
+                            <div class="product-pricing">
+                                <p>商品數量: 87</p>
+                                <h3>$666</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="violate2" style="display:none">
+                    <div class="product-card">
+                        <img src="images/商品圖4.jpg">
+                        <div class="product-details">
+                            <h2>STARBUCKS 星巴克</h2>
+                            <p>膠囊咖啡</p>
+                            <div class="product-pricing">
+                                <p>商品數量: 87</p>
+                                <h3>$666</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </section>
                 <br><br><br>
                 <footer>
@@ -156,7 +206,51 @@
                     </div>
                 </footer>
             </main>
-    
+    <script>
+
+        document.getElementById('allproduct').addEventListener('click', function() {
+            // 隱藏區塊
+            document.querySelector('.violate2').style.display = 'none';
+            document.querySelector('.readyupload2').style.display = 'none';
+            document.querySelector('.underreview2').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.allproduct2').style.display = 'block';
+        });
+
+document.getElementById('readyupload').addEventListener('click', function() {
+            // 隱藏區塊
+            document.querySelector('.allproduct2').style.display = 'none';
+            document.querySelector('.violate2').style.display = 'none';
+            document.querySelector('.underreview2').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.readyupload2').style.display = 'block';
+        });
+
+document.getElementById('underreview').addEventListener('click', function() {
+            // 隱藏區塊
+            document.querySelector('.allproduct2').style.display = 'none';
+            document.querySelector('.readyupload2').style.display = 'none';
+            document.querySelector('.violate2').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.underreview2').style.display = 'block';
+        });
+
+
+        document.getElementById('violate').addEventListener('click', function() {
+            // 隱藏區塊
+            document.querySelector('.allproduct2').style.display = 'none';
+            document.querySelector('.readyupload2').style.display = 'none';
+            document.querySelector('.underreview2').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.violate2').style.display = 'block';
+        });
+
+
+    </script>
     
     </body>
     
