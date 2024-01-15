@@ -196,28 +196,27 @@
         document.getElementById('google-signIn').addEventListener('click', () => {
             const provider = new GoogleAuthProvider();
             signInWithPopup(auth, provider).then(result => {
-                // 獲取用戶資訊
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
                 const user = result.user;
-                // 用戶的唯一 ID
-                const uid = user.uid;
-                // 用戶的名字
-                const displayName = user.displayName;
-                // 用戶的電子郵件
-                const email = user.email;
-                // 用戶的頭像 URL
-                const photoURL = user.photoURL;
-                // 用戶登入提供者的相關資料
-                const providerData = user.providerData;
+                console.log(token);
 
-                console.log(email);
+
                 // 在這裡，您可以將用戶資料保存到狀態管理，或者發送到您的服務器進行進一步處理
                 // 例如：
                 // saveUserData(uid, displayName, email, photoURL);
 
                 // 或更新 UI 以反映用戶已登入
                 // updateUI(user);
+                fetch("/login3",{
+                    method:'POST',
+                    body:JSON.stringify({
+                        idToken:token
+                    }),
+                    headers:{'Content-Type': 'application/json;charset=utf-8'}
+                }).then();
             }).catch(error => {
-
+                    console.log(error);
             });
         });
 
@@ -240,13 +239,23 @@
                 // 用戶登入提供者的相關資料
                 const providerData = user.providerData;
 
-                console.log(email);
+
+                console.log(displayName);
                 // 在這裡，您可以將用戶資料保存到狀態管理，或者發送到您的服務器進行進一步處理
                 // 例如：
                 // saveUserData(uid, displayName, email, photoURL);
 
                 // 或更新 UI 以反映用戶已登入
                 // updateUI(user);
+                fetch("/login1",{
+                    method:'POST',
+                    body:JSON.stringify({
+                        'email':email,
+                        'displayName':displayName,
+                        'uid':uid
+                    }),
+                    headers:{'Content-Type': 'application/json;charset=utf-8'}
+                }).then(console.log(res));
             }).catch(error => {
 
             });

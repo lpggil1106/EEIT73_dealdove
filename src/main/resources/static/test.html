@@ -14,7 +14,12 @@
         <th>avatar</th>
     </tr>
 </table>
+    <form method="post" action="login">
+        <input type="email" name="email">
+        <input type="submit" value="click">
+    </form>
 
+    <button id="test" onclick="test()">click</button>
 <body>
 <script>
     fetch("/link")
@@ -32,13 +37,18 @@
                 }
             )
         }).catch(error => console.log(error));
-    fetch("/time")
-    .then(responce=>{responce.json()
-        .then(data=>{
-            data.forEach(message=>{
-                console.log(message);
+
+        function test(){
+            fetch("/login",{
+                method:'POST',
+                body:"{email:'123456'}",
+                headers:{'Content-Type': 'application/json;charset=utf-8'}
+            }).then(res=>res.json().then(res=>console.log(res))).catch((error)=>{
+                console.log(error);
             })
-        })})
+        }
+
+
 </script>
 </body>
 </html>

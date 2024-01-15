@@ -1,18 +1,20 @@
 package com.dealdove.dealdove.controller;
 
 import com.dealdove.dealdove.model.Message;
+import com.dealdove.dealdove.model.MyRequest;
+import com.dealdove.dealdove.model.MyResponse;
 import com.dealdove.dealdove.model.User;
 import com.dealdove.dealdove.service.MessageService;
 import com.dealdove.dealdove.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class userController {
@@ -33,8 +35,6 @@ public class userController {
     @RequestMapping("/link")
     public List<User> test2(){
         //回傳userService查詢到的資料
-        System.out.println(userService.findAllUsers()+"123456789");
-        System.out.println("123456789");
         return userService.findAllUsers();
     }
     @RequestMapping("/time")
@@ -45,6 +45,17 @@ public class userController {
         messageService.saveMessage(1,2,"Saveddefault");
         return messageService.findMessage();
     }
+
+    @PostMapping("/submitMessage")
+    public @ResponseBody MyRequest handleFormSubmission(@RequestBody MyRequest formData) {
+        // 在這裡處理表單數據，例如保存到數據庫
+        System.out.println("收到表單數據：" + formData);
+        System.out.println("name: " + formData.getName());
+        System.out.println("email: " + formData.getEmail());
+        return formData;
+    }
+
+
 
 
 }
