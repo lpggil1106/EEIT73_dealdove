@@ -1,13 +1,9 @@
 .register-title {
     font-size: 50px;
     display: block;
-    /* 确保元素是块级元素 */
     width: 100%;
-    /* 宽度占满容器 */
     text-align: center;
-    /* 文字居中 */
     margin: 3px 0;
-    /* 上下外边距 */
 }
 
 .register-button {
@@ -15,7 +11,6 @@
     width: 120px;
     background-color: #A2CAD3;
     color: white;
-    /* 建议使用白色或其他高对比色，原先的 'color: A2CAD3;' 是无效的 */
     border: none;
     cursor: pointer;
     border-radius: 30px;
@@ -23,7 +18,6 @@
     display: block;
     text-align: center;
     margin: 20px auto;
-    /* 自动外边距用于水平居中 */
 }
 
 
@@ -58,18 +52,13 @@
     transform: translateX(-50%);
     border-radius: 15px;
     background-color: #A2CAD3;
-    ;
 }
 
 .register-form {
     display: flex;
     align-items: center;
-    /* 水平居中对齐 */
     justify-content: center;
-    /* 确保子元素间距均匀 */
-    /* 垂直居中对齐 */
     flex-direction: row;
-    /* 水平排列 */
     padding: 20px;
     background-color: #fff;
 }
@@ -148,7 +137,6 @@
 .account-options {
     display: flex;
     justify-content: space-between;
-    /* 讓按鈕分別靠左和靠右 */
 }
 
 .account-btn {
@@ -156,7 +144,6 @@
     background: none;
     border: none;
     text-decoration: underline;
-    /* 為文字加上底線 */
     cursor: pointer;
     padding: 5px;
 }
@@ -164,32 +151,24 @@
 .account-btn.left {
     text-align: left;
     margin-right: auto;
-    /* 靠左 */
 }
 
 .account-btn.right {
     text-align: right;
     margin-left: 186px;
-    /* 靠右 */
 }
 
 .custom-checkbox {
     display: none;
-    /* 隱藏原生checkbox */
 }
 
 .checkbox-label {
     display: inline-block;
     width: 30px;
-    /* 方框的寬度，根據需求調整 */
     height: 30px;
-    /* 方框的高度，根據需求調整 */
     border: 1px solid #ccc;
-    /* 方框的邊框 */
     background-color: #ffdead;
-    /* 米色背景 */
     vertical-align: middle;
-    /* 與文字垂直對齊 */
     cursor: pointer;
     position: relative;
 }
