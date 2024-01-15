@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
- 
+
 </head>
 
 <body>
@@ -109,8 +109,8 @@
                             <div class="orderContainer ">
                                 <div class="row bgcolor">
                                     <div class="col-5 orderManage">
-                                        <a href="">
-                                            <div  class="containerStyle">
+                                        <a href="./14-1_product_management.html">
+                                            <div class="containerStyle">
                                                 <div>6</div>
                                                 <span>待出貨訂單</span>
                                             </div>
@@ -149,7 +149,7 @@
                             <div class="col-6 border border-success " style="margin-left: 3vw;">圖表</div>
                             <div class="row col-5 dataContainer bgcolor">
                                 <div class=" col-5 orderManage ">
-                                    <a href='./16_dataanalysis.html'>
+                                    <a onclick="selectPage('dataanalysisPage')" >
                                         <div class="containerStyle">
                                             <div>36000</div>
                                             <span>銷售額</span>
@@ -157,14 +157,13 @@
                                     </a>
                                 </div>
                                 <div class="col-5 orderManage">
-                                    <a href='./16_dataanalysis.html'>
+                                    <a onclick="selectPage('dataanalysisPage')">
                                         <div class="containerStyle">
                                             <div>200</div>
                                             <span>本月訂單數</span>
                                         </div>
                                     </a>
                                 </div>
-                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
@@ -173,12 +172,12 @@
                         <span>賣場管理</span>
                         <div class="divider"></div>
                         <p class="row" style="width: 100%; margin: 6vw 0vw;">
+                            <button class="storeManage col-3 " 
+                                onclick="changeStoreContent('basicInfo')">基本資料</button>
                             <button class="storeManage col-3 "
-                                onclick="showContent('basicInfo')">基本資料</button>
+                                onclick="changeStoreContent('commentManagement')">評價管理</button>
                             <button class="storeManage col-3 "
-                                onclick="showContent('commentManagement')">評價管理</button>
-                            <button class="storeManage col-3 "
-                                onclick="showContent('messageManagement')">訊息管理</button>
+                                onclick="changeStoreContent('messageManagement')">訊息管理</button>
                         </p>
                     </div>
                     <br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -187,7 +186,7 @@
                 <div id="orderPage" class="selectp"></div>
                 <!-- 商品管理 -->
                 <div id="productManagePage" class="selectp"></div>
-                <!-- 賣場管理頁面 -->
+                <!-- 賣場管理 -->
                 <div id="basicInfoPage" class="selectp">
                     <div class="second_bar">
                         <button onclick="showContent('basicInfo')">基本資料</button>
@@ -651,6 +650,7 @@
             //首頁顯示區塊
             window.onload = function () {
                 selectPage('sellerHomePage');
+                showContent('basicInfo');       // 賣場管理頁面載入時顯示預設區塊
             };
             function selectPage(selectId) {
                 var seId = document.getElementsByClassName('selectp');
@@ -659,15 +659,12 @@
                 }
 
                 var page = document.getElementById(selectId);
-                if (page!=null) {
+                if (page != null) {
                     page.style.display = 'block';
                 }
+               
             }
 
-            // 賣場管理頁面載入時顯示預設區塊
-            window.onload = function () {
-                showContent('basicInfo');
-            };
 
             function showContent(contentId) {
                 // 先將所有區塊隱藏
@@ -681,6 +678,7 @@
                 if (selectedContent != null) {
                     selectedContent.style.display = 'block';
                 }
+
             }
             function changeStoreContent(changeId) {
                 selectPage('basicInfoPage');
@@ -690,6 +688,7 @@
                     behavior: 'smooth' // 平滑捲動效果
                 });
             }
+
 
             //新增圖片
             function openFileInput(fileInputId, selectedImageId, closeIconId) {
