@@ -1,6 +1,7 @@
 package com.dealdove.dealdove.controller;
 
 import com.dealdove.dealdove.model.Account;
+import com.dealdove.dealdove.model.IdToken;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
@@ -11,37 +12,26 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @PostMapping( "/login3")
-    public  String login(@RequestBody LoginForm idToken){
-        System.out.println(idToken);
-        System.out.println(idToken.);
-        FirebaseToken decodedToken;
+    public @ResponseBody String login(@RequestBody IdToken idToken){
+        System.out.println(idToken.getIdToken());
+        System.out.println("breakpoint");
+
+
         try {
-            decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.get);
+            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
+            String email = decodedToken.getEmail();
+            String uid = decodedToken.getUid();
+            String name = decodedToken.getName();
+            System.out.println("breakpoint");
+            System.out.println(email);
+            System.out.println(uid);
+            System.out.println(name);
+            return idToken.getIdToken();
         } catch (FirebaseAuthException e) {
+            System.out.println(e);
             throw new RuntimeException(e);
         }
-        System.out.println("breakpoint");
-        String email = decodedToken.getEmail();
-        String uid = decodedToken.getUid();
-        String name = decodedToken.getName();
-        System.out.println(email);
-        System.out.println(uid);
-        System.out.println(name);
-        return idToken;
     }
 
-    public class LoginForm{
-        static String idToken;
 
-        public LoginForm() {
-        }
-
-        public static String getIdToken() {
-            return idToken;
-        }
-
-        public static void setIdToken(String idToken) {
-            LoginForm.idToken = idToken;
-        }
-    }
 }
