@@ -1,11 +1,9 @@
 .navigation {
     width: 71.5vw;
-    margin: 0 auto;
     padding: 0;
-    margin-bottom: 2px;
+    margin: 0 auto 2px;
     border-radius: 15px;
     background-color: #F9F3E7;
-    white-space: nowrap;
     box-sizing: border-box;
     position: relative;
     z-index: 100;
@@ -71,7 +69,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 101;
 }
 
@@ -113,7 +111,7 @@
 }
 
 .container {
-    margin: 0px;
+    margin: 0;
 }
 
 .carousel .container {
@@ -213,14 +211,12 @@
 }
 
 .hotpro {
-    width: 71.5vw;
-    background-color: #F9F3E7;
-    border-radius: 15px;
-    position: relative;
-    display: inline-flex;
-    flex-direction: row;
+    display: flex;
     justify-content: space-between;
+    width: 100%;
+    height: auto;
 }
+
 
 .hotpro p {
     font-size: 2vw;
@@ -228,28 +224,32 @@
 }
 
 .hotpro.div {
-    width: 100%;
-    height: 12vh;
-    border: 1px solid black;
-    background-color: white;
+    position: relative;
+    width: 100%;          
+    padding-top: 100%;    /* 1:1 長寬比 */
 }
 
 .hotpro .item {
-    height: auto;
-    margin: 1vh;
-    display: flex;
-    flex-direction: column;
+    flex: 1;              
+    margin: 10px 10px;      
+    
 }
 
 .hotpro .item img {
-    width: 12rem;
-    height: 12rem;
-    margin-bottom: 5px;
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 5%;
 }
 
 .hotpro .item p {
-    font-size: 18px;
+    font-size: 1rem;
     text-align: center;
+}
+
+.carousel-item {
+    max-width: 100%;
+    height: auto;
 }
 
 .prev-button,
@@ -292,18 +292,5 @@
     font-size: 20px;
     color: white;
     opacity: 0.5;
-    padding: auto;
     margin: auto;
-}
-
-.carousel-control-prev {
-    left: 0px;
-}
-
-.carousel-control-next {
-    right: 0px;
-}
-
-.carousel-indicators {
-    bottom: 0px;
 }
