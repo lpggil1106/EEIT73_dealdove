@@ -1,0 +1,524 @@
+/* ---------------------------------------header---------------------------------------------- */
+.header {
+  height: 9.3vw;
+  width: 100%;
+  background-color: #A2CAD3;
+}
+
+
+.iconBorder {
+  position: relative;
+  top: 0.5vw;
+  left: 7vw;
+}
+
+.icon {
+  position: relative;
+  height: 9vw;
+  width: 9vw;
+}
+
+.search {
+  height: 40px;
+  width: 70%;
+  border: 0;
+  outline: 0;
+  margin-top: 30px;
+  margin-left: 20%;
+}
+
+.searchIcon {
+  height: 30px;
+  /* color: #A2CAD3; */
+}
+
+.searchIcon i {
+  height: 1vw;
+  width: 1vw;
+}
+
+.header_link {
+  height: 2.5vw;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  right: 7vw;
+  top: 0.4vw;
+  color: black;
+}
+
+.header_link a {
+  font-size: 1.2vw;
+}
+
+.header_link li {
+  height: 100%;
+  margin-right: 2vw;
+}
+
+.header_link ul {
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.cart {
+  position: relative;
+  top: 3vw;
+  left: 20%;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 0;
+  display: relative;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.search-container {
+  background-color:#F9F3E7;
+  padding-top: 3vw;
+  padding-left: 10vw;
+  position: relative;
+  width: 100%;
+  height: 5vw;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 10px;
+}
+
+.search-input {
+  margin-left: 100vw;
+  padding: 10px;
+  height: 100%;
+  font-size: 1.1vw;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 60%;
+}
+
+.search-icon {
+  position: absolute;
+  top: 4.7vw;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 2vw;
+  margin-right: 35px;
+}
+
+.search-bar {
+  padding: 0;
+  height: 3.4vw;
+  width: 70vw;
+  display: flex;
+}
+
+.popular-categories {
+  margin-left: 10px;
+}
+
+.popular-categories p {
+  margin: 0;
+  font-weight: bold;
+  width: 100%;
+}
+
+.popular-categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.popular-categories li {
+  margin-right: 1.25vw;
+  color: #797979;
+  font-family: Inter;
+  font-size: 1vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.cart_container {
+  width: 100px;
+  height: 100px;
+  padding-left: 7vw;
+  padding-top: 0.3vw;
+  position: relative;
+
+}
+
+.cart_container svg {
+  transform: translateY(3.3vw);
+}
+
+svg {
+  transform: translateY(-1.3px);
+}
+
+/* footer */
+.footer {
+  background-color: #A2CAD3;
+  position:relative;
+  bottom: 0;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerList li img{
+  height:2vw;
+  width:2vw;
+}
+
+.qrcode{
+  height: 9vw;
+  width: 9vw;
+}
+
+/* -------------------------------------------- */
+section {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+/* -------------------title-bar------------------------- */
+.title-bar{
+width: 100%;
+justify-content: center;
+align-items: center;
+gap: 0.2vw;
+display: inline-flex;
+}
+
+.title-bar > button{
+width: 10vw;
+height: 4vw;
+position: relative;
+text-align: center;
+padding: 1vw 1.5vw 1vw 1.5vw;
+color: black;
+font-size: 1.5vw;
+font-family: Inter;
+word-wrap: break-word;
+background-color: #F9F3E7;
+border: none;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius:15px 15px 15px 0;
+}
+
+.title-bar >button:hover{
+background-color: #A2CAD3;
+}
+/* -------------------second_bar------------------------- */
+
+.second_bar{
+width: 100%;
+align-items: center;
+gap: 0.2vw;
+display: inline-flex;
+}
+
+.second_bar > button{
+width: 9vw;
+height: 3vw;
+position: relative;
+text-align: center;
+padding: 0.5vw 1.5vw 0.5vw 1.5vw;
+color: gray;
+font-size: 1.2vw;
+font-family: Inter;
+word-wrap: break-word;
+background-color: white;
+box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.25);
+border: none;
+}
+
+.second_bar > button::before {
+content: "";
+position: absolute;
+left: 2vw;
+bottom: 0.4vw;
+width: 5vw;
+height: 2.5px;
+}
+.second_bar > button:hover::before{
+background-color:  #A2CAD3;
+}
+
+/* -----------------------product----------------------------- */
+.product-card {
+  width: 15vw;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-size: 14px;
+  color: #333;
+  margin-top:2vw;
+}
+
+.product-header {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #eaeaea;
+  color: #888;
+}
+
+.product-header p:first-child {
+  font-weight: bold;
+  color: #000;
+}
+
+.product-details {
+  padding: 16px;
+}
+
+.product-details h2 {
+  font-size: 16px;
+  color: #000;
+  margin: 8px 0;
+}
+
+.product-details p {
+  color: #555;
+}
+
+.product-pricing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.product-pricing h3 {
+  color: #E44D26;
+  font-size: 20px;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+}
+
+.product-actions button {
+  background:#ffffff ;
+  border:none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.product-actions button:hover {
+  background-color: #a9a7a7;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.divider-line {
+  border: none;
+  height: 1px;
+  background-color: black;
+  width: 100%;
+  margin: 20px auto;
+}
+
+/* -----------------------新增商品-------------------------------- */
+.form-container {
+  width: 80%;
+  padding: 5px;
+  border-color: #F9F3E7;
+  border-width: 6px;
+  border-style: solid;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-left:10vw;
+  margin-top: -3vw;
+
+}
+
+.form-header {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: dashed 1px #D0D0D0;
+  padding: 20px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover{
+  background-color: #A2CAD3;
+  opacity:0.7;
+}
+
+.custom-file-upload.no-hover:hover {
+  background-color: initial;
+  opacity: 1;
+}
+
+
+.label-upload-container {
+  display: flex;
+  align-items: center;
+
+}
+
+.label-upload-container label {
+  margin-bottom: 50px;
+}
+.form-group {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+  display: flex ;
+  margin-left: 30px;
+  font-size: 20px;
+  font-family:'Times New Roman', Times, serif
+}
+
+input[type='text'],
+input[type='file'] {
+
+  padding: 10px;
+  border: solid 1px #D0D0D0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+input[type='text'].dashed {
+  border-style: dashed;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+
+.button-container {
+  margin-top:2vw;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+#dropdownMenuButton1{
+  margin-left: 20px;
+  opacity: 0.5;
+}
+
+.specification-container{
+  background-color: #F9F3E7;
+  border-radius: 10px;
+  flex-direction: column;
+  margin-left: 9.2vw;
+  width: 60vw;
+  min-height:10vw;
+  padding: 2vw;
+}
+/* -----------------------分類-------------------------------- */
+
+.main-category:hover{
+  background-color: #dddcdc;
+  margin: 2px;
+}
+
+.modal-body a:hover{
+  border-radius: 2px;
+  background-color: #dddcdc;
+  margin: 1.2px;
+}
+
+::placeholder {
+  opacity: 0.7;
+}
+
+#block1 {
+  display: flex;
+  align-items: center;
+}
+#block2 {
+  display: flex;
+  align-items: center;
+}
+#block3 {
+  display: flex;
+  align-items: center;
+}
+#block4 {
+  display: flex;
+  align-items: center;
+}
+
+
+#typedive1 {
+  text-align: center;
+  margin-right: auto;
+  padding-left: 6.3vw;
+  font-size: 1.5vw;
+  font-family: Inter;
+}
+
+#typedive2 {
+  text-align: center;
+  margin-right: auto;
+  padding-left: 6.3vw;
+      font-size: 1.5vw;
+      font-family: Inter;
+}
+#typedive3 {
+  text-align: center;
+  margin-right: auto;
+  padding-left: 6.3vw;
+      font-size: 1.5vw;
+      font-family: Inter;
+}
+#typedive4 {
+   text-align: center;
+   margin-right: auto;
+   padding-left: 6.3vw;
+       font-size: 1.5vw;
+       font-family: Inter;
+}
