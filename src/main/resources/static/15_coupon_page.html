@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header">
+    <header>
         <nav class="header">
             <div class="d-flex">
                 <a class="iconBorder" href=""><img class="icon" src="./images/icon.png"></a>
@@ -108,55 +108,18 @@
                 <div class="coupon-title">
                     <div class="discount">滿額折</div>
                 </div>
-                    <br>
+                <br>
                 <div id="tar"></div>
 
-<!--                    <div class=" coupon-card">-->
-<!--                        <img src="./images/coupon2.png" style="max-inline-size:6vw">-->
-<!--                        <div style="margin-left: 1vw" class="product-details">-->
-<!--                            <h2>優惠券名稱</h2>-->
-<!--                            <p>優惠券編號</p>-->
-<!--                            <div class="product-pricing">-->
-<!--                                <p>折扣方法</p>-->
-<!--                                <p>使用條件</p>-->
-<!--                                <p>有效期限</p>-->
-<!--                            </div>          -->
-<!--                        </div>-->
-<!--                        <button style="margin-left: 1vw" class="get-coupon">領取</button>-->
-<!--                    </div>-->
-<!--                    <div class=" coupon-card">-->
-<!--                        <img src="./images/coupon2.png" style="max-inline-size:6vw">-->
-<!--                        <div style="margin-left: 1vw" class="product-details">-->
-<!--                            <h2>優惠券名稱</h2>-->
-<!--                            <p>優惠券編號</p>-->
-<!--                            <div class="product-pricing">-->
-<!--                                <p>折扣方法</p>-->
-<!--                                <p>使用條件</p>-->
-<!--                                <p>有效期限</p>-->
-<!--                            </div>          -->
-<!--                        </div>-->
-<!--                        <button style="margin-left: 1vw" class="get-coupon">領取</button>-->
-<!--                    </div>-->
-                    
-                    <br><br>
-                    <div class="coupon-title">
-                        <div class="discount">指定優惠</div>
-                    </div>
+                <br><br>
+
+                <div class="coupon-title">
+                    <div class="discount">指定優惠</div>
+                </div>
                     <br>
                 <div id="specify"></div>
-<!--                <div class=" coupon-card">-->
-<!--                    <img src="./images/coupon2.png" style="max-inline-size:6vw">-->
-<!--                    <div style="margin-left: 1vw" class="product-details">-->
-<!--                        <h2>優惠券名稱</h2>-->
-<!--                        <p>優惠券編號</p>-->
-<!--                        <div class="product-pricing">-->
-<!--                            <p>折扣方法</p>-->
-<!--                            <p>使用條件</p>-->
-<!--                            <p>有效期限</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <button style="margin-left: 1vw" class="get-coupon">領取</button>-->
-<!--                </div>-->
+
+                <br><br><br>
                
             </section>
             <footer>
@@ -211,12 +174,13 @@
 
                 const target =  parseInt(coupon.discount)!=0 ? "specify" : "tar";
                 console.log(target);
+                let targetContainer = document.getElementById(target);
 
                 if (index % 2 === 0) {
                     // 每一行的第一張優惠券，新增 .coupon-row 類別
                     const couponRow = document.createElement("div");
                     couponRow.className = "coupon-row";
-                    tar.appendChild(couponRow);
+                    targetContainer.appendChild(couponRow);
                 }
 
                 // 創建 coupon-card 元素
@@ -275,9 +239,8 @@
                 getCouponButton.classList.add("get-coupon"); // 使用 classList.add 方法
                 getCouponButton.style.marginLeft = "1vw";
                 couponCard.appendChild(getCouponButton);
-                const currentRow = document.querySelector(`#${target}`).querySelector(".coupon-row:last-child");
-
-                //const currentRow = document.querySelector('#tar').querySelector(".coupon-row:last-child");
+                //const currentRow = document.querySelector(`#${target}`).querySelector(".coupon-row:last-child");
+                const currentRow = targetContainer.querySelector(".coupon-row:last-child");
                 currentRow.appendChild(couponCard);
             });
         })
