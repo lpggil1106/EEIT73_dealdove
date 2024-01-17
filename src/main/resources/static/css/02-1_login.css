@@ -59,8 +59,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: 20px;
-    background-color: #fff;
 }
 
 .form-inputs {
