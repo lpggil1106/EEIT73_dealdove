@@ -21,7 +21,7 @@ public class Coupon {
     @Column(name = "isUsed", nullable = false)
     private Byte isUsed;
 
-    @Column(name = "minimumAmount", nullable = false)
+    @Column(name = "minimumAamount", nullable = false)
     private Integer minimumAmount;
 
     @Column(name = "applicableCategoriesID", nullable = false)
@@ -32,15 +32,6 @@ public class Coupon {
 
     @Column(name = "creationDate", nullable = false)
     private Instant creationDate;
-
-    @Column(name = "discountMethod", nullable = false)
-    private String discountMethod;
-
-    @Column(name = "discount", nullable = false)
-    private Double discount;
-
-    @Column(name = "couponName", nullable = false)
-    private String couponName;
 
     public Integer getId() {
         return id;
@@ -106,26 +97,4 @@ public class Coupon {
         this.creationDate = creationDate;
     }
 
-    public String getDiscountMethod(){
-        return discountMethod;
-    }
-
-    public void setDiscountMethod(String discountMethod){
-        this.discountMethod = discountMethod;
-    }
-
-    public Double getDiscount(){
-        return discount;
-    }
-    public void setDiscount(Double discount){
-        this.discount = discount;
-    }
-
-    public String getCouponName(){
-        return couponName;
-    }
-
-    public void setCouponName(String couponName){
-        this.couponName = couponName;
-    }
 }
