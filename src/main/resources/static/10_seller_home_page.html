@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/11_basic_information.css">
     <link rel="stylesheet" href="./css/12_comment_management.css">
     <link rel="stylesheet" href="./css/13_message_management.css">
+    <link rel="stylesheet" href="./css/14_product_management.css">
     <link rel="stylesheet" href="./css/16_dataanalysis.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -89,7 +90,6 @@
         <main>
 
             <section>
-
                 <br><br>
                 <div class="title-bar">
                     <button onclick="selectPage('sellerHomePage')">首 頁</button>
@@ -134,11 +134,11 @@
                             <span>商品管理</span>
                             <div class="divider"></div>
                             <button class="col-5 productsmanage"
-                                onclick="selectPage('productManagePage')">新品上架</button>
+                                onclick="changeProductContent('uploadnew')">新品上架</button>
                             <button class="col-5 productsmanage"
-                                onclick="selectPage('productManagePage')">商品查詢</button>
+                                onclick="changeProductContent('readyupload')">待 上 架</button>
                             <button class="col-5 productsmanage"
-                                onclick="selectPage('productManagePage')">已售完商品</button>
+                                onclick="changeProductContent('underreview')">審 核 中</button>
                         </div>
                         <div class="col-1"></div>
                     </div>
@@ -187,7 +187,443 @@
                 <!-- 訂單管理 -->
                 <div id="orderPage" class="selectp"></div>
                 <!-- 商品管理 -->
-                <div id="productManagePage" class="selectp"></div>
+                <div id="productManagePage" class="selectp">
+                        <div class="second_bar">
+                            <button id="allproduct" >全 部</button>
+                            <button id="uploadnew" >新品上架</button>
+                            <button id="readyupload">待 上 架</button>
+                            <button id="underreview">審 核 中</button>
+                            <button id="violate">違規/刪除</button>
+                        </div>
+                        <br><br>
+                        <div class="container">
+                            <div class="search-containerbar">
+                                <div class="search-bar">
+                                    <input type="text" class="search-input" placeholder="商品查詢" style="margin-left:25vw; margin-top:-2vw">
+                                    <div class="search-icon" style="margin-top:-2vw">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="allproduct2">
+                            <div class="product-card">
+                                <img src="./images/商品圖.png" alt="STARBUCKS HOUSE BLEND">
+                                <div class="product-details">
+                                    <h2>STARBUCKS 星巴克</h2>
+                                    <p>黃金烘焙咖啡豆</p>
+                                    <div class="product-pricing">
+                                        <p>商品數量: 50</p>
+                                        <h3>$100</h3>
+                                    </div>
+                                    <hr class="divider-line">
+                                    <div class="product-actions">
+                                        <button>✏️</button>
+                                        <button>🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="readyupload2" style="display:none">
+                            <div class="product-card">
+                                <img src="./images/商品圖2.jpg">
+                                <div class="product-details">
+                                    <h2>STARBUCKS 星巴克</h2>
+                                    <p>經典咖啡豆</p>
+                                    <div class="product-pricing">
+                                        <p>商品數量: 87</p>
+                                        <h3>$666</h3>
+                                    </div>
+                                    <hr class="divider-line">
+                                    <div class="product-actions">
+                                        <button>✏️</button>
+                                        <button>🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="underreview2" style="display:none">
+                            <div class="product-card">
+                                <img src="./images/商品圖3.jpg">
+                                <div class="product-details">
+                                    <h2>STARBUCKS 星巴克</h2>
+                                    <p>咖啡牛奶</p>
+                                    <div class="product-pricing">
+                                        <p>商品數量: 87</p>
+                                        <h3>$666</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="violate2" style="display:none">
+                            <div class="product-card">
+                                <img src="images/商品圖4.jpg">
+                                <div class="product-details">
+                                    <h2>STARBUCKS 星巴克</h2>
+                                    <p>膠囊咖啡</p>
+                                    <div class="product-pricing">
+                                        <p>商品數量: 87</p>
+                                        <h3>$666</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <br><br><br>
+                    <!----------------------------------新增商品HTML------------------------------------>
+                    <div class="form-container" style="display:none">
+                        <div class="form-header">
+                            商品資訊
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <div class="label-upload-container">
+                                    <label>商品圖片:</label>
+                                    <label for="logo-upload" class="custom-file-upload">
+                                        <img id="logo-preview" src="./images/upload.png" style="max-inline-size:4vw ;">
+                                    </label>
+                                    <input id="logo-upload" type="file" name="logo" onchange="previewFile()"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="store-name">商品名稱:</label>
+                                <input style="width: 50vw;" type="text" id="store-name" name="store-name">
+                            </div>
+                            <br><br>
+                            <div class="form-group">
+                                <label for="store-description">商品描述:</label>
+                                <textarea
+                                        style="width: 49.7vw; height: 20vw ; margin-left: 1.4vw;border:solid 1px #D0D0D0 ; border-radius: 10px ;"
+                                        type="text" id="store-description" name="store-description"></textarea>
+                            </div>
+                            <br><br>
+                            <div class="dropdown">
+                                <label>商品類別:</label>
+
+                                <!-- Button trigger modal -->
+                                <button style="margin-left: 1.2vw;" type="button" class="btn btn-light" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                    <placeholder style="opacity: 0.8;">選擇分類▼</placeholder>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">商品分類</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- 主分類 -->
+                                                <div style="border-color: black; border-radius: 5px; width: 10vw"
+                                                     class="main-category" onclick="showSub('clothing')">
+                                                    生活類別&ensp;&ensp;&ensp;>
+                                                </div>
+                                                <!--隱藏的子分類-->
+                                                <div id="clothing" class="sub-category"
+                                                     style="display: none;margin-left: 8vw; margin-bottom: 1vw;">
+                                                    <a href="#">上衣</a>
+                                                    <br>
+                                                    <a href="#">褲子</a>
+                                                    <br>
+                                                    <a href="#">裙子</a>
+                                                    <br>
+                                                    <a href="#">鞋子</a>
+                                                </div>
+                                                <div style="border-color: black; border-radius: 5px; width: 10vw"
+                                                     class="main-category" onclick="showSub('electric')">
+                                                    辦公電子&ensp;&ensp;&ensp;>
+                                                </div>
+                                                <div id="electric" class="sub-category"
+                                                     style="display: none;margin-left: 8vw; margin-bottom: 1vw;">
+                                                    <a href="#">桌機</a>
+                                                    <br>
+                                                    <a href="#">筆電</a>
+                                                    <br>
+                                                    <a href="#">平板</a>
+                                                    <br>
+                                                    <a href="#">手機</a>
+                                                </div>
+                                                <div style="border-color: black; border-radius: 5px; width: 10vw"
+                                                     class="main-category" onclick="showSub('cosmetic')">
+                                                    美妝保養&ensp;&ensp;&ensp;>
+                                                </div>
+                                                <div id="cosmetic" class="sub-category"
+                                                     style="display: none;margin-left: 8vw; margin-bottom: 1vw;">
+                                                    <a href="#">香水</a>
+                                                    <br>
+                                                    <a href="#">彩妝</a>
+                                                    <br>
+                                                    <a href="#">粉底</a>
+                                                    <br>
+                                                    <a href="#">美容工具</a>
+                                                </div>
+                                                <div style="border-color: black; border-radius: 5px; width: 10vw"
+                                                     class="main-category" onclick="showSub('accessories')">
+                                                    時尚配件&ensp;&ensp;&ensp;>
+                                                </div>
+                                                <div id="accessories" class="sub-category"
+                                                     style="display: none;margin-left: 8vw; margin-bottom: 1vw;">
+                                                    <a href="#">項鍊</a>
+                                                    <br>
+                                                    <a href="#">手環</a>
+                                                    <br>
+                                                    <a href="#">髮飾</a>
+                                                    <br>
+                                                    <a href="#">耳環</a>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">取消
+                                                </button>
+                                                <button type="button" class="btn btn-primary">儲存</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- test -->
+
+
+                                <br> <br> <br>
+
+                                <label>商品規格:</label>
+                                <div class="specification-container" id="specification-container">
+                                    <div id="specification-one">
+                                        <label>規格一</label>
+                                        <input style="width: 12vw" type="text" id="specific" name="specific" placeholder="例如：顏色...">
+                                        <button id="plustype" type="button"
+                                                style="width: 8vw; margin-left: 25vw; border-radius: 8px; background-color: rgb(255, 255, 255); color: red;">
+                                            ＋增加規格
+                                        </button>
+                                    </div>
+                                    <div style="margin-top:1vw">
+                                        <label>選項</label>
+                                        <input id="specific2" style="width: 8vw;margin-left:2.6vw" type="text"
+                                               placeholder="例如：紅、白...">
+                                        <input id="specific3" style="width: 8vw;margin-left:1.5vw" type="text">
+                                        <input id="specific4" style="width: 8vw;margin-left:1.5vw" type="text">
+                                        <input id="specific5" style="width: 8vw;margin-left:1.5vw" type="text">
+                                    </div>
+                                </div>
+
+                                <div style="display:none" class="specification-container" id="specification-container2">
+                                    <div id="specification-one2">
+                                        <label>規格二</label>
+                                        <input style="width: 12vw" type="text" id="specific1" name="specific"
+                                               placeholder="例如：尺寸...">
+
+
+                                    </div>
+                                    <div style="margin-top:1vw">
+                                        <label>選項</label>
+                                        <input id="specific22" style="width: 8vw;margin-left:2.6vw" type="text"
+                                               placeholder="例如：大、中...">
+                                        <input id="specific33" style="width: 8vw;margin-left:1.5vw" type="text">
+                                        <input id="specific44" style="width: 8vw;margin-left:1.5vw" type="text">
+                                        <input id="specific55" style="width: 8vw;margin-left:1.5vw" type="text">
+
+                                    </div>
+                                </div>
+                                <!-- ---------------------------------------------------------生成價格數量----------------------------->
+                                <div class="specification-container" style="margin-top:5vw">
+                                    <div class="row topic">
+                                        <div id="typeDiv" class="col-3 d-flex justify-content-center align-items-center"
+                                             style="font-weight: bold; font-size: large;">規格一
+                                        </div>
+
+                                        <div id="typeDiv2" class="col-4 d-flex justify-content-center align-items-center"
+                                             style="font-weight: bold; font-size: large;display:none!important;">規格二
+                                        </div>
+
+                                        <div class="col-3 d-flex justify-content-center align-items-center"
+                                             style="font-weight: bold;font-size: large;">價格
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-center align-items-center"
+                                             style="font-weight: bold;font-size: large;">數量
+                                        </div>
+                                    </div>
+                                    <div style="width: 100%; border-radius: 5px; border: 1px #8b8a8a solid"></div>
+                                    <br>
+                                    <div id="block1" class="row">
+                                        <div id="typedive1" class="col-3 d-flex align-items-center"></div>
+                                        <div id="pricequantity0" class="col-3 d-flex align-items-center" style="margin-right:26.5vw">
+                                            <input id="price0" style="width: 6vw" type="text" placeholder="price">
+                                            <input id="quantity0" style="width: 8vw; margin-left:5vw" type="text" placeholder="num">
+                                        </div>
+
+                                        <div class="col-9 d-flex flex-column">
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive11" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important;">
+                                                    規格二-1
+                                                </div>
+                                                <input id="price1" style="width: 8vw;display:none!important" type="text" name="price1">
+                                                <input id="quantity1" style="width: 7vw;display:none!important;" type="text" name="quantity1">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive22" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important;">
+                                                    規格二-2
+                                                </div>
+                                                <input id="price2" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity2" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive33" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important;">
+                                                    規格二-3
+                                                </div>
+                                                <input id="price3" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity3" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive44" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important;">
+                                                    規格二-4
+                                                </div>
+                                                <input id="price4" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity4" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div style="width: 100%; border-radius: 5px; border: 1px #8b8a8a solid;"></div>
+                                        <br>
+                                    </div>
+                                    <div id="block2" class="row">
+                                        <div id="typedive2" class="col-3 d-flex align-items-center"></div>
+                                        <div id="pricequantity00" class="col-3 d-flex align-items-center" style="margin-right:26.5vw">
+                                            <input id="price00" style="width: 6vw" type="text" placeholder="price">
+                                            <input id="quantity00" style="width: 8vw; margin-left:5vw" type="text" placeholder="num">
+                                        </div>
+                                        <div class="col-9 d-flex flex-column">
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive111" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1
+                                                </div>
+                                                <input id="price11" style="width: 8vw;display:none!important" type="text" name="price1">
+                                                <input id="quantity11" style="width: 7vw;display:none!important" type="text" name="quantity1">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive222" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-2
+                                                </div>
+                                                <input id="price22" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity22" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive333" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-3
+                                                </div>
+                                                <input id="price33" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity33" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive444" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-4
+                                                </div>
+                                                <input id="price44" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity44" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div style="width: 100%; border-radius: 5px; border: 1px #8b8a8a solid"></div>
+                                        <br>
+                                    </div>
+                                    <div id="block3" class="row">
+                                        <div id="typedive3" class="col-3 d-flex align-items-center"></div>
+                                        <div id="pricequantity000" class="col-3 d-flex align-items-center" style="margin-right:26.5vw">
+                                            <input id="price000" style="width: 6vw" type="text" placeholder="price">
+                                            <input id="quantity000" style="width: 8vw; margin-left:5vw" type="text" placeholder="num">
+                                        </div>
+                                        <div class="col-9 d-flex flex-column">
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive1111" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important;">
+                                                    規格1
+                                                </div>
+                                                <input id="price111" style="width: 8vw;display:none!important" type="text" name="price1">
+                                                <input id="quantity111" style="width: 7vw;display:none!important" type="text" name="quantity1">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive2222" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-2
+                                                </div>
+                                                <input id="price222" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity222" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive3333" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-3
+                                                </div>
+                                                <input id="price333" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity333" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive4444" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-4
+                                                </div>
+                                                <input id="price444" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity444" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div style="width: 100%; border-radius: 5px; border: 1px #8b8a8a solid ;"></div>
+                                        <br>
+                                    </div>
+                                    <div id="block4" class="row">
+                                        <div id="typedive4" class="col-3 d-flex align-items-center"></div>
+                                        <div id="pricequantity0000" class="col-3 d-flex align-items-center" style="margin-right:26.5vw">
+                                            <input id="price0000" style="width: 6vw" type="text" placeholder="price">
+                                            <input id="quantity0000" style="width: 8vw; margin-left:5vw" type="text" placeholder="num">
+                                        </div>
+                                        <div class="col-9 d-flex flex-column">
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive11111" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important;">
+                                                    規格1
+                                                </div>
+                                                <input id="price1111" style="width: 8vw;display:none!important" type="text" name="price1">
+                                                <input id="quantity1111" style="width: 7vw;display:none!important" type="text" name="quantity1">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive22222" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-2
+                                                </div>
+                                                <input id="price2222" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity2222" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive33333" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-3
+                                                </div>
+                                                <input id="price3333" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity3333" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div id="typedive44444" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important">
+                                                    規格1-4
+                                                </div>
+                                                <input id="price4444" style="width: 8vw;display:none!important" type="text">
+                                                <input id="quantity4444" style="width: 7vw;display:none!important" type="text">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div style="width: 100%; border-radius: 5px; border: 1px #8b8a8a solid"></div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <div class="button-container">
+                            <button type="button" class="btn btn-outline-dark">取消</button>
+                            <button type="button" class="btn btn-outline-dark">儲存</button>
+                            <button type="submit" class="btn btn-outline-dark">上架</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
                 <!-- 賣場管理 -->
                 <div id="basicInfoPage" class="selectp">
                     <div class="second_bar">
@@ -734,7 +1170,47 @@
             </section>
 
         </main>
-        <script>
+    <footer>
+        <div class="footer">
+            <div>
+                <ul class="footerList">
+                    <li class="h3">關於我們</li>
+                    <li>關於DealDove</li>
+                    <li>加入我們</li>
+                    <li>賣家中心</li>
+                    <li>限時特賣</li>
+                    <li>聯絡媒體</li>
+                </ul>
+            </div>
+            <div>
+                <ul class="footerList">
+                    <li class="h3">客服中心</li>
+                    <li>幫助中心</li>
+                    <li>退貨退款</li>
+                    <li>聯絡客服</li>
+                </ul>
+            </div>
+            <div>
+                <ul class="footerList">
+                    <li class="h3">關注我們</li>
+                    <li>關於DealDove</li>
+                    <li>加入我們</li>
+                    <li><img src="./images/icon _facebook.png"><span> </span><img
+                            src="./images/icon _instagram.png"></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="footerList">
+                    <li class="h3">法律與隱私</li>
+                    <li>隱私權政策</li>
+                    <li>DealDove條款</li>
+                </ul>
+            </div>
+            <img class="qrcode" src="./images/qrCode.png">
+        </div>
+    </footer>
+
+    <script>
             //首頁顯示區塊
             window.onload = function () {
                 selectPage('sellerHomePage');
@@ -771,17 +1247,31 @@
                 }
 
             }
+            //點擊賣場管理內容跳轉至賣場管理
             function changeStoreContent(changeId) {
                 selectPage('basicInfoPage');
                 showContent(changeId);
                 window.scrollTo({
                     top: 0
-                    // behavior: 'smooth' // 平滑捲動效果
                 });
             }
+            function changeProductContent(pageId){
+                selectPage('productManagePage');
 
-
-            //新增圖片
+                const productContent = document.getElementById(pageId);
+                console.log(pageId);
+                if (pageId == 'uploadnew') {
+                    do1();
+                } else if(pageId== 'readyupload'){
+                    do2();
+                }else{
+                    do3();
+                }
+                window.scrollTo({
+                    top: 0
+                });
+            }
+            //賣場管理新增圖片
             function openFileInput(fileInputId, selectedImageId, closeIconId) {
                 document.getElementById(fileInputId).click();
                 // 點擊icon後icon消失
@@ -828,48 +1318,639 @@
                 displayreply.innerHTML = '回覆內容: ' + replytext;
                 closeModal();
             }
+
         </script>
 
-        <footer>
-            <div class="footer">
-                <div>
-                    <ul class="footerList">
-                        <li class="h3">關於我們</li>
-                        <li>關於DealDove</li>
-                        <li>加入我們</li>
-                        <li>賣家中心</li>
-                        <li>限時特賣</li>
-                        <li>聯絡媒體</li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="footerList">
-                        <li class="h3">客服中心</li>
-                        <li>幫助中心</li>
-                        <li>退貨退款</li>
-                        <li>聯絡客服</li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="footerList">
-                        <li class="h3">關注我們</li>
-                        <li>關於DealDove</li>
-                        <li>加入我們</li>
-                        <li><img src="./images/icon _facebook.png"><span> </span><img
-                                src="./images/icon _instagram.png"></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="footerList">
-                        <li class="h3">法律與隱私</li>
-                        <li>隱私權政策</li>
-                        <li>DealDove條款</li>
-                    </ul>
-                </div>
-                <img class="qrcode" src="./images/qrCode.png">
-            </div>
-        </footer>
 
+    <!--商品上架-->
+    <script>
+
+        document.getElementById('allproduct').addEventListener('click', function() {
+            // 隱藏區塊
+            document.querySelector('.violate2').style.display = 'none';
+            document.querySelector('.readyupload2').style.display = 'none';
+            document.querySelector('.underreview2').style.display = 'none';
+            document.querySelector('.form-container').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.allproduct2').style.display = 'block';
+            document.querySelector('.container').style.display = 'block';
+        });
+
+        document.getElementById('uploadnew').addEventListener('click', do1 );
+            function do1() {
+            // 隱藏區塊
+            document.querySelector('.allproduct2').style.display = 'none';
+            document.querySelector('.readyupload2').style.display = 'none';
+            document.querySelector('.underreview2').style.display = 'none';
+            document.querySelector('.violate2').style.display = 'none';
+            document.querySelector('.container').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.form-container').style.display = 'block';
+        }
+
+
+        document.getElementById('readyupload').addEventListener('click', do2);
+
+            function do2() {
+            // 隱藏區塊
+            document.querySelector('.allproduct2').style.display = 'none';
+            document.querySelector('.violate2').style.display = 'none';
+            document.querySelector('.underreview2').style.display = 'none';
+            document.querySelector('.form-container').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.readyupload2').style.display = 'block';
+            document.querySelector('.container').style.display = 'block';
+        }
+
+
+        document.getElementById('underreview').addEventListener('click', do3 );
+            function do3() {
+            // 隱藏區塊
+            document.querySelector('.allproduct2').style.display = 'none';
+            document.querySelector('.readyupload2').style.display = 'none';
+            document.querySelector('.violate2').style.display = 'none';
+            document.querySelector('.form-container').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.underreview2').style.display = 'block';
+            document.querySelector('.container').style.display = 'block';
+        }
+
+
+
+        document.getElementById('violate').addEventListener('click', function() {
+            // 隱藏區塊
+            document.querySelector('.allproduct2').style.display = 'none';
+            document.querySelector('.readyupload2').style.display = 'none';
+            document.querySelector('.underreview2').style.display = 'none';
+            document.querySelector('.form-container').style.display = 'none';
+
+            // 顯示區塊
+            document.querySelector('.violate2').style.display = 'block';
+            document.querySelector('.container').style.display = 'block';
+        });
+    </script>
+    <!------------------------新增商品JS-------------------->
+    <script>
+        function previewFile() {
+            var preview = document.getElementById('logo-preview');
+            var file = document.getElementById('logo-upload').files[0];
+            var reader = new FileReader();
+            var uploadContainer = document.querySelector('.custom-file-upload');
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+                uploadContainer.classList.add('no-hover');
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+
+            } else {
+                preview.src = "./images/upload.png";
+                uploadContainer.classList.remove('no-hover');
+            }
+        }
+    </script>
+    <Script>function showSub(category) {
+        //隱藏子分類
+        document.querySelectorAll('.sub-category').forEach(function (sub) {
+            sub.style.display = 'none';
+        });
+
+        //顯示子分類
+        document.getElementById(category).style.display = 'block';
+    }
+    </Script>
+
+    <script>
+        document.getElementById('plustype').addEventListener('click', function() {
+            // 显示 typeDiv2
+
+            var typeDiv2 = document.getElementById('typeDiv2');
+            if (typeDiv2) {
+                typeDiv2.style.display = 'block';
+            }
+
+            // 显示 specification-container2
+            var specContainer2 = document.getElementById('specification-container2');
+            if (specContainer2) {
+                specContainer2.style.display = 'block';
+            }
+
+            var priceQuantity0 = document.getElementById('pricequantity0');
+            if (priceQuantity0) {
+                priceQuantity0.remove();
+            }
+
+            var priceQuantity00 = document.getElementById('pricequantity00');
+            if (priceQuantity00) {
+                priceQuantity00.remove();
+            }
+
+            var priceQuantity000 = document.getElementById('pricequantity000');
+            if (priceQuantity000) {
+                priceQuantity000.remove();
+            }
+
+            var priceQuantity0000 = document.getElementById('pricequantity0000');
+            if (priceQuantity0000) {
+                priceQuantity0000.remove();
+            }
+        });
+
+    </script>
+    <script>
+        <!--    document.addEventListener('DOMContentLoaded', function () {-->
+            <!--        // 获取 typeDiv2 和 plustype 元素-->
+            <!--        var typeDiv2 = document.getElementById('typeDiv2');-->
+            <!--        var plustype = document.getElementById('plustype');-->
+
+            <!--        // 初始化 typeDiv2 为隐藏状态-->
+            <!--        typeDiv2.style.display = 'none';-->
+
+            <!--        // 为 plustype 添加点击事件监听器-->
+            <!--        plustype.addEventListener('click', function() {-->
+                <!--            // 显示 typeDiv2-->
+                <!--            typeDiv2.style.display = 'block';-->
+                <!--        });-->
+        <!--    });-->
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('specific33').addEventListener('input', function () {
+                var inputValue = this.value;
+                document.getElementById('typedive22').textContent = inputValue;
+                document.getElementById('typedive222').textContent = inputValue;
+                document.getElementById('typedive2222').textContent = inputValue;
+                document.getElementById('typedive22222').textContent = inputValue;
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('specific44').addEventListener('input', function () {
+                var inputValue = this.value;
+                document.getElementById('typedive33').textContent = inputValue;
+                document.getElementById('typedive333').textContent = inputValue;
+                document.getElementById('typedive3333').textContent = inputValue;
+                document.getElementById('typedive33333').textContent = inputValue;
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('specific55').addEventListener('input', function () {
+                var inputValue = this.value;
+                document.getElementById('typedive44').textContent = inputValue;
+                document.getElementById('typedive444').textContent = inputValue;
+                document.getElementById('typedive4444').textContent = inputValue;
+                document.getElementById('typedive44444').textContent = inputValue;
+
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 获取 specific2 和 specific3 元素
+            var specific2 = document.getElementById('specific2');
+            var specific3 = document.getElementById('specific3');
+
+            specific3.style.visibility = 'hidden';
+            pricequantity0.style.visibility = 'hidden';
+
+            // 为 specific2 添加输入事件监听器
+            specific2.addEventListener('input', function () {
+                // 根据 specific2 是否有内容来显示或隐藏 specific3
+                if (specific2.value.trim() !== '') {
+                    specific3.style.visibility = 'visible';
+                    pricequantity0.style.visibility = 'visible';
+                } else {
+                    specific3.style.visibility = 'hidden';
+                    specific4.style.visibility = 'hidden';
+                    specific5.style.visibility = 'hidden';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var specific3 = document.getElementById('specific3');
+            var specific4 = document.getElementById('specific4');
+
+            specific4.style.visibility = 'hidden';
+
+            specific3.addEventListener('input', function () {
+                if (specific3.value.trim() !== '') {
+                    specific4.style.visibility = 'visible';
+                } else {
+                    specific4.style.visibility = 'hidden';
+                    specific5.style.visibility = 'hidden';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var specific4 = document.getElementById('specific4');
+            var specific5 = document.getElementById('specific5');
+
+            specific5.style.visibility = 'hidden';
+
+            specific4.addEventListener('input', function () {
+
+                if (specific4.value.trim() !== '') {
+                    specific5.style.visibility = 'visible';
+                } else {
+                    specific5.style.visibility = 'hidden';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var specific22 = document.getElementById('specific22');
+            var specific33 = document.getElementById('specific33');
+
+            specific33.style.visibility = 'hidden';
+
+            specific22.addEventListener('input', function () {
+                if (specific22.value.trim() !== '') {
+                    specific33.style.visibility = 'visible';
+                } else {
+                    specific33.style.visibility = 'hidden';
+                    specific44.style.visibility = 'hidden';
+                    specific55.style.visibility = 'hidden';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var specific33 = document.getElementById('specific33');
+            var specific44 = document.getElementById('specific44');
+
+            specific44.style.visibility = 'hidden';
+
+            specific33.addEventListener('input', function () {
+                if (specific33.value.trim() !== '') {
+                    specific44.style.visibility = 'visible';
+                } else {
+                    specific44.style.visibility = 'hidden';
+                    specific55.style.visibility = 'hidden';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var specific44 = document.getElementById('specific44');
+            var specific55 = document.getElementById('specific55');
+
+            specific55.style.visibility = 'hidden';
+
+            specific44.addEventListener('input', function () {
+                if (specific44.value.trim() !== '') {
+                    specific55.style.visibility = 'visible';
+                } else {
+                    specific55.style.visibility = 'hidden';
+                }
+            });
+        });
+
+
+    </script>
+    <!--   -------------- 隱藏區塊-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 获取 specific3 元素和 block2 元素
+            var specific3 = document.getElementById('specific3');
+            var block2 = document.getElementById('block2');
+
+            // 初始时根据 specific3 的内容设置 block2 的显示状态
+            toggleBlock2();
+
+            // 为 specific3 添加输入事件监听器
+            specific3.addEventListener('input', toggleBlock2);
+
+            // 定义切换 block2 显示状态的函数
+            function toggleBlock2() {
+                if (specific3.value.trim() === '') {
+                    block2.style.display = 'none';
+                } else {
+                    block2.style.display = 'flex';
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var specific4 = document.getElementById('specific4');
+            var block3 = document.getElementById('block3');
+
+            toggleBlock3();
+
+            specific4.addEventListener('input', toggleBlock3);
+
+            function toggleBlock3() {
+                if (specific4.value.trim() === '') {
+                    block3.style.display = 'none';
+                } else {
+                    block3.style.display = 'flex';
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var specific5 = document.getElementById('specific5');
+            var block4 = document.getElementById('block4');
+
+            toggleBlock4();
+
+            specific5.addEventListener('input', toggleBlock4);
+
+            function toggleBlock4() {
+                if (specific5.value.trim() === '') {
+                    block4.style.display = 'none';
+                } else {
+                    block4.style.display = 'flex';
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var inputSpecific22 = document.getElementById('specific22');
+            var divTypedive11 = document.getElementById('typedive11');
+            var divTypedive111 = document.getElementById('typedive111');
+            var divTypedive1111 = document.getElementById('typedive1111');
+            var divTypedive11111 = document.getElementById('typedive11111');
+
+            var inputPrice1 = document.getElementById('price1');
+            var inputPrice11 = document.getElementById('price11');
+            var inputPrice111 = document.getElementById('price111');
+            var inputPrice1111 = document.getElementById('price1111');
+
+            var inputQuantity1 = document.getElementById('quantity1');
+            var inputQuantity11 = document.getElementById('quantity11');
+            var inputQuantity111 = document.getElementById('quantity111');
+            var inputQuantity1111 = document.getElementById('quantity1111');
+
+            // 监听 input 事件
+            inputSpecific22.addEventListener('input', function () {
+                // 检查 input 是否有内容
+                if (inputSpecific22.value.trim() !== '') {
+                    // 有内容，显示 div
+                    divTypedive11.style.display = 'block';
+                    divTypedive111.style.display = 'block';
+                    divTypedive1111.style.display = 'block';
+                    divTypedive11111.style.display = 'block';
+
+                    inputPrice1.style.display = 'block';
+                    inputPrice11.style.display = 'block';
+                    inputPrice111.style.display = 'block';
+                    inputPrice1111.style.display = 'block';
+
+                    inputQuantity1.style.display = 'block';
+                    inputQuantity11.style.display = 'block';
+                    inputQuantity111.style.display = 'block';
+                    inputQuantity1111.style.display = 'block';
+                } else {
+                    // 没有内容，隐藏 div
+                    divTypedive11.style.display = 'none';
+                    divTypedive111.style.display = 'none';
+                    divTypedive1111.style.display = 'none';
+                    divTypedive11111.style.display = 'none';
+
+                    inputPrice1.style.display = 'none';
+                    inputPrice11.style.display = 'none';
+                    inputPrice111.style.display = 'none';
+                    inputPrice1111.style.display = 'none';
+
+                    inputQuantity1.style.display = 'none';
+                    inputQuantity11.style.display = 'none';
+                    inputQuantity111.style.display = 'none';
+                    inputQuantity1111.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var inputSpecific33 = document.getElementById('specific33');
+            var divTypedive22 = document.getElementById('typedive22');
+            var divTypedive222 = document.getElementById('typedive222');
+            var divTypedive2222 = document.getElementById('typedive2222');
+            var divTypedive22222 = document.getElementById('typedive22222');
+
+            var inputPrice2 = document.getElementById('price2');
+            var inputPrice22 = document.getElementById('price22');
+            var inputPrice222 = document.getElementById('price222');
+            var inputPrice2222 = document.getElementById('price2222');
+
+            var inputQuantity2 = document.getElementById('quantity2');
+            var inputQuantity22 = document.getElementById('quantity22');
+            var inputQuantity222 = document.getElementById('quantity222');
+            var inputQuantity2222 = document.getElementById('quantity2222');
+
+            inputSpecific33.addEventListener('input', function () {
+
+                if (inputSpecific33.value.trim() !== '') {
+
+                    divTypedive22.style.display = 'block';
+                    divTypedive222.style.display = 'block';
+                    divTypedive2222.style.display = 'block';
+                    divTypedive22222.style.display = 'block';
+
+                    inputPrice2.style.display = 'block';
+                    inputPrice22.style.display = 'block';
+                    inputPrice222.style.display = 'block';
+                    inputPrice2222.style.display = 'block';
+
+                    inputQuantity2.style.display = 'block';
+                    inputQuantity22.style.display = 'block';
+                    inputQuantity222.style.display = 'block';
+                    inputQuantity2222.style.display = 'block';
+                } else {
+
+                    divTypedive22.style.display = 'none';
+                    divTypedive222.style.display = 'none';
+                    divTypedive2222.style.display = 'none';
+                    divTypedive22222.style.display = 'none';
+
+                    inputPrice2.style.display = 'none';
+                    inputPrice22.style.display = 'none';
+                    inputPrice222.style.display = 'none';
+                    inputPrice2222.style.display = 'none';
+
+                    inputQuantity2.style.display = 'none';
+                    inputQuantity22.style.display = 'none';
+                    inputQuantity222.style.display = 'none';
+                    inputQuantity2222.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var inputSpecific44 = document.getElementById('specific44');
+            var divTypedive33 = document.getElementById('typedive33');
+            var divTypedive333 = document.getElementById('typedive333');
+            var divTypedive3333 = document.getElementById('typedive3333');
+            var divTypedive33333 = document.getElementById('typedive33333');
+
+            var inputPrice3 = document.getElementById('price3');
+            var inputPrice33 = document.getElementById('price33');
+            var inputPrice333 = document.getElementById('price333');
+            var inputPrice3333 = document.getElementById('price3333');
+
+            var inputQuantity3 = document.getElementById('quantity3');
+            var inputQuantity33 = document.getElementById('quantity33');
+            var inputQuantity333 = document.getElementById('quantity333');
+            var inputQuantity3333 = document.getElementById('quantity3333');
+
+            inputSpecific44.addEventListener('input', function () {
+
+                if (inputSpecific44.value.trim() !== '') {
+
+                    divTypedive33.style.display = 'block';
+                    divTypedive333.style.display = 'block';
+                    divTypedive3333.style.display = 'block';
+                    divTypedive33333.style.display = 'block';
+
+                    inputPrice3.style.display = 'block';
+                    inputPrice33.style.display = 'block';
+                    inputPrice333.style.display = 'block';
+                    inputPrice3333.style.display = 'block';
+
+                    inputQuantity3.style.display = 'block';
+                    inputQuantity33.style.display = 'block';
+                    inputQuantity333.style.display = 'block';
+                    inputQuantity3333.style.display = 'block';
+
+                } else {
+
+                    divTypedive33.style.display = 'none';
+                    divTypedive333.style.display = 'none';
+                    divTypedive3333.style.display = 'none';
+                    divTypedive33333.style.display = 'none';
+
+                    inputPrice3.style.display = 'none';
+                    inputPrice33.style.display = 'none';
+                    inputPrice333.style.display = 'none';
+                    inputPrice3333.style.display = 'none';
+
+                    inputQuantity3.style.display = 'none';
+                    inputQuantity33.style.display = 'none';
+                    inputQuantity333.style.display = 'none';
+                    inputQuantity3333.style.display = 'none';
+
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var inputSpecific55 = document.getElementById('specific55');
+            var divTypedive44 = document.getElementById('typedive44');
+            var divTypedive444 = document.getElementById('typedive444');
+            var divTypedive4444 = document.getElementById('typedive4444');
+            var divTypedive44444 = document.getElementById('typedive44444');
+
+            var inputPrice4 = document.getElementById('price4');
+            var inputPrice44 = document.getElementById('price44');
+            var inputPrice444 = document.getElementById('price444');
+            var inputPrice4444 = document.getElementById('price4444');
+
+            var inputQuantity4 = document.getElementById('quantity4');
+            var inputQuantity44 = document.getElementById('quantity44');
+            var inputQuantity444 = document.getElementById('quantity444');
+            var inputQuantity4444 = document.getElementById('quantity4444');
+
+
+
+            inputSpecific55.addEventListener('input', function () {
+
+                if (inputSpecific55.value.trim() !== '') {
+
+                    divTypedive44.style.display = 'block';
+                    divTypedive444.style.display = 'block';
+                    divTypedive4444.style.display = 'block';
+                    divTypedive44444.style.display = 'block';
+
+                    inputPrice4.style.display = 'block';
+                    inputPrice44.style.display = 'block';
+                    inputPrice444.style.display = 'block';
+                    inputPrice4444.style.display = 'block';
+
+                    inputQuantity4.style.display = 'block';
+                    inputQuantity44.style.display = 'block';
+                    inputQuantity444.style.display = 'block';
+                    inputQuantity4444.style.display = 'block';
+                } else {
+
+                    divTypedive44.style.display = 'none';
+                    divTypedive444.style.display = 'none';
+                    divTypedive4444.style.display = 'none';
+                    divTypedive44444.style.display = 'none';
+
+                    inputPrice4.style.display = 'none';
+                    inputPrice44.style.display = 'none';
+                    inputPrice444.style.display = 'none';
+                    inputPrice4444.style.display = 'none';
+
+                    inputQuantity4.style.display = 'none';
+                    inputQuantity44.style.display = 'none';
+                    inputQuantity444.style.display = 'none';
+                    inputQuantity4444.style.display = 'none';
+
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+        document.getElementById('specific').addEventListener('input', function () {
+            var inputValue = this.value;
+            document.getElementById('typeDiv').textContent = inputValue;
+        });
+    </script>
+    <script>
+        document.getElementById('specific1').addEventListener('input', function () {
+            var inputValue = this.value;
+            document.getElementById('typeDiv2').textContent = inputValue;
+        });
+    </script>
+    <script>
+        document.getElementById('specific2').addEventListener('input', function () {
+            var inputValue = this.value;
+            document.getElementById('typedive1').textContent = inputValue;
+        });
+    </script>
+    <script>
+        document.getElementById('specific3').addEventListener('input', function () {
+            var inputValue = this.value;
+            document.getElementById('typedive2').textContent = inputValue;
+        });
+    </script>
+    <script>
+        document.getElementById('specific4').addEventListener('input', function () {
+            var inputValue = this.value;
+            document.getElementById('typedive3').textContent = inputValue;
+        });
+    </script>
+    <script>
+        document.getElementById('specific5').addEventListener('input', function () {
+            var inputValue = this.value;
+            document.getElementById('typedive4').textContent = inputValue;
+        });
+    </script>
+    <script>
+        document.getElementById('specific22').addEventListener('input', function () {
+            var inputValue = this.value;
+            document.getElementById('typedive11').textContent = inputValue;
+            document.getElementById('typedive111').textContent = inputValue;
+            document.getElementById('typedive1111').textContent = inputValue;
+            document.getElementById('typedive11111').textContent = inputValue;
+        });
+    </script>
 </body>
 
 </html>
