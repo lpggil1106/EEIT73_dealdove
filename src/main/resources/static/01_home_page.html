@@ -361,7 +361,7 @@
     </footer>
 
     <!-- js -->
-    <script>
+    <script type="module">
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel .container a');
         const totalSlides = slides.length;
@@ -450,7 +450,19 @@
             }
         });
 
+        import {auth} from "./js/firebase.js";
+        import {onAuthStateChanged,} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // 已登入
+            const uid = user.uid;
+            // window.location.href = "01_home_page.html";
+            console.log(uid);
+        }else {
+            window.location.href = "02-1_login.html";
+
+        }})
     </script>
 
 </body>

@@ -17,7 +17,7 @@
         <div class="d-flex">
             <a class="iconBorder" href="./01_home_page.html"><img class="icon" src="./images/icon.png"></a>
         </div>
-            <br><br>
+        <br><br>
     </nav>
 </header>
 <br>
@@ -65,7 +65,6 @@
 </div>
 
 <button id="login-button" class="login-button">登入</button>
-<button id="test">123</button>
 
 <br><br><br>
 <footer>
@@ -112,8 +111,7 @@
 <!-- js -->
 <script type="module">
     // 導入所需的 Firebase SDK
-    import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import {getAnalytics} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    import {auth} from "./js/firebase.js";
     import {
         getAuth,
         signInWithPopup,
@@ -124,43 +122,41 @@
         setPersistence,
         browserSessionPersistence
     } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    // Firebase 配置
-    const firebaseConfig = {
-        apiKey: "AIzaSyA0xrDB28Kk2gvgj-Ho0wvTNemqqkqytuo",
-        authDomain: "dealdove-36d8c.firebaseapp.com",
-        projectId: "dealdove-36d8c",
-        storageBucket: "dealdove-36d8c.appspot.com",
-        messagingSenderId: "997598982157",
-        appId: "1:997598982157:web:8728a77f135fec514ba544",
-        measurementId: "G-7ZRGD1VDM6"
-    };
-
-
-    // 初始化 Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth(app);
-
 
     document.getElementById('google-signIn').addEventListener('click', () => {
-        const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider)
-            .then(result => {
-
-                const user = result.user;
-                // 正確獲取 ID Token
-                return user.getIdToken();
-            })
-            .then(idToken => {
-                // 在這裡你可以使用 idToken 進行後續的操作
-                console.log('ID Token:', idToken);
-
-                // 將 idToken 送回後端
-                sendTokenToBackend(idToken);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        onAuthStateChanged(auth, (user) => {
+            console.log(user);
+            if (user) {
+                // 已登入
+                const uid = user.uid;
+                // window.location.href = "01_home_page.html";
+                console.log(uid);
+            } else {
+                // 未登入
+                const provider = new GoogleAuthProvider();
+                // 設定帳號選擇器
+                provider.setCustomParameters({
+                    prompt: 'select_account'
+                });
+                signInWithPopup(auth, provider)
+                    .then(result => {
+                        const user = result.user;
+                        localStorage.setItem("name",user.displayName)
+                        localStorage.setItem("email",user.email)
+                        localStorage.setItem("uid",user.uid)
+                        // 正確獲取 ID Token
+                        return user.getIdToken();
+                    }).then(idToken => {
+                    // 在這裡你可以使用 idToken 進行後續的操作
+                    console.log('ID Token:', idToken);
+                    // 將 idToken 送回後端
+                    sendTokenToBackend(idToken);
+                }).catch(error => {
+                    console.log(error);
+                });
+                console.log("not login")
+            }
+        })
     });
 
     // 送 ID Token 回後端的函數
@@ -184,54 +180,6 @@
                 console.error('錯誤:', error);
             });
     }
-
-    document.getElementById('login-button').addEventListener("click", function () {
-        signOut(auth).then(() => {
-            localStorage.clear();
-            sessionStorage.clear();
-            console.log("Logout success")
-        }).catch((error) => {
-            console.log(error)
-        })
-    });
-
-
-    // 測試用
-    document.getElementById('test').addEventListener('click', () => {
-        const auth = getAuth();
-        console.log(auth);
-        onAuthStateChanged(auth, (user) => {
-            console.log(user);
-            if (user) {
-                // 已登入
-                const uid = user.uid;
-                window.location.href = "01_home_page.html";
-                console.log(uid);
-            } else {
-                // 未登入
-                const provider = new GoogleAuthProvider();
-                signInWithPopup(auth, provider)
-                    .then(result => {
-                        const user = result.user;
-
-
-                        // 正確獲取 ID Token
-                        return user.getIdToken();
-                    })
-                    .then(idToken => {
-                        // 在這裡你可以使用 idToken 進行後續的操作
-                        console.log('ID Token:', idToken);
-
-                        // 將 idToken 送回後端
-                        sendTokenToBackend(idToken);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-                console.log("not login")
-            }
-        })
-    })
 
 
     // <!----------------------------- facebook登入---------- -->
@@ -274,7 +222,14 @@
         });
     });
 
-
+    document.getElementById('login-button').addEventListener("click", function () {
+        signOut(auth).then(() => {
+            localStorage.clear();
+            sessionStorage.clear();
+        }).then(console.log("Logout success")).catch((error) => {
+            console.log(error)
+        })
+    });
 </script>
 
 </body>
