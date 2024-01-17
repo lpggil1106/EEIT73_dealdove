@@ -12,7 +12,7 @@
 }
 
 
-.box1 {
+.box1Seller {
   width: 100%;
   height: 25vw;
   background-color: #F9F3E7;
@@ -23,7 +23,7 @@
   align-items: center;
 }
 
-.box1>span {
+.box1Seller>span {
   margin: 1.2vw;
   letter-spacing: 2px;
   font-size: 1.9vw;
@@ -31,7 +31,7 @@
   font-weight: 400;
 }
 
-.box1 button:hover {
+.box1Seller button:hover {
   background-color: #A2CAD3;
 }
 
@@ -41,7 +41,7 @@
   margin: 4vw 0vw;
 }
 
-.orderManage {
+.orderManageSeller {
   width: 40vw;
   height: 10vw;
   padding: 2vw;
@@ -55,7 +55,7 @@
   word-wrap: break-word;
 }
 
-.orderManage a{
+.orderManageSeller a{
   text-decoration: none;
   padding: 0vw;
   margin: 0;
@@ -63,7 +63,7 @@
   color: black;
 }
 
-.orderManage span {
+.orderManageSeller span {
   padding: 0vw;
   margin: 0.2vw;
   font-size: 1vw;
@@ -96,7 +96,7 @@
   word-wrap: break-word;
 }
 
-.box2 {
+.box2Seller {
   width: 100%;
   height: 25vw;
   background-color: #F9F3E7;
@@ -107,7 +107,7 @@
   align-items: center;
 }
 
-.box2>span {
+.box2Seller>span {
   margin: 1.2vw;
   letter-spacing: 2px;
   font-size: 1.9vw;
@@ -115,7 +115,7 @@
   font-weight: 400;
 }
 
-.box2 button:hover {
+.box2Seller button:hover {
   background-color: #A2CAD3;
 }
 

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header">
+    <header>
         <nav class="header">
             <div class="d-flex">
                 <a class="iconBorder" href=""><img class="icon" src="./images/icon.png"></a>
@@ -108,54 +108,18 @@
                 <div class="coupon-title">
                     <div class="discount">滿額折</div>
                 </div>
-                    <br><br>
-                    <div class=" coupon-card">
-                        <img src="./images/coupon2.png" style="max-inline-size:6vw">
-                        <div style="margin-left: 1vw" class="product-details">
-                            <h2>優惠券名稱</h2>
-                            <p>優惠券編號</p>
-                            <div class="product-pricing">
-                                <p>折扣方法</p>
-                                <p>使用條件</p>
-                                <p>有效期限</p>
-                            </div>          
-                        </div>
-                        <button style="margin-left: 1vw" class="get-coupon">領取</button>
-                    </div>
-                    <div class=" coupon-card">
-                        <img src="./images/coupon2.png" style="max-inline-size:6vw">
-                        <div style="margin-left: 1vw" class="product-details">
-                            <h2>優惠券名稱</h2>
-                            <p>優惠券編號</p>
-                            <div class="product-pricing">
-                                <p>折扣方法</p>
-                                <p>使用條件</p>
-                                <p>有效期限</p>
-                            </div>          
-                        </div>
-                        <button style="margin-left: 1vw" class="get-coupon">領取</button>
-                    </div>
-                    
-                    <br><br><br><br><br>
-                    <div class="coupon-title">
-                        <div class="discount">活動商品</div>
-                    </div>
-                    <br><br>
-                    <div class=" coupon-card">
-                        <div style="display: flex; align-items: center; justify-content: center; background-color: #A2CAD3; height: 15vw; width: 8vw; opacity: 0.8">
-                        <img src="./images/coupon2.png" style=" max-inline-size:5vw" >
-                        </div>
-                        <div class="product-details">
-                            <h2>優惠券名稱</h2>
-                            <p>優惠券編號</p>
-                            <div class="product-pricing">
-                                <p>折扣方法</p>
-                                <p>使用條件</p>
-                                <p>有效期限</p>
-                            </div>          
-                        </div>
-                        <button style="margin-left: 1vw;" class="get-coupon">領取</button>
-                    </div>
+                <br>
+                <div id="tar"></div>
+
+                <br><br>
+
+                <div class="coupon-title">
+                    <div class="discount">指定優惠</div>
+                </div>
+                    <br>
+                <div id="specify"></div>
+
+                <br><br><br>
                
             </section>
             <footer>
@@ -199,8 +163,88 @@
                 </div>
             </footer>
         </main>
-
-
 </body>
+<script>
 
+    fetch("/15_coupon_page")
+        .then(response => response.json())
+        .then(data => {
+            data.forEach((coupon, index) => {
+                console.log(JSON.stringify(coupon));
+
+                const target =  parseInt(coupon.discount)!=0 ? "specify" : "tar";
+                console.log(target);
+                let targetContainer = document.getElementById(target);
+
+                if (index % 2 === 0) {
+                    // 每一行的第一張優惠券，新增 .coupon-row 類別
+                    const couponRow = document.createElement("div");
+                    couponRow.className = "coupon-row";
+                    targetContainer.appendChild(couponRow);
+                }
+
+                // 創建 coupon-card 元素
+                const couponCard = document.createElement("div");
+                couponCard.className = "coupon-card";
+
+                // 創建圖片元素
+                const img = document.createElement("img");
+                img.src = "./images/coupon2.png";
+                img.style.maxInlineSize = "6vw";
+                couponCard.appendChild(img);
+
+                // 創建 product-details 元素
+                const details = document.createElement("div");
+                details.style.marginLeft = "1vw";
+                details.className = "product-details"; // 使用 className 屬性
+
+                // 創建 couponcode 元素
+                const couponCode = document.createElement("h2");
+                couponCode.innerText = coupon.couponName;
+                details.appendChild(couponCode);
+
+                // 創建其他元素（可根據需要添加）
+                const couponNumber = document.createElement("p");
+                couponNumber.innerText = "折扣碼 " + coupon.couponCode;
+                details.appendChild(couponNumber);
+
+                const productPricing = document.createElement("div");
+                productPricing.className = "product-pricing";
+
+                const conditions = document.createElement("p");
+                conditions.innerText = "使用條件";
+                productPricing.appendChild(conditions);
+
+                const discountMethod = document.createElement("p");
+                discountMethod.innerText = coupon.discountMethod;
+                discountMethod.style.color = "gray";
+                discountMethod.style.fontSize = "1vw";
+                productPricing.appendChild(discountMethod);
+
+                // 格式化日期
+                const expirationDate = new Date(coupon.expirationDate);
+                const formattedDate =`${expirationDate.getFullYear()}-${String(expirationDate.getMonth() + 1).padStart(2, '0')}-${String(expirationDate.getDate()).padStart(2, '0')}  ${String(expirationDate.getHours()).padStart(2, '0')}:${String(expirationDate.getMinutes()).padStart(2, '0')}`;
+                const exdate = document.createElement("p");
+                exdate.innerText = "有效期限至 " + formattedDate;
+                exdate.style.marginTop = "1vw";
+                exdate.style.fontSize = "1vw";
+                productPricing.appendChild(exdate);
+
+                details.appendChild(productPricing);
+                couponCard.appendChild(details);
+
+                // 創建領取按鈕
+                const getCouponButton = document.createElement("button");
+                getCouponButton.innerText = "領取";
+                getCouponButton.classList.add("get-coupon"); // 使用 classList.add 方法
+                getCouponButton.style.marginLeft = "1vw";
+                couponCard.appendChild(getCouponButton);
+                //const currentRow = document.querySelector(`#${target}`).querySelector(".coupon-row:last-child");
+                const currentRow = targetContainer.querySelector(".coupon-row:last-child");
+                currentRow.appendChild(couponCard);
+            });
+        })
+        .catch(error => console.log(error));
+
+</script>
 </html>
