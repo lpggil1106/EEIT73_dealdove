@@ -1,27 +1,50 @@
 .navigation {
-    width: 71.5%;
-    margin: 0 auto;
+    width: 71.5vw;
     padding: 0;
-    margin-bottom: 2px;
+    margin: 0 auto 2px;
     border-radius: 15px;
     background-color: #F9F3E7;
-    white-space: nowrap;
     box-sizing: border-box;
     position: relative;
     z-index: 100;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
-.nav-item.dropdown:not(:first-child)::before {
+.nav-item.dropdown {
+    position: relative;
+}
+
+.nav-item {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 1.5% 1.5%;
+    /* 上下 2vh，左右 5% */
+    text-decoration: none;
+}
+
+.dropbtn {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+}
+
+.nav-item.dropdown:not(:last-child)::after {
     content: '';
     position: absolute;
-    left: 0;
+    right: 0;
+    /* 將分隔線放在右邊 */
     top: 50%;
     transform: translateY(-50%);
     height: 20px;
-    border-left: 1px solid black;
+    border-right: 1px solid black;
+    /* 將分隔線設定為右邊框 */
     width: 0;
 }
 
@@ -29,15 +52,6 @@
     border-left: none;
 }
 
-.nav-item {
-    position: relative;
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
 
 .nav-item:hover {
     background-color: #ddd;
@@ -49,21 +63,13 @@
     border: 1px solid #e7e7e7;
 }
 
-.dropbtn {
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    border: none;
-}
 
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 101;
 }
 
@@ -105,7 +111,7 @@
 }
 
 .container {
-    margin: 0px;
+    margin: 0;
 }
 
 .carousel .container {
@@ -193,66 +199,57 @@
 .hot p {
     font-size: 2vw;
     font-weight: 1000;
-    margin-bottom: 10px;
+    margin: 1px;
     text-align: center;
 }
 
 .hot.div {
     width: 100%;
-    height: 13.3333vw;
+    height: 12vh;
     border: 1px solid black;
     background-color: white;
 }
 
 .hotpro {
-    background-color: #F9F3E7;
-    border-radius: 15px;
-    position: relative;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    height: 400px;
+    height: auto;
 }
+
 
 .hotpro p {
     font-size: 2vw;
-    font-weight: 1000;
-    margin-bottom: 10px;
     text-align: center;
 }
 
 .hotpro.div {
-    width: 100%;
-    height: 13.3333vw;
-    border: 1px solid black;
-    background-color: white;
+    position: relative;
+    width: 100%;          
+    padding-top: 100%;    /* 1:1 長寬比 */
 }
 
 .hotpro .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    margin: 10px;
+    flex: 1;              
+    margin: 10px 10px;      
+    
 }
 
 .hotpro .item img {
     width: 100%;
-    height: auto;
-    margin-bottom: 5px;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 5%;
 }
 
 .hotpro .item p {
-    font-size: 24px;
+    font-size: 1rem;
     text-align: center;
 }
 
-.hotpro .item img {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 5px;
+.carousel-item {
+    max-width: 100%;
+    height: auto;
 }
 
 .prev-button,
@@ -295,14 +292,5 @@
     font-size: 20px;
     color: white;
     opacity: 0.5;
-    padding: auto;
     margin: auto;
-}
-
-.carousel-control-prev {
-    left: 0px;
-}
-
-.carousel-control-next {
-    right: 0px;
 }
