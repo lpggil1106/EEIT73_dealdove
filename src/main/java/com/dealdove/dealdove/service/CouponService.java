@@ -20,4 +20,5 @@ public class CouponService {
 
         return couponRepository.findAllCoupons();
     }
+
 }
