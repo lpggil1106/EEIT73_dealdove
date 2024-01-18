@@ -90,18 +90,17 @@
         <div id="chat-content">
 
             <div id="contact-list">
-                <!-- 联系人项目 -->
+                <!-- 聯絡人項目 -->
                 <div class="contact-item">
-                    <img src="./images/t.jpeg" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人1</div>
                         <div class="contact-message">最後消息...</div>
                         <div class="contact-time">時間</div>
                     </div>
                 </div>
-                <!-- 添加更多联系人项目 -->
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人2</div>
                         <div class="contact-message">最後消息...</div>
@@ -109,7 +108,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人3</div>
                         <div class="contact-message">最後消息...</div>
@@ -117,7 +116,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人4</div>
                         <div class="contact-message">最後消息...</div>
@@ -125,7 +124,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人5</div>
                         <div class="contact-message">最後消息...</div>
@@ -133,7 +132,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人6</div>
                         <div class="contact-message">最後消息...</div>
@@ -141,7 +140,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人7</div>
                         <div class="contact-message">最後消息...</div>
@@ -149,7 +148,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人8</div>
                         <div class="contact-message">最後消息...</div>
@@ -157,7 +156,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人9</div>
                         <div class="contact-message">最後消息...</div>
@@ -165,14 +164,14 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
+                    <img src="./images/icon.png" alt="Contact Photo">
                     <div class="contact-info">
                         <div class="contact-name">聯絡人10</div>
                         <div class="contact-message">最後消息...</div>
                         <div class="contact-time">時間</div>
                     </div>
                 </div>
-                <!-- 可以继续添加更多联系人 -->
+                <!-- 可以繼續增加更多聯絡人 -->
             </div>
 
             <div id="chatbox">
@@ -225,7 +224,12 @@
                 <div id="chat-footer">
                     <textarea id="message-input" placeholder="輸入訊息..."></textarea>
                     <button id="sticker-button" onclick="toggleStickerPanel()">
-                        <img src="./images/emoji-smile.svg" alt="貼圖" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                            class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5" />
+                        </svg>
                     </button>
 
                     <div id="sticker-panel" style="display: none;">
@@ -297,11 +301,19 @@
                         onchange="prepareImageUpload()">
 
                     <button id="upload-button" onclick="document.getElementById('image-input').click();">
-                        <img src="./images/image.svg" alt="上傳圖片" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                            class="bi bi-image-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
+                        </svg>
                     </button>
 
                     <button id="send-button" onclick="sendMessage()">
-                        <img src="./images/message.svg" alt="發送" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3" class="bi bi-send"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                        </svg>
                     </button>
 
                 </div>
@@ -312,41 +324,74 @@
 
     </div>
     <button id="chat-icon" onclick="toggleChat()">
-        <img src="./images/message (1).svg" alt="訊息" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#A2CAD3" class="bi bi-chat-square-dots"
+            viewBox="0 0 16 16">
+            <path
+                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+            <path
+                d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+        </svg>
     </button>
 
+
     <script>
+        // 建立WebSocket连接
+        let url = 'ws://localhost:8080'; // 根据您的后端WebSocket服务器地址修改
+        var ws = new WebSocket(url);
 
+        // 监听连接打开事件
+        ws.onopen = () => {
+            console.log('WebSocket connection opened.');
+        };
 
-        // websocket
+        // 监听连接关闭事件
+        ws.onclose = () => {
+            console.log('WebSocket connection closed.');
+        };
 
-        document.addEventListener("DOMContentLoaded", event => {
-            let keyinDom = document.querySelector('#txtInput')
-            let showDom = document.querySelector('#txtShow')
+        // 监听接收到的消息
+        ws.onmessage = event => {
+            let receivedMessage = event.data;
+            console.log("Received message: " + receivedMessage);
+            // 在这里可以添加将消息显示在聊天框中的逻辑
+        };
+        // 发送消息的函数
+        function sendMessage() {
+            var messageInput = document.getElementById('message-input');
+            var messageText = messageInput.value.trim();
 
-            document.querySelector('#btnSend').addEventListener('click', () => {
-                let txt = keyinDom.value;
-                ws.send(txt);
-            })
+            if (messageText && ws.readyState === WebSocket.OPEN) {
+                ws.send(messageText);  // 发送消息到WebSocket服务器
+                console.log("Sent message: " + messageText);
 
-            //建立WebSocket (本範例server端於本地運行)
-            let url = 'ws://localhost:3000'
-            var ws = new WebSocket(url)
-            //監聽連線
-            ws.onopen = () => {
-                console.log('open connection')
+                // 清空输入框
+                messageInput.value = '';
             }
-            ws.onclose = () => {
-                console.log('close connection')
-            }
-            //接收Server發送的訊息
-            ws.onmessage = event => {
-                let txt = event.data
-                if (!showDom.value) showDom.value = txt
-                else showDom.value = showDom.value + "\n" + txt
-                keyinDom.value = ""
-            }
-        })
+        }
+        ws.onmessage = event => {
+            let receivedMessage = event.data;
+            console.log("Received message: " + receivedMessage);
+
+            // 将消息添加到聊天历史中
+            var chatHistory = document.getElementById('chat-history');
+            var messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'other'); // 'other' 表示接收到的消息
+
+            var contentSpan = document.createElement('span');
+            contentSpan.classList.add('message-content');
+            contentSpan.textContent = receivedMessage;
+
+            var timestampSpan = document.createElement('span');
+            timestampSpan.classList.add('timestamp');
+            timestampSpan.textContent = getCurrentTime();
+
+            messageDiv.appendChild(contentSpan);
+            messageDiv.appendChild(timestampSpan);
+            chatHistory.appendChild(messageDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+
         // 聯絡人切換
         function toggleChat() {
             var chatContainer = document.getElementById("chat-container");

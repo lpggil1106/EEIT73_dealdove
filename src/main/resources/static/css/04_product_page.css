@@ -108,9 +108,9 @@
 
 .price span {
     width: 9.8667vw;
-    box-shadow: 1px 1px 1px rgb(119, 116, 116);
-    border-radius: 12px;
-    background-color: #F9F3E7;
+    /*box-shadow: 1px 1px 1px rgb(119, 116, 116);*/
+    /*border-radius: 12px;*/
+    /*background-color: #F9F3E7;*/
 }
 
 .buy {
