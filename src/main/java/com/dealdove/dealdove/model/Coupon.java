@@ -33,6 +33,19 @@ public class Coupon {
     @Column(name = "creationDate", nullable = false)
     private Instant creationDate;
 
+    @Column(name = "minimumAmount")
+    private Integer minimumAmount1;
+
+    @Column(name = "discount", nullable = false)
+    private Double discount;
+
+    @Column(name = "discountMethod", nullable = false, length = 200)
+    private String discountMethod;
+
+    @Column(name = "couponName", nullable = false, length = 10)
+    private String couponName;
+
+
     public Integer getId() {
         return id;
     }
@@ -95,6 +108,37 @@ public class Coupon {
 
     public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
+    }
+    public String getCouponName() {
+        return couponName;
+    }
+
+    public void setCouponName(String couponName) {
+        this.couponName = couponName;
+    }
+
+    public String getDiscountMethod() {
+        return discountMethod;
+    }
+
+    public void setDiscountMethod(String discountMethod) {
+        this.discountMethod = discountMethod;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public Integer getMinimumAmount1() {
+        return minimumAmount1;
+    }
+
+    public void setMinimumAmount1(Integer minimumAmount1) {
+        this.minimumAmount1 = minimumAmount1;
     }
 
 }

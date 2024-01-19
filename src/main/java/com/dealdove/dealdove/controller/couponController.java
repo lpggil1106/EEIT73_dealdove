@@ -17,9 +17,10 @@ public class couponController {
     @RequestMapping("/15_coupon_page")
     @ResponseBody
     public List<Coupon> test(){
+        System.out.println(couponService.findAllCoupons()+"123123");
+         System.out.println("123123");
         return couponService.findAllCoupons();
-        //System.out.println(couponService.findAllCoupons()+"123123");
-        // System.out.println("123123");
+
         //return null;
     }
 }
