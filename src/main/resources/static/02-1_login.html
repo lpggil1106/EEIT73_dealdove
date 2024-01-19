@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -26,8 +28,8 @@
     <!-- 登入按鈕在區塊上方 -->
     <div class="login-form">
         <div class="form-inputs">
-            <label for="username">帳號:</label>
-            <input type="text" id="username" name="username">
+            <label for="email">電子信箱:</label>
+            <input type="text" id="email" name="email">
 
             <label for="password">密碼:</label>
             <input type="password" id="password" name="password">
@@ -53,7 +55,7 @@
             <div class="vertical-line"></div>
         </div>
 
-        <div id="google-signIn" type="button" class="third-party-logins">
+        <div id="google-signIn" class="third-party-logins">
             <button class="google-login">
                 <img src="./images/google.png" alt="Google">Google登入
             </button>
@@ -65,7 +67,7 @@
 </div>
 
 <button id="login-button" class="login-button">登入</button>
-
+<button id="logout">logout</button>
 <br><br><br>
 <footer>
     <div class="footer">
@@ -111,17 +113,16 @@
 <!-- js -->
 <script type="module">
     // 導入所需的 Firebase SDK
-    import {auth} from "./js/firebase.js";
     import {
-        getAuth,
-        signInWithPopup,
         GoogleAuthProvider,
         FacebookAuthProvider,
-        signOut,
         onAuthStateChanged,
-        setPersistence,
-        browserSessionPersistence
+        signInWithPopup,
+        createUserWithEmailAndPassword,
+        signOut,
+        sendEmailVerification
     } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import {auth} from "./js/firebase.js";
 
     document.getElementById('google-signIn').addEventListener('click', () => {
         onAuthStateChanged(auth, (user) => {
@@ -138,15 +139,11 @@
                 provider.setCustomParameters({
                     prompt: 'select_account'
                 });
-                signInWithPopup(auth, provider)
-                    .then(result => {
-                        const user = result.user;
-                        localStorage.setItem("name",user.displayName)
-                        localStorage.setItem("email",user.email)
-                        localStorage.setItem("uid",user.uid)
-                        // 正確獲取 ID Token
-                        return user.getIdToken();
-                    }).then(idToken => {
+                signInWithPopup(auth, provider).then(result => {
+                    const user = result.user;
+                    // 正確獲取 ID Token
+                    return user.getIdToken();
+                }).then(idToken => {
                     // 在這裡你可以使用 idToken 進行後續的操作
                     console.log('ID Token:', idToken);
                     // 將 idToken 送回後端
@@ -222,11 +219,27 @@
         });
     });
 
-    document.getElementById('login-button').addEventListener("click", function () {
-        signOut(auth).then(() => {
-            localStorage.clear();
-            sessionStorage.clear();
-        }).then(console.log("Logout success")).catch((error) => {
+    document.getElementById('login-button').addEventListener('click', () => {
+        var email = 'n0970016636@gmail.com';
+        var password = 'securePassword123';
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                user.sendEmailVerification()
+            }).then(()=>{
+            console.log("finish")
+        })
+            .catch((error) => {
+                // 处理创建用户失败
+                console.error(error.message);
+            });
+    });
+
+
+    // })
+    document.getElementById('logout').addEventListener("click", function () {
+        signOut(auth).then(console.log("Logout success")).catch((error) => {
             console.log(error)
         })
     });
