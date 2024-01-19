@@ -57,6 +57,11 @@
   margin-right: 2vw;
 }
 
+#login{
+  color: #767676;
+  text-decoration: none;
+}
+
 .header_link ul {
   height: 100%;
   list-style: none;

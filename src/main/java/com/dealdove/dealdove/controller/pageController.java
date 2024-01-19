@@ -21,6 +21,15 @@ public class pageController {
         return "01_home_page";
     }
 
+    @GetMapping("/Login")
+    public String loginPage(){
+        return "02-1_login";
+    }
+    @GetMapping("/Register")
+    public String registerPage(){
+        return "02-2_register";
+    }
+
     @GetMapping("/test2")
     public String test2(){
         return "test";

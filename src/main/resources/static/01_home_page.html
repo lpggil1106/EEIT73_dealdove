@@ -88,7 +88,7 @@
                                     d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <a href="" id="login" class=" link-underline link-underline-opacity-0 text-secondary">
+                        <a href="02-1_login.html" id="login" class="">
                             註冊/登入</a>
                     </li>
                 </ul>
@@ -452,26 +452,9 @@
         }
     });
 
-    import {auth} from "./js/firebase.js";
-    import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    $(document).ready(() => {
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    // 已登入
-                    const uid = user.uid;
-                    // window.location.href = "01_home_page.html";
-                    $('#login').text('登出');
-                    console.log(uid);
-                } else {
-                    window.location.href = "02-1_login.html";
-                }
-            })
-        }
-    )
 
 </script>
-
+<script src="./js/isLogin.js" type="module"></script>
 </body>
 
 </html>
