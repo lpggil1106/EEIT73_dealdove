@@ -35,30 +35,73 @@ $(document).ready(() => {
 
     // Email信箱登入
     $('#login-button').on('click', () => {
-        const user = auth.currentUser;
-        if (user!=null){
-        console.log(user);
-            const isEmailVerified = user.emailVerified;
-
-            if(isEmailVerified){
+        onAuthStateChanged(auth,(user=>{
+            if(user){
+                const user = auth.currentUser;
+                const isEmailVerified = user.emailVerified;
+                const email = $('#email').val();
+                const password = $('#password').val();
+                const userEmail = user.email;
+                const userPassword = user.password;
+                if(isEmailVerified){
+                    // window.location.href="/Dealdove"
+                  signInWithEmailAndPassword(auth,email,password)
+                      .then(()=>console.log('123'))
+                }else{
+                    window.alert('尚未認證')
+                }
+            }else{
+                // const isEmailVerified = user.emailVerified;
                 const email = $('#email').val();
                 const password = $('#password').val();
 
                 signInWithEmailAndPassword(auth, email, password)
-                    .then(() => {
-                        window.location.href='/Dealdove'
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
-            }else{
-                window.alert('尚未驗證電子信箱');
-            }
-        }else{
-            window.alert('尚未註冊帳號');
-            window.location.href='/Register';
-        }
+                    .then(()=> {
+                        const user = auth.currentUser;
+                        const isEmailVerified = user.emailVerified;
 
+                        if(isEmailVerified){
+                            console.log('success');
+                        }else{
+                            console.log('no');
+                        }
+                    })
+                    .catch(error=>{console.log(error);
+                    window.alert('尚未註冊')})
+            }
+        }))
+
+
+
+
+
+
+
+
+    //     const user = auth.currentUser;
+    //     if (user!=null){
+    //     console.log(user);
+    //         const isEmailVerified = user.emailVerified;
+    //
+    //         if(isEmailVerified){
+    //             const email = $('#email').val();
+    //             const password = $('#password').val();
+    //
+    //             signInWithEmailAndPassword(auth, email, password)
+    //                 .then(() => {
+    //                     window.location.href='/Dealdove'
+    //                 })
+    //                 .catch(error => {
+    //                     console.log(error);
+    //                 })
+    //         }else{
+    //             window.alert('尚未驗證電子信箱');
+    //         }
+    //     }else{
+    //         window.alert('尚未註冊帳號');
+    //         window.location.href='/Register';
+    //     }
+    //
     });
 })
 

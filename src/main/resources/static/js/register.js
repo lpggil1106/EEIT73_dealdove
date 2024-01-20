@@ -2,11 +2,15 @@ import {auth, createUserWithEmailAndPassword, sendEmailVerification} from "./fir
 import "https://code.jquery.com/jquery-3.6.0.min.js";
 
 $(document).ready(() => {
+
+
     $('#register-button').on('click', () => {
+        event.preventDefault();
         const EmailAndPasssword = {
             email: $('#email').val(),
             password: $('#password').val()
         };
+
         fetch('/verify', {
                 method: 'POST',
                 body: JSON.stringify(EmailAndPasssword),
