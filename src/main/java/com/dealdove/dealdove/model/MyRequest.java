@@ -8,6 +8,16 @@ public class MyRequest {
     private String name;
     private String email;
 
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     // Getter and Setter
     public String getName() {
         return name;

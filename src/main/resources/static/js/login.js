@@ -37,6 +37,7 @@ $(document).ready(() => {
     $('#login-button').on('click', () => {
         const user = auth.currentUser;
         if (user!=null){
+        console.log(user);
             const isEmailVerified = user.emailVerified;
 
             if(isEmailVerified){
@@ -59,8 +60,6 @@ $(document).ready(() => {
         }
 
     });
-
-
 })
 
 

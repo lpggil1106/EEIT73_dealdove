@@ -55,6 +55,12 @@ public class userController {
         return formData;
     }
 
+    @PostMapping("/login")
+    public String test123(@RequestBody String email,@RequestBody String password){
+        System.out.println(password);
+        System.out.println(email);
+        return "";
+    }
 
 
 
