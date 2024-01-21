@@ -41,12 +41,11 @@ $(document).ready(() => {
                 const isEmailVerified = user.emailVerified;
                 const email = $('#email').val();
                 const password = $('#password').val();
-                const userEmail = user.email;
-                const userPassword = user.password;
+
                 if(isEmailVerified){
-                    // window.location.href="/Dealdove"
                   signInWithEmailAndPassword(auth,email,password)
-                      .then(()=>console.log('123'))
+                      .then(()=>{console.log('123');
+                      window.location.href='/Dealdove'})
                 }else{
                     window.alert('尚未認證')
                 }
