@@ -16,9 +16,11 @@ $(document).ready(() => {
                 body: JSON.stringify(EmailAndPasssword),
                 headers: {'Content-Type': 'application/json;charset=utf-8'}
             }
-        ).then(res =>
-            res.json()
-        ).then(res => {
+        ).then(res =>{
+            console.log("before res.json()" + (res === 1));
+            res.json();
+            console.log("after res.json()" + (res === 1));
+        }).then(res => {
             console.log(res);
             if (res === 10) {
                 window.alert("請輸入正確的電子信箱");
