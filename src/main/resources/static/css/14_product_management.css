@@ -346,14 +346,13 @@ img {
 
 /* -----------------------新增商品-------------------------------- */
 .form-container {
-  width: 80%;
+  width: 100%;
   padding: 5px;
   border-color: #F9F3E7;
   border-width: 6px;
   border-style: solid;
   background-color: #ffffff;
   border-radius: 10px;
-  margin-left:10vw;
   margin-top: -3vw;
 
 }
