@@ -6,6 +6,7 @@ function  reflash(){
 
 }
 $(document).ready(() => {
+    changeCaptcha();
     //Google登入
     $('#google-signIn').on('click', () => {
         onAuthStateChanged(auth, (user) => {
@@ -36,37 +37,46 @@ $(document).ready(() => {
     // Email信箱登入
     $('#login-button').on('click', () => {
         onAuthStateChanged(auth,(user=>{
+            const userCaptcha = $('#captcha').val();
             if(user){
-                const user = auth.currentUser;
-                const isEmailVerified = user.emailVerified;
-                const email = $('#email').val();
-                const password = $('#password').val();
+               if(userCaptcha==captcha){
+                   const user = auth.currentUser;
+                   const isEmailVerified = user.emailVerified;
+                   const email = $('#email').val();
+                   const password = $('#password').val();
 
-                if(isEmailVerified){
-                  signInWithEmailAndPassword(auth,email,password)
-                      .then(()=>{console.log('123');
-                      window.location.href='/Dealdove'})
-                }else{
-                    window.alert('尚未認證')
-                }
+                   if(isEmailVerified){
+                       signInWithEmailAndPassword(auth,email,password)
+                           .then(()=>{console.log('123');
+                               window.location.href='/Dealdove'})
+                   }else{
+                       window.alert('尚未認證')
+                   }
+               }else{
+                   console.log('error')
+               }
             }else{
                 // const isEmailVerified = user.emailVerified;
-                const email = $('#email').val();
-                const password = $('#password').val();
+               if(userCaptcha==captcha){
+                   const email = $('#email').val();
+                   const password = $('#password').val();
 
-                signInWithEmailAndPassword(auth, email, password)
-                    .then(()=> {
-                        const user = auth.currentUser;
-                        const isEmailVerified = user.emailVerified;
+                   signInWithEmailAndPassword(auth, email, password)
+                       .then(()=> {
+                           const user = auth.currentUser;
+                           const isEmailVerified = user.emailVerified;
 
-                        if(isEmailVerified){
-                            console.log('success');
-                        }else{
-                            console.log('no');
-                        }
-                    })
-                    .catch(error=>{console.log(error);
-                    window.alert('尚未註冊')})
+                           if(isEmailVerified){
+                               console.log('success');
+                           }else{
+                               console.log('no');
+                           }
+                       })
+                       .catch(error=>{console.log(error);
+                           window.alert('尚未註冊')})
+               }else{
+                   console.log('error')
+               }
             }
         }))
 
@@ -102,8 +112,22 @@ $(document).ready(() => {
     //     }
     //
     });
+    $('.captchaimg').on('click',()=>{
+        changeCaptcha();
+    });
 })
 
+let captcha ;
+function changeCaptcha(){
+    fetch('captcha')
+        .then(res=>res.json())
+        .then( res=>{
+            $('#captchaimg').prop('src', "data:image/png;base64," + res.base64String);
+            captcha= res.captchCode;
+            }
+        )
+        .catch(error=>console.log(error))
+}
 
 // 送 ID Token 回後端的函數
 function sendTokenToBackend(idToken) {

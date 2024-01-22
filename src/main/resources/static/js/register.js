@@ -19,6 +19,7 @@ $(document).ready(() => {
         ).then(res =>
             res.json()
         ).then(res => {
+            console.log(res);
             if (res === 10) {
                 window.alert("請輸入正確的電子信箱");
             } else if (res === 20) {
