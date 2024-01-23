@@ -24,13 +24,16 @@ public class userController {
     private UserService userService;
     @Autowired
     private MessageService messageService;
-
-    //    test123456
-    @GetMapping("/04_product_page")
-    public String productPage(Model model){
-        return "04_product_page";
+//    取得FirebaseToken method
+    public FirebaseToken getFirebaseToken(IdToken idToken){
+        try {
+            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
+            return decodedToken;
+        } catch (FirebaseAuthException e) {
+            System.out.println(e);
+            throw new RuntimeException(e);
+        }
     }
-
     @RequestMapping("/link")
     public List<User> test2(){
         //回傳userService查詢到的資料
@@ -48,8 +51,7 @@ public class userController {
     @PostMapping("Users")
     public String user(@RequestBody IdToken idToken){
         System.out.println(idToken.getIdToken());
-        try {
-            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
+        FirebaseToken decodedToken = getFirebaseToken(idToken);
             String email = decodedToken.getEmail();
             String uid = decodedToken.getUid();
             String name = (decodedToken.getName()==null)? decodedToken.getEmail(): decodedToken.getName();
@@ -59,38 +61,16 @@ public class userController {
             System.out.println(name);
             userService.save(uid,name,email,true);
             return idToken.getIdToken();
-        } catch (FirebaseAuthException e) {
-            System.out.println(e);
-            throw new RuntimeException(e);
-        }
+
     }
 
     @PostMapping("/Member")
     public @ResponseBody String member(@RequestBody IdToken idToken){
-          try {
-            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
-            String uid = decodedToken.getUid();
+              FirebaseToken decodedToken = getFirebaseToken(idToken);
+              String uid = decodedToken.getUid();
             String email = userService.findUserById(uid);
             return "{\"email\":\""+email+"\"}";
-        } catch (FirebaseAuthException e) {
-            System.out.println(e);
-            throw new RuntimeException(e);
-        }
     }
-
-
-
-//    public FirebaseToken getFirebaseToken(IdToken idToken){
-//        try {
-//            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
-//            String uid = decodedToken.getUid();
-//            String email = userS ervice.findUserById(uid);
-//            return decodedToken;
-//        } catch (FirebaseAuthException e) {
-//            System.out.println(e);
-//            throw new RuntimeException(e);
-//        }
-//    }
 
 
 

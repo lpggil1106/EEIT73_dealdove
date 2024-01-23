@@ -17,8 +17,6 @@ $(document).ready(() => {
             }
         })
     );
-
-
     $('.gender-btn').on('change', function () {
         // 取得選中的單選按鈕的值
         var selectedGender = $('input[name="gender"]:checked').val();
@@ -50,6 +48,8 @@ function sendTokenToBackend(idToken) {
             console.error('錯誤:', error);
         });
 }
+
+
 
 
 
