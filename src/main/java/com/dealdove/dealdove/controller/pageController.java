@@ -34,4 +34,12 @@ public class pageController {
     public String test2(){
         return "test";
     }
+
+    @GetMapping("/seller")
+    public String userPage(){
+        return "10_seller_home_page";
+    }
+
+
+
 }

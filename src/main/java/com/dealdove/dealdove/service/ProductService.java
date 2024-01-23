@@ -5,7 +5,7 @@ import com.dealdove.dealdove.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -17,10 +17,33 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product addProduct(Product product) {
-        product.setCreateTime(Instant.now());
-        product.setLastEdit(Instant.now());
-
-        return productRepository.save(product);
+    public List<Product> findProduct() {
+        return productRepository.findProduct();
     }
+    public List<Product> getAllProduct() {
+        return productRepository.getAllProduct();
+    }
+    public Product getProductByID(Integer productID){
+        return productRepository.findProductByproductID(productID);
+    }
+    public void saveProduct(Integer userID, Integer productPrice, String productName, Integer productCategoryID, Integer productModelID, Integer productImageID, String productDescription, Integer stockQuantity, Byte isAvailable) {
+
+        Product product = new Product();
+        product.setUserID(userID);
+        product.setProductName(productName);
+        product.setProductPrice(productPrice);
+        product.setProductCategoryID(productCategoryID);
+        product.setProductModelID(productModelID);
+        product.setProductImageID(productImageID);
+        product.setStockQuantity(stockQuantity);
+        product.setProductDescription(productDescription);
+        product.setIsAvailable(isAvailable);
+
+
+
+        productRepository.save(product);
+    }
+
+
+
 }

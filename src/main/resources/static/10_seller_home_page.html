@@ -278,7 +278,7 @@
                 <div class="form-header">
                     商品資訊
                 </div>
-                <form>
+                <form method="post" action="/10_seller_home_page/add_product">
                     <div class="form-group">
                         <div class="label-upload-container">
                             <label>商品圖片:</label>
@@ -614,13 +614,13 @@
                         </div>
                     </div>
 
-
+                    <div class="button-container">
+                        <button type="button" class="btn btn-outline-dark">取消</button>
+                        <button type="button" class="btn btn-outline-dark">儲存</button>
+                        <button id="submitproduct" type="submit" class="btn btn-outline-dark">上架</button>
+                    </div>
                 </form>
-                <div class="button-container">
-                    <button type="button" class="btn btn-outline-dark">取消</button>
-                    <button type="button" class="btn btn-outline-dark">儲存</button>
-                    <button type="submit" class="btn btn-outline-dark">上架</button>
-                </div>
+
                 <br>
             </div>
         </div>

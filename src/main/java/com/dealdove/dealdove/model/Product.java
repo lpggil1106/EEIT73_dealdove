@@ -1,16 +1,18 @@
 package com.dealdove.dealdove.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.Instant;
 
 @Entity
+@DynamicInsert
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productID", nullable = false)
-    private Integer id;
+    private Integer productID;
 
     @Column(name = "productName", nullable = false, length = 300)
     private String productName;
@@ -18,8 +20,8 @@ public class Product {
     @Column(name = "productPrice", nullable = false)
     private Integer productPrice;
 
-    @Column(name = "userId", nullable = false)
-    private Integer userId;
+    @Column(name = "userID", nullable = false)
+    private Integer userID;
 
     @Column(name = "productCategoryID", nullable = false)
     private Integer productCategoryID;
@@ -48,12 +50,12 @@ public class Product {
     @Column(name = "lastEdit", nullable = false)
     private Instant lastEdit;
 
-    public Integer getId() {
-        return id;
+    public Integer getProductID() {
+        return productID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProductID(Integer productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {
@@ -72,12 +74,12 @@ public class Product {
         this.productPrice = productPrice;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserID(Integer userId) {
+        this.userID = userID;
     }
 
     public Integer getProductCategoryID() {

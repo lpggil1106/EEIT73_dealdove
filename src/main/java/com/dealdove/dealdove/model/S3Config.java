@@ -25,8 +25,8 @@ public class S3Config {
 
     public AWSCredentials credentials() {
         AWSCredentials credentials = new BasicAWSCredentials(
-                "AKIARQLKGSKVD35I62FW",
-                "XAEo7JOgz0vLTFNKabmDPx0iEPVa46A6Wadovnlf"
+                "AKIARQLKGSKVNEBVBLXF",
+                "B9BKpwxeOn5GYHfEum1I+8XFQ3W/kUNfbLMs7o5K"
         );
         return credentials;
     }
