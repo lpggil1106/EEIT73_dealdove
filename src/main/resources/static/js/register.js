@@ -16,12 +16,9 @@ $(document).ready(() => {
                 body: JSON.stringify(EmailAndPasssword),
                 headers: {'Content-Type': 'application/json;charset=utf-8'}
             }
-        ).then(res =>{
-            console.log("before res.json()" + (res === 1));
-            res.json();
-            console.log("after res.json()" + (res === 1));
-        }).then(res => {
-            console.log(res);
+        ).then(res =>
+            res.json()
+        ).then(res => {
             if (res === 10) {
                 window.alert("請輸入正確的電子信箱");
             } else if (res === 20) {
@@ -34,17 +31,46 @@ $(document).ready(() => {
                     createUserWithEmailAndPassword(auth, email, password)
                         .then(userCredential => {
                             sendEmailVerification(userCredential.user)
-                                .then(()=>{
+                                .then(() => {
                                     window.alert('驗證信已送出')
-                                    window.location.href='/Login'
+                                    window.location.href = '/Login'
                                 })
-                                .catch(error=>console.log(error))
+                                .catch(error => console.log(error))
+                            const user = userCredential.user;
+                            return user.getIdToken();
                         })
-                        .catch(error=>console.log(error))
-                }else{
+                        .then(idToken => {
+                            console.log('IdToken:', idToken);
+                            sendTokenToBackend(idToken);
+                        })
+                        .catch(error => console.log(error))
+                } else {
                     window.alert('尚未確認隱私條款');
                 }
             }
         }).catch(error => console.log(error))
     });
 })
+
+
+// 送 ID Token 回後端的函數
+function sendTokenToBackend(idToken) {
+    const apiUrl = '/Users';
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify({
+            idToken: idToken
+        }),
+        headers: {'Content-Type': 'application/json;charset=utf-8'}
+    };
+
+    fetch(apiUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            // 在這裡處理後端的回應
+            console.log('後端回應:', data);
+        })
+        .catch(error => {
+            console.error('錯誤:', error);
+        });
+}

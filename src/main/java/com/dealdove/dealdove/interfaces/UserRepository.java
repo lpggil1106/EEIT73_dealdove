@@ -15,4 +15,10 @@ public interface UserRepository extends JpaRepository<User, String> {
     List<User> findAllUsers();
 
     User save(User user);
+
+    @Query(value = "SELECT email FROM user WHERE userID= :userID",nativeQuery = true)
+    String findEmailById(@Param("userID") String userID);
+
+//    @Query(value = "update user set gender = :gender Where userID = : userID",nativeQuery = true)
+//    void updateGender(@Param("gender")int gender,@Param("userID")String userID);
 }

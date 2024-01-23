@@ -31,4 +31,10 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public String findUserById(String userID){return userRepository.findEmailById(userID);}
+
+
+//    public void update(int gender,String userID){
+//        userRepository.updateGender(gender,userID);
+//    }
 }

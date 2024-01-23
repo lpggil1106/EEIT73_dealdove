@@ -60,6 +60,16 @@
     flex-wrap: wrap;
 }
 
+.gender{
+    display: flex;
+    align-items: center;
+}
+.gender-btn{
+    margin-right: 0.5vw;
+    margin-left: 1vw;
+    background: #F9F3E7;
+}
+
 .content-section {
     display: flex;
     flex-direction: column;

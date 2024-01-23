@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -120,16 +120,20 @@
             </div>
             <div class="content-area">
                 <!-- 新增的內容區塊 -->
-                <form id="info-content" class="content-section">
+                <form action="03_member.html" id="info-content" class="content-section">
                     <div><span>頭像：</span><input type="file" accept="image/*"></div>
-                    <div>
+                    <button id="test">123</button>
+                    <div class="gender">
                         <span>性別：</span>
-                        <button id="male" class="gender-btn">男性</button>
-                        <button id="female" class="gender-btn">女性</button>
-                        <button id="secret" class="gender-btn">不願透露</button>
+                        <input type="radio" id="male" name="gender" value="male" class="gender-btn"/>
+                        <label for="male"> 男性</label>
+                        <input type="radio" id="female" name="gender" value="female" class="gender-btn"/>
+                        <label for="female"> 女性</label>
+                        <input type="radio" id="secret" name="gender" value="secret" class="gender-btn"/>
+                        <label for="secret">不願透漏</label>
                     </div>
-                    <div><span>生日：</span><input type="date"></div>
-                    <div><span>信箱：</span><input type="email"></div>
+                    <div><span>生日：</span><input id="birthday" type="date"></div>
+                    <div><span>信箱：</span><input id="email" type="email"></div>
                     <div><span>取件資料：</span><textarea></textarea></div>
                     <input id="update" type="submit" value="確定">
                 </form>
@@ -340,7 +344,7 @@
         });
 
     </script>
-
+    <script src="./js/member.js" type="module"></script>
 </body>
 
 </html>

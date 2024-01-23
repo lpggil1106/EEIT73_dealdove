@@ -25,8 +25,6 @@ public class userController {
     @Autowired
     private MessageService messageService;
 
-
-
     //    test123456
     @GetMapping("/04_product_page")
     public String productPage(Model model){
@@ -45,38 +43,6 @@ public class userController {
         System.out.println(message.getText());
         messageService.saveMessage(1,2,"Saveddefault");
         return messageService.findMessage();
-    }
-
-    @PostMapping("/submitMessage")
-    public @ResponseBody MyRequest handleFormSubmission(@RequestBody MyRequest formData) {
-        // 在這裡處理表單數據，例如保存到數據庫
-        System.out.println("收到表單數據：" + formData);
-        System.out.println("name: " + formData.getName());
-        System.out.println("email: " + formData.getEmail());
-        return formData;
-    }
-
-
-    @PostMapping( "/login3")
-    public @ResponseBody String login(@RequestBody IdToken idToken){
-        System.out.println(idToken.getIdToken());
-        System.out.println("breakpoint");
-
-
-        try {
-            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
-            String email = decodedToken.getEmail();
-            String uid = decodedToken.getUid();
-            String name = decodedToken.getName();
-            System.out.println("breakpoint");
-            System.out.println(email);
-            System.out.println(uid);
-            System.out.println(name);
-            return idToken.getIdToken();
-        } catch (FirebaseAuthException e) {
-            System.out.println(e);
-            throw new RuntimeException(e);
-        }
     }
 
     @PostMapping("Users")
@@ -98,6 +64,33 @@ public class userController {
             throw new RuntimeException(e);
         }
     }
+
+    @PostMapping("/Member")
+    public @ResponseBody String member(@RequestBody IdToken idToken){
+          try {
+            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
+            String uid = decodedToken.getUid();
+            String email = userService.findUserById(uid);
+            return "{\"email\":\""+email+"\"}";
+        } catch (FirebaseAuthException e) {
+            System.out.println(e);
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+//    public FirebaseToken getFirebaseToken(IdToken idToken){
+//        try {
+//            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
+//            String uid = decodedToken.getUid();
+//            String email = userS ervice.findUserById(uid);
+//            return decodedToken;
+//        } catch (FirebaseAuthException e) {
+//            System.out.println(e);
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 
 

@@ -50,11 +50,9 @@ $(document).ready(() => {
                            .then(result => {
                                const user = result.user;
                                return user.getIdToken();})
-                           .then(idToken => {
-                               console.log('IdToken:', idToken);
-                               sendTokenToBackend(idToken);
-                               window.location.href='/Dealdove';
-                           })
+                           .then(
+                               window.location.href='/Dealdove'
+                           )
                            // .then(()=>{console.log('123');
                            //     })
                    }else{
@@ -158,4 +156,6 @@ function sendTokenToBackend(idToken) {
             console.error('錯誤:', error);
         });
 }
+// 送 ID Token 回後端的函數
+
 
