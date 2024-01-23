@@ -47,8 +47,16 @@ $(document).ready(() => {
 
                    if(isEmailVerified){
                        signInWithEmailAndPassword(auth,email,password)
-                           .then(()=>{console.log('123');
-                               window.location.href='/Dealdove'})
+                           .then(result => {
+                               const user = result.user;
+                               return user.getIdToken();})
+                           .then(idToken => {
+                               console.log('IdToken:', idToken);
+                               sendTokenToBackend(idToken);
+                               window.location.href='/Dealdove';
+                           })
+                           // .then(()=>{console.log('123');
+                           //     })
                    }else{
                        window.alert('尚未認證')
                    }
@@ -131,7 +139,7 @@ function changeCaptcha(){
 
 // 送 ID Token 回後端的函數
 function sendTokenToBackend(idToken) {
-    const apiUrl = '/login3';
+    const apiUrl = '/Users';
     const requestOptions = {
         method: 'POST',
         body: JSON.stringify({

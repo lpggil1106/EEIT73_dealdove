@@ -1,17 +1,18 @@
 package com.dealdove.dealdove.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.ZonedDateTime;
 
     @Entity
+    @DynamicInsert
     @Table(name = "user")
     public class User {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "userID" , nullable = false , unique = true)
-        private Integer userID;
+        private String userID;
 
         @Column(name = "username" , nullable = false , unique = true)
         private String username;
@@ -37,7 +38,7 @@ import java.time.ZonedDateTime;
         @Column(name = "avatar" , nullable = true)
         private String avatar;
 
-        @Column(name = "lastedit" , nullable = false)
+        @Column(name = "lastedit")
         private ZonedDateTime lastedit;
         public User() {
         }
@@ -50,7 +51,7 @@ import java.time.ZonedDateTime;
             this.avatar = avatar;
         }
         // Constructor for User
-        public User(Integer ID, String username, String password, String email, boolean status, int gender, ZonedDateTime birthdate, ZonedDateTime createtime, ZonedDateTime lastedit,String avatar) {
+        public User(String ID, String username, String password, String email, boolean status, int gender, ZonedDateTime birthdate, ZonedDateTime createtime, ZonedDateTime lastedit,String avatar) {
             this.userID = ID;
             this.username = username;
             this.password = password;
@@ -64,11 +65,11 @@ import java.time.ZonedDateTime;
         }
 
 
-        public Integer getUserID() {
+        public String getUserID() {
             return userID;
         }
 
-        public void setUserID(Integer userID) {
+        public void setUserID(String userID) {
             this.userID = userID;
         }
 

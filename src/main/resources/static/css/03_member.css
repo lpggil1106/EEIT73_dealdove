@@ -113,6 +113,13 @@
     border-radius: 5px;
 }
 
+#update{
+    width: 3vw;
+    align-self: center;
+    background:  #F9F3E7;
+    border: none;
+}
+
 .divider {
     height: 10px;
     background-color: #f9f3e7;

@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
     @Query(value = "SELECT * FROM user", nativeQuery = true)
     List<User> findAllUsers();
+
+    User save(User user);
 }

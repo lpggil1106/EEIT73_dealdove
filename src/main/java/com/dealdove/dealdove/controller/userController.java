@@ -1,11 +1,12 @@
 package com.dealdove.dealdove.controller;
 
-import com.dealdove.dealdove.model.Message;
-import com.dealdove.dealdove.model.MyRequest;
-import com.dealdove.dealdove.model.MyResponse;
-import com.dealdove.dealdove.model.User;
+import com.amazonaws.services.dynamodbv2.xspec.M;
+import com.dealdove.dealdove.model.*;
 import com.dealdove.dealdove.service.MessageService;
 import com.dealdove.dealdove.service.UserService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
@@ -55,11 +56,47 @@ public class userController {
         return formData;
     }
 
-    @PostMapping("/login")
-    public String test123(@RequestBody String email,@RequestBody String password){
-        System.out.println(password);
-        System.out.println(email);
-        return "";
+
+    @PostMapping( "/login3")
+    public @ResponseBody String login(@RequestBody IdToken idToken){
+        System.out.println(idToken.getIdToken());
+        System.out.println("breakpoint");
+
+
+        try {
+            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
+            String email = decodedToken.getEmail();
+            String uid = decodedToken.getUid();
+            String name = decodedToken.getName();
+            System.out.println("breakpoint");
+            System.out.println(email);
+            System.out.println(uid);
+            System.out.println(name);
+            return idToken.getIdToken();
+        } catch (FirebaseAuthException e) {
+            System.out.println(e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping("Users")
+    public String user(@RequestBody IdToken idToken){
+        System.out.println(idToken.getIdToken());
+        try {
+            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken.getIdToken());
+            String email = decodedToken.getEmail();
+            String uid = decodedToken.getUid();
+            String name = (decodedToken.getName()==null)? decodedToken.getEmail(): decodedToken.getName();
+            System.out.println("breakpoint");
+            System.out.println(email);
+            System.out.println(uid);
+            System.out.println(name);
+            userService.save(uid,name,email,true);
+            return idToken.getIdToken();
+        } catch (FirebaseAuthException e) {
+            System.out.println(e);
+            throw new RuntimeException(e);
+        }
     }
 
 

@@ -21,5 +21,14 @@ public class UserService {
         return userRepository.findAllUsers();
     }
 
+    public void save(String userID,String username,String email,boolean status){
+        User user = new User();
+        user.setUserID(userID);
+        user.setUserName(username);
+        user.setEmail(email);
+        System.out.println("testService");
+        user.setStatus(status);
+        userRepository.save(user);
+    }
 
 }

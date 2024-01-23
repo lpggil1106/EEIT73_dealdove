@@ -120,18 +120,19 @@
             </div>
             <div class="content-area">
                 <!-- 新增的內容區塊 -->
-                <div id="info-content" class="content-section">
+                <form id="info-content" class="content-section">
                     <div><span>頭像：</span><input type="file" accept="image/*"></div>
                     <div>
                         <span>性別：</span>
-                        <button class="gender-btn">男性</button>
-                        <button class="gender-btn">女性</button>
-                        <button class="gender-btn">不願透露</button>
+                        <button id="male" class="gender-btn">男性</button>
+                        <button id="female" class="gender-btn">女性</button>
+                        <button id="secret" class="gender-btn">不願透露</button>
                     </div>
                     <div><span>生日：</span><input type="date"></div>
                     <div><span>信箱：</span><input type="email"></div>
                     <div><span>取件資料：</span><textarea></textarea></div>
-                </div>
+                    <input id="update" type="submit" value="確定">
+                </form>
                 <div id="list-content" class="content-section-list">
                     <nav id="list-content-component" class="list-content-component">
                         <button class="btn">待出貨</button>
@@ -230,7 +231,7 @@
                             <img src="./images/c.jpeg" alt="主圖片">
                         </div>
                         <!-- 下部分 - 四格區塊 -->
-                        <nav id="list-content-component" class="list-content-component">
+                        <nav id="list-content-component1" class="list-content-component">
                             <button class="btn">可使用</button>
                             <button class="btn">即將到期</button>
                         </nav>
