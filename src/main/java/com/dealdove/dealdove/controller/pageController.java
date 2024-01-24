@@ -29,7 +29,10 @@ public class pageController {
     public String registerPage(){
         return "02-2_register";
     }
-
+    @GetMapping("/Member")
+    public String memberPage(){
+        return "03_member";
+    }
     @GetMapping("/product")
     public String productPage(){
         return "06_product_home_page";

@@ -21,7 +21,8 @@ $(document).ready(() => {
                             console.log(idToken);
                             const selectedGender = $('input[name="gender"]:checked').val();
                             const birthday = $('#birthday').val();
-                            setInfo(idToken, selectedGender,birthday);
+                            const address = $('#address').val();
+                            setInfo(idToken, selectedGender,birthday,address);
                         })
                         .then(data => {
                             console.log(data)
@@ -47,11 +48,11 @@ function showInfoFromBack(idToken){
         })
 }
 
-function setInfo(idToken,gender,birthday){
+function setInfo(idToken,gender,birthday,address){
     fetch('/setInfo',{
         method:'POST',
         headers:{'Content-Type': 'application/json;charset=utf-8'},
-        body:JSON.stringify({"idToken":idToken,"gender":gender,"birthday":birthday})
+        body:JSON.stringify({"idToken":idToken,"gender":gender,"birthday":birthday,"address":address})
     })
         .then(res=>res.json())
         .then(data=>console.log(data))
