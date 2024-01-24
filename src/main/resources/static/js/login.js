@@ -57,6 +57,7 @@ $(document).ready(() => {
                            //     })
                    }else{
                        window.alert('尚未認證')
+                       window.location.reload();
                    }
                }else{
                    console.log('error')
@@ -86,37 +87,6 @@ $(document).ready(() => {
             }
         }))
 
-
-
-
-
-
-
-
-    //     const user = auth.currentUser;
-    //     if (user!=null){
-    //     console.log(user);
-    //         const isEmailVerified = user.emailVerified;
-    //
-    //         if(isEmailVerified){
-    //             const email = $('#email').val();
-    //             const password = $('#password').val();
-    //
-    //             signInWithEmailAndPassword(auth, email, password)
-    //                 .then(() => {
-    //                     window.location.href='/Dealdove'
-    //                 })
-    //                 .catch(error => {
-    //                     console.log(error);
-    //                 })
-    //         }else{
-    //             window.alert('尚未驗證電子信箱');
-    //         }
-    //     }else{
-    //         window.alert('尚未註冊帳號');
-    //         window.location.href='/Register';
-    //     }
-    //
     });
     $('.captchaimg').on('click',()=>{
         changeCaptcha();
@@ -141,7 +111,7 @@ function sendTokenToBackend(idToken) {
     const requestOptions = {
         method: 'POST',
         body: JSON.stringify({
-            idToken: idToken
+            "idToken": idToken
         }),
         headers: {'Content-Type': 'application/json;charset=utf-8'}
     };

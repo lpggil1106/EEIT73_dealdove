@@ -3,6 +3,7 @@ package com.dealdove.dealdove.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
     @Entity
@@ -30,7 +31,7 @@ import java.time.ZonedDateTime;
         private int gender;
 
         @Column(name = "birthdate" , nullable = true)
-        private ZonedDateTime birthdate;
+        private LocalDate birthdate;
 
         @Column(name = "createtime" , nullable = true)
         private ZonedDateTime createtime;
@@ -51,7 +52,7 @@ import java.time.ZonedDateTime;
             this.avatar = avatar;
         }
         // Constructor for User
-        public User(String ID, String username, String password, String email, boolean status, int gender, ZonedDateTime birthdate, ZonedDateTime createtime, ZonedDateTime lastedit,String avatar) {
+        public User(String ID, String username, String password, String email, boolean status, int gender, LocalDate birthdate, ZonedDateTime createtime, ZonedDateTime lastedit,String avatar) {
             this.userID = ID;
             this.username = username;
             this.password = password;
@@ -113,11 +114,11 @@ import java.time.ZonedDateTime;
             this.gender = gender;
         }
 
-        public ZonedDateTime getBirthDate() {
+        public LocalDate getBirthDate() {
             return birthdate;
         }
 
-        public void setBirthDate(ZonedDateTime birthDate) {
+        public void setBirthDate(LocalDate birthDate) {
             this.birthdate = birthDate;
         }
 
