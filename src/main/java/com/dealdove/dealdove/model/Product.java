@@ -17,9 +17,6 @@ public class Product {
     @Column(name = "productName", nullable = false, length = 300)
     private String productName;
 
-    @Column(name = "productPrice", nullable = false)
-    private Integer productPrice;
-
     @Column(name = "userID", nullable = false)
     private Integer userID;
 
@@ -29,14 +26,8 @@ public class Product {
     @Column(name = "productModelID", nullable = false)
     private Integer productModelID;
 
-    @Column(name = "productImageID", nullable = false)
-    private Integer productImageID;
-
     @Column(name = "productDescription", nullable = false, length = 500)
     private String productDescription;
-
-    @Column(name = "stockQuantity", nullable = false)
-    private Integer stockQuantity;
 
     @Column(name = "soldQuantity", nullable = false)
     private Integer soldQuantity;
@@ -66,14 +57,6 @@ public class Product {
         this.productName = productName;
     }
 
-    public Integer getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(Integer productPrice) {
-        this.productPrice = productPrice;
-    }
-
     public Integer getUserID() {
         return userID;
     }
@@ -98,28 +81,12 @@ public class Product {
         this.productModelID = productModelID;
     }
 
-    public Integer getProductImageID() {
-        return productImageID;
-    }
-
-    public void setProductImageID(Integer productImageID) {
-        this.productImageID = productImageID;
-    }
-
     public String getProductDescription() {
         return productDescription;
     }
 
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
-    }
-
-    public Integer getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(Integer stockQuantity) {
-        this.stockQuantity = stockQuantity;
     }
 
     public Integer getSoldQuantity() {

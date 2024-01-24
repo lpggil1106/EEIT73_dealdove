@@ -98,19 +98,25 @@
 
 /*商品卡 css*/
 .col-3 {
-    width: 33.33%; /* 3 columns in a row */
+    width: 33.33%;
     padding: 10px;
     box-sizing: border-box;
 }
 
 .product-card {
+    position: relative;
     width: 100%;
-    background:#F3F3F3;
-    padding-left:1vw;
-    padding-right:1vw;
+    background: #F3F3F3;
+    padding-left: 1vw;
+    padding-right: 0.5vw;
     border: 1px solid #ddd;
-    border-radius: 8px 8px 0 0; /* Rounded corners for top */
+    border-radius: 8px 8px 0 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s; /* 添加移動動畫效果 */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* 移動卡片向上5像素 */
 }
 
 .product-image {
@@ -118,7 +124,6 @@
     margin-top: 0.5vw;
     margin-left: 0.8vw;
     height: auto;
-
 }
 
 .product-info {
@@ -160,4 +165,30 @@
 .product-sold {
     font-size: 14px;
     color: #555;
+}
+
+/* 在 .product-card 中添加一個絕對定位的按鈕，並將其初始化為隱藏狀態 */
+.product-button {
+    z-index: 999;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.product-card:hover .product-button {
+    opacity: 1; /* 在 hover 時顯示按鈕 */
+}
+
+.col-3 a{
+    text-decoration: none;
+    color: black;
 }

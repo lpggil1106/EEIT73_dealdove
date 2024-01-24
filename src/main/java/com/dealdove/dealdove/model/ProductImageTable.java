@@ -10,8 +10,9 @@ public class ProductImageTable {
     @Column(name = "productImageID", nullable = false)
     private Integer id;
 
-    @Column(name = "productID", nullable = false)
-    private Integer productID;
+    @ManyToOne
+    @JoinColumn(name = "productID", nullable = false)
+    private Product product;
 
     @Column(name = "image")
     private byte[] image;
@@ -20,16 +21,13 @@ public class ProductImageTable {
         return id;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getProductID() {
-        return productID;
-    }
-
-    public void setProductID(Integer productID) {
-        this.productID = productID;
     }
 
     public byte[] getImage() {
@@ -38,6 +36,10 @@ public class ProductImageTable {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

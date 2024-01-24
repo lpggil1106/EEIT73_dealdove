@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface ModelInfoRepository extends JpaRepository<ModelInfo, Long> {
-    List<ModelInfo> findAll();
+    List<ModelInfo> findByProductID(Integer productID);
 }

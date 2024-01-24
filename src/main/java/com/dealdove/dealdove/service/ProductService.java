@@ -31,11 +31,8 @@ public class ProductService {
         Product product = new Product();
         product.setUserID(userID);
         product.setProductName(productName);
-        product.setProductPrice(productPrice);
         product.setProductCategoryID(productCategoryID);
         product.setProductModelID(productModelID);
-        product.setProductImageID(productImageID);
-        product.setStockQuantity(stockQuantity);
         product.setProductDescription(productDescription);
         product.setIsAvailable(isAvailable);
 
