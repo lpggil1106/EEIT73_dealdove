@@ -1,4 +1,7 @@
-#chat-container {
+.hidden {
+    display: none;
+}
+#chat-page {
     width: 42vw;
     height: 50.5vh;
     position: fixed;
@@ -27,8 +30,8 @@
     flex-grow: 1;
 }
 
-#contact-list {
-    width: 12vw;
+.users-list-container {
+    width: 11.5vw;
     height: 45vh;
     overflow-y: auto;
     background-color: white;
@@ -39,7 +42,7 @@
     align-items: center;
 }
 
-#chatbox {
+.chat-area {
     width: 30vw;
     height: 45vh;
     background-color: white;
@@ -96,7 +99,7 @@
     border-bottom: 1px solid #A2CAD3;
 }
 
-#chat-history {
+#chat-messages {
     display: flex;
     flex-direction: column;
     width: 30vw;
@@ -128,6 +131,14 @@
     background-color: #a0e1eb;
 }
 
+.message picture {
+    position: relative;
+    max-width: 80%;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
 .message {
     position: relative;
     max-width: 80%;
@@ -156,10 +167,6 @@
 #send-button img {
     width: 24px;
     height: auto;
-}
-
-#username {
-    font-weight: bold;
 }
 
 #chat-icon {
@@ -196,7 +203,7 @@
 }
 
 
-#chat-footer {
+#messageForm {
     height: 12vh;
     width: 100%;
     position: relative;
@@ -208,7 +215,6 @@
     justify-content: space-between;
 }
 
-#sticker-button,
 #upload-button {
     position: absolute;
     bottom: 5px;
@@ -221,7 +227,6 @@
 #upload-button {
     left: 35px;
 }
-
 #send-button {
     position: absolute;
     right: 5px;
@@ -231,7 +236,7 @@
     background: none;
 }
 
-#sticker-button img,
+#message img,
 #upload-button img,
 #send-button img {
     width: 20px;
@@ -253,7 +258,8 @@
     margin-bottom: 5px;
 }
 
-#message-input {
+#message,
+.message-input {
     height: 7vh;
     width: 100%;
     border: none;
@@ -263,7 +269,7 @@
     box-sizing: border-box;
 }
 
-#message-input::placeholder {
+.message-input::placeholder {
     text-align: left;
     vertical-align: top;
 }
@@ -284,6 +290,7 @@
 }
 
 #username {
+    font-weight: bold;
     color: gray;
     font: 1rem sans-serif;
 }
