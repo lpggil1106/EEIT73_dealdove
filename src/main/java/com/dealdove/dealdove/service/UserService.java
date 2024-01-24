@@ -4,6 +4,7 @@ import com.dealdove.dealdove.interfaces.UserRepository;
 import com.dealdove.dealdove.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,7 +35,8 @@ public class UserService {
     public String findUserById(String userID){return userRepository.findEmailById(userID);}
 
 
-//    public void update(int gender,String userID){
-//        userRepository.updateGender(gender,userID);
-//    }
+    @Transactional
+    public void update(int gender,String userID){
+        userRepository.updateGender(gender,userID);
+    }
 }
