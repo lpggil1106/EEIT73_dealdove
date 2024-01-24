@@ -31,17 +31,25 @@ public class ProductController {
 //    }
 
     @PostMapping("/add_product")
-    public List<Product> addProduct(@RequestParam("productName") String productName,
-                                    @RequestParam("productPrice") Integer productPrice,
-                                    @RequestParam("productCategoryID") Integer productCategoryID,
-                                    @RequestParam("productModelID") Integer productModelID,
-                                    @RequestParam("productImageID") Integer productImageID,
-                                    @RequestParam("productDescription") String productDescription,
-                                    @RequestParam("stockQuantity") Integer stockQuantity,
-                                    @RequestParam("isAvailable") Byte isAvailable) {
+    public List<Product> addProduct(//@RequestParam("userID") Integer userID,
+                                    @RequestParam("productName") String productName,
+                                    @RequestParam("productDescription") String productDescription)
+//                                    @RequestParam("specific") String specific,
+//                                    @RequestParam("specific2") String specific2,
+//
+//                                    @RequestParam("productPrice") Integer productPrice,
+//                                    @RequestParam("productCategoryID") Integer productCategoryID,
+//                                    @RequestParam("productModelID") Integer productModelID,
+//                                    @RequestParam("productImageID") Integer productImageID,
+//
+//                                    @RequestParam("stockQuantity") Integer stockQuantity,
+//                                    @RequestParam("isAvailable") Byte isAvailable)
+    {
 
-        productService.saveProduct(1, productPrice, productName, productCategoryID, productModelID,
-                productImageID, productDescription, stockQuantity, isAvailable);
+        productService.saveProduct(productName,productDescription);
+
+//        productService.saveProduct(1, productPrice, productName, productCategoryID, productModelID,
+//                productImageID, productDescription, stockQuantity, isAvailable);
 
         return productService.findProduct();
     }

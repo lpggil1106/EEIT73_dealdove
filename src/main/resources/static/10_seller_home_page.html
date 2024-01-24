@@ -289,15 +289,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="store-name">商品名稱:</label>
-                        <input style="width: 50vw;" type="text" id="store-name" name="store-name">
+                        <label for="productName">商品名稱:</label>
+                        <input style="width: 50vw;" type="text" id="productName" name="productName">
                     </div>
                     <br><br>
                     <div class="form-group">
-                        <label for="store-description">商品描述:</label>
+                        <label for="productDescription">商品描述:</label>
                         <textarea
                                 style="width: 49.7vw; height: 20vw ; margin-left: 1.4vw;border:solid 1px #D0D0D0 ; border-radius: 10px ;"
-                                type="text" id="store-description" name="store-description"></textarea>
+                                type="text" id="productDescription" name="productDescription"></textarea>
                     </div>
                     <br><br>
                     <div class="dropdown">
@@ -325,15 +325,14 @@
                                             生活類別&ensp;&ensp;&ensp;>
                                         </div>
                                         <!--隱藏的子分類-->
-                                        <div id="clothing" class="sub-category"
-                                             style="display: none;margin-left: 8vw; margin-bottom: 1vw;">
-                                            <a href="#">上衣</a>
+                                        <div id="clothing" class="sub-category" style="display: none; margin-left: 8vw; margin-bottom: 1vw;">
+                                            <a href="#" onclick="selectSubCategory(1, '上衣')">上衣</a>
                                             <br>
-                                            <a href="#">褲子</a>
+                                            <a href="#" onclick="selectSubCategory(2, '褲子')">褲子</a>
                                             <br>
-                                            <a href="#">裙子</a>
+                                            <a href="#" onclick="selectSubCategory(3, '裙子')">裙子</a>
                                             <br>
-                                            <a href="#">鞋子</a>
+                                            <a href="#" onclick="selectSubCategory(4, '鞋子')">鞋子</a>
                                         </div>
                                         <div style="border-color: black; border-radius: 5px; width: 10vw"
                                              class="main-category" onclick="showSub('electric')">
@@ -1950,6 +1949,33 @@
         document.getElementById('typedive1111').textContent = inputValue;
         document.getElementById('typedive11111').textContent = inputValue;
     });
+</script>
+<script>
+    function showSub(category) {
+        // 顯示被選擇的子分類
+        document.getElementById(category).style.display = 'block';
+    }
+
+    function selectSubCategory(productCategoryID, subCategory) {
+        // 在這裡，你可以將選擇的子分類回傳到後端，使用 AJAX 或其他方式
+        // 這裡以簡單的 alert 顯示選擇的子分類作為範例
+        alert('選擇的子分類: ' + subCategory + ', productCategoryID: ' + productCategoryID);
+
+        // 如果要使用 AJAX 傳送到後端，可以參考以下方式
+        /*
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/your-backend-endpoint', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // 處理後端回傳的結果
+                console.log(xhr.responseText);
+            }
+        };
+        // 傳送 JSON 格式的數據，這裡使用 JSON.stringify 將物件轉為 JSON 字串
+        xhr.send(JSON.stringify({ productCategoryID: productCategoryID, subCategory: subCategory }));
+        */
+    }
 </script>
 </body>
 
