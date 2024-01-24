@@ -40,6 +40,7 @@ function sendTokenToBackend(idToken) {
     fetch(apiUrl, requestOptions)
         .then(response => response.json())
         .then(data => {
+            console.log("123testtest reload")
             // 在這裡處理後端的回應
             console.log('後端回應:', data);
             $('#email').prop('value', data.email);

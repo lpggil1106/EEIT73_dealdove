@@ -30,6 +30,10 @@ public class pageController {
         return "02-2_register";
     }
 
+    @GetMapping("/product")
+    public String productPage(){
+        return "06_product_home_page";
+    }
     @GetMapping("/test2")
     public String test2(){
         return "test";

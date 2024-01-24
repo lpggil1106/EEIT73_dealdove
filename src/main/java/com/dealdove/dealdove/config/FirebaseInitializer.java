@@ -11,15 +11,20 @@ import java.io.InputStream;
 
 @Component
 public class FirebaseInitializer {
-    @PostConstruct
-    public void initialize() {
+
+    public FirebaseInitializer() {
+        System.out.println("FirebaseInitializer initializing...");
         try (InputStream serviceAccount = getClass().getClassLoader().getResourceAsStream("dealdoveFirebaseConfig.json")) {
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl("https://dealdove-36d8c-default-rtdb.asia-southeast1.firebasedatabase.app")
                     .build();
-
-            FirebaseApp.initializeApp(options);
+            if (FirebaseApp.getApps().isEmpty()) {
+                FirebaseApp.initializeApp(options);
+                System.out.println("FirebaseApp initialized successfully");
+            } else {
+                System.out.println("FirebaseApp 'DEFAULT' already exists, skipping initialization");
+            }
         } catch (IOException e) {
             throw new RuntimeException("Error initializing Firebase SDK", e);
         }
