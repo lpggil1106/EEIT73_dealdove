@@ -1,7 +1,7 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.interfaces.ProductModelAssociateTableRepository;
-import com.dealdove.dealdove.interfaces.ProductRepository;
+import com.dealdove.dealdove.dao.ProductModelAssociateTableRepository;
+import com.dealdove.dealdove.dao.ProductRepository;
 import com.dealdove.dealdove.model.Product;
 import com.dealdove.dealdove.model.ProductModelAssociateTable;
 import org.springframework.beans.factory.annotation.Autowired;

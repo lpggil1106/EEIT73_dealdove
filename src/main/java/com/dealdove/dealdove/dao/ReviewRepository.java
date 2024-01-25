@@ -1,4 +1,4 @@
-package com.dealdove.dealdove.interfaces;
+package com.dealdove.dealdove.dao;
 
 import com.dealdove.dealdove.model.Review;
 import org.springframework.data.jpa.repository.JpaRepository;

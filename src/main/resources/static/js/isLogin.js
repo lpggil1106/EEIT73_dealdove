@@ -8,6 +8,7 @@ $(document).ready(() => {
                 $('#login').html("<a href='' id='login'>登出</a>").addClass('login');
             }else{
                 $('#member').html("<a id='member' href='/Login' class=' link-underline link-underline-opacity-0 text-secondary'> 會員中心</a>")
+                $('#seller-home').html("<a id='seller-home' href='./Login' class=' link-underline link-underline-opacity-0 text-secondary'> 賣場管理</a>")
             }
         });
 
