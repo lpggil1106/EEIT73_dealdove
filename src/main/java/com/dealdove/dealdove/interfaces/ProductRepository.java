@@ -1,7 +1,7 @@
 package com.dealdove.dealdove.interfaces;
 
 
-import com.dealdove.dealdove.model.Message;
+
 import com.dealdove.dealdove.model.Product;
 import com.google.firebase.internal.NonNull;
 import io.micrometer.common.lang.NonNullApi;
