@@ -1,15 +1,12 @@
 package com.dealdove.dealdove.controller;
 
-import com.amazonaws.services.dynamodbv2.xspec.M;
-import com.dealdove.dealdove.model.*;
+
 import com.dealdove.dealdove.service.MessageService;
 import com.dealdove.dealdove.service.UserService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -45,7 +42,13 @@ public class userController {
         String email = decodedToken.getEmail();
         String uid = decodedToken.getUid();
         String name = (decodedToken.getName() == null) ? decodedToken.getEmail() : decodedToken.getName();
-        userService.save(uid, name, email, true);
+
+        if (userService.findUserById(uid)!=null){
+            System.out.println("User : "+uid+" login");
+        } else if (userService.findUserById(uid)==null) {
+            System.out.println("User : "+uid+" Register");
+            userService.save(uid, name, email, true);
+        }
         System.out.println(email+uid+name);
         return "{\"idToken:\":\""+request.get("idToken")+"\"}";
 
@@ -69,13 +72,22 @@ public class userController {
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         Integer gender =(user.get("gender")==null)?0:Integer.parseInt(user.get("gender"));
         String uid = decodedToken.getUid();
+
+
+
+
+
+
+
         LocalDate birthday = LocalDate.parse(user.get("birthday"));
         String address = user.get("address");
         System.out.println(address);
+
         userService.update(gender,uid);
         userService.updateBirthday(birthday,uid);
         return gender;
     }
+
 
 
 }
