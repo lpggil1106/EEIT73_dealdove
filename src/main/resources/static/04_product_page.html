@@ -101,6 +101,15 @@
         </header>
         <main>
             <section class="mb-5" >
+                <div class="product" data-product-id="1">
+                    <p class="productName">商品名稱</p>
+                    <button class="viewDetails">查看詳情</button>
+                </div>
+
+                <div class="product" data-product-id="2">
+                    <p class="productName">另一個商品</p>
+                    <button class="viewDetails">查看詳情</button>
+                </div>
                 <div class="row product mt-5 border border-dark">
                     <div class="col-5 productImage">
                         <div class="row col-12 text-center bigImage"></div>
@@ -112,8 +121,9 @@
                             <div class="col-1 ps-0"><button>&gt</button></div>
                         </div>
                     </div>
+
                     <div class="col-7 productDescribe">
-                        <p class="productName">商品名稱</p>
+                        <p class="productName" id="productName">商品名稱</p>
                         <ul class="col-12 justify-content-start evaluate ">
                             <li class="col-1">3.1</li>
                             <li class="col-1"></li>
@@ -121,57 +131,30 @@
                             <li class="col-3">810售出</li>
                             <li class="col-3"><a href="">加入收藏</a></li>
                         </ul>
-                        <div class="col-12 mt-3 specification">
-                            <p class="col-2">規格</p>
-                            <div class="div"></div>
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
+                        <div id="specificContainer">
+                            <div class="col-12 mt-3 specification" id="container1">
+                                <p class="col-2">顏色</p>
+                                <div class="div"></div>
+                                <div class="div"></div>
+                                <div class="div"></div>
+                            </div>
+                            <div class="col-12 mt-3 specification" id="container2">
+                                <p class="col-2">尺寸</p>
+                                <div class="div"></div>
+                                <div class="div"></div>
+                                <div class="div"></div>
+                            </div>
                         </div>
+<!--                            <div class="div"></div>-->
+<!--                            <div class="div"></div>-->
+<!--                            <div class="div"></div>-->
+<!--                            <div class="div"></div>-->
+<!--                            <div class="div"></div>-->
+<!--                            <div class="div"></div>-->
+<!--                            <div class="div"></div>-->
+<!--                            <div class="div"></div>-->
+<!--                            <div class="div"></div>-->
+
                         <div class="col-12 quantity">
                             <p>數量</p>
                             <button>+</button>
@@ -227,7 +210,7 @@
                 <div class="row p-4 productDescribe2">
                     <p>商品描述</p>
                     <div class="div">
-
+                        <div id="descriptionContent"></div>
                     </div>
                 </div>
             </section>
@@ -338,6 +321,67 @@
                 <img class="qrcode" src="./images/qrCode.png">
             </div>
         </footer>
+    <script>
+        document.querySelectorAll('.viewDetails').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.closest('.product').dataset.productId;
+
+                fetch(`api/products/getProduct/${productId}`)
+                    .then(response => response.json())
+                    .then(product => {
+                        document.getElementById('productName').innerText = product.productName;
+                        document.getElementById('descriptionContent').innerText = product.productDescription;
+
+                        // 清空原有的內容
+                        document.getElementById('specificContainer').innerHTML = '';
+
+                        // 使用 Fetch API 來呼叫後端 API 取得產品規格
+                        fetch(`api/products/${productId}/specifications`)
+                            .then(response => response.json())
+                            .then(specifications => {
+                                // 將規格資料動態生成到 HTML 中
+                                Object.entries(specifications).forEach(([specType, specValues]) => {
+                                    // 產生規格名稱的區塊
+                                    const specTypeContainer = document.createElement('div');
+                                    specTypeContainer.classList.add('col-12', 'mt-3', 'specification');
+                                    specTypeContainer.id = `container${specType}`;
+
+                                    const specTypeLabel = document.createElement('p');
+                                    specTypeLabel.classList.add('col-2');
+                                    specTypeLabel.textContent = specType;
+                                    specTypeContainer.appendChild(specTypeLabel);
+
+                                    // 產生規格內容的區塊
+                                    const specValuesContainer = document.createElement('div');
+                                    specValuesContainer.classList.add('div');
+
+                                    // 將規格內容動態生成到 HTML 中
+                                    Object.values(specValues).forEach(value => {
+                                        const specValueDiv = document.createElement('div');
+                                        specValueDiv.textContent = value;
+                                        specValuesContainer.appendChild(specValueDiv);
+                                    });
+
+                                    // 將整個規格內容的區塊加入到規格名稱的區塊中
+                                    specTypeContainer.appendChild(specValuesContainer);
+
+                                    // 將整個規格區塊加入到主容器中
+                                    document.getElementById('specificContainer').appendChild(specTypeContainer);
+
+                                    // 新增換行元素
+                                    const lineBreak = document.createElement('br');
+                                    document.getElementById('specificContainer').appendChild(lineBreak);
+                                });
+                            })
+                            .catch(error => console.log(error));
+
+                        console.log(product);
+                    })
+                    .catch(error => console.log(error));
+            });
+        });
+    </script>
+
 </body>
 
 </html>

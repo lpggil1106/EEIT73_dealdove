@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ProductModelAssociateTableRepository extends JpaRepository<ProductModelAssociateTable, Long> {
-    @Query(value = "SLELCT * FROM productmodelassociateTable" , nativeQuery = true)
-    List<ProductCategory> findAllProductCategories();
+
+    List<ProductModelAssociateTable> findByProductID(Integer productID);
 }
