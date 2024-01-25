@@ -17,28 +17,37 @@ public class Product {
     @Column(name = "productName", nullable = false, length = 300)
     private String productName;
 
-    @Column(name = "userID", nullable = false)
-    private Integer userID;
-
-    @Column(name = "productCategoryID", nullable = false)
-    private Integer productCategoryID;
-
-    @Column(name = "productModelID", nullable = false)
-    private Integer productModelID;
-
     @Column(name = "productDescription", nullable = false, length = 500)
     private String productDescription;
 
-    @Column(name = "soldQuantity", nullable = false)
+    @Column(name = "productPrice", nullable = true)
+    private Integer productPrice;
+
+    @Column(name = "userID", nullable = true)
+    private Integer userID;
+
+    @Column(name = "productCategoryID", nullable = true)
+    private Integer productCategoryID;
+
+    @Column(name = "productModelID", nullable = true)
+    private Integer productModelID;
+
+    @Column(name = "productImageID", nullable = true)
+    private Integer productImageID;
+
+    @Column(name = "stockQuantity", nullable = true)
+    private Integer stockQuantity;
+
+    @Column(name = "soldQuantity", nullable = true)
     private Integer soldQuantity;
 
-    @Column(name = "isAvailable", nullable = false)
+    @Column(name = "isAvailable", nullable = true)
     private Byte isAvailable;
 
-    @Column(name = "createTime", nullable = false)
+    @Column(name = "createTime", nullable = true)
     private Instant createTime;
 
-    @Column(name = "lastEdit", nullable = false)
+    @Column(name = "lastEdit", nullable = true)
     private Instant lastEdit;
 
     public Integer getProductID() {
@@ -55,6 +64,21 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+    public Integer getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
     }
 
     public Integer getUserID() {
@@ -81,12 +105,22 @@ public class Product {
         this.productModelID = productModelID;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public Integer getProductImageID() {
+        return productImageID;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setProductImageID(Integer productImageID) {
+        this.productImageID = productImageID;
+    }
+
+
+
+    public Integer getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(Integer stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
     public Integer getSoldQuantity() {

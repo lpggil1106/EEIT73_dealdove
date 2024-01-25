@@ -9,6 +9,10 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +55,8 @@ public class userController {
 
     }
 
+
+//    顯示使用者資訊
     @PostMapping("/showInfo")
     public @ResponseBody String member(@RequestBody  LinkedHashMap<String, String> idToken) {
         FirebaseToken decodedToken = getFirebaseToken(idToken.get("idToken"));
@@ -60,149 +66,39 @@ public class userController {
         LocalDate birthday = userService.findBirthdayById(uid);
         return "{\"email\":\"" + email + "\",\"gender\":\""+gender+"\",\"birthday\":\""+birthday+"\"}";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @MessageMapping("/user.addUser")
+    @SendTo("/user/public")
+    public User addUser(
+            @Payload User user
+    ) {
+        userService.saveUser(user);
+        return user;
+    }
+
+    @MessageMapping("/user.disconnectUser")
+    @SendTo("/user/public")
+    public User disconnectUser(
+            @Payload User user
+    ) {
+        userService.disconnect(user);
+        return user;
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> findConnectedUsers() {
+        return ResponseEntity.ok(userService.findConnectedUsers());
+    }
+
+
+//    設定使用者資訊
     @PostMapping("/setInfo")
     public @ResponseBody int gender(@RequestBody LinkedHashMap<String, String> user){
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         Integer gender =(user.get("gender")==null)?0:Integer.parseInt(user.get("gender"));
         String uid = decodedToken.getUid();
         LocalDate birthday = LocalDate.parse(user.get("birthday"));
+        String address = user.get("address");
+        System.out.println(address);
         userService.update(gender,uid);
         userService.updateBirthday(birthday,uid);
         return gender;

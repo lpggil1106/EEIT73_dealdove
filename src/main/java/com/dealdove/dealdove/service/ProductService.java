@@ -26,15 +26,20 @@ public class ProductService {
     public Product getProductByID(Integer productID){
         return productRepository.findProductByproductID(productID);
     }
-    public void saveProduct(Integer userID, Integer productPrice, String productName, Integer productCategoryID, Integer productModelID, Integer productImageID, String productDescription, Integer stockQuantity, Byte isAvailable) {
+    public void saveProduct(String productName,String productDescription) {
+//        public void saveProduct(String productName,String productDescription,String productPrice, Integer productCategoryID, Integer productModelID, Integer productImageID, Integer stockQuantity, Byte isAvailable) {
 
         Product product = new Product();
-        product.setUserID(userID);
+//        product.setUserID(userID);
         product.setProductName(productName);
-        product.setProductCategoryID(productCategoryID);
-        product.setProductModelID(productModelID);
         product.setProductDescription(productDescription);
-        product.setIsAvailable(isAvailable);
+//        product.setProductPrice(productPrice);
+//        product.setProductCategoryID(productCategoryID);
+//        product.setProductModelID(productModelID);
+//        product.setProductImageID(productImageID);
+//        product.setStockQuantity(stockQuantity);
+//
+//        product.setIsAvailable(isAvailable);
 
 
 

@@ -9,27 +9,25 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-@Table(name = "review")
-public class Review {
+@Table(name = "orderItem")
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reviewID", nullable = false)
-    private Integer reviewID;
-
-    @Column(name = "productID", nullable = false)
-    private Integer productID;
-
-    @Column(name = "userID", nullable = false)
-    private Integer userID;
+    @Column(name = "orderItemID", nullable = false)
+    private Integer id;
 
     @Column(name = "orderID", nullable = false)
     private Integer orderID;
 
-    @Column(name = "rating")
-    private Double rating;
+    @ManyToOne
+    @JoinColumn(name = "productID", nullable = false)
+    private Product product;
 
-    @Column(name = "comment", length = 200)
-    private String comment;
+    @Column(name = "model", nullable = true, length = 100)
+    private String model;
+
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
 
     @Column(name = "createTime", nullable = false)
     private Instant createTime;
