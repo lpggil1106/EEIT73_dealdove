@@ -5,6 +5,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -17,6 +18,18 @@ public class Order {
 
     @Column(name = "sellerID", nullable = false)
     private Integer sellerID;
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    @OneToMany
+    @JoinColumn(name = "orderID")
+    private List<OrderItem> orderItems;
 
     @Column(name = "buyerID", nullable = false)
     private Integer buyerID;
@@ -32,10 +45,6 @@ public class Order {
 
     @Column(name = "sellerComment", length = 300)
     private String sellerComment;
-
-    @Column(name = "models", nullable = false)
-    @JdbcTypeCode(SqlTypes.JSON)
-    private Map<String, Object> models;
 
     @Column(name = "orderStatus", nullable = false)
     private Byte orderStatus;
@@ -103,14 +112,6 @@ public class Order {
 
     public void setSellerComment(String sellerComment) {
         this.sellerComment = sellerComment;
-    }
-
-    public Map<String, Object> getModels() {
-        return models;
-    }
-
-    public void setModels(Map<String, Object> models) {
-        this.models = models;
     }
 
     public Byte getOrderStatus() {

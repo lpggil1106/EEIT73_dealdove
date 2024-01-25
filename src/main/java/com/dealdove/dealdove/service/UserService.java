@@ -2,13 +2,11 @@ package com.dealdove.dealdove.service;
 
 import com.dealdove.dealdove.interfaces.UserRepository;
 import com.dealdove.dealdove.model.User;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
@@ -33,6 +31,8 @@ public class UserService {
         System.out.println("testService");
         user.setStatus(status);
         userRepository.save(user);
+
+
     }
 
     public String findUserById(String userID){return userRepository.findEmailById(userID);}
@@ -49,4 +49,22 @@ public class UserService {
     public void updateBirthday(LocalDate birthday, String userID) {
         userRepository.updateBirthday(birthday, userID);
     }
+
+    public void saveUser(User user) {
+        user.setStatus(true);
+        userRepository.save(user);
+    }
+
+    public void disconnect(User user) {
+        var storedUser = userRepository.findById(user.getUserID()).orElse(null);
+        if (storedUser != null) {
+            storedUser.setStatus(false);
+            userRepository.save(storedUser);
+        }
+    }
+
+    public List<User> findConnectedUsers() {
+        return userRepository.findAllByStatus(true);
+    }
+
 }

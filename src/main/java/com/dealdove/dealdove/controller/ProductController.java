@@ -1,5 +1,6 @@
 package com.dealdove.dealdove.controller;
 
+import com.dealdove.dealdove.model.OrderItem;
 import com.dealdove.dealdove.model.Product;
 import com.dealdove.dealdove.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ProductController {
 
     private ProductService productService;
-
+    private OrderItem orderItem;
     @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -47,7 +48,6 @@ public class ProductController {
     {
 
         productService.saveProduct(productName,productDescription);
-
 //        productService.saveProduct(1, productPrice, productName, productCategoryID, productModelID,
 //                productImageID, productDescription, stockQuantity, isAvailable);
 

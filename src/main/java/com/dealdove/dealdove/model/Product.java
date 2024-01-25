@@ -35,7 +35,6 @@ public class Product {
     @Column(name = "productImageID", nullable = true)
     private Integer productImageID;
 
-
     @Column(name = "stockQuantity", nullable = true)
     private Integer stockQuantity;
 
