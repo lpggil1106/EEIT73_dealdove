@@ -80,6 +80,20 @@
     </nav>
 </header>
 
+
+<div class="user-form" id="username-page">
+    <h2>進入聊聊</h2>
+    <form id="usernameForm">
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" name="nickname" required>
+
+        <label for="fullname">Real Name:</label>
+        <input type="text" id="fullname" name="realname" required>
+
+        <button type="submit">進入聊天室</button>
+    </form>
+</div>
+
 <div class="chat-container hidden" id="chat-page">
 
     <div id="header_talk">
@@ -100,7 +114,7 @@
 
         <div class="chat-area">
             <div id="chat-header">
-                <span id="username">用戶名</span>
+                <span id="chatusername">用戶名</span>
             </div>
             <div class="chat-area" id="chat-messages">
             </div>
@@ -109,15 +123,21 @@
                 <!-- 輸入訊息 -->
                 <div class="message-input">
                     <input autocomplete="off" type="text" id="message" placeholder="輸入訊息...">
-                    <button id="send-button" onclick="sendMessage()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
-                             class="bi bi-send" viewBox="0 0 16 16">
-                            <path
-                                    d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
-                        </svg>
-                    </button>
                 </div>
-                <!-- 貼圖 -->
+
+            </form>
+            <div id="chat-footer">
+                <!-- 表情 -->
+
+                <button id="sticker-button" onclick="toggleStickerPanel()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                         class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                                d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5" />
+                    </svg>
+                </button>
+
                 <div id="sticker-panel" style="display: none;">
                     <!-- 表情符號選項 -->
                     <span onclick="selectSticker('😁')">&#x1F601;</span>
@@ -182,13 +202,28 @@
                     <!-- 繼續添加更多表情符號 -->
                     <!-- ... -->
                 </div>
-                <!-- 上傳圖片 -->
-
-            </form>
+                <!-- 傳圖 -->
+                <input type="file" id="image-input" style="display: none;" accept="image/*"
+                       onchange="prepareImageUpload()">
+                <button id="upload-button" onclick="document.getElementById('image-input').click();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                         class="bi bi-image-fill" viewBox="0 0 16 16">
+                        <path
+                                d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
+                    </svg>
+                </button>
+                <!-- 傳送 -->
+                <button id="send-button" onclick="sendMessage()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3" class="bi bi-send"
+                         viewBox="0 0 16 16">
+                        <path
+                                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 </div>
-
 
 <button id="chat-icon" onclick="toggleChat()">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#A2CAD3" class="bi bi-chat-square-dots"
@@ -201,7 +236,7 @@
 </button>
 
 <script>
-
+    // 聊天室縮放
     function toggleChat() {
         var chatpage = document.getElementById("chat-page");
         var chatIcon = document.getElementById("chat-icon");
@@ -214,24 +249,60 @@
             chatIcon.style.display = "none";
         }
     }
-
-    document.getElementById('messageForm').addEventListener('submit', function (e) {
-        e.preventDefault(); // 阻止表單的默認提交行為
-        sendMessage(); // 調用您的 sendMessage 函數
-    });
-
-    // 這段代碼確保當按下 Enter 鍵時，表單不會提交，而是調用 sendMessage 函數。
-    // 請確保您的 sendMessage 函數可以正確處理消息的發送。
-
-    // 此外，這裡假設您已經有一個名為 sendMessage 的函數來處理消息的發送。
-    function sendMessage() {
-        // 在這裡實現您發送消息的邏輯
-        var message = document.getElementById('message').value;
-        console.log("Message sent: " + message); // 測試：在控制台顯示消息
-        // ... 其他發送消息的代碼
+    // 顯示或隱藏貼圖面板
+    function toggleStickerPanel() {
+        var panel = document.getElementById("sticker-panel");
+        panel.style.display = panel.style.display === "none" ? "block" : "none";
     }
 
-    // (您現有的 toggleChat 函數和其他代碼)
+    // 將選擇的貼圖添加到消息輸入框中
+    function selectSticker(sticker) {
+        var messageInput = document.getElementById('message');
+        var stickerPanel = document.getElementById('sticker-panel');
+
+        // 將表情符號添加到輸入框的現有內容中
+        messageInput.value += sticker;
+
+        // 將焦點設定回輸入框
+        messageInput.focus();
+
+        // 隱藏表情選擇視窗
+        stickerPanel.style.display = 'none';
+    }
+
+
+    // 選擇圖片後立即處理上傳
+    function prepareImageUpload() {
+        var fileInput = document.getElementById('image-input');
+
+        if (fileInput.files && fileInput.files[0]) {
+            uploadImageToChat(); // 直接調用上傳圖片函數
+        }
+    }
+
+    // 上傳圖片到聊天歷史
+    function uploadImageToChat() {
+        var fileInput = document.getElementById('image-input');
+        var chatHistory = document.getElementById('chat-area');
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imgDiv = document.createElement('div');
+                imgDiv.classList.add('message', 'self');
+
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Uploaded Image';
+
+                imgDiv.appendChild(img);
+                chatHistory.appendChild(imgDiv);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>

@@ -41,4 +41,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query(value = "UPDATE user SET birthDate = :birthday WHERE userID = :userID", nativeQuery = true)
     void updateBirthday(@Param("birthday") LocalDate birthday, @Param("userID") String userID);
 
+    List<User> findAllByStatus(boolean status);
+
 }
