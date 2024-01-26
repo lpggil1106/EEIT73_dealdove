@@ -186,15 +186,5 @@ async function onMessageReceived(payload) {
     }
 }
 
-function onLogout() {
-    stompClient.send("/app/user.disconnectUser",
-        {},
-        JSON.stringify({nickName: nickname, fullName: fullname, status: 'OFFLINE'})
-    );
-    window.location.reload();
-}
-
-usernameForm.addEventListener('submit', connect, true); // step 1
+usernameForm.addEventListener('chat-icon', connect, true); // step 1
 messageForm.addEventListener('submit', sendMessage, true);
-logout.addEventListener('click', onLogout, true);
-window.onbeforeunload = () => onLogout();

@@ -81,7 +81,7 @@
 </header>
 
 
-<div class="user-form" id="username-page">
+<div class="user-form hidden" id="username-page">
     <h2>進入聊聊</h2>
     <form id="usernameForm">
         <label for="nickname">Nickname:</label>
@@ -235,6 +235,76 @@
     </svg>
 </button>
 
+
+<script>
+    // 聊天室縮放
+    function toggleChat() {
+        var chatpage = document.getElementById("chat-page");
+        var chatIcon = document.getElementById("chat-icon");
+
+        if (chatpage.style.display === "flex") {
+            chatpage.style.display = "none";
+            chatIcon.style.display = "block";
+        } else {
+            chatpage.style.display = "flex";
+            chatIcon.style.display = "none";
+        }
+    }
+    // 顯示或隱藏貼圖面板
+    function toggleStickerPanel() {
+        var panel = document.getElementById("sticker-panel");
+        panel.style.display = panel.style.display === "none" ? "block" : "none";
+    }
+
+    // 將選擇的貼圖添加到消息輸入框中
+    function selectSticker(sticker) {
+        var messageInput = document.getElementById('message');
+        var stickerPanel = document.getElementById('sticker-panel');
+
+        // 將表情符號添加到輸入框的現有內容中
+        messageInput.value += sticker;
+
+        // 將焦點設定回輸入框
+        messageInput.focus();
+
+        // 隱藏表情選擇視窗
+        stickerPanel.style.display = 'none';
+    }
+
+
+    // 選擇圖片後立即處理上傳
+    function prepareImageUpload() {
+        var fileInput = document.getElementById('image-input');
+
+        if (fileInput.files && fileInput.files[0]) {
+            uploadImageToChat(); // 直接調用上傳圖片函數
+        }
+    }
+
+    // 上傳圖片到聊天歷史
+    function uploadImageToChat() {
+        var fileInput = document.getElementById('image-input');
+        var chatHistory = document.getElementById('chat-area');
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imgDiv = document.createElement('div');
+                imgDiv.classList.add('message', 'self');
+
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Uploaded Image';
+
+                imgDiv.appendChild(img);
+                chatHistory.appendChild(imgDiv);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="./js/chat.js" type ="module"></script>
