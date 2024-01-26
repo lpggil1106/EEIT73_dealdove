@@ -15,7 +15,7 @@ public class ProductImageTable {
     private Product product;
 
     @Column(name = "image")
-    private byte[] image;
+    private String image;
 
     public Integer getId() {
         return id;
@@ -30,11 +30,11 @@ public class ProductImageTable {
         this.id = id;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

@@ -1,6 +1,6 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.interfaces.OrderRepository;
+import com.dealdove.dealdove.dao.OrderRepository;
 import com.dealdove.dealdove.model.Order;
 import org.springframework.stereotype.Service;
 

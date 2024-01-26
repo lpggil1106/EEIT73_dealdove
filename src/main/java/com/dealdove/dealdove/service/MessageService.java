@@ -1,11 +1,10 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.interfaces.MessageRepository;
+import com.dealdove.dealdove.dao.MessageRepository;
 import com.dealdove.dealdove.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
