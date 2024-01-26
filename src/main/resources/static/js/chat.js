@@ -15,13 +15,14 @@ let nickname = null;
 let fullname = null;
 let selectedUserId = null;
 
-
-
-let userId = null;
-if (auth && auth.currentUser) {
-    userId = auth.currentUser.uid;
-}
-console.log(userId);
+onAuthStateChanged(auth, (user) => {
+    let uid = user.uid;
+    let username = user.displayName;
+    console.log(username);
+    console.log(uid);
+    $('#nickname').val(uid);
+    $('#fullname').val(username);
+});
 
 function connect(event) {
     nickname = document.querySelector('#nickname').value.trim();
@@ -148,7 +149,7 @@ function sendMessage(event) {
     const messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
         const chatMessage = {
-            senderId: nickname,
+            senderId: uid,
             recipientId: selectedUserId,
             content: messageInput.value.trim(),
             timestamp: new Date()

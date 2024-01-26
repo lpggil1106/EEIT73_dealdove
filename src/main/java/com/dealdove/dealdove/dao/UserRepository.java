@@ -27,7 +27,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query(value = "SELECT birthDate FROM  user WHERE userID= :userID", nativeQuery = true)
     LocalDate findBirthdayById(@Param("userID") String userID);
 
-
+    User getUserNameByUserID(String userID);
 
     @Transactional
     @Modifying
