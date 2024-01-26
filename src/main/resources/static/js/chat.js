@@ -1,4 +1,5 @@
-'use strict';
+import {auth, onAuthStateChanged, signOut} from "./firebase.js";
+import "https://code.jquery.com/jquery-3.6.0.min.js";
 
 const usernamePage = document.querySelector('#username-page');
 const chatPage = document.querySelector('#chat-page');
@@ -13,6 +14,15 @@ let stompClient = null;
 let nickname = null;
 let fullname = null;
 let selectedUserId = null;
+
+onAuthStateChanged(auth, (user) => {
+    let uid = user.uid;
+    let username = user.displayName;
+    console.log(username);
+    console.log(uid);
+    $('#nickname').val(uid);
+    $('#fullname').val(username);
+});
 
 function connect(event) {
     nickname = document.querySelector('#nickname').value.trim();
@@ -38,7 +48,7 @@ function onConnected() {
     // register the connected user
     stompClient.send("/app/user.addUser",
         {},
-        JSON.stringify({nickName: nickname, fullName: fullname, status: 'ONLINE'})
+        JSON.stringify({userID: nickname, userName: fullname, status: 'ONLINE'})
     );
     document.querySelector('#connected-user-fullname').textContent = fullname;
     findAndDisplayConnectedUsers().then();
@@ -139,7 +149,7 @@ function sendMessage(event) {
     const messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
         const chatMessage = {
-            senderId: nickname,
+            senderId: uid,
             recipientId: selectedUserId,
             content: messageInput.value.trim(),
             timestamp: new Date()
@@ -176,15 +186,5 @@ async function onMessageReceived(payload) {
     }
 }
 
-function onLogout() {
-    stompClient.send("/app/user.disconnectUser",
-        {},
-        JSON.stringify({nickName: nickname, fullName: fullname, status: 'OFFLINE'})
-    );
-    window.location.reload();
-}
-
-usernameForm.addEventListener('submit', connect, true); // step 1
+usernameForm.addEventListener('chat-icon', connect, true); // step 1
 messageForm.addEventListener('submit', sendMessage, true);
-logout.addEventListener('click', onLogout, true);
-window.onbeforeunload = () => onLogout();

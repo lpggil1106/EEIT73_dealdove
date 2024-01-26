@@ -1,6 +1,6 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.interfaces.ReviewRepository;
+import com.dealdove.dealdove.dao.ReviewRepository;
 import com.dealdove.dealdove.model.Review;
 import org.springframework.stereotype.Service;
 

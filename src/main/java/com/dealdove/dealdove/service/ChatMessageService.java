@@ -1,6 +1,6 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.interfaces.ChatMessageRepository;
+import com.dealdove.dealdove.dao.ChatMessageRepository;
 import com.dealdove.dealdove.model.ChatMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

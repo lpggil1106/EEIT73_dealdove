@@ -1,6 +1,6 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.interfaces.ModelInfoRepository;
+import com.dealdove.dealdove.dao.ModelInfoRepository;
 import com.dealdove.dealdove.model.ModelInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

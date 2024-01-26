@@ -7,10 +7,12 @@ import java.time.Instant;
 
 @Entity
 @DynamicInsert
+//@DynamicInsert可以只插入有值的欄位
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "productID", nullable = false)
     private Integer productID;
 
@@ -20,17 +22,22 @@ public class Product {
     @Column(name = "productDescription", nullable = false, length = 500)
     private String productDescription;
 
+    @Column(name = "productCategoryID", nullable = true)
+    private Integer productCategoryID;
+
+    @Column(name = "productParentID", nullable = true)
+    private Integer productParentID;
+
+    @Column(name = "productModelID", nullable = true)
+    private Integer productModelID;
     @Column(name = "productPrice", nullable = true)
     private Integer productPrice;
 
     @Column(name = "userID", nullable = true)
     private Integer userID;
 
-    @Column(name = "productCategoryID", nullable = true)
-    private Integer productCategoryID;
 
-    @Column(name = "productModelID", nullable = true)
-    private Integer productModelID;
+
 
     @Column(name = "productImageID", nullable = true)
     private Integer productImageID;
@@ -73,6 +80,30 @@ public class Product {
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
     }
+
+    public Integer getProductCategoryID() {
+        return productCategoryID;
+    }
+
+    public void setProductCategoryID(Integer productCategoryID) {
+        this.productCategoryID = productCategoryID;
+    }
+
+    public Integer getProductParentID() {
+        return productParentID;
+    }
+
+    public void setProductParentID(Integer productParentID) {
+        this.productParentID = productParentID;
+    }
+
+    public Integer getProductModelID() {
+        return productModelID;
+    }
+
+    public void setProductModelID(Integer productModelID) {
+        this.productModelID = productModelID;
+    }
     public Integer getProductPrice() {
         return productPrice;
     }
@@ -89,21 +120,8 @@ public class Product {
         this.userID = userID;
     }
 
-    public Integer getProductCategoryID() {
-        return productCategoryID;
-    }
 
-    public void setProductCategoryID(Integer productCategoryID) {
-        this.productCategoryID = productCategoryID;
-    }
 
-    public Integer getProductModelID() {
-        return productModelID;
-    }
-
-    public void setProductModelID(Integer productModelID) {
-        this.productModelID = productModelID;
-    }
 
     public Integer getProductImageID() {
         return productImageID;

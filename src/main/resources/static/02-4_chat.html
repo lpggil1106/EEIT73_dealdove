@@ -81,7 +81,7 @@
 </header>
 
 
-<div class="user-form" id="username-page">
+<div class="user-form hidden" id="username-page">
     <h2>進入聊聊</h2>
     <form id="usernameForm">
         <label for="nickname">Nickname:</label>
@@ -235,6 +235,7 @@
     </svg>
 </button>
 
+
 <script>
     // 聊天室縮放
     function toggleChat() {
@@ -306,7 +307,7 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script src="./js/chat.js"></script>
+<script src="./js/chat.js" type ="module"></script>
 </body>
 
 </html>
