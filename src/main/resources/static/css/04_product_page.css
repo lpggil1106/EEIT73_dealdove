@@ -60,6 +60,7 @@
     margin-bottom: 2vw;
     flex-wrap: wrap;
     display: flex;
+    align-items: center;
 }
 
 .specification .div {
@@ -69,6 +70,10 @@
     box-shadow: 1px 1px 1px rgb(119, 116, 116);
     border-radius: 12px;
     background-color: #F9F3E7;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
 
 .quantity {

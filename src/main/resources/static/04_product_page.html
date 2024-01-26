@@ -131,29 +131,7 @@
                             <li class="col-3">810售出</li>
                             <li class="col-3"><a href="">加入收藏</a></li>
                         </ul>
-                        <div id="specificContainer">
-                            <div class="col-12 mt-3 specification" id="container1">
-                                <p class="col-2">顏色</p>
-                                <div class="div"></div>
-                                <div class="div"></div>
-                                <div class="div"></div>
-                            </div>
-                            <div class="col-12 mt-3 specification" id="container2">
-                                <p class="col-2">尺寸</p>
-                                <div class="div"></div>
-                                <div class="div"></div>
-                                <div class="div"></div>
-                            </div>
-                        </div>
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
-<!--                            <div class="div"></div>-->
+                        <div id="specificContainer"></div>
 
                         <div class="col-12 quantity">
                             <p>數量</p>
@@ -333,37 +311,33 @@
                         document.getElementById('descriptionContent').innerText = product.productDescription;
 
                         // 清空原有的內容
-                        //document.getElementById('specificContainer').innerHTML = '';
+                        document.getElementById('specificContainer').innerHTML = '';
 
                         // 使用 Fetch API 來呼叫後端 API 取得產品規格
-                        fetch(`api/products/${productId}/specifications`)
+                       fetch(`api/products/${productId}/specifications`)
                             .then(response => response.json())
                             .then(specifications => {
                                 // 將規格資料動態生成到 HTML 中
                                 Object.entries(specifications).forEach(([specType, specValues]) => {
-                                    // 產生規格名稱的區塊
+
                                     const specTypeContainer = document.createElement('div');
                                     specTypeContainer.classList.add('col-12', 'mt-3', 'specification');
                                     specTypeContainer.id = `container${specType}`;
-
+                                    // 產生規格名稱的區塊
                                     const specTypeLabel = document.createElement('p');
                                     specTypeLabel.classList.add('col-2');
-                                    specTypeLabel.textContent = specType;
+                                    if('name' in specValues){
+                                        specTypeLabel.textContent = specValues['name'];
+                                   }
                                     specTypeContainer.appendChild(specTypeLabel);
 
                                     // 產生規格內容的區塊
-                                    const specValuesContainer = document.createElement('div');
-                                    specValuesContainer.classList.add('div');
-
-                                    // 將規格內容動態生成到 HTML 中
-                                    Object.values(specValues).forEach(value => {
-                                        const specValueDiv = document.createElement('div');
-                                        specValueDiv.textContent = value;
-                                        specValuesContainer.appendChild(specValueDiv);
+                                    specValues.dataMapList.forEach(data => {
+                                        const specValuesContainer = document.createElement('div');
+                                        specValuesContainer.classList.add('div');
+                                        specValuesContainer.textContent = data.name;
+                                        specTypeContainer.appendChild(specValuesContainer);
                                     });
-
-                                    // 將整個規格內容的區塊加入到規格名稱的區塊中
-                                    specTypeContainer.appendChild(specValuesContainer);
 
                                     // 將整個規格區塊加入到主容器中
                                     document.getElementById('specificContainer').appendChild(specTypeContainer);
@@ -374,8 +348,6 @@
                                 });
                             })
                             .catch(error => console.log(error));
-
-                        console.log(product);
                     })
                     .catch(error => console.log(error));
             });
