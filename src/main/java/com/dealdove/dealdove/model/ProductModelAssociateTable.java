@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 
 @Entity
-@DynamicInsert
+
 @Table(name = "productModelAssociateTable", schema = "dealdove")
 public class ProductModelAssociateTable {
     @Id
