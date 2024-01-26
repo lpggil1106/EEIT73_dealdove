@@ -1,4 +1,5 @@
-'use strict';
+import {auth, onAuthStateChanged, signOut} from "./firebase.js";
+import "https://code.jquery.com/jquery-3.6.0.min.js";
 
 const usernamePage = document.querySelector('#username-page');
 const chatPage = document.querySelector('#chat-page');
@@ -13,6 +14,14 @@ let stompClient = null;
 let nickname = null;
 let fullname = null;
 let selectedUserId = null;
+
+
+
+let userId = null;
+if (auth && auth.currentUser) {
+    userId = auth.currentUser.uid;
+}
+console.log(userId);
 
 function connect(event) {
     nickname = document.querySelector('#nickname').value.trim();
@@ -38,7 +47,7 @@ function onConnected() {
     // register the connected user
     stompClient.send("/app/user.addUser",
         {},
-        JSON.stringify({nickName: nickname, fullName: fullname, status: 'ONLINE'})
+        JSON.stringify({userID: nickname, userName: fullname, status: 'ONLINE'})
     );
     document.querySelector('#connected-user-fullname').textContent = fullname;
     findAndDisplayConnectedUsers().then();
