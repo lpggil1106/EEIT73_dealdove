@@ -46,9 +46,19 @@
     align-items: center;
     overflow-y: scroll;
     justify-content: space-between;
+}
+.cart_container {
+    width: 100px;
+    height: 100px;
+    margin-left: 3vw;
+    margin-top:2vw;
 
 }
+.cart_container svg {
+    transform: translateY(1.3vw);
 
+    /* z-index: 100; */
+}
 .users-list h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
