@@ -18,5 +18,5 @@ public interface ProductModelAssociateTableRepository extends JpaRepository<Prod
 
     ProductModelAssociateTable save(ProductModelAssociateTable productModelAssociateTable);
 
-
+    ProductModelAssociateTable findByModelName(String modelName);
 }

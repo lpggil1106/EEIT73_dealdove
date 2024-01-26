@@ -11,4 +11,5 @@ import java.util.List;
 public interface ModelInfoRepository extends JpaRepository<ModelInfo, Long> {
     List<ModelInfo> findByProductID(Integer productID);
 
+    ModelInfo save(ModelInfo modelInfo);
 }
