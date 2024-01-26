@@ -1,8 +1,9 @@
 package com.dealdove.dealdove.controller;
 
-import com.dealdove.dealdove.model.OrderItem;
 import com.dealdove.dealdove.model.Product;
+import com.dealdove.dealdove.model.ProductModelAssociateTable;
 import com.dealdove.dealdove.service.ProductService;
+import com.dealdove.dealdove.service.productModelAssociateTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,44 +17,33 @@ import java.util.List;
 public class ProductController {
 
     private ProductService productService;
-    private OrderItem orderItem;
+    private productModelAssociateTableService productModelAssociateTableService;
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, productModelAssociateTableService productModelAssociateTableService) {
         this.productService = productService;
+        this.productModelAssociateTableService = productModelAssociateTableService;
     }
-
-//    @RequestMapping("/add_product")
-//    public List<Product> addProduct(){
-//        Product product = productService.getProductByID(1);
-//        System.out.println(productService.getAllProduct()+"000");
-//        productService.saveProduct(1, 20, "Product Name", 1, 1, 1, "Product Description", 10, (byte) 1);
-//
-//        return productService.findProduct();
-//    }
 
     @PostMapping("/add_product")
-    public List<Product> addProduct(//@RequestParam("userID") Integer userID,
-                                    @RequestParam("productName") String productName,
-                                    @RequestParam("productDescription") String productDescription)
-//                                    @RequestParam("specific") String specific,
-//                                    @RequestParam("specific2") String specific2,
-//
-//                                    @RequestParam("productPrice") Integer productPrice,
-//                                    @RequestParam("productCategoryID") Integer productCategoryID,
-//                                    @RequestParam("productModelID") Integer productModelID,
-//                                    @RequestParam("productImageID") Integer productImageID,
-//
-//                                    @RequestParam("stockQuantity") Integer stockQuantity,
-//                                    @RequestParam("isAvailable") Byte isAvailable)
+    public List<Product> addProduct(@RequestParam("productName") String productName,
+                                    @RequestParam("productDescription") String productDescription,
+                                    @RequestParam("modelName1") String modelName1,
+                                    @RequestParam("modelName2") String modelName2)
+
     {
-
-        productService.saveProduct(productName,productDescription);
-//        productService.saveProduct(1, productPrice, productName, productCategoryID, productModelID,
-//                productImageID, productDescription, stockQuantity, isAvailable);
-
-        return productService.findProduct();
+        // 分別將 modelName1 和 modelName2 存儲到數據庫的不同行
+        List<Product> allProducts = productService.saveProduct(productName, productDescription);
+        List<ProductModelAssociateTable> allProductModelAssociations1 = addProductModelAssociateTable(modelName1);
+        List<ProductModelAssociateTable> allProductModelAssociations2 = addProductModelAssociateTable(modelName2);
+        return allProducts;
     }
 
+    @PostMapping("/add_productModelAssociateTable")
+    public List<ProductModelAssociateTable> addProductModelAssociateTable(@RequestParam("modelName") String modelName) {
 
+
+        productModelAssociateTableService.saveProductModelAssociateTable(modelName);
+        return productModelAssociateTableService.findAllProductModelAssociateTable();
+    }
 
 }
