@@ -74,41 +74,31 @@ public class UserService {
         return new Object[]{email,gender,birthday,picture};
     }
 
-    public List<Order> findOrderByUserID(LinkedHashMap<String, String> user){
-        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
-        String userID = decodedToken.getUid();
-        List<Order> orders =  userRepository.findOrderByUserID(userID);
-        for(Order order : orders){
-            System.out.println(order.getOrderItems());
-        }
-        return orders;
+    public List<User> findAllUsers() {
+        return userRepository.findAllUsers();
     }
 
-//    public List<User> findAllUsers() {
-//        return userRepository.findAllUsers();
-//    }
-//
-//
-//
-//    public String findUserById(String userID){return userRepository.findEmailById(userID);}
-//    public Integer findGenderById(String userID){return userRepository.findGenderById(userID);}
-//    public LocalDate findBirthdayById(String userID){return userRepository.findBirthdayById(userID);}
 
-//    public void saveUser(User user) {
-//        user.setStatus(true);
-//        userRepository.save(user);
-//    }
-//
-//    public void disconnect(User user) {
-//        var storedUser = userRepository.findById(user.getUserID()).orElse(null);
-//        if (storedUser != null) {
-//            storedUser.setStatus(false);
-//            userRepository.save(storedUser);
-//        }
-//    }
-//
-//    public List<User> findConnectedUsers() {
-//        return userRepository.findAllByStatus(true);
-//    }
+
+    public String findUserById(String userID){return userRepository.findEmailById(userID);}
+    public Integer findGenderById(String userID){return userRepository.findGenderById(userID);}
+    public LocalDate findBirthdayById(String userID){return userRepository.findBirthdayById(userID);}
+
+    public void saveUser(User user) {
+        user.setStatus(true);
+        userRepository.save(user);
+    }
+
+    public void disconnect(User user) {
+        var storedUser = userRepository.findById(user.getUserID()).orElse(null);
+        if (storedUser != null) {
+            storedUser.setStatus(false);
+            userRepository.save(storedUser);
+        }
+    }
+
+    public List<User> findConnectedUsers() {
+        return userRepository.findAllByStatus(true);
+    }
 
 }
