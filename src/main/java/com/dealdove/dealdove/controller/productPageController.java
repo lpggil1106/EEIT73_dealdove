@@ -28,8 +28,8 @@ public class productPageController {
         }
     }
     @GetMapping("/{productId}/specifications")
-    public ResponseEntity<Map<String,Map<Integer, String>>> getProductSpecifications(@PathVariable Integer productId) {
-        Map<String, Map<Integer, String>> specifications = productPageService.getProductSpecifications(productId);
+    public ResponseEntity<Map<String, Object>> getProductSpecifications(@PathVariable Integer productId) {
+        Map<String, Object>  specifications = productPageService.getProductSpecifications(productId);
 
         if (!specifications.isEmpty()) {
             return new ResponseEntity<>(specifications, HttpStatus.OK);

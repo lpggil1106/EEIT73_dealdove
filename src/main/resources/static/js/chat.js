@@ -8,25 +8,34 @@ const messageForm = document.querySelector('#messageForm');
 const messageInput = document.querySelector('#message');
 const connectingElement = document.querySelector('.connecting');
 const chatArea = document.querySelector('#chat-messages');
-const logout = document.querySelector('#logout');
 
 let stompClient = null;
 let nickname = null;
 let fullname = null;
 let selectedUserId = null;
 
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        let uid = user.uid;
+        fullname = user.displayName;
+        nickname = user.uid;
+        let username = user.displayName;
+        console.log(username);
+        console.log(uid);
+        $('#nickname').val(uid);
+        $('#fullname').val(username);
 
-
-let userId = null;
-if (auth && auth.currentUser) {
-    userId = auth.currentUser.uid;
-}
-console.log(userId);
+        // 在回調函數內部調用 connect，確保使用者信息可用
+        connect();
+    }
+});
 
 function connect(event) {
     nickname = document.querySelector('#nickname').value.trim();
     fullname = document.querySelector('#fullname').value.trim();
-
+    console.log('connect');
+    console.log(nickname);
+    console.log(fullname);
     if (nickname && fullname) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
@@ -36,7 +45,9 @@ function connect(event) {
 
         stompClient.connect({}, onConnected, onError);
     }
-    event.preventDefault();
+    if (event) {
+        event.preventDefault();
+    }
 }
 
 
@@ -56,7 +67,9 @@ function onConnected() {
 async function findAndDisplayConnectedUsers() {
     const connectedUsersResponse = await fetch('/users');
     let connectedUsers = await connectedUsersResponse.json();
-    connectedUsers = connectedUsers.filter(user => user.nickName !== nickname);
+    console.log(connectedUsers);
+    connectedUsers = connectedUsers.filter(user => user.userID !== nickname);
+    console.log(connectedUsers);
     const connectedUsersList = document.getElementById('connectedUsers');
     connectedUsersList.innerHTML = '';
 
@@ -73,14 +86,15 @@ async function findAndDisplayConnectedUsers() {
 function appendUserElement(user, connectedUsersList) {
     const listItem = document.createElement('li');
     listItem.classList.add('user-item');
-    listItem.id = user.nickName;
+    listItem.id = user.userID;
 
     const userImage = document.createElement('img');
-    userImage.src = '../img/user_icon.png';
-    userImage.alt = user.fullName;
+    userImage.src = '../images/user_icon.png';
+    userImage.alt = user.userName;
 
     const usernameSpan = document.createElement('span');
-    usernameSpan.textContent = user.fullName;
+    // usernameSpan.textContent = user.fullName;
+    usernameSpan.textContent = user.userName;
 
     const receivedMsgs = document.createElement('span');
     receivedMsgs.textContent = '0';
@@ -185,16 +199,5 @@ async function onMessageReceived(payload) {
     }
 }
 
-function onLogout() {
-    stompClient.send("/app/user.disconnectUser",
-        {},
-        JSON.stringify({nickName: nickname, fullName: fullname, status: 'OFFLINE'})
-    );
-    window.location.reload();
-}
-
-usernameForm.addEventListener('submit', connect, true); // step 1
+usernameForm.addEventListener('chat-icon', connect, true); // step 1
 messageForm.addEventListener('submit', sendMessage, true);
-logout.addEventListener('click', onLogout, true);
-window.onbeforeunload = () => onLogout();
-
