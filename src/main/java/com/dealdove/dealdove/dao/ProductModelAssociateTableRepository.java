@@ -13,6 +13,8 @@ public interface ProductModelAssociateTableRepository extends JpaRepository<Prod
 
     List<ProductModelAssociateTable> findByProductID(Integer productID);
 
+
+
     @Query(value = "SELECT * FROM productModelAssociateTable",nativeQuery = true)
     List<ProductModelAssociateTable> getAllProduct();
 

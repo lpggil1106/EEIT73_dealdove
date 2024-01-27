@@ -88,6 +88,19 @@ public class UserService {
     public void saveUser(User user) {
         user.setStatus(true);
         userRepository.save(user);
+    public List<User> findAllUsers() {
+        return userRepository.findAllUsers();
+    }
+
+
+
+    public String findUserById(String userID){return userRepository.findEmailById(userID);}
+    public Integer findGenderById(String userID){return userRepository.findGenderById(userID);}
+    public LocalDate findBirthdayById(String userID){return userRepository.findBirthdayById(userID);}
+
+    public void saveUser(User user) {
+        user.setStatus(true);
+        userRepository.save(user);
     }
 
     public void disconnect(User user) {
