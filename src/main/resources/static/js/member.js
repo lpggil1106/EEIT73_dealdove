@@ -7,8 +7,21 @@ $(document).ready(() => {
         if (user) {
             user.getIdToken()
                 .then(idToken => {
-                    // const selectedGender = $('input[name="gender"]:checked').val();
-                    showInfoFromBack(idToken)
+                    showInfoFromBack(idToken);
+                    showOrder(idToken);
+                    showOrderQuantity(idToken)
+                    $('#status1').on('click',()=>{
+                    showOrder(idToken,1);
+                    showOrderQuantity(idToken,1)
+                    });
+                    $('#status2').on('click',()=>{
+                    showOrder(idToken,2);
+                    showOrderQuantity(idToken,2)
+                    });
+                    $('#status3').on('click',()=>{
+                    showOrder(idToken,2);
+                    showOrderQuantity(idToken,2)
+                    });
                 })
         }
         })
@@ -30,9 +43,9 @@ $(document).ready(() => {
                 }
             })
         )
-
-
     });
+
+
 })
 function showInfoFromBack(idToken){
     fetch('/showInfo',{
@@ -45,6 +58,7 @@ function showInfoFromBack(idToken){
             $('#email').prop('value',data.email);
             $('input[name="gender"][value="' + data.gender + '"]').prop('checked', true);
             $('#birthday').prop('value',data.birthday);
+            // $('#test').prop('src',data.picture);
         })
 }
 
@@ -59,6 +73,32 @@ function setInfo(idToken,gender,birthday,address){
         .catch(error=>console.log(error))
 }
 
+function showOrder(idToken,status){
+    fetch('/showOrderName',{
+        method:'POST',
+        headers:{'Content-Type': 'application/json;charset=utf-8'},
+        body:JSON.stringify({"idToken":idToken,"status":status})
+    })
+        .then(res=>res.json())
+        .then(data=>data.forEach((orderItem,index)=>{
+            $(`#commodity${index}`).text('商品名: '+orderItem);
+            })
+        )
+        .catch(error=>console.log(error))
+    }
+    function showOrderQuantity(idToken,status){
+    fetch('/showOrderQuantity',{
+        method:'POST',
+        headers:{'Content-Type': 'application/json;charset=utf-8'},
+        body:JSON.stringify({"idToken":idToken,"status":status})
+    })
+        .then(res=>res.json())
+        .then(data=>data.forEach((quantity,index)=>{
+            $(`#quantity${index}`).text('數量: '+quantity);
+            })
+        )
+        .catch(error=>console.log(error))
+    }
 
 
 

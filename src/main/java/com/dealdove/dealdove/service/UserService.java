@@ -1,6 +1,7 @@
 package com.dealdove.dealdove.service;
 
 import com.dealdove.dealdove.dao.UserRepository;
+import com.dealdove.dealdove.model.Order;
 import com.dealdove.dealdove.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -37,7 +38,7 @@ public class UserService {
         String userID = decodedToken.getUid();
         String email = decodedToken.getEmail();
         String name = (decodedToken.getName()==null)? decodedToken.getEmail() : decodedToken.getName();
-
+        System.out.println(decodedToken.getPicture());
         if(userRepository.findEmailById(userID)!=null){
             System.out.println("User : "+userID+" Login!");
         }else if(userRepository.findEmailById(userID)==null){
@@ -65,57 +66,49 @@ public class UserService {
     public Object[] showInfo(LinkedHashMap<String, String> user){
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String userID = decodedToken.getUid();
+        String picture = decodedToken.getPicture();
         String email = userRepository.findEmailById(userID);
         int gender = userRepository.findGenderById(userID);
         LocalDate birthday = userRepository.findBirthdayById(userID);
 
-        return new Object[]{email,gender,birthday};
+        return new Object[]{email,gender,birthday,picture};
     }
 
-    public List<User> findAllUsers() {
-        return userRepository.findAllUsers();
+    public List<Order> findOrderByUserID(LinkedHashMap<String, String> user){
+        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
+        String userID = decodedToken.getUid();
+        List<Order> orders =  userRepository.findOrderByUserID(userID);
+        for(Order order : orders){
+            System.out.println(order.getOrderItems());
+        }
+        return orders;
     }
 
-
-
-    public String findUserById(String userID){return userRepository.findEmailById(userID);}
-    public Integer findGenderById(String userID){return userRepository.findGenderById(userID);}
+//    public List<User> findAllUsers() {
+//        return userRepository.findAllUsers();
+//    }
+//
+//
+//
+//    public String findUserById(String userID){return userRepository.findEmailById(userID);}
+//    public Integer findGenderById(String userID){return userRepository.findGenderById(userID);}
 //    public LocalDate findBirthdayById(String userID){return userRepository.findBirthdayById(userID);}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void saveUser(User user) {
-        user.setStatus(true);
-        userRepository.save(user);
-    }
-
-    public void disconnect(User user) {
-        var storedUser = userRepository.findById(user.getUserID()).orElse(null);
-        if (storedUser != null) {
-            storedUser.setStatus(false);
-            userRepository.save(storedUser);
-        }
-    }
-
-    public List<User> findConnectedUsers() {
-        return userRepository.findAllByStatus(true);
-    }
+//    public void saveUser(User user) {
+//        user.setStatus(true);
+//        userRepository.save(user);
+//    }
+//
+//    public void disconnect(User user) {
+//        var storedUser = userRepository.findById(user.getUserID()).orElse(null);
+//        if (storedUser != null) {
+//            storedUser.setStatus(false);
+//            userRepository.save(storedUser);
+//        }
+//    }
+//
+//    public List<User> findConnectedUsers() {
+//        return userRepository.findAllByStatus(true);
+//    }
 
 }
