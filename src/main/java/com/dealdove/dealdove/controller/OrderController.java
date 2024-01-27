@@ -15,17 +15,25 @@ import java.util.Optional;
 @RestController
 public class OrderController {
     private OrderService orderService;
-    public OrderController(OrderService orderService){
+
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
-@PostMapping("/showOrderName")
-public List<String> getOrderItemsByOrderID(@RequestBody LinkedHashMap<String, String> user) {
-        return orderService.getOrderItemsNameByOrderID(user);
-}
-@PostMapping("/showOrderQuantity")
-    public  List<String> getOrderItemsQuantityByOrderID(@RequestBody LinkedHashMap<String, String> user){
-        return orderService.getOrderItemsQuantityByOrderID(user);
-}
 
+    @PostMapping("/showOrderName")
+    public List<String> getOrderItemsByOrderID(@RequestBody LinkedHashMap<String, String> user) {
+        return orderService.getOrderItemsNameByOrderID(user);
     }
+
+    @PostMapping("/showOrderQuantity")
+    public List<String> getOrderItemsQuantityByOrderID(@RequestBody LinkedHashMap<String, String> user) {
+        return orderService.getOrderItemsQuantityByOrderID(user);
+    }
+    @PostMapping("/ecpayCheckout")
+    public String ecpayCheckout() {
+        String aioCheckOutALLForm = orderService.ecpayCheckout();
+            return  aioCheckOutALLForm;
+//        return "{\"form\":\""+aioCheckOutALLForm+"\"}";
+    }
+}
 //}

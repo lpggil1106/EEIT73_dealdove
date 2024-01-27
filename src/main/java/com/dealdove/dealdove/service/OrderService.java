@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutALL;
 
 @Service
 public class OrderService {
@@ -66,8 +68,25 @@ public class OrderService {
         return quantityList;
     }
 
+    public String ecpayCheckout() {
+        String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
+        AllInOne all = new AllInOne("");
 
+        AioCheckOutALL obj = new AioCheckOutALL();
+        obj.setMerchantTradeNo(uuId);
+        obj.setMerchantTradeDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        obj.setTotalAmount("100");
+        obj.setTradeDesc("test Description");
+        obj.setItemName("TestItem");
+        // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
+        obj.setReturnURL("/ecpay.html");
+        obj.setNeedExtraPaidInfo("N");
+        // 商店轉跳網址 (Optional)
+        obj.setClientBackURL("http://192.168.1.37:8080/");
+        String form = all.aioCheckOut(obj, null);
 
+        return form;
+    }
 }
 
 

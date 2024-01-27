@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/aws-sdk@2.1128.0/dist/aws-sdk.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 </head>
 <input type="file" id="fileInput"/>
@@ -23,6 +24,7 @@
     <input type="text" name="password">
     <input type="submit" value="click">
 </form>
+<div id="ECPayPayment"></div>
 
 <a href="/test123456">123456</a>
 <a href="/orderItem">or</a>
@@ -100,6 +102,27 @@
     }
 
 
+</script>
+<script src="https://ecpg-stage.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116"></script>
+<script>
+    ECPay.initialize(stage, function (errMsg) {
+        //初始化SDK
+        var lang = getCookie("language");
+        if (!lang) {
+            lang = ECPay.Language.zhTW;
+        }
+        ECPay.createPayment("55a026b8df314f9bb2dc808a5fe21c9d", lang, function (errMsg) {
+            //to do..
+        }, V2);
+    })
+    ECPay.getPayToken(function (paymentInfo, errMsg) {
+        if (errMsg != null) {
+            ErrHandle(errMsg);
+            return;
+        };
+        $("#PayToken").val(paymentInfo.PayToken);
+        return true;
+    });
 </script>
 <body>
 </body>
