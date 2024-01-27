@@ -15,10 +15,12 @@ public class ProductPageService {
 
     @Autowired
     public ProductPageService(ProductRepository productRepository){
+
         this.productRepository = productRepository;
     }
 
     public Product getProductById(Integer productId) {
+
         return productRepository.findById(productId).orElse(null);
     }
 
@@ -62,6 +64,7 @@ public class ProductPageService {
         //System.out.print(map1);
         //{map1={id=8, name=顏色, dataMapList=[{id=10, name=黑色}, {id=11, name=白色}]},
         // map2={id=9, name=尺寸, dataMapList=[{id=12, name=S}, {id=13, name=M}, {id=14, name=L}]}}
+        //
         return map1;
     }
 }

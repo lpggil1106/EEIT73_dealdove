@@ -121,8 +121,6 @@ public class Product {
     }
 
 
-
-
     public Integer getProductImageID() {
         return productImageID;
     }
