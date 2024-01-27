@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -14,10 +15,11 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderItemID", nullable = false)
-    private Integer id;
+    private Integer orderItemID;
 
-    @Column(name = "orderID", nullable = false)
-    private Integer orderID;
+    @ManyToOne
+    @JoinColumn(name = "orderID", nullable = false)
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "productID", nullable = false)
@@ -30,9 +32,19 @@ public class OrderItem {
     private Integer quantity;
 
     @Column(name = "createTime", nullable = false)
-    private Instant createTime;
+    private ZonedDateTime createTime;
 
     @Column(name = "lastEdit", nullable = false)
-    private Instant lastEdit;
+    private ZonedDateTime lastEdit;
 
+    public String toString() {
+        return "OrderItem{" +
+                "id=" + orderItemID +
+                ", product=" + product +
+                ", model='" + model + '\'' +
+                ", quantity=" + quantity +
+                ", createTime=" + createTime +
+                ", lastEdit=" + lastEdit +
+                '}';
+    }
 }

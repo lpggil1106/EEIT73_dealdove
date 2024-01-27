@@ -8,7 +8,6 @@ const messageForm = document.querySelector('#messageForm');
 const messageInput = document.querySelector('#message');
 const connectingElement = document.querySelector('.connecting');
 const chatArea = document.querySelector('#chat-messages');
-const logout = document.querySelector('#logout');
 
 let stompClient = null;
 let nickname = null;
@@ -90,7 +89,7 @@ function appendUserElement(user, connectedUsersList) {
     listItem.id = user.userID;
 
     const userImage = document.createElement('img');
-    userImage.src = '../img/user_icon.png';
+    userImage.src = '../images/user_icon.png';
     userImage.alt = user.userName;
 
     const usernameSpan = document.createElement('span');
@@ -163,7 +162,7 @@ function sendMessage(event) {
     const messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
         const chatMessage = {
-            senderId: uid,
+            senderId: nickname,
             recipientId: selectedUserId,
             content: messageInput.value.trim(),
             timestamp: new Date()
