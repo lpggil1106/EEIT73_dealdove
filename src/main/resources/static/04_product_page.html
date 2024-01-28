@@ -110,18 +110,110 @@
                     <p class="productName">另一個商品</p>
                     <button class="viewDetails">查看詳情</button>
                 </div>
-                <div class="row product mt-5 border border-dark">
+                <div class="row product mt-5">
                     <div class="col-5 productImage">
-                        <div class="row col-12 text-center bigImage"></div>
-                        <div class="row col-12 justify-content-center smallImage">
-                            <div class="col-1"><button>&lt</button></div>
-                            <div class="col-3 border border-dark"></div>
-                            <div class="col-3 border border-dark"></div>
-                            <div class="col-3 border border-dark"></div>
-                            <div class="col-1 ps-0"><button>&gt</button></div>
+<!--                        <div class="row col-12 text-center bigImage border border-dark">-->
+<!--                            <img src="./images/pId1.jpg" alt="圖片描述">-->
+<!--                        </div>-->
+<!--                        <div class="row col-12 justify-content-center smallImage">-->
+<!--                            <div class="col-1"><button>&lt</button></div>-->
+<!--                            <div class="col-3 border border-dark">-->
+<!--                                <img src="./images/pId11.jpg" alt="圖片描述">-->
+<!--                            </div>-->
+<!--                            <div class="col-3 border border-dark">-->
+<!--                                <img src="./images/pId12.jpg" alt="圖片描述">-->
+<!--                            </div>-->
+<!--                            <div class="col-3 border border-dark">-->
+<!--                                <img src="./images/pId13.jpeg" alt="圖片描述">-->
+<!--                            </div>-->
+<!--                            <div class="col-1 ps-0"><button>&gt</button></div>-->
+<!--                        </div>-->
+                        <div class="row col-12 text-center bigImage border border-dark">
+                            <img id="mainImage" src="./images/pId1.jpg" alt="圖片描述">
                         </div>
-                    </div>
+                        <div class="row col-12 justify-content-center smallImage">
+                            <div class="col-1"><button id="prevBtn">&lt</button></div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/pId11.jpg" alt="圖片描述">
+                            </div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/pId12.jpg" alt="圖片描述">
+                            </div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/pId13.jpeg" alt="圖片描述">
+                            </div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/商品圖.png" alt="圖片描述">
+                            </div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/商品圖2.jpg" alt="圖片描述">
+                            </div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/商品圖3.jpg" alt="圖片描述">
+                            </div>
+                            <div class="col-1 ps-0"><button id="nextBtn">&gt</button></div>
+                        </div>
 
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const mainImage = document.getElementById('mainImage');
+                            const prevBtn = document.getElementById('prevBtn');
+                            const nextBtn = document.getElementById('nextBtn');
+                            const smallImages = document.querySelectorAll('.smallImage .border-dark');
+                            const totalImages = smallImages.length;
+                            const imagesPerSet = 3;
+                            let currentImageIndex = 0;
+
+                            // 初始化顯示前三個小圖
+                            showSmallImages(0, imagesPerSet - 1);
+
+                            prevBtn.addEventListener('click', function() {
+                                // 顯示上一個三個小圖
+                                showSmallImages(currentImageIndex - imagesPerSet, currentImageIndex - 1);
+
+                                // 如果已經顯示到第一組小圖，則鎖定在前三個區塊
+                                if (currentImageIndex <= 0) {
+                                    currentImageIndex = 0;
+                                    showSmallImages(0, imagesPerSet - 1);
+                                }
+                            });
+
+                            nextBtn.addEventListener('click', function() {
+                                // 顯示下一個三個小圖
+                                showSmallImages(currentImageIndex, currentImageIndex + imagesPerSet - 1);
+
+                                // 如果已經顯示到最後一組小圖，則鎖定在倒數三個區塊
+                                if (currentImageIndex >= totalImages - imagesPerSet) {
+                                    currentImageIndex = totalImages - imagesPerSet;
+                                    showSmallImages(currentImageIndex, totalImages - 1);
+                                }
+                            });
+
+                            function showSmallImages(startIndex, endIndex) {
+                                // 隱藏所有小圖
+                                hideAllSmallImages();
+
+                                // 顯示指定範圍的小圖
+                                for (let i = startIndex; i <= endIndex; i++) {
+                                    if (smallImages[i]) {
+                                        smallImages[i].style.display = 'block';
+                                    }
+                                }
+
+                                // 更新目前顯示的小圖索引
+                                currentImageIndex = endIndex;
+                            }
+
+                            function hideAllSmallImages() {
+                                smallImages.forEach(image => {
+                                    image.style.display = 'none';
+                                });
+                            }
+                        });
+
+
+                    </script>
                     <div class="col-7 productDescribe">
                         <p id="productidmodel" style="display: none"></p>
                         <p class="productName" id="productName">商品名稱</p>
@@ -137,7 +229,8 @@
                         <div class="col-12 quantity">
                             <p>數量</p>
                             <button id="increaseBtn">+</button>
-                            <span id="quantityValue" style="padding:0.5vw 1vw">0</span>
+                            <input id="quantityValue" style="padding:0.5vw 1vw" value="1" readonly/>
+
                             <button id="decreaseBtn" style="margin-right: 2vw;">-</button>
                             <p>庫存 <p id="quantity"></p></p>
                             <input name="firstModelid" style="display: none;"/>
@@ -388,19 +481,6 @@
                                 });
                             })
                             .catch(error => console.log(error));
-
-                        const map1Element = document.getElementsByClassName('map1modelinfos')[0];
-                        const map2Element = document.getElementsByClassName('map2modelinfos')[0];
-
-                        // 定義點擊事件
-                        const clickEvent = new Event('click', {
-                            bubbles: true,
-                            cancelable: true,
-                        });
-
-                        // 觸發點擊事件
-                        map1Element.dispatchEvent(clickEvent);
-                        map2Element.dispatchEvent(clickEvent);
                     })
                     .catch(error => console.log(error));
             });
@@ -416,9 +496,7 @@
                 const productid = document.getElementById('productidmodel').innerText;
                 const firstModelid = firstModelidInput.value;
                 const secondModelid = secondModelidInput.value;
-                console.log(firstModelid+"fff");
-                console.log(secondModelid+"wwww");
-                if(firstModelid!= '' && secondModelid != ''){
+                if(firstModelid!= '' && secondModelid != ''){   // 取到兩值才顯示庫存、價格
             fetch(`api/products/${productid}/${firstModelid}/${secondModelid}/modelinfo`)
                 .then(response => response.json())
                 .then(modelinfo => {
@@ -430,29 +508,25 @@
                 .catch(error => console.log(error));
                 }
         };
-
-
-
         document.addEventListener('DOMContentLoaded', function() {
-            // 獲取所有符合條件的元素
-
             // 取得相關元素
-            const quantitySpan = document.getElementById('quantityValue');
+            const quantityInput = document.getElementById('quantityValue');
             const increaseBtn = document.getElementById('increaseBtn');
             const decreaseBtn = document.getElementById('decreaseBtn');
+            const quantitySpan = document.getElementById('quantity');
 
             // 初始化數量
-           // let quantity = 0;
+            let quantity = 1;
 
-            // 設置庫存值
-            //const stockQuantity = 10; // 假設庫存為 10
-            document.getElementById('quantity').textContent = stockQuantity;
+            // 假設庫存為 10
+            const stockQuantity = 50;
+            //quantitySpan.textContent = stockQuantity;
 
             // 增加按鈕點擊事件
             increaseBtn.addEventListener('click', function() {
                 if (quantity < stockQuantity) {
                     quantity++;
-                    quantitySpan.textContent = quantity;
+                    quantityInput.value = quantity;
                 }
             });
 
@@ -460,7 +534,7 @@
             decreaseBtn.addEventListener('click', function() {
                 if (quantity > 1) {
                     quantity--;
-                    quantitySpan.textContent = quantity;
+                    quantityInput.value = quantity;
                 }
             });
         });
