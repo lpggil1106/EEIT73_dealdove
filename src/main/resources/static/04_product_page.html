@@ -123,7 +123,7 @@
                     </div>
 
                     <div class="col-7 productDescribe">
-                        <p id="productidmodel"></p>
+                        <p id="productidmodel" style="display: none"></p>
                         <p class="productName" id="productName">商品名稱</p>
                         <ul class="col-12 justify-content-start evaluate ">
                             <li class="col-1">3.1</li>
@@ -136,16 +136,16 @@
 
                         <div class="col-12 quantity">
                             <p>數量</p>
-                            <button>+</button>
-                            <span></span>
-                            <button style="margin-right: 2vw;">-</button>
-                            <p >庫存 </p>
-                            <span id="quantity"></span>
-                            <input name="firstModelid" />
-                            <input name="secondModelid" />
+                            <button id="increaseBtn">+</button>
+                            <span id="quantityValue" style="padding:0.5vw 1vw">0</span>
+                            <button id="decreaseBtn" style="margin-right: 2vw;">-</button>
+                            <p>庫存 <p id="quantity"></p></p>
+                            <input name="firstModelid" style="display: none;"/>
+                            <input name="secondModelid" style="display: none;"/>
+
                         </div>
                         <div class="col-12 price">
-                            <p >價格</p>
+                            <p>價格</p>
                             <span id="price"></span>
                         </div>
                         <div class="col-12 d-flex text-center">
@@ -340,12 +340,13 @@
                                     specValues.dataMapList.forEach(data => {
                                         const specValuesContainer = document.createElement('div');
                                         specValuesContainer.classList.add('div');
-                                        specValuesContainer.classList.add(`${specType}modelinfos`);
+                                        specValuesContainer.classList.add(`${specType}modelinfos`); //black
                                         specValuesContainer.textContent = data.name;
 
                                         const specValuesContainer2 = document.createElement('div');
                                         specValuesContainer2.classList.add('modelid');
                                         specValuesContainer2.textContent = data.id;
+                                        specValuesContainer2.style.display = 'none';
 
                                         specTypeContainer.appendChild(specValuesContainer);
                                         specValuesContainer.appendChild(specValuesContainer2);
@@ -364,21 +365,16 @@
                                                 });
                                                 // 分派 input 事件
                                                 firstModelidInput.dispatchEvent(inputEvent);
-                                                //console.log(`1: ${modelId}`);
                                             }else{
 
                                                 const secondModelidInput = document.getElementsByName('secondModelid')[0];
-                                                const modelId2 = modelId; // 替換為實際的值
-                                                // 設置元素的值
+                                                const modelId2 = modelId;
                                                 secondModelidInput.value = modelId2;
-                                                // 創建 input 事件
                                                 const inputEvent = new Event('input', {
                                                     bubbles: true,
                                                     cancelable: true,
                                                 });
-                                                // 分派 input 事件
                                                 secondModelidInput.dispatchEvent(inputEvent);
-                                                //console.log(`2: ${modelId}`);
                                             }
                                         });
                                     });
@@ -392,13 +388,26 @@
                                 });
                             })
                             .catch(error => console.log(error));
+
+                        const map1Element = document.getElementsByClassName('map1modelinfos')[0];
+                        const map2Element = document.getElementsByClassName('map2modelinfos')[0];
+
+                        // 定義點擊事件
+                        const clickEvent = new Event('click', {
+                            bubbles: true,
+                            cancelable: true,
+                        });
+
+                        // 觸發點擊事件
+                        map1Element.dispatchEvent(clickEvent);
+                        map2Element.dispatchEvent(clickEvent);
                     })
                     .catch(error => console.log(error));
             });
         });
 
-            const firstModelidInput = document.getElementsByName('firstModelid')[0];
-            const secondModelidInput = document.getElementsByName('secondModelid')[0];
+        const firstModelidInput = document.getElementsByName('firstModelid')[0];
+        const secondModelidInput = document.getElementsByName('secondModelid')[0];
 
             firstModelidInput.addEventListener("input", handleInput);
             secondModelidInput.addEventListener("input", handleInput);
@@ -407,22 +416,54 @@
                 const productid = document.getElementById('productidmodel').innerText;
                 const firstModelid = firstModelidInput.value;
                 const secondModelid = secondModelidInput.value;
-            console.log(productid + "ds");
-            console.log(firstModelid + "ll");
-            console.log(secondModelid + "ddll");
+                console.log(firstModelid+"fff");
+                console.log(secondModelid+"wwww");
+                if(firstModelid!= '' && secondModelid != ''){
             fetch(`api/products/${productid}/${firstModelid}/${secondModelid}/modelinfo`)
                 .then(response => response.json())
                 .then(modelinfo => {
-                    console.log(modelinfo);
-                    console.log(modelinfo.price);
-                    console.log(modelinfo.quantity);
                     document.getElementsByClassName('modelinfos');
+
                     document.getElementById('quantity').innerText = modelinfo.quantity;
                     document.getElementById('price').innerText = modelinfo.price;
                 })
                 .catch(error => console.log(error));
+                }
         };
 
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 獲取所有符合條件的元素
+
+            // 取得相關元素
+            const quantitySpan = document.getElementById('quantityValue');
+            const increaseBtn = document.getElementById('increaseBtn');
+            const decreaseBtn = document.getElementById('decreaseBtn');
+
+            // 初始化數量
+           // let quantity = 0;
+
+            // 設置庫存值
+            //const stockQuantity = 10; // 假設庫存為 10
+            document.getElementById('quantity').textContent = stockQuantity;
+
+            // 增加按鈕點擊事件
+            increaseBtn.addEventListener('click', function() {
+                if (quantity < stockQuantity) {
+                    quantity++;
+                    quantitySpan.textContent = quantity;
+                }
+            });
+
+            // 減少按鈕點擊事件
+            decreaseBtn.addEventListener('click', function() {
+                if (quantity > 1) {
+                    quantity--;
+                    quantitySpan.textContent = quantity;
+                }
+            });
+        });
     </script>
 
 </body>
