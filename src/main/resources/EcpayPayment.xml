@@ -3,7 +3,7 @@
   <AioCheckOut>
     <ServiceAddress>
         <url type="Production">https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5</url>
-        <url type="Test">http://payment-stage.ecPay.com.tw/Cashier/AioCheckOut/V5</url>
+        <url type="Test">https://payment-stage.ecPay.com.tw/Cashier/AioCheckOut/V5</url>
     </ServiceAddress>
     <Config>
         <switchparam>
@@ -331,7 +331,7 @@
   <QueryTradeInfo>
     <ServiceAddress>
         <url type="Production">https://payment.ecpay.com.tw/Cashier/QueryTradeInfo/V5</url>
-        <url type="Test">http://payment-stage.ecPay.com.tw/Cashier/QueryTradeInfo/V5</url>
+        <url type="Test">https://payment-stage.ecPay.com.tw/Cashier/QueryTradeInfo/V5</url>
     </ServiceAddress>
     <Config>
         <switchparam>
@@ -358,7 +358,7 @@
   <QueryCreditCardPeriodInfo>
     <ServiceAddress>
         <url type="Production">https://payment.ecpay.com.tw/Cashier/QueryCreditCardPeriodInfo</url>
-        <url type="Test">http://payment-stage.ecpay.com.tw/Cashier/QueryCreditCardPeriodInfo</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/Cashier/QueryCreditCardPeriodInfo</url>
     </ServiceAddress>
     <Config>
         <switchparam>
@@ -382,7 +382,7 @@
   <DoAction>
     <ServiceAddress>
         <url type="Production">https://payment.ecpay.com.tw/CreditDetail/DoAction</url>
-        <url type="Test">http://payment-stage.ecpay.com.tw/CreditDetail/DoAction</url>
+        <url type="Test">https://payment-stage.ecpay.com.tw/CreditDetail/DoAction</url>
     </ServiceAddress>
     <Config>
         <switchparam>
@@ -420,7 +420,7 @@
   <TradeNoAio>
     <ServiceAddress>
         <url type="Production">https://vendor.ecpay.com.tw/PaymentMedia/TradeNoAio</url>
-        <url type="Test">http://vendor-stage.ecpay.com.tw/PaymentMedia/TradeNoAio</url>
+        <url type="Test">https://vendor-stage.ecpay.com.tw/PaymentMedia/TradeNoAio</url>
     </ServiceAddress>
     <Config>
         <switchparam>
@@ -477,7 +477,7 @@
   <QueryTradeV2>
     <ServiceAddress>
         <url type="Production">https://payment.ecPay.com.tw/CreditDetail/QueryTrade/V2</url>
-        <url type="Test">http://payment-stage.ecPay.com.tw/CreditDetail/QueryTrade/V2</url>
+        <url type="Test">https://payment-stage.ecPay.com.tw/CreditDetail/QueryTrade/V2</url>
     </ServiceAddress>
     <Config>
         <switchparam>
@@ -506,7 +506,7 @@
   <FundingReconDetail>
     <ServiceAddress>
         <url type="Production">https://payment.ecPay.com.tw/CreditDetail/FundingReconDetail</url>
-        <url type="Test">http://payment-stage.ecPay.com.tw/CreditDetail/FundingReconDetail</url>
+        <url type="Test">https://payment-stage.ecPay.com.tw/CreditDetail/FundingReconDetail</url>
     </ServiceAddress>
     <Config>
         <switchparam>
@@ -534,7 +534,7 @@
   <CreateServerOrder>
     <ServiceAddress>
     	<url type="Production">https://payment.ecpay.com.tw/ApplePay/CreateServerOrder/V2</url>
-    	<url type="Test">http://payment-stage.ecpay.com.tw/ApplePay/CreateServerOrder/V2</url>
+    	<url type="Test">https://payment-stage.ecpay.com.tw/ApplePay/CreateServerOrder/V2</url>
     </ServiceAddress>
     <Config>
     	<switchparam>
