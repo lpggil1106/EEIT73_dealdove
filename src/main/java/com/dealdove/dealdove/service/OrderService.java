@@ -75,11 +75,11 @@ public class OrderService {
         AioCheckOutALL obj = new AioCheckOutALL();
         obj.setMerchantTradeNo(uuId);
         obj.setMerchantTradeDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
-        obj.setTotalAmount("100");
+        obj.setTotalAmount("500");
         obj.setTradeDesc("test Description");
         obj.setItemName("TestItem");
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-        obj.setReturnURL("/ecpay.html");
+        obj.setReturnURL("https://d378-220-132-47-88.ngrok-free.app/ecpayCheckout");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
         obj.setClientBackURL("http://192.168.1.37:8080/");
