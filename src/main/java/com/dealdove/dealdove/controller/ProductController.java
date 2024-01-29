@@ -77,24 +77,15 @@ public class ProductController {
         List<Product> allProducts = productService.saveProduct(productName, productDescription);
 
         addProductModelAssociateTable(specific);
-        addProductModelAssociateTable(specific2);
-        addProductModelAssociateTable(specific3);
-        addProductModelAssociateTable(specific4);
-        addProductModelAssociateTable(specific5);
+        addProductModelAssociateTableChild(specific2, specific);
+        addProductModelAssociateTableChild(specific3, specific);
+        addProductModelAssociateTableChild(specific4, specific);
+        addProductModelAssociateTableChild(specific5, specific);
         addProductModelAssociateTable(specific1);
-        addProductModelAssociateTable(specific22);
-        addProductModelAssociateTable(specific33);
-        addProductModelAssociateTable(specific44);
-        addProductModelAssociateTable(specific55);
-//        addProductModelAssociateTableChild(specific2, specific);
-//        addProductModelAssociateTableChild(specific3, specific);
-//        addProductModelAssociateTableChild(specific4, specific);
-//        addProductModelAssociateTableChild(specific5, specific);
-//        addProductModelAssociateTable(specific1);
-//        addProductModelAssociateTableChild(specific22,specific1);
-//        addProductModelAssociateTableChild(specific33,specific1);
-//        addProductModelAssociateTableChild(specific44,specific1);
-//        addProductModelAssociateTableChild(specific55,specific1);
+        addProductModelAssociateTableChild(specific22,specific1);
+        addProductModelAssociateTableChild(specific33,specific1);
+        addProductModelAssociateTableChild(specific44,specific1);
+        addProductModelAssociateTableChild(specific55,specific1);
 
         return "/10_seller_home_page.html";
     }
