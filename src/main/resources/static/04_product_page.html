@@ -110,8 +110,7 @@
                     <p class="productName">另一個商品</p>
                     <button class="viewDetails">查看詳情</button>
                 </div>
-                <div class="row product mt-5">
-                    <div class="col-5 productImage">
+
 <!--                        <div class="row col-12 text-center bigImage border border-dark">-->
 <!--                            <img src="./images/pId1.jpg" alt="圖片描述">-->
 <!--                        </div>-->
@@ -128,6 +127,8 @@
 <!--                            </div>-->
 <!--                            <div class="col-1 ps-0"><button>&gt</button></div>-->
 <!--                        </div>-->
+                <div class="row product mt-5">
+                    <div class="col-5 productImage">
                         <div class="row col-12 text-center bigImage border border-dark">
                             <img id="mainImage" src="./images/pId1.jpg" alt="圖片描述">
                         </div>
@@ -151,6 +152,15 @@
                             <div class="col-3 border border-dark">
                                 <img src="./images/商品圖3.jpg" alt="圖片描述">
                             </div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/pId11.jpg" alt="圖片描述">
+                            </div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/pId12.jpg" alt="圖片描述">
+                            </div>
+                            <div class="col-3 border border-dark">
+                                <img src="./images/pId13.jpeg" alt="圖片描述">
+                            </div>
                             <div class="col-1 ps-0"><button id="nextBtn">&gt</button></div>
                         </div>
 
@@ -169,28 +179,35 @@
                             showSmallImages(0, imagesPerSet - 1);
 
                             prevBtn.addEventListener('click', function() {
-                                // 顯示上一個三個小圖
-                                showSmallImages(currentImageIndex - imagesPerSet, currentImageIndex - 1);
-
                                 // 如果已經顯示到第一組小圖，則鎖定在前三個區塊
-                                if (currentImageIndex <= 0) {
+                                console.log(currentImageIndex+"click");
+                                if (currentImageIndex <= 2) {
                                     currentImageIndex = 0;
                                     showSmallImages(0, imagesPerSet - 1);
+                                }else{
+                                    // 顯示上一個三個小圖
+                                    showSmallImages(currentImageIndex - imagesPerSet, currentImageIndex - 1);
                                 }
                             });
-
                             nextBtn.addEventListener('click', function() {
-                                // 顯示下一個三個小圖
+                                // 顯示下一個三個console.log(currentImageIndex+"000currentImageIndex");小圖
+                                console.log(currentImageIndex+"11currentImageIndex");
+                                console.log(totalImages+"11hii");
+                                console.log(imagesPerSet+"11imagesPerSet");
                                 showSmallImages(currentImageIndex, currentImageIndex + imagesPerSet - 1);
 
+                                console.log(currentImageIndex+"currentImageIndex");
+                                console.log(totalImages+"hii");
+                                console.log(imagesPerSet+"imagesPerSet");
                                 // 如果已經顯示到最後一組小圖，則鎖定在倒數三個區塊
                                 if (currentImageIndex >= totalImages - imagesPerSet) {
                                     currentImageIndex = totalImages - imagesPerSet;
                                     showSmallImages(currentImageIndex, totalImages - 1);
                                 }
                             });
-
                             function showSmallImages(startIndex, endIndex) {
+                                console.log(startIndex+"startIndex");
+                                console.log(endIndex+"endIndex");
                                 // 隱藏所有小圖
                                 hideAllSmallImages();
 
@@ -212,8 +229,80 @@
                             }
                         });
 
-
                     </script>
+<!--                    <script>-->
+<!--                        document.addEventListener('DOMContentLoaded', function () {-->
+<!--                            const mainImage = document.getElementById('mainImage');-->
+<!--                            const prevBtn = document.getElementById('prevBtn');-->
+<!--                            const nextBtn = document.getElementById('nextBtn');-->
+<!--                            const smallImages = document.querySelectorAll('.smallImage .border-dark');-->
+<!--                            const totalImages = smallImages.length;-->
+<!--                            const imagesPerSet = 3;-->
+<!--                            let currentImageIndex = 0;-->
+
+<!--                            // 初始化顯示前三個小圖-->
+<!--                            showSmallImages(0, imagesPerSet - 1);-->
+<!--console.log(currentImageIndex+"currentImageIndex");-->
+<!--                            nextBtn.addEventListener('click', function () {-->
+<!--                                // 計算下一組小圖的起始索引和結束索引-->
+<!--                                const startIndex = currentImageIndex + 1;-->
+<!--                                const endIndex = startIndex + imagesPerSet - 1;-->
+
+<!--                                // 顯示下一個三個小圖-->
+<!--                                showSmallImages(startIndex, endIndex);-->
+
+<!--                                // 如果已經顯示到最後一組小圖，則鎖定在倒數三個區塊-->
+<!--                                if (currentImageIndex >= totalImages - imagesPerSet) {-->
+<!--                                    currentImageIndex = totalImages - imagesPerSet;-->
+<!--                                    showSmallImages(currentImageIndex, totalImages - 1);-->
+<!--                                }-->
+<!--                            });-->
+
+<!--                            prevBtn.addEventListener('click', function () {-->
+<!--                                // 計算上一組小圖的起始索引和結束索引-->
+<!--                                const startIndex = Math.max(0, currentImageIndex - imagesPerSet);-->
+<!--                                const endIndex = startIndex + imagesPerSet - 1;-->
+
+<!--                                // 顯示上一個三個小圖-->
+<!--                                showSmallImages(startIndex, endIndex);-->
+
+<!--                                // 如果已經顯示到第一組小圖，則鎖定在前三個區塊-->
+<!--                                if (currentImageIndex <= imagesPerSet - 1) {-->
+<!--                                    currentImageIndex = 0;-->
+<!--                                    showSmallImages(0, imagesPerSet - 1);-->
+<!--                                }-->
+<!--                            });-->
+
+<!--                            function showSmallImages(startIndex, endIndex) {-->
+<!--                                // 隱藏所有小圖-->
+<!--                                hideAllSmallImages();-->
+
+<!--                                // 計算實際顯示的區塊索引-->
+<!--                                const displayedIndexes = [];-->
+<!--                                for (let i = startIndex; i <= endIndex; i++) {-->
+<!--                                    const actualIndex = i % totalImages; // 計算實際索引，避免超出邊界-->
+<!--                                    displayedIndexes.push(actualIndex);-->
+<!--                                }-->
+
+<!--                                // 顯示指定範圍的小圖-->
+<!--                                displayedIndexes.forEach(index => {-->
+<!--                                    if (smallImages[index]) {-->
+<!--                                        smallImages[index].style.display = 'block';-->
+<!--                                    }-->
+<!--                                });-->
+
+<!--                                // 更新目前顯示的小圖索引-->
+<!--                                currentImageIndex = endIndex;-->
+<!--                            }-->
+<!--                            function hideAllSmallImages() {-->
+<!--                                smallImages.forEach(image => {-->
+<!--                                    image.style.display = 'none';-->
+<!--                                });-->
+<!--                            }-->
+<!--                        });-->
+
+
+<!--                    </script>-->
                     <div class="col-7 productDescribe">
                         <p id="productidmodel" style="display: none"></p>
                         <p class="productName" id="productName">商品名稱</p>
@@ -283,7 +372,7 @@
             <section>
                 <div class="row p-4 productDescribe2">
                     <p>商品描述</p>
-                    <div class="div">
+                    <div class="div descriptionBorder">
                         <div id="descriptionContent"></div>
                     </div>
                 </div>

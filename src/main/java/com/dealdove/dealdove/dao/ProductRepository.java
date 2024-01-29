@@ -27,5 +27,4 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     Product save(Product product);
 
 
-
 }

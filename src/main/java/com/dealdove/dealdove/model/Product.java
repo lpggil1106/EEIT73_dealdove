@@ -40,29 +40,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems;
 
+
     @Column(name = "productImageID", nullable = true)
     private Integer productImageID;
-
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
-
-    public List<ProductImageTable> getProductImageTables() {
-        return productImageTables;
-    }
-
-    public void setProductImageTable(List<ProductImageTable> productImageTable) {
-        this.productImageTables = productImageTable;
-    }
-
-    //  @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
-    @OneToMany(mappedBy = "product")
-    private List<ProductImageTable> productImageTables;
 
     @Column(name = "stockQuantity", nullable = true)
     private Integer stockQuantity;
@@ -192,16 +172,5 @@ public class Product {
     public void setLastEdit(Instant lastEdit) {
         this.lastEdit = lastEdit;
     }
-
-    public void addProductImage(ProductImageTable productImagetable) {
-        productImageTables.add(productImagetable);
-        productImagetable.setProduct(this);
-    }
-
-    public void removeProductImage(ProductImageTable productImagetable) {
-        productImageTables.remove(productImagetable);
-        productImagetable.setProduct(null);
-    }
-
 
 }
