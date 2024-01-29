@@ -17,6 +17,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT sellerID FROM `order`", nativeQuery = true)
     public String test();
 
+    @Query(value = "SELECT * FROM order", nativeQuery = true)
+    List<Order> findAllOrders();
+
     @Query(value ="SELECT * FROM `order` WHERE buyerID = :buyerID AND orderStatus = :orderStatus", nativeQuery = true)
     List<Order> findOrderByBuyerIDAndStatus(@Param("buyerID") String buyerID,@Param("orderStatus") int orderStatus);
 
