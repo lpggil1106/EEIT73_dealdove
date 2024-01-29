@@ -32,7 +32,7 @@ public class Order {
     private List<OrderItem> orderItems;
 
     @Column(name = "buyerID", nullable = false)
-    private Integer buyerID;
+    private String buyerID;
 
     @Column(name = "paymentID", nullable = false)
     private Integer paymentID;
@@ -74,11 +74,11 @@ public class Order {
         this.sellerID = sellerID;
     }
 
-    public Integer getBuyerID() {
+    public String getBuyerID() {
         return buyerID;
     }
 
-    public void setBuyerID(Integer buyerID) {
+    public void setBuyerID(String buyerID) {
         this.buyerID = buyerID;
     }
 

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @DynamicInsert
