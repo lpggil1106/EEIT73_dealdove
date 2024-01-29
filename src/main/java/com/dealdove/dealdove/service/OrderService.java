@@ -82,7 +82,7 @@ public class OrderService {
         obj.setReturnURL("https://d378-220-132-47-88.ngrok-free.app/ecpayCheckout");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
-        obj.setClientBackURL("http://192.168.1.37:8080/");
+        obj.setClientBackURL("http://localhost:8080/Dealdove");
         String form = all.aioCheckOut(obj, null);
 
         return form;
