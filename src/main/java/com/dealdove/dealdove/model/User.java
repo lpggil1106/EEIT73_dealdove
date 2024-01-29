@@ -1,16 +1,11 @@
 package com.dealdove.dealdove.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.List;
 
-@Getter
-    @Setter
     @Entity
     @DynamicInsert
     @Table(name = "user")
@@ -21,7 +16,7 @@ import java.util.List;
         private String userID;
 
         @Column(name = "username" , nullable = false , unique = true)
-        private String userName;
+        private String username;
 
         @Column(name = "password" , nullable = true)
         private String password;
@@ -46,14 +41,20 @@ import java.util.List;
 
         @Column(name = "lastedit")
         private ZonedDateTime lastedit;
-
-
         public User() {
+        }
+
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
         }
         // Constructor for User
         public User(String ID, String username, String password, String email, boolean status, int gender, LocalDate birthdate, ZonedDateTime createtime, ZonedDateTime lastedit,String avatar) {
             this.userID = ID;
-            this.userName = username;
+            this.username = username;
             this.password = password;
             this.email = email;
             this.status = status;
@@ -63,6 +64,80 @@ import java.util.List;
             this.lastedit = lastedit;
             this.avatar = avatar;
         }
+
+
+        public String getUserID() {
+            return userID;
+        }
+
+        public void setUserID(String userID) {
+            this.userID = userID;
+        }
+
+        public String getUserName() {
+            return username;
+        }
+
+        public void setUserName(String userName) {
+            this.username = userName;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public boolean isStatus() {
+            return status;
+        }
+
+        public void setStatus(boolean status) {
+            this.status = status;
+        }
+
+        public int getGender() {
+            return gender;
+        }
+
+        public void setGender(int gender) {
+            this.gender = gender;
+        }
+
+        public LocalDate getBirthDate() {
+            return birthdate;
+        }
+
+        public void setBirthDate(LocalDate birthDate) {
+            this.birthdate = birthDate;
+        }
+
+        public ZonedDateTime getCreateTime() {
+            return createtime;
+        }
+
+        public void setCreateTime(ZonedDateTime createTime) {
+            this.createtime = createTime;
+        }
+
+        public ZonedDateTime getLastEdit() {
+            return lastedit;
+        }
+
+        public void setLastEdit(ZonedDateTime lastEdit) {
+            this.lastedit = lastEdit;
+        }
+
 
 
     }

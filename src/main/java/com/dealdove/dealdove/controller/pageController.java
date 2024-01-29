@@ -37,10 +37,6 @@ public class pageController {
     public String productPage(){
         return "06_product_home_page";
     }
-    @GetMapping("/Coupon")
-    public String couponPage(){
-        return "15_coupon_page";
-    }
     @GetMapping("/test2")
     public String test2(){
         return "test";
@@ -50,6 +46,8 @@ public class pageController {
     public String userPage(){
         return "10_seller_home_page";
     }
+
+
 
 
 

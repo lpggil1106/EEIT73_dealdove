@@ -1,5 +1,6 @@
 package com.dealdove.dealdove.service;
 
+import ch.qos.logback.core.model.Model;
 import com.dealdove.dealdove.dao.ModelInfoRepository;
 import com.dealdove.dealdove.model.ModelInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class ModelInfoService {
         this.modelInfoRepository = modelInfoRepository;
     }
 
+    public void saveModelInfo(ModelInfo modelInfo){
+        modelInfoRepository.save(modelInfo);
+    }
     public String getMaxMinPrice(Integer productID){
         //最小值
         int Max = Integer.MIN_VALUE;

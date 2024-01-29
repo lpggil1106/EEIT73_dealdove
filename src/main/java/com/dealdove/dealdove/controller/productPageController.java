@@ -1,7 +1,6 @@
 package com.dealdove.dealdove.controller;
 
 
-import com.dealdove.dealdove.model.ModelInfo;
 import com.dealdove.dealdove.model.Product;
 import com.dealdove.dealdove.service.ProductPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +34,6 @@ public class productPageController {
         if (!specifications.isEmpty()) {
             return new ResponseEntity<>(specifications, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-    @GetMapping("/{productid}/{firstModelid}/{secondModelid}/modelinfo")
-    public ResponseEntity<ModelInfo> findModelInfoByProductIDAndFirstModelIDAndSecondModelID(@PathVariable Integer productid, @PathVariable Integer firstModelid, @PathVariable Integer secondModelid){
-        ModelInfo modelinfo = productPageService.findModelInfoByProductIDAndFirstModelIDAndSecondModelID(productid, firstModelid, secondModelid);
-        if(modelinfo != null){
-            return new  ResponseEntity<>(modelinfo, HttpStatus.OK);
-        }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

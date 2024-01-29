@@ -36,10 +36,9 @@ public class UserController {
 
 //    顯示使用者資訊
     @PostMapping("/showInfo")
-    public @ResponseBody String showInfo(@RequestBody  LinkedHashMap<String, String> user) {
+    public @ResponseBody String member(@RequestBody  LinkedHashMap<String, String> user) {
       Object[] userInfo =  userService.showInfo(user);
-        return "{\"email\":\"" + userInfo[0] + "\",\"gender\":\""+userInfo[1]+"\",\"birthday\":\""+userInfo[2]+
-                "\",\"picture\":\""+userInfo[3]+"\"}";
+        return "{\"email\":\"" + userInfo[0] + "\",\"gender\":\""+userInfo[1]+"\",\"birthday\":\""+userInfo[2]+"\"}";
     }
     @MessageMapping("/user.addUser")
     @SendTo("/user/public")

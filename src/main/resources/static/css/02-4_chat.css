@@ -2,7 +2,7 @@
     display: none;
 }
 #chat-page {
-    width: 43vw;
+    width: 42vw;
     height: 50.5vh;
     position: fixed;
     bottom: 10px;
@@ -29,22 +29,23 @@
 }
 
 #chat-content {
-    height: 50vh;
     display: flex;
     flex-direction: row;
     flex-grow: 1;
 }
 
 .users-list-container {
+    width: 11.5vw;
     height: 45vh;
-    /*overflow-y: auto;*/
+    overflow-y: auto;
     background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
     justify-content: space-between;
-    border-right: 3px solid #A2CAD3;
 }
 .cart_container {
     width: 100px;
@@ -64,14 +65,13 @@
 }
 
 .users-list ul {
-    width: 11.5vw;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .chat-area {
-    width: 31.5vw;
+    width: 30vw;
     height: 45vh;
     background-color: white;
     display: flex;
@@ -84,13 +84,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid #A2CAD3;
+    border-bottom: 1px solid #A2CAD3;
 }
 
 #chat-messages {
     display: flex;
     flex-direction: column;
-    width: 30.5vw;
+    width: 30vw;
     height: 30vh;
     overflow-y: auto;
     max-height: 300px;
@@ -102,7 +102,7 @@
     min-height: 1vh;
     padding: 5px;
     font-size: 1em;
-    /*display: inline-block;*/
+    display: inline-block;
 }
 
 .message.other {
@@ -133,12 +133,13 @@
     margin-bottom: 5px;
     border-radius: 5px;
     word-wrap: break-word;
-    /*padding-bottom: 12px;*/
+    padding-bottom: 12px;
 }
 
 .timestamp {
     position: absolute;
     bottom: 5px;
+    right: 0px;
     font-size: 0.7em;
     color: #666666;
     white-space: nowrap;
@@ -204,14 +205,16 @@
 }
 
 .user-item {
-    width: max-content;
-    cursor: pointer;
     display: flex;
-    padding: 5px;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .user-item.active {
-    padding: 5px;
+    background-color: #cdebff;
+    color: #4f4f4f;
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -223,18 +226,17 @@
 }
 
 .user-item span {
-    /*font-weight: bold;*/
+    font-weight: bold;
 }
 
 .separator {
-    height: 0.3vh;
-    /*margin: 5px;*/
-    background-color: #A2CAD3;
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
 }
 
 .message p {
-    margin-bottom: 5px;
-    padding: 0 5px;
+    padding: 0 12px;
     border-radius: 15px;
     word-wrap: break-word;
 }
@@ -258,7 +260,7 @@
 
 .sender {
     background-color: #a0e1eb;
-    color: black;
+    color: #fff;
     align-self: flex-end;
 }
 
