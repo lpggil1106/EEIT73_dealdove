@@ -25,7 +25,6 @@ public class ProductImageTable {
         return product;
     }
 
-
     public void setId(Integer id) {
         this.id = id;
     }
