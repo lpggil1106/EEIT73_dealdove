@@ -31,7 +31,18 @@ public class productModelAssociateTableService {
         productModelAssociateTableRepository.save(productModelAssociateTable);
     }
 
+    public void saveProductModelAssociateTable(String modelName, int parentID) {
 
+        ProductModelAssociateTable productModelAssociateTable = new ProductModelAssociateTable();
+        productModelAssociateTable.setModelName(modelName);
+        productModelAssociateTable.setParentModelID(parentID);
+
+        productModelAssociateTableRepository.save(productModelAssociateTable);
+    }
+
+    public ProductModelAssociateTable findByModelName(String modelName){
+        return productModelAssociateTableRepository.findByModelName(modelName);
+    }
     public List<ProductModelAssociateTable> getAllProductModelAssociateTable() {
         return productModelAssociateTableRepository.getAllProduct();
     }

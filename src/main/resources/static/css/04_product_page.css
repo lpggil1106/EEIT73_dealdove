@@ -5,16 +5,13 @@
     
 }
 
-.product .productImage .bigImage img,
-.product .productImage .smallImage img {
+.product .productImage .bigImage {
     width: 100%;
-    height: 100%;
-    object-fit: contain; /* 等比例縮放，保持圖片完整顯示在容器內 */
+    height: 25.7333vw;
 }
 
 .product .productImage .smallImage {
     height: 6vw;
-    object-fit: contain;
 }
 
 .smallImage button {
@@ -23,7 +20,7 @@
     font-size: 1vw;
     border: none;
     margin-top: 1.5vw;
-    background-color: #F9F3E7;
+    background-color: white;
 }
 
 .productDescribe{
@@ -77,6 +74,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
+    cursor: pointer;
 }
 
 .quantity {
@@ -90,7 +88,7 @@
     margin-right: 1vw;
 }
 
-.quantity input {
+.quantity span {
     width: 3vw;
     border-width: 1px 0 1px 0;
     border-color: #000;
@@ -202,6 +200,9 @@
     border-radius: 12px;
     background-color: #F9F3E7;
     margin-bottom: 3vw;
+    flex-direction: column;
+    align-items: flex-start; /* 調整對齊方式，使內容左對齊 */
+
 }
 
 .productDescribe2 p {
@@ -212,9 +213,18 @@
 
 .productDescribe2 .div {
     width: 100%;
-    height: 13.3333vw;
+    height: 25vw;
+    /*height: 13.3333vw;*/
     border-radius: 12px;
     background-color: white;
+    display: inline-block;
+    max-width: 100%; /* 讓邊框的最大寬度不超過容器寬度 */
+}
+.descriptionBorder {
+    max-width: 100%;
+    padding: 10px;
+    display: inline-block;
+    overflow: auto;
 }
 
 /* ------------------------------------------------ */

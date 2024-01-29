@@ -10,19 +10,19 @@ public class ModelInfo {
     @Column(name = "modelInfoID", nullable = false)
     private Integer id;
 
-    @Column(name = "productID", nullable = false)
+    @Column(name = "productID", nullable = true)
     private Integer productID;
 
-    @Column(name = "firstModelID", nullable = false)
+    @Column(name = "firstModelID", nullable = true)
     private Integer firstModelID;
 
     @Column(name = "secondModelID")
     private Integer secondModelID;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = true)
     private Integer price;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity", nullable = true)
     private Integer quantity;
 
     public Integer getId() {

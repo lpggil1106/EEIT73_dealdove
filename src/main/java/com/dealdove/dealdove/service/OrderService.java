@@ -20,12 +20,15 @@ import ecpay.payment.integration.domain.AioCheckOutALL;
 
 @Service
 public class OrderService {
-
     private OrderRepository orderRepository;
 
     @Autowired
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
+    }
+
+    public List<Order> findAllOrders(){
+        return orderRepository.findAllOrders();
     }
 
     public FirebaseToken getFirebaseToken(String userToken) {

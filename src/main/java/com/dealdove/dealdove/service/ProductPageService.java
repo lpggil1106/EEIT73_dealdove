@@ -1,13 +1,10 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.dao.ModelInfoRepository;
 import com.dealdove.dealdove.dao.ProductModelAssociateTableRepository;
 import com.dealdove.dealdove.dao.ProductRepository;
-import com.dealdove.dealdove.model.ModelInfo;
 import com.dealdove.dealdove.model.Product;
 import com.dealdove.dealdove.model.ProductModelAssociateTable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,34 +12,25 @@ import java.util.*;
 @Service
 public class ProductPageService {
     private ProductRepository productRepository;
-    @Autowired
-    private ProductModelAssociateTableRepository productModelAssociateTableRepository;
-    @Autowired
-    private ModelInfoRepository modelInfoRepository;
 
     @Autowired
     public ProductPageService(ProductRepository productRepository){
-
         this.productRepository = productRepository;
     }
 
+    public Product getProductById(Integer productId) {
+        return productRepository.findById(productId).orElse(null);
+    }
+
+    @Autowired
+    private ProductModelAssociateTableRepository productModelAssociateTableRepository;
     public ProductPageService(ProductModelAssociateTableRepository productModelAssociateTableRepository) {
         this.productModelAssociateTableRepository = productModelAssociateTableRepository;
     }
 
-    public Product getProductById(Integer productId) {
-
-        return productRepository.findById(productId).orElse(null);
-    }
-    public ProductPageService(ModelInfoRepository modelInfoRepository){
-        this.modelInfoRepository = modelInfoRepository;
-    }
-    public ModelInfo findModelInfoByProductIDAndFirstModelIDAndSecondModelID(Integer productid, Integer firstModelid, Integer secondModelid){
-        return modelInfoRepository.findModelInfoByProductIDAndFirstModelIDAndSecondModelID(productid, firstModelid, secondModelid);
-
-    }
     public Map<String, Object> getProductSpecifications(Integer productID) {
         List<ProductModelAssociateTable> specifications = productModelAssociateTableRepository.findByProductID(productID);
+
         Map<String, Object> map1 = new LinkedHashMap<>();
         int datakey1 = 0; //要抓 顏色跟尺寸id來比對 datakey1=spec.getId();
         int loop = 0;  //記錄迴圈數
@@ -74,8 +62,6 @@ public class ProductPageService {
         //System.out.print(map1);
         //{map1={id=8, name=顏色, dataMapList=[{id=10, name=黑色}, {id=11, name=白色}]},
         // map2={id=9, name=尺寸, dataMapList=[{id=12, name=S}, {id=13, name=M}, {id=14, name=L}]}}
-
         return map1;
     }
-
 }

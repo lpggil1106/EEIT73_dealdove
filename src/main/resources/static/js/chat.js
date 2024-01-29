@@ -8,6 +8,7 @@ const messageForm = document.querySelector('#messageForm');
 const messageInput = document.querySelector('#message');
 const connectingElement = document.querySelector('.connecting');
 const chatArea = document.querySelector('#chat-messages');
+const logout = document.querySelector('#logout');
 
 let stompClient = null;
 let nickname = null;
@@ -55,6 +56,11 @@ function onConnected() {
     stompClient.subscribe(`/user/${nickname}/queue/messages`, onMessageReceived);
     stompClient.subscribe(`/user/public`, onMessageReceived);
 
+    // register the connected user
+    stompClient.send("/app/user.addUser",
+        {},
+        JSON.stringify({userID: nickname, userName: fullname, status: 'ONLINE'})
+    );
     document.querySelector('#connected-user-fullname').textContent = fullname;
     findAndDisplayConnectedUsers().then();
 }
@@ -84,7 +90,7 @@ function appendUserElement(user, connectedUsersList) {
     listItem.id = user.userID;
 
     const userImage = document.createElement('img');
-    userImage.src = '../images/user_icon.png';
+    userImage.src = '../img/user_icon.png';
     userImage.alt = user.userName;
 
     const usernameSpan = document.createElement('span');
@@ -157,7 +163,7 @@ function sendMessage(event) {
     const messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
         const chatMessage = {
-            senderId: nickname,
+            senderId: uid,
             recipientId: selectedUserId,
             content: messageInput.value.trim(),
             timestamp: new Date()

@@ -6,124 +6,99 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/aws-sdk@2.1128.0/dist/aws-sdk.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 </head>
-<input type="file" id="fileInput"/>
+<input type="file" id="fileInput" />
 <button onclick="handleUpload()">上傳</button>
 <!--insert a table -->
-<table id="table2">
+<table id = "table2">
     <tr>
         <th>userID</th>
         <th>userName</th>
         <th>avatar</th>
     </tr>
 </table>
-<form method="post" action="login">
-    <input type="email" name="email">
-    <input type="text" name="password">
-    <input type="submit" value="click">
-</form>
-<div id="ECPayPayment"></div>
+    <form method="post" action="login">
+        <input type="email" name="email">
+        <input type="text" name="password">
+        <input type="submit" value="click">
+    </form>
 
-<a href="/test123456">123456</a>
-<a href="/orderItem">or</a>
-
-<button id="test" onclick="test()">click</button>
-<script>
-    // fetch("/link")
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         data.forEach(user=>{
-    //             console.log(user);
-    //                 let row = document.getElementById("table2");
-    //                 let newRow = `<tr>
-    //                 <td>${user.userID}</td>
-    //                 <td>${user.userName}</td>
-    //                 <td><img src="${user.avatar}" alt="Animated GIF"></td>
-    //             </tr>`;
-    //                 row.innerHTML += newRow;
-    //             }
-    //         )
-    //     }).catch(error => console.log(error));
-    //
-    //     function test(){
-    //         fetch("/login",{
-    //             method:'POST',
-    //             body:"{email:'123456'}",
-    //             headers:{'Content-Type': 'application/json;charset=utf-8'}
-    //         }).then(res=>res.json().then(res=>console.log(res))).catch((error)=>{
-    //             console.log(error);
-    //         })
-    //     }
+    <button id="test" onclick="test()">click</button>
+    <script>
+        // fetch("/link")
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         data.forEach(user=>{
+        //             console.log(user);
+        //                 let row = document.getElementById("table2");
+        //                 let newRow = `<tr>
+        //                 <td>${user.userID}</td>
+        //                 <td>${user.userName}</td>
+        //                 <td><img src="${user.avatar}" alt="Animated GIF"></td>
+        //             </tr>`;
+        //                 row.innerHTML += newRow;
+        //             }
+        //         )
+        //     }).catch(error => console.log(error));
+        //
+        //     function test(){
+        //         fetch("/login",{
+        //             method:'POST',
+        //             body:"{email:'123456'}",
+        //             headers:{'Content-Type': 'application/json;charset=utf-8'}
+        //         }).then(res=>res.json().then(res=>console.log(res))).catch((error)=>{
+        //             console.log(error);
+        //         })
+        //     }
 
 
-    function handleUpload() {
-        const fileInput = document.getElementById('fileInput');
-        const file = fileInput.files[0];
 
-        if (file) {
-            const reader = new FileReader();
+        function handleUpload() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
 
-            reader.onloadend = function () {
-                const base64String = reader.result.split(',')[1];
-                // 將 base64 字符串發送到後端
-                sendToBackend(base64String);
-            };
+            if (file) {
+                const reader = new FileReader();
 
-            reader.readAsDataURL(file);
-        } else {
-            console.error('Please select a file to upload.');
+                reader.onloadend = function () {
+                    const base64String = reader.result.split(',')[1];
+                    // 將 base64 字符串發送到後端
+                    sendToBackend(base64String);
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                console.error('Please select a file to upload.');
+            }
         }
-    }
 
-    // 將 base64 字符串發送到後端的函數
-    // 將 base64 字符串發送到後端的函數
-    function sendToBackend(base64String) {
-        fetch('/product/imageUpload', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({image: base64String}),
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('網路響應不正確');
-                }
-                return response.text();
+        // 將 base64 字符串發送到後端的函數
+        // 將 base64 字符串發送到後端的函數
+        function sendToBackend(base64String) {
+            fetch('/product/imageUpload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: base64String }),
             })
-            .then(data => {
-                console.log('從後端收到的回應:', data);
-            })
-            .catch(error => {
-                console.error('發送數據到後端時出錯:', error);
-            });
-    }
-
-
-</script>
-<script src="https://ecpg-stage.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116"></script>
-<script>
-    ECPay.initialize(stage, function (errMsg) {
-        //初始化SDK
-        var lang = getCookie("language");
-        if (!lang) {
-            lang = ECPay.Language.zhTW;
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('網路響應不正確');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('從後端收到的回應:', data);
+                })
+                .catch(error => {
+                    console.error('發送數據到後端時出錯:', error);
+                });
         }
-        ECPay.createPayment("55a026b8df314f9bb2dc808a5fe21c9d", lang, function (errMsg) {
-            //to do..
-        }, V2);
-    })
-    ECPay.getPayToken(function (paymentInfo, errMsg) {
-        if (errMsg != null) {
-            ErrHandle(errMsg);
-            return;
-        };
-        $("#PayToken").val(paymentInfo.PayToken);
-        return true;
-    });
-</script>
+
+
+    </script>
 <body>
 </body>
 </html>

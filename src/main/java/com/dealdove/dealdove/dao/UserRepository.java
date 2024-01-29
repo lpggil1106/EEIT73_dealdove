@@ -1,6 +1,5 @@
 package com.dealdove.dealdove.dao;
 
-import com.dealdove.dealdove.model.Order;
 import com.dealdove.dealdove.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,7 +26,6 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Query(value = "SELECT birthDate FROM  user WHERE userID= :userID", nativeQuery = true)
     LocalDate findBirthdayById(@Param("userID") String userID);
-
 
     User getUserNameByUserID(String userID);
 
