@@ -34,14 +34,15 @@ public class Product {
     @Column(name = "productPrice", nullable = true)
     private Integer productPrice;
 
-    @Column(name = "userID", nullable = true)
-    private Integer userID;
+    @Column(name = "userID", length = 200, nullable = true)
+    private String userID;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems;
 
     @Column(name = "productImageID", nullable = true)
     private Integer productImageID;
 
-    @OneToMany(mappedBy = "product")
-    private List<OrderItem> orderItems;
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
@@ -133,15 +134,13 @@ public class Product {
         this.productPrice = productPrice;
     }
 
-    public Integer getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(Integer userId) {
+    public void setUserID(String userId) {
         this.userID = userID;
     }
-
-
 
 
     public Integer getProductImageID() {
