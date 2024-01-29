@@ -77,6 +77,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
+    cursor: pointer;
 }
 
 .quantity {
@@ -202,6 +203,9 @@
     border-radius: 12px;
     background-color: #F9F3E7;
     margin-bottom: 3vw;
+    flex-direction: column;
+    align-items: flex-start; /* 調整對齊方式，使內容左對齊 */
+
 }
 
 .productDescribe2 p {
@@ -212,9 +216,18 @@
 
 .productDescribe2 .div {
     width: 100%;
-    height: 13.3333vw;
+    height: 25vw;
+    /*height: 13.3333vw;*/
     border-radius: 12px;
     background-color: white;
+    display: inline-block;
+    max-width: 100%; /* 讓邊框的最大寬度不超過容器寬度 */
+}
+.descriptionBorder {
+    max-width: 100%;
+    padding: 10px;
+    display: inline-block;
+    overflow: auto;
 }
 
 /* ------------------------------------------------ */
