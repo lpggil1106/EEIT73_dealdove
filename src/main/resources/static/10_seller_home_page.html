@@ -1415,16 +1415,7 @@
         }
     }
 </script>
-<!--<Script>function showSub(category) {-->
-<!--    //隱藏子分類-->
-<!--    document.querySelectorAll('.sub-category').forEach(function (sub) {-->
-<!--        sub.style.display = 'none';-->
-<!--    });-->
 
-<!--    //顯示子分類-->
-<!--    document.getElementById(category).style.display = 'block';-->
-<!--}-->
-<!--</Script>-->
 
 <script>
     document.getElementById('plustype').addEventListener('click', function() {
@@ -1947,6 +1938,13 @@
 </script>
 <script>
     function showSub(category) {
+        //隱藏子分類
+        document.querySelectorAll('.sub-category').forEach(function (sub) {
+            sub.style.display = 'none';
+        });
+        //顯示子分類
+        document.getElementById(category).style.display = 'block';
+
         // 取得點擊類別的內容
         var categoryContent = document.getElementById(category).innerHTML;
 
@@ -1958,11 +1956,6 @@
         document.getElementById("mainCategory").innerHTML = mainCategoryContent;
     }
 </script>
-
-
-
-
-
 
 </body>
 

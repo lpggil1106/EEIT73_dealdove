@@ -101,14 +101,14 @@ public class ProductController {
         return productModelAssociateTableService.findAllProductModelAssociateTable();
     }
 
-    @PostMapping("/add_productModelAssociateTableChild")
-    public void addProductModelAssociateTableChild(String modelName, String parent) {
-        Integer x = productModelAssociateTableService.findByModelName(parent).getParentModelID();
-        // 如果 modelName 為null不儲存
-        if (modelName != null && !modelName.isEmpty()) {
-            productModelAssociateTableService.saveProductModelAssociateTable(modelName, x);
-        }
-    }
+//    @PostMapping("/add_productModelAssociateTableChild")
+//    public void addProductModelAssociateTableChild(String modelName, String parent) {
+//        Integer x = productModelAssociateTableService.findByModelName(parent).getParentModelID();
+//        // 如果 modelName 為null不儲存
+//        if (modelName != null && !modelName.isEmpty()) {
+//            productModelAssociateTableService.saveProductModelAssociateTable(modelName, x);
+//        }
+//    }
 
 
 //    @PostMapping("/add_modelInfo")
