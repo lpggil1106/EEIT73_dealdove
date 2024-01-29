@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.Instant;
-import java.util.List;
 
 @Entity
 @DynamicInsert
@@ -39,6 +38,8 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems;
+
+
 
     @Column(name = "productImageID", nullable = true)
     private Integer productImageID;
