@@ -242,7 +242,7 @@ height: 3vw;
 position: relative;
 text-align: center;
 padding: 0.5vw 1.5vw 0.5vw 1.5vw;
-color: gray;
+color:grey;
 font-size: 1.2vw;
 font-family: Inter;
 word-wrap: break-word;
@@ -462,6 +462,17 @@ button {
 .main-category:hover{
   background-color: #dddcdc;
   margin: 2px;
+  width: 7vw;
+  border-radius:5px;
+  padding: 2px;
+}
+
+.main-category2:hover{
+  background-color: #dddcdc;
+  margin: 2px;
+  width: 2.6vw;
+  border-radius:5px;
+  padding: 2px;
 }
 
 .modal-body a:hover{
@@ -520,4 +531,23 @@ button {
    padding-left: 6.3vw;
        font-size: 1.5vw;
        font-family: Inter;
+}
+
+.dropdown-container {
+  display: flex; /* 啟用 flex 布局 */
+  align-items: center; /* 對齊元素到中心線 */
+}
+
+#mainCategory, #subCategory {
+  margin-left: 10px; /* 添加一些間距 */
+  /* 其他需要的樣式 */
+}
+
+.dropdown-flex-container {
+  display: flex; /* 啟用 flex 布局 */
+  align-items: center; /* 中心對齊所有項目 */
+}
+
+.dropdown-flex-container > * {
+  margin-right: 10px; /* 在元素之間添加一些間隔 */
 }

@@ -48,7 +48,10 @@ public class pageController {
     }
 
 
-
+    @GetMapping("ecpayReturn")
+    public String ecpayReturn(){
+        return "ecpayReturn";
+    }
 
 
 }

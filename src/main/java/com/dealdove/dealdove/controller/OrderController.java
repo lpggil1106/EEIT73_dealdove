@@ -5,6 +5,7 @@ import com.dealdove.dealdove.model.OrderItem;
 import com.dealdove.dealdove.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
@@ -18,19 +19,22 @@ public class OrderController {
     }
 
     @PostMapping("/showOrderName")
-    public List<String> getOrderItemsByOrderID(@RequestBody LinkedHashMap<String, String> user) {
+    public List<HashMap<String,String>> getOrderItemsByOrderID(@RequestBody LinkedHashMap<String, String> user) {
+        orderService.findOrderByBuyerIDAndStaus2(user);
         return orderService.getOrderItemsNameByOrderID(user);
+
     }
 
-    @PostMapping("/showOrderQuantity")
-    public List<String> getOrderItemsQuantityByOrderID(@RequestBody LinkedHashMap<String, String> user) {
-        return orderService.getOrderItemsQuantityByOrderID(user);
-    }
+
+//    @PostMapping("/showOrderQuantity")
+//    public List<String> getOrderItemsQuantityByOrderID(@RequestBody LinkedHashMap<String, String> user) {
+//        return orderService.getOrderItemsQuantityByOrderID(user);
+//    }
     @CrossOrigin(origins = "*",maxAge = 3600)
     @PostMapping("/ecpayCheckout")
     public String ecpayCheckout() {
         String aioCheckOutALLForm = orderService.ecpayCheckout();
-            return  aioCheckOutALLForm;
+        return  aioCheckOutALLForm;
 //        return "{\"form\":\""+aioCheckOutALLForm+"\"}";
     }
 }

@@ -7,13 +7,11 @@ import java.time.Instant;
 import java.util.List;
 
 @Entity
-@DynamicInsert
-//@DynamicInsert可以只插入有值的欄位
-@Table(name = "product")
+
+@Table(name = "product", schema = "dealdove")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "productID", nullable = false)
     private Integer productID;
 
@@ -25,14 +23,6 @@ public class Product {
 
     @Column(name = "productCategoryID", nullable = true)
     private Integer productCategoryID;
-
-    @Column(name = "productParentID", nullable = true)
-    private Integer productParentID;
-
-    @Column(name = "productModelID", nullable = true)
-    private Integer productModelID;
-    @Column(name = "productPrice", nullable = true)
-    private Integer productPrice;
 
     @Column(name = "userID", length = 200, nullable = true)
     private String userID;
@@ -62,15 +52,10 @@ public class Product {
         this.productImageTables = productImageTable;
     }
 
-    //  @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
+//      @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(mappedBy = "product")
     private List<ProductImageTable> productImageTables;
 
-    @Column(name = "stockQuantity", nullable = true)
-    private Integer stockQuantity;
-
-    @Column(name = "soldQuantity", nullable = true)
-    private Integer soldQuantity;
 
     @Column(name = "isAvailable", nullable = true)
     private Byte isAvailable;
@@ -113,28 +98,7 @@ public class Product {
         this.productCategoryID = productCategoryID;
     }
 
-    public Integer getProductParentID() {
-        return productParentID;
-    }
 
-    public void setProductParentID(Integer productParentID) {
-        this.productParentID = productParentID;
-    }
-
-    public Integer getProductModelID() {
-        return productModelID;
-    }
-
-    public void setProductModelID(Integer productModelID) {
-        this.productModelID = productModelID;
-    }
-    public Integer getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(Integer productPrice) {
-        this.productPrice = productPrice;
-    }
 
     public String getUserID() {
         return userID;
@@ -153,23 +117,6 @@ public class Product {
         this.productImageID = productImageID;
     }
 
-
-
-    public Integer getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(Integer stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
-
-    public Integer getSoldQuantity() {
-        return soldQuantity;
-    }
-
-    public void setSoldQuantity(Integer soldQuantity) {
-        this.soldQuantity = soldQuantity;
-    }
 
     public Byte getIsAvailable() {
         return isAvailable;

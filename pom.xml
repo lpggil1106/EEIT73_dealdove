@@ -59,7 +59,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.33</version>
+			<version>8.0.23</version> <!-- 使用适当的版本号 -->
 		</dependency>
 		<dependency>
 			<groupId>com.google.firebase</groupId>

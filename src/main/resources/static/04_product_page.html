@@ -488,90 +488,100 @@
         document.querySelectorAll('.viewDetails').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = this.closest('.product').dataset.productId;
-
+                console.log(productId+"click");
                 document.getElementById('productidmodel').innerText = productId;
 
                 fetch(`api/products/getProduct/${productId}`)
                     .then(response => response.json())
-                    .then(product => {
-                        document.getElementById('productName').innerText = product.productName;
-                        document.getElementById('descriptionContent').innerText = product.productDescription;
-
+                        // console.log(response+"__response__"))
+                        // response.json())
+                    .then(product => product.forEach((product)=>{
+                        // console.log(product.productName);
+                        // console.log(product.productDes);
+                        document.getElementById('productName').innerText =product.productName;
+                        document.getElementById('descriptionContent').innerText = product.productDes;
                         // 清空原有的內容
-                        document.getElementById('specificContainer').innerHTML = '';
+                            document.getElementById('specificContainer').innerHTML = '';
+                    }));
 
-                        // 使用 Fetch API 來呼叫後端 API 取得產品規格
-                       fetch(`api/products/${productId}/specifications`)
-                            .then(response => response.json())
-                            .then(specifications => {
-                                // 將規格資料動態生成到 HTML 中
-                                Object.entries(specifications).forEach(([specType, specValues]) => {
+                    //     document.getElementById('productName').innerText = product.productName;
+                    //     document.getElementById('descriptionContent').innerText = product.productDescription;
+                    //
+                    //     // 清空原有的內容
+                    //     document.getElementById('specificContainer').innerHTML = '';
+                    //
+                    //     // 使用 Fetch API 來呼叫後端 API 取得產品規格
+                    //    // fetch(`api/products/${productId}/specifications`)
+                    //    //      .then(response => response.json())
+                    //    //      .then(specifications => {
+                    //    //          // 將規格資料動態生成到 HTML 中
+                    //    //          Object.entries(specifications).forEach(([specType, specValues]) => {
+                    //    //
+                    //    //              const specTypeContainer = document.createElement('div');
+                    //    //              specTypeContainer.classList.add('col-12', 'mt-3', 'specification');
+                    //    //              specTypeContainer.id = `container${specType}`;
+                    //    //              // 產生規格名稱的區塊
+                    //    //              const specTypeLabel = document.createElement('p');
+                    //    //              specTypeLabel.classList.add('col-2');
+                    //    //              if('name' in specValues){
+                    //    //                  specTypeLabel.textContent = specValues['name'];
+                    //    //             }
+                    //    //              specTypeContainer.appendChild(specTypeLabel);
+                    //    //
+                    //    //              // 產生規格內容的區塊
+                    //    //              specValues.dataMapList.forEach(data => {
+                    //    //                  const specValuesContainer = document.createElement('div');
+                    //    //                  specValuesContainer.classList.add('div');
+                    //    //                  specValuesContainer.classList.add(`${specType}modelinfos`); //black
+                    //    //                  specValuesContainer.textContent = data.name;
+                    //    //
+                    //    //                  const specValuesContainer2 = document.createElement('div');
+                    //    //                  specValuesContainer2.classList.add('modelid');
+                    //    //                  specValuesContainer2.textContent = data.id;
+                    //    //                  specValuesContainer2.style.display = 'none';
+                    //    //
+                    //    //                  specTypeContainer.appendChild(specValuesContainer);
+                    //    //                  specValuesContainer.appendChild(specValuesContainer2);
+                    //    //                  // 註冊點擊事件
+                    //    //                  specValuesContainer.addEventListener('click', function() {
+                    //    //                      const modelId = specValuesContainer.querySelector('.modelid').innerText;
+                    //    //                      if(`${specType}` === "map1"){
+                    //    //                          const firstModelidInput = document.getElementsByName('firstModelid')[0];
+                    //    //                          const modelId1 = modelId; // 替換為實際的值
+                    //    //                          // 設置元素的值
+                    //    //                          firstModelidInput.value = modelId1;
+                    //    //                          // 創建 input 事件
+                    //    //                          const inputEvent = new Event('input', {
+                    //    //                              bubbles: true,
+                    //    //                              cancelable: true,
+                    //    //                          });
+                    //    //                          // 分派 input 事件
+                    //    //                          firstModelidInput.dispatchEvent(inputEvent);
+                    //    //                      }else{
+                    //    //
+                    //    //                          const secondModelidInput = document.getElementsByName('secondModelid')[0];
+                    //    //                          const modelId2 = modelId;
+                    //    //                          secondModelidInput.value = modelId2;
+                    //    //                          const inputEvent = new Event('input', {
+                    //    //                              bubbles: true,
+                    //    //                              cancelable: true,
+                    //    //                          });
+                    //    //                          secondModelidInput.dispatchEvent(inputEvent);
+                    //    //                      }
+                    //    //                  });
+                    //    //              });
+                    //    //
+                    //    //              // 將整個規格區塊加入到主容器中
+                    //    //              document.getElementById('specificContainer').appendChild(specTypeContainer);
+                    //    //
+                    //    //              // 新增換行元素
+                    //    //              const lineBreak = document.createElement('br');
+                    //    //              document.getElementById('specificContainer').appendChild(lineBreak);
+                    //    //          });
+                    //    //      })
+                    //    //      .catch(error => console.log(error));
 
-                                    const specTypeContainer = document.createElement('div');
-                                    specTypeContainer.classList.add('col-12', 'mt-3', 'specification');
-                                    specTypeContainer.id = `container${specType}`;
-                                    // 產生規格名稱的區塊
-                                    const specTypeLabel = document.createElement('p');
-                                    specTypeLabel.classList.add('col-2');
-                                    if('name' in specValues){
-                                        specTypeLabel.textContent = specValues['name'];
-                                   }
-                                    specTypeContainer.appendChild(specTypeLabel);
-
-                                    // 產生規格內容的區塊
-                                    specValues.dataMapList.forEach(data => {
-                                        const specValuesContainer = document.createElement('div');
-                                        specValuesContainer.classList.add('div');
-                                        specValuesContainer.classList.add(`${specType}modelinfos`); //black
-                                        specValuesContainer.textContent = data.name;
-
-                                        const specValuesContainer2 = document.createElement('div');
-                                        specValuesContainer2.classList.add('modelid');
-                                        specValuesContainer2.textContent = data.id;
-                                        specValuesContainer2.style.display = 'none';
-
-                                        specTypeContainer.appendChild(specValuesContainer);
-                                        specValuesContainer.appendChild(specValuesContainer2);
-                                        // 註冊點擊事件
-                                        specValuesContainer.addEventListener('click', function() {
-                                            const modelId = specValuesContainer.querySelector('.modelid').innerText;
-                                            if(`${specType}` === "map1"){
-                                                const firstModelidInput = document.getElementsByName('firstModelid')[0];
-                                                const modelId1 = modelId; // 替換為實際的值
-                                                // 設置元素的值
-                                                firstModelidInput.value = modelId1;
-                                                // 創建 input 事件
-                                                const inputEvent = new Event('input', {
-                                                    bubbles: true,
-                                                    cancelable: true,
-                                                });
-                                                // 分派 input 事件
-                                                firstModelidInput.dispatchEvent(inputEvent);
-                                            }else{
-
-                                                const secondModelidInput = document.getElementsByName('secondModelid')[0];
-                                                const modelId2 = modelId;
-                                                secondModelidInput.value = modelId2;
-                                                const inputEvent = new Event('input', {
-                                                    bubbles: true,
-                                                    cancelable: true,
-                                                });
-                                                secondModelidInput.dispatchEvent(inputEvent);
-                                            }
-                                        });
-                                    });
-
-                                    // 將整個規格區塊加入到主容器中
-                                    document.getElementById('specificContainer').appendChild(specTypeContainer);
-
-                                    // 新增換行元素
-                                    const lineBreak = document.createElement('br');
-                                    document.getElementById('specificContainer').appendChild(lineBreak);
-                                });
-                            })
-                            .catch(error => console.log(error));
-                    })
-                    .catch(error => console.log(error));
+                    // .catch(error => console.log(error));
             });
         });
 
