@@ -12,7 +12,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productID", nullable = false)
-    private Integer id;
+    private Integer productID;
 
     @Column(name = "productName", nullable = false, length = 300)
     private String productName;
@@ -67,11 +67,11 @@ public class Product {
     private Instant lastEdit;
 
     public Integer getProductID() {
-        return id;
+        return productID;
     }
 
     public void setProductID(Integer productID) {
-        this.id = id;
+        this.productID = productID;
     }
 
     public String getProductName() {

@@ -31,6 +31,7 @@ public class ProductController {
     @PostMapping("/add_product")
     public String addProduct(@RequestParam("productName") String productName,
                              @RequestParam("productDescription") String productDescription,
+                             @RequestParam("productCategoryID") Integer productCategoryID,
                              @RequestParam("specific") String specific,
                              @RequestParam("specific2") String specific2,
                              @RequestParam("specific3") String specific3,
@@ -45,7 +46,7 @@ public class ProductController {
 
     {
         // 創product實體
-        Product product = productService.saveProduct(productName, productDescription);
+        Product product = productService.saveProduct(productName, productDescription,productCategoryID);
         // 獲得產品ID
         Integer productId = product.getProductID();
 
