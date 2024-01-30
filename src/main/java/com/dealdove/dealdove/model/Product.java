@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 
@@ -26,8 +27,8 @@ public class Product {
     @Column(name = "userID", length = 200, nullable = true)
     private String userID;
 
-//    @OneToMany(mappedBy = "product")
-//    private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems;
 
 
 
@@ -35,25 +36,25 @@ public class Product {
     private Integer productImageID;
 
 
-//    public List<OrderItem> getOrderItems() {
-//        return orderItems;
-//    }
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 
-//    public void setOrderItems(List<OrderItem> orderItems) {
-//        this.orderItems = orderItems;
-//    }
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 
-//    public List<ProductImageTable> getProductImageTables() {
-//        return productImageTables;
-//    }
+    public List<ProductImageTable> getProductImageTables() {
+        return productImageTables;
+    }
 
-//    public void setProductImageTable(List<ProductImageTable> productImageTable) {
-//        this.productImageTables = productImageTable;
-//    }
+    public void setProductImageTable(List<ProductImageTable> productImageTable) {
+        this.productImageTables = productImageTable;
+    }
 
-    //  @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
-//    @OneToMany(mappedBy = "product")
-//    private List<ProductImageTable> productImageTables;
+//      @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product")
+    private List<ProductImageTable> productImageTables;
 
 
     @Column(name = "isAvailable", nullable = true)
@@ -141,15 +142,15 @@ public class Product {
         this.lastEdit = lastEdit;
     }
 
-//    public void addProductImage(ProductImageTable productImagetable) {
-//        productImageTables.add(productImagetable);
-//        productImagetable.setProduct(this);
-//    }
+    public void addProductImage(ProductImageTable productImagetable) {
+        productImageTables.add(productImagetable);
+        productImagetable.setProduct(this);
+    }
 
-//    public void removeProductImage(ProductImageTable productImagetable) {
-//        productImageTables.remove(productImagetable);
-//        productImagetable.setProduct(null);
-//    }
+    public void removeProductImage(ProductImageTable productImagetable) {
+        productImageTables.remove(productImagetable);
+        productImagetable.setProduct(null);
+    }
 
 
 }
