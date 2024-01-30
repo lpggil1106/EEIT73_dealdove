@@ -32,13 +32,13 @@ public class ProductService {
         return productRepository.findProductByproductID(productID);
     }
 //    定義getProductByID方法，調用ProductRepository的findProductByproductID方法，通過產品ID檢索特定產品。
-    public List<Product> saveProduct(String productName,String productDescription) {
+    public Product saveProduct(String productName,String productDescription) {
         Product product = new Product();
         product.setProductName(productName);
         product.setProductDescription(productDescription);
 
-        productRepository.save(product);
-        return productRepository.findAll();
+        return productRepository.save(product);
+
     }
 
 }

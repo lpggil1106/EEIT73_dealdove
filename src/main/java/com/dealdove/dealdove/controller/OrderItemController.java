@@ -16,12 +16,12 @@ public class OrderItemController {
         this.orderItemService=orderItemService;
     }
 
-    @GetMapping("/orderItem")
-    public void findOrderItemByID(){
-        List<OrderItem> orderItemsList = orderItemService.findOrderItemByOrderItemID(1);
-        OrderItem orderItems = orderItemsList.get(0);
-        System.out.println(orderItems);
-        Product product = orderItems.getProduct();
-        System.out.println(product.getProductName());
-    }
+//    @GetMapping("/orderItem")
+//    public void findOrderItemByID(){
+//        List<OrderItem> orderItemsList = orderItemService.findOrderItemByOrderItemID(1);
+//        OrderItem orderItems = orderItemsList.get(0);
+//        System.out.println(orderItems);
+//        Product product = orderItems.getProduct();
+//        System.out.println(product.getProductName());
+//    }
 }
