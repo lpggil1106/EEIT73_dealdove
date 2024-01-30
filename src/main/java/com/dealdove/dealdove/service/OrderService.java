@@ -4,6 +4,7 @@ import com.dealdove.dealdove.dao.OrderRepository;
 import com.dealdove.dealdove.model.Order;
 import com.dealdove.dealdove.model.OrderItem;
 import com.dealdove.dealdove.model.Product;
+import com.dealdove.dealdove.model.ProductImageTable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
@@ -42,9 +43,7 @@ public class OrderService {
     public List<HashMap<String,String>> getOrderItemsNameByOrderID(LinkedHashMap<String, String> user) {
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String buyerID = decodedToken.getUid();
-        System.out.println(user.get("status"));
         int status = (user.get("status")==null)?1:Integer.parseInt(user.get("status"));
-        System.out.println(status);
         List<Order> orders = orderRepository.findOrderByBuyerIDAndStatus(buyerID,status);
         List<HashMap<String,String>> productList = new ArrayList<>();
         for(Order order : orders){
@@ -52,10 +51,13 @@ public class OrderService {
             for(OrderItem orderItem :orderItems){
                 HashMap<String,String> productMap = new HashMap<>();
                 Product product = orderItem.getProduct();
-
+                List<ProductImageTable> productImages =  product.getProductImageTables();
+                for(ProductImageTable productImage : productImages){
                 productMap.put("productName",product.getProductName());
                 productMap.put("orderQuantity",orderItem.getQuantity().toString());
+                productMap.put("productImage",productImage.getImage());
                 productList.add(productMap);
+                }
             }
         }
         return productList;
@@ -64,24 +66,13 @@ public class OrderService {
     public void findOrderByBuyerIDAndStaus2(LinkedHashMap<String, String> user){
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String buyerID = decodedToken.getUid();
-        System.out.println(user.get("status"));
         int status = (user.get("status")==null)?1:Integer.parseInt(user.get("status"));
         int page = 0;
-
-        System.out.println(status);
         List<Order> orders = orderRepository.findOrderByBuyerIDAndStatus2(buyerID,status,0,1);
         List<HashMap<String,String>> productList = new ArrayList<>();
         for(Order order : orders){
             List<OrderItem> orderItems = order.getOrderItems();
-//            for(OrderItem orderItem :orderItems){
-//                HashMap<String,String> productMap = new HashMap<>();
-//                Product product = orderItem.getProduct();
-//
-//                productMap.put("productName",product.getProductName());
-//                productMap.put("orderQuantity",orderItem.getQuantity().toString());
-//                productList.add(productMap);
-//            }
-            for(int i = 0;i<1;i++){
+            for(int i = 0;i<2;i++){
                 OrderItem orderItem = orderItems.get(i);
                 HashMap<String,String> productMap = new HashMap<>();
                 Product product = orderItem.getProduct();
@@ -91,8 +82,8 @@ public class OrderService {
                 productList.add(productMap);
             }
         }
-        System.out.println(productList+"From 2");
-//        return productList;
+        System.out.println(productList.size()+"From 2");
+
 
     }
 

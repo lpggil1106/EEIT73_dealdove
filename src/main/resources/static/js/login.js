@@ -2,9 +2,10 @@ import {auth, provider, signInWithPopup, onAuthStateChanged, signInWithEmailAndP
 import "https://code.jquery.com/jquery-3.6.0.min.js";
 
 
-function  reflash(){
+function reflash() {
 
 }
+
 $(document).ready(() => {
     changeCaptcha();
     //Google登入
@@ -36,73 +37,81 @@ $(document).ready(() => {
 
     // Email信箱登入
     $('#login-button').on('click', () => {
-        onAuthStateChanged(auth,(user=>{
+        onAuthStateChanged(auth, (user => {
             const userCaptcha = $('#captcha').val();
-            if(user){
-               if(userCaptcha==captcha){
-                   const user = auth.currentUser;
-                   const isEmailVerified = user.emailVerified;
-                   const email = $('#email').val();
-                   const password = $('#password').val();
+            if (user) {
+                if (userCaptcha===(captcha)) {
+                    const user = auth.currentUser;
+                    const isEmailVerified = user.emailVerified;
+                    const email = $('#email').val();
+                    const password = $('#password').val();
 
-                   if(isEmailVerified){
-                       signInWithEmailAndPassword(auth,email,password)
-                           .then(result => {
-                               const user = result.user;
-                               return user.getIdToken();})
-                           .then(
-                               window.location.href='/Dealdove'
-                           )
-                           // .then(()=>{console.log('123');
-                           //     })
-                   }else{
-                       window.alert('尚未認證')
-                       window.location.reload();
-                   }
-               }else{
-                   console.log('error')
-               }
-            }else{
-                // const isEmailVerified = user.emailVerified;
-               if(userCaptcha==captcha){
-                   const email = $('#email').val();
-                   const password = $('#password').val();
+                    if (isEmailVerified) {
+                        signInWithEmailAndPassword(auth, email, password)
+                            .then(result => {
+                                const user = result.user;
+                                return user.getIdToken();
+                            })
+                            .then(IdToken => {
+                                sendTokenToBackend(IdToken);
+                                window.location.href = '/Dealdove';
+                            })
+                    } else {
+                        window.alert('尚未認證')
+                        window.location.reload();
+                    }
+                } else {
+                    console.log('error')
+                }
+            } else {
+                if (userCaptcha === captcha) {
+                    const email = $('#email').val();
+                    const password = $('#password').val();
 
-                   signInWithEmailAndPassword(auth, email, password)
-                       .then(()=> {
-                           const user = auth.currentUser;
-                           const isEmailVerified = user.emailVerified;
+                    signInWithEmailAndPassword(auth, email, password)
+                        .then(() => {
+                            const user = auth.currentUser;
+                            const isEmailVerified = user.emailVerified;
 
-                           if(isEmailVerified){
-                               console.log('success');
-                           }else{
-                               console.log('no');
+                            if (isEmailVerified) {
+                                console.log('success');
+                            } else {
+                                console.log('no');
+                            }
+                        })
+                        .catch(error => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            console.log(errorCode);
+                           if(errorCode==='auth/too-many-requests'){
+                               window.alert('登入失敗太多次請更改密碼或稍後重新登入');
+                           }else if(errorCode==='auth/invalid-credential'){
+                               window.alert('尚未註冊或是密碼錯誤')
                            }
-                       })
-                       .catch(error=>{console.log(error);
-                           window.alert('尚未註冊')})
-               }else{
-                   console.log('error')
-               }
+                        })
+                } else {
+                    console.log('error')
+                }
             }
         }))
 
     });
-    $('.captchaimg').on('click',()=>{
+    $('.captchaimg').on('click', () => {
         changeCaptcha();
     });
 })
 
-let captcha ;
-function changeCaptcha(){
+let captcha;
+
+function changeCaptcha() {
     fetch('captcha')
-        .then(res=>res.json())
-        .then( res=>{
-            $('#captchaimg').prop('src', "data:image/png;base64," + res.base64String);
-            captcha= res.captchCode;
+        .then(res => res.json())
+        .then(res => {
+                $('#captchaimg').prop('src', "data:image/png;base64," + res.base64String);
+                captcha = res.captchCode;
             }
         )
-        .catch(error=>console.log(error))
+        .catch(error => console.log(error))
 }
 
 // 送 ID Token 回後端的函數
@@ -126,6 +135,7 @@ function sendTokenToBackend(idToken) {
             console.error('錯誤:', error);
         });
 }
+
 // 送 ID Token 回後端的函數
 
 

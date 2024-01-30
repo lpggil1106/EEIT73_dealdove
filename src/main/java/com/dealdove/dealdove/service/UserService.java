@@ -5,11 +5,14 @@ import com.dealdove.dealdove.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
+import io.opencensus.stats.Aggregation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -22,7 +25,8 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-//    Firebase 解析器
+
+    //    Firebase 解析器
     public FirebaseToken getFirebaseToken(String userToken) {
         try {
             return FirebaseAuth.getInstance().verifyIdToken(userToken);
@@ -31,75 +35,62 @@ public class UserService {
         }
     }
 
-//    會員登入
-    public void login(LinkedHashMap<String, String> users){
+    //    會員登入
+    public void login(LinkedHashMap<String, String> users) {
         FirebaseToken decodedToken = getFirebaseToken(users.get("idToken"));
         String userID = decodedToken.getUid();
         String email = decodedToken.getEmail();
-        String name = (decodedToken.getName()==null)? decodedToken.getEmail() : decodedToken.getName();
-
-        if(userRepository.findEmailById(userID)!=null){
-            System.out.println("User : "+userID+" Login!");
-        }else if(userRepository.findEmailById(userID)==null){
-            System.out.println("User : "+userID+" register!");
+        String name = (decodedToken.getName() == null) ? decodedToken.getEmail() : decodedToken.getName();
+        String avatar = (decodedToken.getPicture() == null) ? "https://img.tukuppt.com/png_preview/00/09/56/g3nYjpNuGM.jpg!/fw/780" : decodedToken.getPicture();
+        System.out.println(avatar);
+        if (userRepository.findEmailById(userID) != null) {
+            System.out.println("User : " + userID + " Login!");
+        } else if (userRepository.findEmailById(userID) == null) {
+            System.out.println("User : " + userID + " register!");
             User user = new User();
             user.setUserID(userID);
             user.setUserName(name);
             user.setEmail(email);
             user.setStatus(true);
+            user.setAvatar(avatar);
             userRepository.save(user);
         }
     }
 
     @Transactional
-    public void updateUser(LinkedHashMap<String, String> user){
+    public void updateUser(LinkedHashMap<String, String> user) {
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String userID = decodedToken.getUid();
-        int gender =(user.get("gender")==null)?0:Integer.parseInt(user.get("gender"));
-        userRepository.updateGender(gender,userID);
+        int gender = (user.get("gender") == null) ? 0 : Integer.parseInt(user.get("gender"));
+        userRepository.updateGender(gender, userID);
 
-        LocalDate birthday =(user.get("birthday").isEmpty())?userRepository.findBirthdayById(userID):LocalDate.parse(user.get("birthday"));
-        userRepository.updateBirthday(birthday,userID);
+        LocalDate birthday = (user.get("birthday").isEmpty()) ? userRepository.findBirthdayById(userID) : LocalDate.parse(user.get("birthday"));
+        userRepository.updateBirthday(birthday, userID);
     }
 
-    public Object[] showInfo(LinkedHashMap<String, String> user){
+    public List<HashMap<String, String>> showInfo(LinkedHashMap<String, String> user) {
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String userID = decodedToken.getUid();
         String email = userRepository.findEmailById(userID);
         int gender = userRepository.findGenderById(userID);
         LocalDate birthday = userRepository.findBirthdayById(userID);
+        if (birthday == null) {
+            birthday = LocalDate.now();
+        }
 
-        return new Object[]{email,gender,birthday};
+        List<HashMap<String, String>> userInfoList = new ArrayList<>();
+        HashMap<String, String> userInfoMap = new HashMap<>();
+        userInfoMap.put("email", email);
+        userInfoMap.put("gender", Integer.toString(gender));
+        userInfoMap.put("birthday", birthday.toString());
+        userInfoList.add(userInfoMap);
+        return userInfoList;
     }
 
-    public List<User> findAllUsers() {
-        return userRepository.findAllUsers();
+    public int findUserByEmail(String email){
+       String count = userRepository.findAllByEmail(email);
+        return Integer.parseInt(count);
     }
-
-
-
-    public String findUserById(String userID){return userRepository.findEmailById(userID);}
-    public Integer findGenderById(String userID){return userRepository.findGenderById(userID);}
-//    public LocalDate findBirthdayById(String userID){return userRepository.findBirthdayById(userID);}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void saveUser(User user) {
         user.setStatus(true);

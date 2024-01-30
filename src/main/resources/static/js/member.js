@@ -55,12 +55,13 @@ function showInfoFromBack(idToken) {
         body: JSON.stringify({"idToken": idToken})
     })
         .then(res => res.json())
-        .then(data => {
-            $('#email').prop('value', data.email);
-            $('input[name="gender"][value="' + data.gender + '"]').prop('checked', true);
-            $('#birthday').prop('value', data.birthday);
-            // $('#test').prop('src',data.picture);
+        .then(data =>data.forEach((data)=>{
+                $('#email').prop('value', data.email);
+                $('input[name="gender"][value="' + data.gender + '"]').prop('checked', true);
+                $('#birthday').prop('value', data.birthday);
+
         })
+        )
 }
 
 function setInfo(idToken, gender, birthday, address) {
@@ -85,30 +86,19 @@ function showOrder(idToken, status) {
             console.log(orderItem.productName);
                 $(`#commodity${index}`).text('商品名: ' + orderItem.productName);
                 $(`#quantity${index}`).text('數量: ' + orderItem.orderQuantity);
+                $(`#img${index}`).prop('src',orderItem.productImage);
                 // console.log( $(`#quantity${index}`).text());
             })
         )
         .catch(error => console.log(error))
 }
 
-// function showOrderQuantity(idToken, status) {
-//     fetch('/showOrderQuantity', {
-//         method: 'POST',
-//         headers: {'Content-Type': 'application/json;charset=utf-8'},
-//         body: JSON.stringify({"idToken": idToken, "status": status})
-//     })
-//         .then(res => res.json())
-//         .then(data => data.forEach((quantity, index) => {
-//                 $(`#quantity${index}`).text('數量: ' + quantity);
-//             })
-//         )
-//         .catch(error => console.log(error))
-// }
-
 function resetOrder() {
     for (let i = 0; i < 99; i++) {
         $(`#commodity${i}`).text('商品名: ')
         $(`#quantity${i}`).text('數量: ');
+        $(`#img${i}`).prop('src','');
+        $(`#img${i}`).prop('alt','1');
     }
 }
 
