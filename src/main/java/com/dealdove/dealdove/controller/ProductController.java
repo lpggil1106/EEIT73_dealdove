@@ -44,7 +44,7 @@ public class ProductController {
 
 
     {
-        // 創產品實體
+        // 創product實體
         Product product = productService.saveProduct(productName, productDescription);
         // 獲得產品ID
         Integer productId = product.getProductID();
@@ -57,10 +57,10 @@ public class ProductController {
         Integer parentModelIDa =1; // 待定
         Integer parentModelIDb = 2; //
 
-        // 創建 ModelInfo 實例
+        // 創建 ModelInfo 實體
         modelInfoService.createModelInfosForProduct(productId, parentModelIDa, parentModelIDb);
 
-        // 返回页面路径
+        // 返回
         return "redirect:/10_seller_home_page.html";
     }
 
