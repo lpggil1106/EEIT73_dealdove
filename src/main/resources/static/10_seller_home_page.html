@@ -301,13 +301,16 @@
                     </div>
                     <br><br>
                     <div class="dropdown">
-                        <label>商品類別:</label>
-
-                        <!-- Button trigger modal -->
-                        <button style="margin-left: 1.2vw;" type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                            <placeholder style="opacity: 0.8;">選擇分類▼</placeholder>
-                        </button>
+                        <div class="dropdown-flex-container">
+                            <label for="specificbutton">商品類別:</label>
+                            <button id="specificbutton" style="margin-left: 1.2vw;" type="button" class="btn btn-light" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                <placeholder style="opacity: 0.8;">選擇分類▼</placeholder>
+                            </button>
+                            <div id="mainCategory" style="border-color: black"></div>
+                            <div id="subCategory" style="border-color: black"></div>
+                        </div>
+                    </div>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
@@ -320,61 +323,61 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- 主分類 -->
-                                        <div id="life1" style="border-color: black; border-radius: 5px; width: 10vw"
-                                             class="main-category" onclick="showSub('clothing')">
+                                        <div style="border-color: black;"
+                                             class="main-category" onclick="showSub('生活類別&nbsp;&nbsp;&nbsp;＞', 'clothing')">
                                             生活類別&ensp;&ensp;&ensp;>
                                         </div>
                                         <!--隱藏的子分類-->
                                         <div id="clothing" class="sub-category" style="display: none; margin-left: 8vw; margin-bottom: 1vw;">
-                                            <div id="cloth1">上衣</div>
+                                            <div class="main-category2" onclick="showSelectedCategory('衣服')">上衣</div>
                                             <br>
-                                            <div>褲子</div>
+                                            <div class="main-category2" onclick="showSelectedCategory('褲子')">褲子</div>
                                             <br>
-                                            <div>裙子</div>
+                                            <div class="main-category2" onclick="showSelectedCategory('裙子')">裙子</div>
                                             <br>
-                                            <div>鞋子</div>
+                                            <div class="main-category2" onclick="showSelectedCategory('鞋子')">鞋子</div>
                                         </div>
-                                        <div style="border-color: black; border-radius: 5px; width: 10vw"
-                                             class="main-category" onclick="showSub('electric')">
+                                        <div style="border-color: black"
+                                             class="main-category" onclick="showSub('辦公電子&nbsp;&nbsp;&nbsp;＞', 'electric')">
                                             辦公電子&ensp;&ensp;&ensp;>
                                         </div>
                                         <div id="electric" class="sub-category"
                                              style="display: none;margin-left: 8vw; margin-bottom: 1vw;">
-                                            <a>桌機</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('桌機')">桌機</div>
                                             <br>
-                                            <a>筆電</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('筆電')">筆電</div>
                                             <br>
-                                            <a>平板</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('平板')">平板</div>
                                             <br>
-                                            <a>手機</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('手機')">手機</div>
                                         </div>
-                                        <div style="border-color: black; border-radius: 5px; width: 10vw"
-                                             class="main-category" onclick="showSub('cosmetic')">
+                                        <div style="border-color: black"
+                                             class="main-category" onclick="showSub('美妝保養&nbsp;&nbsp;&nbsp;＞', 'cosmetic')">
                                             美妝保養&ensp;&ensp;&ensp;>
                                         </div>
                                         <div id="cosmetic" class="sub-category"
                                              style="display: none;margin-left: 8vw; margin-bottom: 1vw;">
-                                            <a>香水</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('香水')">香水</div>
                                             <br>
-                                            <a>彩妝</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('彩妝')">彩妝</div>
                                             <br>
-                                            <a>粉底</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('粉底')">粉底</div>
                                             <br>
-                                            <a>美容工具</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('美容工具')">美容工具</div>
                                         </div>
-                                        <div style="border-color: black; border-radius: 5px; width: 10vw"
-                                             class="main-category" onclick="showSub('accessories')">
+                                        <div style="border-color: black"
+                                             class="main-category" onclick="showSub('時尚配件&nbsp;&nbsp;&nbsp;＞', 'accessories')">
                                             時尚配件&ensp;&ensp;&ensp;>
                                         </div>
                                         <div id="accessories" class="sub-category"
                                              style="display: none;margin-left: 8vw; margin-bottom: 1vw;">
-                                            <a>項鍊</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('項鍊')">項鍊</div>
                                             <br>
-                                            <a>手環</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('手環')">手環</div>
                                             <br>
-                                            <a>髮飾</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('髮飾')">髮飾</div>
                                             <br>
-                                            <a>耳環</a>
+                                            <div class="main-category2" onclick="showSelectedCategory('耳環')">耳環</div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -386,9 +389,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- test -->
-                        <div id="mainCategory" style="border-color: black"></div>
-                        <div id="subCategory" style="border-color: black"></div>
+
+
 
                         <br> <br> <br>
 
@@ -1937,25 +1939,44 @@
     });
 </script>
 <script>
-    function showSub(category) {
-        //隱藏子分類
+    var currentMainCategory = '';  // 用於存儲當前選擇的主分類
+
+    function showSub(mainCategory, category) {
+        currentMainCategory = mainCategory;  // 保存當前選擇的主分類名稱
+
+        // 隱藏所有子分類
         document.querySelectorAll('.sub-category').forEach(function (sub) {
             sub.style.display = 'none';
         });
-        //顯示子分類
+
+        // 顯示指定的子分類
         document.getElementById(category).style.display = 'block';
+    }
 
-        // 取得點擊類別的內容
-        var categoryContent = document.getElementById(category).innerHTML;
+    function showSelectedCategory(subCategory) {
+        // 更新 mainCategory 和 subCategory 的內容
+        document.getElementById("mainCategory").innerHTML = currentMainCategory;
+        document.getElementById("subCategory").innerHTML = subCategory;
 
-        // 將點擊類別的內容放入 subCategory 中
-        document.getElementById("subCategory").innerHTML = categoryContent;
+        var modalElement = document.getElementById('exampleModal');
+        var modalInstance = bootstrap.Modal.getInstance(modalElement);
+        modalInstance.hide();
 
-        // 將主分類的文字放入 mainCategory 中
-        var mainCategoryContent = document.getElementById(category).parentNode.textContent.trim();
-        document.getElementById("mainCategory").innerHTML = mainCategoryContent;
+        var backdrops = document.getElementsByClassName('modal-backdrop');
+        for (var i = 0; i < backdrops.length; i++) {
+            backdrops[i].parentNode.removeChild(backdrops[i]);
+        }
     }
 </script>
+<script>
+    var modalElement = document.getElementById('exampleModal');
+    modalElement.addEventListener('hidden.bs.modal', function () {
+        document.body.style.overflow = ''; // 恢復滾動卷軸
+    });
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 
