@@ -33,5 +33,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Product save(Product product);
 
-
+    @Query(value = "SELECT * FROM product WHERE productID = :productId" , nativeQuery = true)
+    List<Product> getProductByID(@Param("productId") int productId);
 }
