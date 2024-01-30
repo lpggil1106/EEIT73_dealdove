@@ -7,7 +7,6 @@ import com.dealdove.dealdove.model.ModelInfo;
 import com.dealdove.dealdove.model.Product;
 import com.dealdove.dealdove.model.ProductModelAssociateTable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -32,6 +31,7 @@ public class ProductPageService {
         productList.add(productMap);
         return productList;
     }
+
     @Autowired
     public ProductPageService(ProductRepository productRepository){
         this.productRepository = productRepository;
