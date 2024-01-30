@@ -76,6 +76,18 @@ async function findAndDisplayConnectedUsers() {
             connectedUsersList.appendChild(separator);
         }
     });
+    // 一旦用戶列表加載完成，設置預設聊天對象
+    setDefaultChatUser();
+}
+
+function setDefaultChatUser() {
+    const connectedUsersList = document.getElementById('connectedUsers');
+    if (connectedUsersList.children.length > 0) {
+        // 選擇第一位用戶
+        const firstUserItem = connectedUsersList.children[0];
+        // 模擬點擊事件，以選擇該用戶作為預設聊天對象
+        firstUserItem.click();
+    }
 }
 
 function appendUserElement(user, connectedUsersList) {
@@ -102,6 +114,8 @@ function appendUserElement(user, connectedUsersList) {
     listItem.addEventListener('click', userItemClick);
 
     connectedUsersList.appendChild(listItem);
+
+
 }
 
 function userItemClick(event) {
@@ -119,6 +133,13 @@ function userItemClick(event) {
     const nbrMsg = clickedUser.querySelector('.nbr-msg');
     nbrMsg.classList.add('hidden');
     nbrMsg.textContent = '0';
+
+    // 更新chat-header-container的內容
+    const chatHeaderUsername = document.getElementById('chatusername');
+    const clickedUserName = clickedUser.querySelector('span').textContent; // 從點擊的用戶元素中獲取用戶名
+    if (chatHeaderUsername) {
+        chatHeaderUsername.textContent = clickedUserName; // 更新chat-header-container的用戶名
+    }
 
 }
 
@@ -157,10 +178,7 @@ function sendMessage(event) {
     const messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
         const chatMessage = {
-            senderId: nickname,
-            recipientId: selectedUserId,
-            content: messageInput.value.trim(),
-            timestamp: new Date()
+            senderId: nickname, recipientId: selectedUserId, content: messageInput.value.trim(), timestamp: new Date()
         };
         stompClient.send("/app/chat", {}, JSON.stringify(chatMessage));
         displayMessage(nickname, messageInput.value.trim());
