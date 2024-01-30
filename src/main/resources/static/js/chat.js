@@ -76,6 +76,18 @@ async function findAndDisplayConnectedUsers() {
             connectedUsersList.appendChild(separator);
         }
     });
+    // 一旦用戶列表加載完成，設置預設聊天對象
+    setDefaultChatUser();
+}
+
+function setDefaultChatUser() {
+    const connectedUsersList = document.getElementById('connectedUsers');
+    if (connectedUsersList.children.length > 0) {
+        // 選擇第一位用戶
+        const firstUserItem = connectedUsersList.children[0];
+        // 模擬點擊事件，以選擇該用戶作為預設聊天對象
+        firstUserItem.click();
+    }
 }
 
 function appendUserElement(user, connectedUsersList) {
