@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -40,35 +39,61 @@ public class OrderService {
     }
 
 
-    public List<String> getOrderItemsNameByOrderID(LinkedHashMap<String, String> user) {
+    public List<HashMap<String,String>> getOrderItemsNameByOrderID(LinkedHashMap<String, String> user) {
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String buyerID = decodedToken.getUid();
+        System.out.println(user.get("status"));
         int status = (user.get("status")==null)?1:Integer.parseInt(user.get("status"));
+        System.out.println(status);
         List<Order> orders = orderRepository.findOrderByBuyerIDAndStatus(buyerID,status);
-        List<String> productList = new ArrayList<>();
+        List<HashMap<String,String>> productList = new ArrayList<>();
         for(Order order : orders){
             List<OrderItem> orderItems = order.getOrderItems();
             for(OrderItem orderItem :orderItems){
+                HashMap<String,String> productMap = new HashMap<>();
                 Product product = orderItem.getProduct();
-                productList.add(product.getProductName());
+
+                productMap.put("productName",product.getProductName());
+                productMap.put("orderQuantity",orderItem.getQuantity().toString());
+                productList.add(productMap);
             }
         }
         return productList;
     }
-    public List<String> getOrderItemsQuantityByOrderID(LinkedHashMap<String, String> user) {
+
+    public void findOrderByBuyerIDAndStaus2(LinkedHashMap<String, String> user){
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String buyerID = decodedToken.getUid();
+        System.out.println(user.get("status"));
         int status = (user.get("status")==null)?1:Integer.parseInt(user.get("status"));
-        List<Order> orders = orderRepository.findOrderByBuyerIDAndStatus(buyerID,status);
-        List<String> quantityList = new ArrayList<>();
+        int page = 0;
+
+        System.out.println(status);
+        List<Order> orders = orderRepository.findOrderByBuyerIDAndStatus2(buyerID,status,0,1);
+        List<HashMap<String,String>> productList = new ArrayList<>();
         for(Order order : orders){
             List<OrderItem> orderItems = order.getOrderItems();
-            for(OrderItem orderItem :orderItems){
-                System.out.println(orderItem.getQuantity());
-                quantityList.add(orderItem.getQuantity().toString());
+//            for(OrderItem orderItem :orderItems){
+//                HashMap<String,String> productMap = new HashMap<>();
+//                Product product = orderItem.getProduct();
+//
+//                productMap.put("productName",product.getProductName());
+//                productMap.put("orderQuantity",orderItem.getQuantity().toString());
+//                productList.add(productMap);
+//            }
+            for(int i = 0;i<1;i++){
+                OrderItem orderItem = orderItems.get(i);
+                HashMap<String,String> productMap = new HashMap<>();
+                Product product = orderItem.getProduct();
+                productMap.put("productName",product.getProductName());
+                productMap.put("orderQuantity",orderItem.getQuantity().toString());
+
+                productList.add(productMap);
             }
         }
-        return quantityList;
+        System.out.println(productList+"From 2");
+//        return productList;
+
     }
 
     public String ecpayCheckout() {
@@ -82,7 +107,7 @@ public class OrderService {
         obj.setTradeDesc("test Description");
         obj.setItemName("TestItem");
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-        obj.setReturnURL("https://d378-220-132-47-88.ngrok-free.app/ecpayCheckout");
+        obj.setReturnURL(" https://7ff5-118-163-218-100.ngrok-free.app/ecpayReturn");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
         obj.setClientBackURL("http://192.168.1.37:8080/");

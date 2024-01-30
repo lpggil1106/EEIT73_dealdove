@@ -14,7 +14,7 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderItemID", nullable = false)
-    private Integer id;
+    private Integer orderItemID;
 
     @Column(name = "orderID", nullable = false)
     private Integer orderID;

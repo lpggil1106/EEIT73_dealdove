@@ -14,7 +14,7 @@ public class OrderItemService {
         this.orderItemRepository = orderItemRepository;
     }
 
-//    public List<OrderItem> findOrderItemByOrderItemID(Integer orderItemID){
-//        return orderItemRepository.findByOrderItemID(orderItemID);
-//    }
+    public List<OrderItem> findOrderItemByOrderItemID(Integer orderItemID){
+        return orderItemRepository.findByOrderItemID(orderItemID);
+    }
 }
