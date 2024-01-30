@@ -19,10 +19,21 @@ public class ProductPageService {
     private ProductModelAssociateTableRepository productModelAssociateTableRepository;
     @Autowired
     private ModelInfoRepository modelInfoRepository;
-
+    public List<HashMap<String, String>> getProductById(Integer productId) {
+        System.out.println(productId + "__service__");
+        List<Product> products = productRepository.getProductByID(productId);
+        List<HashMap<String, String>> productList = new ArrayList<>();
+        HashMap<String, String> productMap = null;
+        for (Product product : products) {
+            productMap = new HashMap<>();
+            productMap.put("productName", product.getProductName());
+            productMap.put("productDes", product.getProductDescription());
+        }
+        productList.add(productMap);
+        return productList;
+    }
     @Autowired
     public ProductPageService(ProductRepository productRepository){
-
         this.productRepository = productRepository;
     }
 
@@ -30,10 +41,6 @@ public class ProductPageService {
         this.productModelAssociateTableRepository = productModelAssociateTableRepository;
     }
 
-    public Product getProductById(Integer productId) {
-
-        return productRepository.findById(productId).orElse(null);
-    }
     public ProductPageService(ModelInfoRepository modelInfoRepository){
         this.modelInfoRepository = modelInfoRepository;
     }
