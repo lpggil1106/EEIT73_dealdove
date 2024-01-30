@@ -1,9 +1,10 @@
 .hidden {
     display: none;
 }
+
 #chat-page {
     width: 43vw;
-    height: 50.5vh;
+    height: 50.7vh;
     position: fixed;
     bottom: 10px;
     right: 10px;
@@ -13,8 +14,8 @@
     background-color: #A2CAD3;
 }
 
-#chatusername{
-    color: #666666 ;
+#chatusername {
+    color: #666666;
 }
 
 #header_talk {
@@ -46,18 +47,21 @@
     justify-content: space-between;
     border-right: 3px solid #A2CAD3;
 }
+
 .cart_container {
     width: 100px;
     height: 100px;
     margin-left: 3vw;
-    margin-top:2vw;
+    margin-top: 2vw;
 
 }
+
 .cart_container svg {
     transform: translateY(1.3vw);
 
     /* z-index: 100; */
 }
+
 .users-list h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
@@ -79,6 +83,7 @@
 }
 
 #chat-header {
+    height: 5vh;
     padding: 5px;
     background-color: #F9F3E7;
     display: flex;
@@ -338,7 +343,7 @@
     background: none;
 }
 
-#sticker-button{
+#sticker-button {
     position: absolute;
     bottom: 5px;
     height: 30px;
@@ -346,6 +351,7 @@
     border: none;
     background: none;
 }
+
 #sticker-panel {
     position: absolute;
     border: 1px solid #ddd;
