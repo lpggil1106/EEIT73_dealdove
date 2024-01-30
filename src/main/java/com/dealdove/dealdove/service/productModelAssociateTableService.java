@@ -10,39 +10,30 @@ import java.util.List;
 @Service
 public class productModelAssociateTableService {
 
-
     private ProductModelAssociateTableRepository productModelAssociateTableRepository;
 
     @Autowired
-    public productModelAssociateTableService(ProductModelAssociateTableRepository productModelAssociateTabletRepository) {
-        this.productModelAssociateTableRepository = productModelAssociateTabletRepository;
+    public productModelAssociateTableService(ProductModelAssociateTableRepository productModelAssociateTableRepository) {
+        this.productModelAssociateTableRepository = productModelAssociateTableRepository;
     }
 
     public List<ProductModelAssociateTable> findAllProductModelAssociateTable() {
         return productModelAssociateTableRepository.findAll();
     }
 
-
-    public void saveProductModelAssociateTable(String modelName) {
-
+    public ProductModelAssociateTable saveProductModelAssociateTable(String modelName, Integer productID, Integer parentModelID) {
         ProductModelAssociateTable productModelAssociateTable = new ProductModelAssociateTable();
         productModelAssociateTable.setModelName(modelName);
-
-        productModelAssociateTableRepository.save(productModelAssociateTable);
+        productModelAssociateTable.setProductID(productID); // 设置 productID
+        productModelAssociateTable.setParentModelID(parentModelID); // 设置 parentModelID
+        return productModelAssociateTableRepository.save(productModelAssociateTable);
     }
 
-    public void saveProductModelAssociateTable(String modelName, int parentID) {
-
-        ProductModelAssociateTable productModelAssociateTable = new ProductModelAssociateTable();
-        productModelAssociateTable.setModelName(modelName);
-        productModelAssociateTable.setParentModelID(parentID);
-
-        productModelAssociateTableRepository.save(productModelAssociateTable);
-    }
 
     public ProductModelAssociateTable findByModelName(String modelName){
         return productModelAssociateTableRepository.findByModelName(modelName);
     }
+
     public List<ProductModelAssociateTable> getAllProductModelAssociateTable() {
         return productModelAssociateTableRepository.getAllProduct();
     }

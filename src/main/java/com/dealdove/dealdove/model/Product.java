@@ -4,16 +4,13 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.Instant;
-import java.util.List;
 
 @Entity
-@DynamicInsert
-//@DynamicInsert可以只插入有值的欄位
-@Table(name = "product")
+
+@Table(name = "product", schema = "dealdove")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "productID", nullable = false)
     private Integer productID;
 
@@ -26,48 +23,38 @@ public class Product {
     @Column(name = "productCategoryID", nullable = true)
     private Integer productCategoryID;
 
-    @Column(name = "productParentID", nullable = true)
-    private Integer productParentID;
+    @Column(name = "userID", length = 200, nullable = true)
+    private String userID;
 
-    @Column(name = "productModelID", nullable = true)
-    private Integer productModelID;
-    @Column(name = "productPrice", nullable = true)
-    private Integer productPrice;
+//    @OneToMany(mappedBy = "product")
+//    private List<OrderItem> orderItems;
 
-    @Column(name = "userID", nullable = true)
-    private Integer userID;
+
 
     @Column(name = "productImageID", nullable = true)
     private Integer productImageID;
 
-    @OneToMany(mappedBy = "product")
-    private List<OrderItem> orderItems;
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
+//    public List<OrderItem> getOrderItems() {
+//        return orderItems;
+//    }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
+//    public void setOrderItems(List<OrderItem> orderItems) {
+//        this.orderItems = orderItems;
+//    }
 
-    public List<ProductImageTable> getProductImageTables() {
-        return productImageTables;
-    }
+//    public List<ProductImageTable> getProductImageTables() {
+//        return productImageTables;
+//    }
 
-    public void setProductImageTable(List<ProductImageTable> productImageTable) {
-        this.productImageTables = productImageTable;
-    }
+//    public void setProductImageTable(List<ProductImageTable> productImageTable) {
+//        this.productImageTables = productImageTable;
+//    }
 
     //  @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
-    @OneToMany(mappedBy = "product")
-    private List<ProductImageTable> productImageTables;
+//    @OneToMany(mappedBy = "product")
+//    private List<ProductImageTable> productImageTables;
 
-    @Column(name = "stockQuantity", nullable = true)
-    private Integer stockQuantity;
-
-    @Column(name = "soldQuantity", nullable = true)
-    private Integer soldQuantity;
 
     @Column(name = "isAvailable", nullable = true)
     private Byte isAvailable;
@@ -110,38 +97,15 @@ public class Product {
         this.productCategoryID = productCategoryID;
     }
 
-    public Integer getProductParentID() {
-        return productParentID;
-    }
 
-    public void setProductParentID(Integer productParentID) {
-        this.productParentID = productParentID;
-    }
 
-    public Integer getProductModelID() {
-        return productModelID;
-    }
-
-    public void setProductModelID(Integer productModelID) {
-        this.productModelID = productModelID;
-    }
-    public Integer getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(Integer productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public Integer getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(Integer userId) {
+    public void setUserID(String userId) {
         this.userID = userID;
     }
-
-
 
 
     public Integer getProductImageID() {
@@ -152,23 +116,6 @@ public class Product {
         this.productImageID = productImageID;
     }
 
-
-
-    public Integer getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(Integer stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
-
-    public Integer getSoldQuantity() {
-        return soldQuantity;
-    }
-
-    public void setSoldQuantity(Integer soldQuantity) {
-        this.soldQuantity = soldQuantity;
-    }
 
     public Byte getIsAvailable() {
         return isAvailable;
@@ -194,15 +141,15 @@ public class Product {
         this.lastEdit = lastEdit;
     }
 
-    public void addProductImage(ProductImageTable productImagetable) {
-        productImageTables.add(productImagetable);
-        productImagetable.setProduct(this);
-    }
+//    public void addProductImage(ProductImageTable productImagetable) {
+//        productImageTables.add(productImagetable);
+//        productImagetable.setProduct(this);
+//    }
 
-    public void removeProductImage(ProductImageTable productImagetable) {
-        productImageTables.remove(productImagetable);
-        productImagetable.setProduct(null);
-    }
+//    public void removeProductImage(ProductImageTable productImagetable) {
+//        productImageTables.remove(productImagetable);
+//        productImagetable.setProduct(null);
+//    }
 
 
 }
