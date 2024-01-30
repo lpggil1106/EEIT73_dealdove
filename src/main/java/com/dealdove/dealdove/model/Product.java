@@ -55,11 +55,6 @@ public class Product {
 //    @OneToMany(mappedBy = "product")
 //    private List<ProductImageTable> productImageTables;
 
-    @Column(name = "stockQuantity", nullable = true)
-    private Integer stockQuantity;
-
-    @Column(name = "soldQuantity", nullable = true)
-    private Integer soldQuantity;
 
     @Column(name = "isAvailable", nullable = true)
     private Byte isAvailable;
@@ -121,23 +116,6 @@ public class Product {
         this.productImageID = productImageID;
     }
 
-
-
-    public Integer getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(Integer stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
-
-    public Integer getSoldQuantity() {
-        return soldQuantity;
-    }
-
-    public void setSoldQuantity(Integer soldQuantity) {
-        this.soldQuantity = soldQuantity;
-    }
 
     public Byte getIsAvailable() {
         return isAvailable;
