@@ -56,10 +56,12 @@ public class ProductController {
 
         // 假設 parentModelIDa 和 parentModelIDb 是已知的
         Integer parentModelIDa =1; // 待定
-        Integer parentModelIDb = 2; //
+        Integer parentModelIDb =2; //
 
         // 創建 ModelInfo 實體
         modelInfoService.createModelInfosForProduct(productId, parentModelIDa, parentModelIDb);
+
+
 
         // 返回
         return "redirect:/10_seller_home_page.html";
