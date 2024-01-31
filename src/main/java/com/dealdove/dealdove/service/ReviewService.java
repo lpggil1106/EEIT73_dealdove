@@ -1,7 +1,7 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.dao.ReviewRepository;
-import com.dealdove.dealdove.model.Review;
+import com.dealdove.dealdove.model.dao.ReviewRepository;
+import com.dealdove.dealdove.model.enitity.Review;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;

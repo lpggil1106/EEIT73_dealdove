@@ -1,11 +1,10 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.dao.UserRepository;
-import com.dealdove.dealdove.model.User;
+import com.dealdove.dealdove.model.dao.UserRepository;
+import com.dealdove.dealdove.model.enitity.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
-import io.opencensus.stats.Aggregation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,6 +90,7 @@ public class UserService {
        String count = userRepository.findAllByEmail(email);
         return Integer.parseInt(count);
     }
+
 
     public void saveUser(User user) {
         user.setStatus(true);

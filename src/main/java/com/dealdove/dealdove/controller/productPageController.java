@@ -1,7 +1,7 @@
 package com.dealdove.dealdove.controller;
 
 
-import com.dealdove.dealdove.model.ModelInfo;
+import com.dealdove.dealdove.model.enitity.ModelInfo;
 import com.dealdove.dealdove.service.ProductPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

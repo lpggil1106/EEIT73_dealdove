@@ -1,7 +1,7 @@
 //package com.dealdove.dealdove.controller;
 //
-//import com.dealdove.dealdove.model.Product;
-//import com.dealdove.dealdove.model.ProductCategory;
+//import com.dealdove.dealdove.model.enitity.Product;
+//import com.dealdove.dealdove.model.enitity.ProductCategory;
 //import com.dealdove.dealdove.service.ProductService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.PostMapping;

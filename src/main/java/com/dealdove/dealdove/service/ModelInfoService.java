@@ -1,10 +1,9 @@
 package com.dealdove.dealdove.service;
 
-import ch.qos.logback.core.model.Model;
-import com.dealdove.dealdove.dao.ModelInfoRepository;
-import com.dealdove.dealdove.dao.ProductModelAssociateTableRepository;
-import com.dealdove.dealdove.model.ModelInfo;
-import com.dealdove.dealdove.model.ProductModelAssociateTable;
+import com.dealdove.dealdove.model.dao.ModelInfoRepository;
+import com.dealdove.dealdove.model.dao.ProductModelAssociateTableRepository;
+import com.dealdove.dealdove.model.enitity.ModelInfo;
+import com.dealdove.dealdove.model.enitity.ProductModelAssociateTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
