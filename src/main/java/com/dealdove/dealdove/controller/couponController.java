@@ -1,6 +1,6 @@
 package com.dealdove.dealdove.controller;
 
-import com.dealdove.dealdove.model.Coupon;
+import com.dealdove.dealdove.model.enitity.Coupon;
 import com.dealdove.dealdove.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

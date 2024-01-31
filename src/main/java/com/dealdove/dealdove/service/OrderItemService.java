@@ -1,8 +1,7 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.dao.OrderItemRepository;
-import com.dealdove.dealdove.dao.OrderRepository;
-import com.dealdove.dealdove.model.OrderItem;
+import com.dealdove.dealdove.model.dao.OrderItemRepository;
+import com.dealdove.dealdove.model.enitity.OrderItem;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

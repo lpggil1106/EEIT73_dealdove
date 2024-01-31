@@ -1,15 +1,14 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.dao.OrderRepository;
-import com.dealdove.dealdove.model.Order;
-import com.dealdove.dealdove.model.OrderItem;
-import com.dealdove.dealdove.model.Product;
-import com.dealdove.dealdove.model.ProductImageTable;
+import com.dealdove.dealdove.model.dao.OrderRepository;
+import com.dealdove.dealdove.model.enitity.Order;
+import com.dealdove.dealdove.model.enitity.OrderItem;
+import com.dealdove.dealdove.model.enitity.Product;
+import com.dealdove.dealdove.model.enitity.ProductImageTable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import ecpay.logistics.integration.domain.CreateCVSObj;
-import ecpay.logistics.integration.domain.PrintHILIFEC2COrderInfoObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,32 +61,33 @@ public class OrderService {
                 }
             }
         }
+        System.out.println(productList);
         return productList;
     }
 
-    public void findOrderByBuyerIDAndStaus2(LinkedHashMap<String, String> user){
-        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
-        String buyerID = decodedToken.getUid();
-        int status = (user.get("status")==null)?1:Integer.parseInt(user.get("status"));
-        int page = 0;
-        List<Order> orders = orderRepository.findOrderByBuyerIDAndStatus2(buyerID,status,0,1);
-        List<HashMap<String,String>> productList = new ArrayList<>();
-        for(Order order : orders){
-            List<OrderItem> orderItems = order.getOrderItems();
-            for(int i = 0;i<2;i++){
-                OrderItem orderItem = orderItems.get(i);
-                HashMap<String,String> productMap = new HashMap<>();
-                Product product = orderItem.getProduct();
-                productMap.put("productName",product.getProductName());
-                productMap.put("orderQuantity",orderItem.getQuantity().toString());
-
-                productList.add(productMap);
-            }
-        }
-        System.out.println(productList.size()+"From 2");
-
-
-    }
+//    public void findOrderByBuyerIDAndStaus2(LinkedHashMap<String, String> user){
+//        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
+//        String buyerID = decodedToken.getUid();
+//        int status = (user.get("status")==null)?1:Integer.parseInt(user.get("status"));
+//        int page = 0;
+//        List<Order> orders = orderRepository.findOrderByBuyerIDAndStatus2(buyerID,status,0,1);
+//        List<HashMap<String,String>> productList = new ArrayList<>();
+//        for(Order order : orders){
+//            List<OrderItem> orderItems = order.getOrderItems();
+//            for(int i = 0;i<2;i++){
+//                OrderItem orderItem = orderItems.get(i);
+//                HashMap<String,String> productMap = new HashMap<>();
+//                Product product = orderItem.getProduct();
+//                productMap.put("productName",product.getProductName());
+//                productMap.put("orderQuantity",orderItem.getQuantity().toString());
+//
+//                productList.add(productMap);
+//            }
+//        }
+//        System.out.println(productList.size()+"From 2");
+//
+//
+//    }
 
     public String ecpayCheckout() {
         String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);

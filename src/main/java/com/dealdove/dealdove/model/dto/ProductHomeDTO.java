@@ -1,6 +1,6 @@
 package com.dealdove.dealdove.model.dto;
 
-import com.dealdove.dealdove.model.Product;
+import com.dealdove.dealdove.model.enitity.Product;
 
 public class ProductHomeDTO {
     private Product product;

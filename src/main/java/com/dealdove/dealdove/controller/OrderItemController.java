@@ -1,7 +1,7 @@
 package com.dealdove.dealdove.controller;
 
-import com.dealdove.dealdove.model.OrderItem;
-import com.dealdove.dealdove.model.Product;
+import com.dealdove.dealdove.model.enitity.OrderItem;
+import com.dealdove.dealdove.model.enitity.Product;
 import com.dealdove.dealdove.service.OrderItemService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

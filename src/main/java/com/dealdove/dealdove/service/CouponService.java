@@ -1,7 +1,7 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.dao.CouponRepository;
-import com.dealdove.dealdove.model.Coupon;
+import com.dealdove.dealdove.model.dao.CouponRepository;
+import com.dealdove.dealdove.model.enitity.Coupon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

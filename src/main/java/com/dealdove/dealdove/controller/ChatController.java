@@ -1,6 +1,6 @@
 package com.dealdove.dealdove.controller;
 
-import com.dealdove.dealdove.model.ChatMessage;
+import com.dealdove.dealdove.model.enitity.ChatMessage;
 import com.dealdove.dealdove.model.dto.ChatNotification;
 import com.dealdove.dealdove.service.ChatMessageService;
 import lombok.RequiredArgsConstructor;
