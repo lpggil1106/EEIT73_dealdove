@@ -27,42 +27,6 @@ public class ModelInfoService {
         this.modelInfoRepository = modelInfoRepository;
         this.productModelAssociateTableRepository = productModelAssociateTableRepository;
     }
-    public void createModelInfosForProduct(Integer productID, Integer parentModelIDa, Integer parentModelIDb) {
-        List<ProductModelAssociateTable> allModels = productModelAssociateTableRepository.findByProductID(productID);
-        log.info("找到 {} 個模型关联", allModels.size());
-
-        // 將模型按 parentModelID 分組
-        Map<Integer, List<ProductModelAssociateTable>> modelGroups = allModels.stream()
-                .filter(model -> model.getParentModelID() != null) // 只處理 parentModelID 不為 null 的模型
-                .collect(Collectors.groupingBy(ProductModelAssociateTable::getParentModelID));
-
-        // 獲取屬於 parentModelIDa 和 parentModelIDb 的子模型清單
-        List<ProductModelAssociateTable> modelsOfGroupA = modelGroups.get(parentModelIDa);
-        List<ProductModelAssociateTable> modelsOfGroupB = modelGroups.get(parentModelIDb);
-
-        // 檢查是否存在對應的模型組
-        if (modelsOfGroupA != null && modelsOfGroupB != null) {
-            log.info("找到 A 组 {} 个子模型, B 组 {} 个子模型", modelsOfGroupA.size(), modelsOfGroupB.size());
-            for (ProductModelAssociateTable modelA : modelsOfGroupA) {
-                for (ProductModelAssociateTable modelB : modelsOfGroupB) {
-                    // 创建 ModelInfo 实例
-                    ModelInfo modelInfo = new ModelInfo();
-                    modelInfo.setProductID(productID);
-                    modelInfo.setFirstModelID(modelA.getId());
-                    modelInfo.setSecondModelID(modelB.getId());
-                    // TODO: 设置 price 和 quantity
-                    // ...
-
-                    ModelInfo savedModelInfo = modelInfoRepository.save(modelInfo);
-//                    log.info("保存 ModelInfo，ID: {}", savedModelInfo.getModelInfoID());
-                }
-            }
-        } else {
-            log.warn("A 组或 B 组的子模型为空");
-        }
-    }
-
-
     public void saveModelInfo(ModelInfo modelInfo){
         modelInfoRepository.save(modelInfo);
     }

@@ -41,7 +41,11 @@ public class ProductController {
                              @RequestParam("specific22") String specific22,
                              @RequestParam("specific33") String specific33,
                              @RequestParam("specific44") String specific44,
-                             @RequestParam("specific55") String specific55)
+                             @RequestParam("specific55") String specific55,
+                             @RequestParam("typedive1hidden") String typedive1hidden,
+                             @RequestParam("typedive11hidden") String typedive11hidden,
+                             @RequestParam("price1") Integer price,
+                             @RequestParam("quantity1") Integer quantity)
 
 
     {
@@ -57,17 +61,19 @@ public class ProductController {
         saveModelAndSubModels(specific, productId, specific2, specific3, specific4, specific5);
         saveModelAndSubModels(specific1, productId, specific22, specific33, specific44, specific55);
 
-        // 假設 parentModelIDa 和 parentModelIDb 是已知的
-        Integer parentModelIDa =1; // 待定
-        Integer parentModelIDb =2; //
 
-        // 創建 ModelInfo 實體
-        modelInfoService.createModelInfosForProduct(productId, parentModelIDa, parentModelIDb);
-
-
-
+        Integer firstModelID = productModelAssociateTableService.findModelIdByModelNameAndProductId(typedive1hidden, productId);
+        Integer secondModelID = productModelAssociateTableService.findModelIdByModelNameAndProductId(typedive11hidden, productId);
+        // 创建 ModelInfo 实体并保存
+        ModelInfo modelInfo = new ModelInfo();
+        modelInfo.setProductID(productId); // 假设 productId 为产品 ID
+        modelInfo.setFirstModelID(firstModelID);
+        modelInfo.setSecondModelID(secondModelID);
+        modelInfo.setPrice(price);
+        modelInfo.setQuantity(quantity);
+        modelInfoService.saveModelInfo(modelInfo);
         // 返回
-        return "redirect:/10_seller_home_page.html";
+        return "redirect:/seller/10_seller_home_page.html";
     }
 
 
@@ -86,9 +92,12 @@ public class ProductController {
         }
     }
 
+//    找到分類categoryID的方法
     private Integer findCategoryIDByName(String categoryName) {
         // 在這裡實現查詢邏輯，返回匹配的 categoryID
         // 這可能需要在 ProductService 中新增一個方法來查詢資料庫
         return productService.findCategoryIDByName(categoryName);
     }
+
+
 }
