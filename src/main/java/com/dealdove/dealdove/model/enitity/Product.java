@@ -29,11 +29,8 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems;
 
-
-
     @Column(name = "productImageID", nullable = true)
     private Integer productImageID;
-
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
