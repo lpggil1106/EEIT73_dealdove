@@ -25,9 +25,6 @@ public class Coupon {
     @Column(name = "isUsed", nullable = false)
     private Byte isUsed;
 
-    @Column(name = "expirationDate", nullable = false)
-    private Instant expirationDate;
-
     @Column(name = "creationDate", nullable = false)
     private ZonedDateTime creationDate;
 

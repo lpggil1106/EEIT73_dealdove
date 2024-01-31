@@ -13,4 +13,6 @@ public interface CouponRepository extends JpaRepository<Coupon, Long> {
 
     @Query(value = "SELECT * FROM coupon WHERE couponID = :couponID", nativeQuery = true)
     Coupon getCouponByID(Integer couponID);
+
+    Coupon save(Coupon coupon);
 }
