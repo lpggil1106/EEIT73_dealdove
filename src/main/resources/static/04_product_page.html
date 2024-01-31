@@ -101,7 +101,7 @@
         </header>
         <main>
             <section class="mb-5" >
-                <div class="product" data-product-id="1">
+                <div class="product" data-product-id="3">
                     <p class="productName">商品名稱</p>
                     <button class="viewDetails">查看詳情</button>
                 </div>
@@ -147,73 +147,8 @@
                             </div>
                             <div class="col-1 ps-0"><button id="nextBtn">&gt</button></div>
                         </div>
-
                     </div>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            const mainImage = document.getElementById('mainImage');
-                            const prevBtn = document.getElementById('prevBtn');
-                            const nextBtn = document.getElementById('nextBtn');
-                            const smallImages = document.querySelectorAll('.smallImage .col-3');
-                            const totalImages = smallImages.length;
-                            const imagesPerSet = 3;
-                            let currentImageIndex = 0;
 
-                            // 初始化顯示前三個小圖
-                            showSmallImages(0, imagesPerSet - 1);
-
-                            prevBtn.addEventListener('click', function() {
-                                // 如果已經顯示到第一組小圖，則鎖定在前三個區塊
-                                console.log(currentImageIndex+"click");
-                                if (currentImageIndex <= 2) {
-                                    currentImageIndex = 0;
-                                    showSmallImages(0, imagesPerSet - 1);
-                                }else{
-                                    // 顯示上一個三個小圖
-                                    showSmallImages(currentImageIndex - imagesPerSet, currentImageIndex - 1);
-                                }
-                            });
-                            nextBtn.addEventListener('click', function() {
-                                // 顯示下一個三個console.log(currentImageIndex+"000currentImageIndex");小圖
-                                console.log(currentImageIndex+"11currentImageIndex");
-                                console.log(totalImages+"11hii");
-                                console.log(imagesPerSet+"11imagesPerSet");
-                                showSmallImages(currentImageIndex, currentImageIndex + imagesPerSet - 1);
-
-                                console.log(currentImageIndex+"currentImageIndex");
-                                console.log(totalImages+"hii");
-                                console.log(imagesPerSet+"imagesPerSet");
-                                // 如果已經顯示到最後一組小圖，則鎖定在倒數三個區塊
-                                if (currentImageIndex >= totalImages - imagesPerSet) {
-                                    currentImageIndex = totalImages - imagesPerSet;
-                                    showSmallImages(currentImageIndex, totalImages - 1);
-                                }
-                            });
-                            function showSmallImages(startIndex, endIndex) {
-                                console.log(startIndex+"startIndex");
-                                console.log(endIndex+"endIndex");
-                                // 隱藏所有小圖
-                                hideAllSmallImages();
-
-                                // 顯示指定範圍的小圖
-                                for (let i = startIndex; i <= endIndex; i++) {
-                                    if (smallImages[i]) {
-                                        smallImages[i].style.display = 'block';
-                                    }
-                                }
-
-                                // 更新目前顯示的小圖索引
-                                currentImageIndex = endIndex;
-                            }
-
-                            function hideAllSmallImages() {
-                                smallImages.forEach(image => {
-                                    image.style.display = 'none';
-                                });
-                            }
-                        });
-
-                    </script>
                     <div class="col-7 productDescribe">
                         <p id="productidmodel" style="display: none"></p>
                         <p class="productName" id="productName">商品名稱</p>
@@ -248,6 +183,7 @@
                 </div>
             </section>
             <section>
+                <div id="userid"></div>>
                 <div class="row seller">
                     <div class="col-5">
                         <div class="col-7 d-flex">
@@ -395,12 +331,18 @@
             </div>
         </footer>
     <script>
+        // const selectedModelFir = [];
+        // const selectedModelSec = [];
+        let firName='';
+        let secName='';
+        //測試productID用
         document.querySelectorAll('.viewDetails').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = this.closest('.product').dataset.productId;
                 console.log(productId+"click");
                 document.getElementById('productidmodel').innerText = productId;
-
+                document.getElementById('userid').innerText = '4uIXMQan5kRprMeKC1QXLrIzw2D2';
+//測試productID用
                 fetch(`api/products/getProduct/${productId}`)
                     .then(response => response.json())
                     .then(product => product.forEach((product)=>{
@@ -434,6 +376,11 @@
                                         specValuesContainer.classList.add(`${specType}modelinfos`); //black
                                         specValuesContainer.textContent = data.name;
 
+                                        const specValuesContainerName = document.createElement('div');
+                                        specValuesContainerName.classList.add(`modelName`);
+                                        specValuesContainerName.textContent = data.name;
+                                        specValuesContainerName.style.display = 'none';
+
                                         const specValuesContainer2 = document.createElement('div');
                                         specValuesContainer2.classList.add('modelid');
                                         specValuesContainer2.textContent = data.id;
@@ -441,12 +388,19 @@
 
                                         specTypeContainer.appendChild(specValuesContainer);
                                         specValuesContainer.appendChild(specValuesContainer2);
+                                        specValuesContainer.appendChild(specValuesContainerName);
+
                                         // 註冊點擊事件
                                         specValuesContainer.addEventListener('click', function() {
                                             const modelId = specValuesContainer.querySelector('.modelid').innerText;
+                                            const modelName = specValuesContainer.querySelector('.modelName').innerText;
+
+
                                             if(`${specType}` === "map1"){
                                                 const firstModelidInput = document.getElementsByName('firstModelid')[0];
+                                                console.log(firstModelidInput+"firstModelidInput");
                                                 const modelId1 = modelId; // 替換為實際的值
+                                                console.log(modelId1+"modelId1");
                                                 // 設置元素的值
                                                 firstModelidInput.value = modelId1;
                                                 // 創建 input 事件
@@ -456,8 +410,10 @@
                                                 });
                                                 // 分派 input 事件
                                                 firstModelidInput.dispatchEvent(inputEvent);
+                                                // selectedModelFir.push(modelName);
+                                                firName=modelName;
+                                                console.log(firName);
                                             }else{
-
                                                 const secondModelidInput = document.getElementsByName('secondModelid')[0];
                                                 const modelId2 = modelId;
                                                 secondModelidInput.value = modelId2;
@@ -466,6 +422,9 @@
                                                     cancelable: true,
                                                 });
                                                 secondModelidInput.dispatchEvent(inputEvent);
+                                                // selectedModelSec.push(modelName);
+                                                secName=modelName;
+                                                console.log(secName);
                                             }
                                         });
                                     });
@@ -536,6 +495,100 @@
                 }
             });
         });
+
+        // 獲取加入購物車按鈕
+        const addToCartButton = document.querySelector('.add');
+
+        addToCartButton.addEventListener('click', function() {
+            const productId = document.getElementById('productidmodel').innerText;
+            let modelName =firName+","+secName;
+            const quantity = document.getElementById('quantityValue').value;
+            const userID = document.getElementById('userid').innerText;
+            console.log(productId); //3
+            console.log(modelName); //黑色,S
+            console.log(quantity);  //6
+            console.log(userid);    //4uIXMQan5kRprMeKC1QXLrIzw2D2
+            // 使用 Fetch API 向後端發送 POST 請求
+            fetch(`api/shoppingCart/addToCart`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    models: modelName,
+                    quantity: quantity,
+                    userID: userID,
+                }),
+            })
+        });
+
+    </script>
+<!--    圖片-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImage = document.getElementById('mainImage');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const smallImages = document.querySelectorAll('.smallImage .col-3');
+            const totalImages = smallImages.length;
+            const imagesPerSet = 3;
+            let currentImageIndex = 0;
+
+            // 初始化顯示前三個小圖
+            showSmallImages(0, imagesPerSet - 1);
+
+            prevBtn.addEventListener('click', function() {
+                // 如果已經顯示到第一組小圖，則鎖定在前三個區塊
+                console.log(currentImageIndex+"click");
+                if (currentImageIndex <= 2) {
+                    currentImageIndex = 0;
+                    showSmallImages(0, imagesPerSet - 1);
+                }else{
+                    // 顯示上一個三個小圖
+                    showSmallImages(currentImageIndex - imagesPerSet, currentImageIndex - 1);
+                }
+            });
+            nextBtn.addEventListener('click', function() {
+                // 顯示下一個三個console.log(currentImageIndex+"000currentImageIndex");小圖
+                console.log(currentImageIndex+"11currentImageIndex");
+                console.log(totalImages+"11hii");
+                console.log(imagesPerSet+"11imagesPerSet");
+                showSmallImages(currentImageIndex, currentImageIndex + imagesPerSet - 1);
+
+                console.log(currentImageIndex+"currentImageIndex");
+                console.log(totalImages+"hii");
+                console.log(imagesPerSet+"imagesPerSet");
+                // 如果已經顯示到最後一組小圖，則鎖定在倒數三個區塊
+                if (currentImageIndex >= totalImages - imagesPerSet) {
+                    currentImageIndex = totalImages - imagesPerSet;
+                    showSmallImages(currentImageIndex, totalImages - 1);
+                }
+            });
+            function showSmallImages(startIndex, endIndex) {
+                // console.log(startIndex+"startIndex");
+                // console.log(endIndex+"endIndex");
+                // 隱藏所有小圖
+                hideAllSmallImages();
+
+                // 顯示指定範圍的小圖
+                for (let i = startIndex; i <= endIndex; i++) {
+                    if (smallImages[i]) {
+                        smallImages[i].style.display = 'block';
+                    }
+                }
+
+                // 更新目前顯示的小圖索引
+                currentImageIndex = endIndex;
+            }
+
+            function hideAllSmallImages() {
+                smallImages.forEach(image => {
+                    image.style.display = 'none';
+                });
+            }
+        });
+
     </script>
 
 </body>
