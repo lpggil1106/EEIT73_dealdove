@@ -31,7 +31,7 @@ public class ProductController {
     @PostMapping("/add_product")
     public String addProduct(@RequestParam("productName") String productName,
                              @RequestParam("productDescription") String productDescription,
-                             @RequestParam("productCategoryID") Integer productCategoryID,
+                             @RequestParam("categoryName") String categoryName,
                              @RequestParam("specific") String specific,
                              @RequestParam("specific2") String specific2,
                              @RequestParam("specific3") String specific3,
@@ -45,8 +45,11 @@ public class ProductController {
 
 
     {
+        // 從 subCategory 參數找到對應的 categoryID
+        Integer productCategoryID = findCategoryIDByName(categoryName);
+
         // 創product實體
-        Product product = productService.saveProduct(productName, productDescription,productCategoryID);
+        Product product = productService.saveProduct(productName, productDescription,categoryName);
         // 獲得產品ID
         Integer productId = product.getProductID();
 
@@ -56,14 +59,18 @@ public class ProductController {
 
         // 假設 parentModelIDa 和 parentModelIDb 是已知的
         Integer parentModelIDa =1; // 待定
-        Integer parentModelIDb = 2; //
+        Integer parentModelIDb =2; //
 
         // 創建 ModelInfo 實體
         modelInfoService.createModelInfosForProduct(productId, parentModelIDa, parentModelIDb);
 
+
+
         // 返回
         return "redirect:/10_seller_home_page.html";
     }
+
+
 
     private void saveModelAndSubModels(String topModelName, Integer productId, String... subModelNames) {
         if (topModelName != null && !topModelName.isEmpty()) {
@@ -77,5 +84,11 @@ public class ProductController {
                 }
             }
         }
+    }
+
+    private Integer findCategoryIDByName(String categoryName) {
+        // 在這裡實現查詢邏輯，返回匹配的 categoryID
+        // 這可能需要在 ProductService 中新增一個方法來查詢資料庫
+        return productService.findCategoryIDByName(categoryName);
     }
 }
