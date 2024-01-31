@@ -1,6 +1,6 @@
 package com.dealdove.dealdove.controller;
 
-import com.dealdove.dealdove.model.User;
+import com.dealdove.dealdove.model.enitity.User;
 import com.dealdove.dealdove.service.MessageService;
 import com.dealdove.dealdove.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

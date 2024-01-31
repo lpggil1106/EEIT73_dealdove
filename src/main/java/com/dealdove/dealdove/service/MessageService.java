@@ -1,7 +1,7 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.dao.MessageRepository;
-import com.dealdove.dealdove.model.Message;
+import com.dealdove.dealdove.model.dao.MessageRepository;
+import com.dealdove.dealdove.model.enitity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -113,37 +113,37 @@
 
                 <div class="row product mt-5">
                     <div class="col-5 productImage">
-                        <div class="row col-12 text-center bigImage border border-dark">
-                            <img id="mainImage" src="./images/pId1.jpg" alt="圖片描述">
+                        <div class="row col-12 text-center bigImage">
+                            <img id="mainImage" src="./images/p1.jpeg" alt="圖片描述">
                         </div>
-                        <div class="row col-12 justify-content-center smallImage">
+                        <div class="row col-12 justify-content-center smallImage" style="margin-bottom: 1vw">
                             <div class="col-1"><button id="prevBtn">&lt</button></div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId11.jpg" alt="圖片描述">
+                            <div class="col-3" >
+                                <img src="./images/p1.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId12.jpg" alt="圖片描述">
+                            <div class="col-3 ">
+                                <img src="./images/p2.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId13.jpeg" alt="圖片描述">
+                            <div class="col-3">
+                                <img src="./images/p3.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
+                            <div class="col-3">
                                 <img src="./images/商品圖.png" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
+                            <div class="col-3">
                                 <img src="./images/商品圖2.jpg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
+                            <div class="col-3">
                                 <img src="./images/商品圖3.jpg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId11.jpg" alt="圖片描述">
+                            <div class="col-3">
+                                <img src="./images/p1.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId12.jpg" alt="圖片描述">
+                            <div class="col-3">
+                                <img src="./images/p2.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId13.jpeg" alt="圖片描述">
+                            <div class="col-3">
+                                <img src="./images/p3.jpeg" alt="圖片描述">
                             </div>
                             <div class="col-1 ps-0"><button id="nextBtn">&gt</button></div>
                         </div>
@@ -154,7 +154,7 @@
                             const mainImage = document.getElementById('mainImage');
                             const prevBtn = document.getElementById('prevBtn');
                             const nextBtn = document.getElementById('nextBtn');
-                            const smallImages = document.querySelectorAll('.smallImage .border-dark');
+                            const smallImages = document.querySelectorAll('.smallImage .col-3');
                             const totalImages = smallImages.length;
                             const imagesPerSet = 3;
                             let currentImageIndex = 0;
@@ -230,7 +230,6 @@
                             <p>數量</p>
                             <button id="increaseBtn">+</button>
                             <input id="quantityValue" style="padding:0.5vw 1.4vw; width:4vw;" value="1" readonly/>
-
                             <button id="decreaseBtn" style="margin-right: 2vw;">-</button>
                             <p>庫存 <p id="quantity"></p></p>
                             <input name="firstModelid" style="display: none;"/>

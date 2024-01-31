@@ -1,15 +1,12 @@
 package com.dealdove.dealdove.controller;
 
-import com.dealdove.dealdove.model.ModelInfo;
-import com.dealdove.dealdove.model.Product;
-import com.dealdove.dealdove.model.ProductModelAssociateTable;
+import com.dealdove.dealdove.model.enitity.Product;
+import com.dealdove.dealdove.model.enitity.ProductModelAssociateTable;
 import com.dealdove.dealdove.service.ModelInfoService;
 import com.dealdove.dealdove.service.ProductService;
 import com.dealdove.dealdove.service.productModelAssociateTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/10_seller_home_page")

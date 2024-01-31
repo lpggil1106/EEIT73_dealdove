@@ -1,11 +1,7 @@
 package com.dealdove.dealdove.controller;
 
-import com.dealdove.dealdove.model.IdToken;
-import com.dealdove.dealdove.model.MyRequest;
+import com.dealdove.dealdove.model.enitity.MyRequest;
 import com.dealdove.dealdove.service.UserService;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.FirebaseToken;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;

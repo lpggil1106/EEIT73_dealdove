@@ -1,9 +1,9 @@
 package com.dealdove.dealdove.service;
 
-import com.dealdove.dealdove.dao.ProductCategoryRepository;
-import com.dealdove.dealdove.dao.ProductRepository;
-import com.dealdove.dealdove.model.Product;
-import com.dealdove.dealdove.model.ProductCategory;
+import com.dealdove.dealdove.model.dao.ProductCategoryRepository;
+import com.dealdove.dealdove.model.dao.ProductRepository;
+import com.dealdove.dealdove.model.enitity.Product;
+import com.dealdove.dealdove.model.enitity.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
