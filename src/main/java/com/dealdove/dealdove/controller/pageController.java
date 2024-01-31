@@ -41,6 +41,8 @@ public class pageController {
         return "10_seller_home_page";
     }
 
+    @GetMapping("/Coupon")
+    public String Coupon(){return "15_coupon_page";};
 
     @GetMapping("ecpayReturn")
     public String ecpayReturn(){

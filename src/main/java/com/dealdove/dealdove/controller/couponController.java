@@ -15,18 +15,12 @@ public class couponController {
     @Autowired
     private CouponService couponService;
 
-    @RequestMapping("/15_coupon_page")
-    @ResponseBody
-    public List<Coupon> test(){
-        //System.out.println(couponService.findAllCoupons()+"123123");
-        //System.out.println("775578");
-        return couponService.findAllCoupons();
-
-    }
-
-    @PostMapping("/couponTest")
-    public String couponTest(){
-        Coupon temp = couponService.getCouponByID(1);
-        return temp.getCouponBase().getCouponName();
-    }
+//    @RequestMapping("/15_coupon_page")
+//    @ResponseBody
+////    public List<Coupon> test(){
+//        //System.out.println(couponService.findAllCoupons()+"123123");
+//        //System.out.println("775578");
+//        return couponService.findAllCoupons();
+//
+//    }
 }

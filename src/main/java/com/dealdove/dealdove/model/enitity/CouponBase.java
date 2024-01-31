@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.List;
 
 
@@ -28,8 +29,11 @@ public class CouponBase {
     @Column(name = "discount")
     private double discount;
 
-    @Column(name = "discountMethod")
+    @Column(name = "discountMethod",nullable = true)
     private int discountMethod;
+
+    @Column(name = "expirationDate", nullable = false)
+    private Instant expirationDate;
 
     @Column(name = "applicableCategoriesID")
     private int applicableCategoriesID;
@@ -40,4 +44,19 @@ public class CouponBase {
     @OneToMany(mappedBy = "couponBase")
     private List<Coupon> coupon;
 
+    @Override
+    public String toString() {
+        return "CouponBase{" +
+                "couponBaseID=" + couponBaseID +
+                ", couponName='" + couponName + '\'' +
+                ", couponCode='" + couponCode + '\'' +
+                ", couponDescription='" + couponDescription + '\'' +
+                ", discount=" + discount +
+                ", discountMethod=" + discountMethod +
+                ", expirationDate=" + expirationDate +
+                ", applicableCategoriesID=" + applicableCategoriesID +
+                ", minimumAmount=" + minimumAmount +
+                ", coupon=" + coupon +
+                '}';
+    }
 }

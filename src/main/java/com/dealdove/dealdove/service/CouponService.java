@@ -16,8 +16,7 @@ public class CouponService {
         this.couponRepository = couponRepository;
     }
 
-    public List<Coupon> findAllCoupons() {
-
+    public List<Coupon> findAllCouponBases() {
         return couponRepository.findAllCoupons();
     }
 
