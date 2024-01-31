@@ -1,5 +1,6 @@
 package com.dealdove.dealdove.model.enitity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,6 +42,7 @@ public class CouponBase {
     @Column(name = "minimumAmount")
     private int minimumAmount;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "couponBase")
     private List<Coupon> coupon;
 
