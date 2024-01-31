@@ -38,9 +38,22 @@ public class Coupon {
 
     @Column(name = "discount", nullable = false)
     private Double discount;
+    @ManyToOne
+    @JoinColumn(name = "couponBaseID", nullable = false)
+    private CouponBase couponBase;
 
     @Column(name = "discountMethod", nullable = false, length = 200)
     private String discountMethod;
+
+    public CouponBase getCouponBase() {
+        return couponBase;
+    }
+
+    public void setCouponBase(CouponBase couponBase) {
+        this.couponBase = couponBase;
+    }
+
+
 
     @Column(name = "couponName", nullable = false, length = 10)
     private String couponName;

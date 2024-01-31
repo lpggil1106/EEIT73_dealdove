@@ -37,5 +37,14 @@ public class OrderController {
         return  aioCheckOutALLForm;
 //        return "{\"form\":\""+aioCheckOutALLForm+"\"}";
     }
+
+//    遊戲直接結束
+    @PostMapping("/ecpayMapChoosing")
+    public String ecpayMapChoosing() {
+        String map = orderService.ecpayMap("Dylan", "0978095607");
+        return map;
+    }
+
+
 }
-//}
+

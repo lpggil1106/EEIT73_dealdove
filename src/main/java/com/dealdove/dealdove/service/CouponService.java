@@ -21,4 +21,9 @@ public class CouponService {
         return couponRepository.findAllCoupons();
     }
 
+    public Coupon getCouponByID(Integer couponID){
+        return couponRepository.getCouponByID(couponID);
+    }
+
+
 }

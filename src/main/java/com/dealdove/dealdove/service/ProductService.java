@@ -5,6 +5,8 @@ import com.dealdove.dealdove.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -38,9 +40,40 @@ public class ProductService {
         product.setProductDescription(productDescription);
         product.setProductCategoryID(productCategoryID);
 
-
-        return productRepository.save(product);
-
+        productRepository.save(product);
+        return product;
     }
+
+    //    定義saveProduct方法，調用ProductRepository的save方法，用於保存產品。
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+//    public void addProductImageToProduct(Integer productId, ProductImageTable productImage) {
+//        Product product = productRepository.findProductByproductID(productId);
+//        if (product != null) {
+//            product.addProductImage(productImage);
+//            saveProduct(product);
+//        }
+//    }
+
+//    public List<HashMap<String, String>> findProductByKeyword(String keyword){
+//        List<Product> products = productRepository.findByProductNameOrProductDescription(keyword);
+//        List<HashMap<String, String>> productNames = new ArrayList<>();
+//        for (Product product : products) {
+//            HashMap<String, String> productName = new HashMap<>();
+//            productName.put("productName", product.getProductName());
+//            productName.put("productID", product.getProductID().toString());
+//            productName.put("productDescription", product.getProductDescription());
+//            productNames.add(productName);
+//        }
+//        return productNames;
+//    }
+
+//    public List<ProductImageTable> getProductImagesByProductId(Integer productId) {
+//        Product product = productRepository.findProductByproductID(productId);
+//
+//        return product != null ? product.getProductImageTables() : new ArrayList<>();
+//    }
 
 }

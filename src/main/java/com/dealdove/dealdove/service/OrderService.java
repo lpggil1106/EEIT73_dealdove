@@ -7,6 +7,8 @@ import com.dealdove.dealdove.model.Product;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
+import ecpay.logistics.integration.domain.CreateCVSObj;
+import ecpay.logistics.integration.domain.PrintHILIFEC2COrderInfoObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -115,6 +117,23 @@ public class OrderService {
 
         return form;
     }
+
+    public String ecpayMap(String name, String phone){
+        ecpay.logistics.integration.AllInOne all = new ecpay.logistics.integration.AllInOne("");
+        CreateCVSObj obj = new CreateCVSObj();
+        String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
+        obj.setMerchantID(uuId);
+        obj.setMerchantID("2000132");
+        obj.setMerchantTradeDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+        obj.setSenderName(name);
+        obj.setSenderCellPhone(phone);
+        obj.setIsCollection("N");
+        obj.setServerReplyURL("幹你娘");
+        String result = all.create(obj);
+        return result;
+    }
+
+
 }
 
 

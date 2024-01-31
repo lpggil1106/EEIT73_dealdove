@@ -3,6 +3,7 @@ package com.dealdove.dealdove.controller;
 import com.dealdove.dealdove.model.Coupon;
 import com.dealdove.dealdove.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +22,11 @@ public class couponController {
         //System.out.println("775578");
         return couponService.findAllCoupons();
 
+    }
+
+    @PostMapping("/couponTest")
+    public String couponTest(){
+        Coupon temp = couponService.getCouponByID(1);
+        return temp.getCouponBase().getCouponName();
     }
 }
