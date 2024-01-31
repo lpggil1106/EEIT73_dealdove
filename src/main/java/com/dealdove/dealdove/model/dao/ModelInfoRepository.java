@@ -17,5 +17,7 @@ public interface ModelInfoRepository extends JpaRepository<ModelInfo, Long> {
                                                                             @Param("firstModelid") Integer firstModelid,
                                                                             @Param("secondModelid") Integer secondModelid);
 
+
+
     ModelInfo save(ModelInfo modelInfo);
 }

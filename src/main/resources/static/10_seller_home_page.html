@@ -456,6 +456,10 @@
                             <br>
                             <div id="block1" class="row">
                                 <div id="typedive1" class="col-3 d-flex align-items-center"></div>
+                                <input type="hidden" id="typedive1hidden" name="typedive1hidden">
+                                <input type="hidden" id="typedive2hidden" name="typedive2hidden">
+                                <input type="hidden" id="typedive3hidden" name="typedive3hidden">
+                                <input type="hidden" id="typedive4hidden" name="typedive4hidden">
                                 <div id="pricequantity0" class="col-3 d-flex align-items-center" style="margin-right:26.5vw">
                                     <input id="price0" style="width: 6vw" type="text" placeholder="price">
                                     <input id="quantity0" style="width: 8vw; margin-left:5vw" type="text" placeholder="num">
@@ -466,6 +470,7 @@
                                         <div id="typedive11" class="col-5 d-flex justify-content-center align-items-center" style="display:none!important;">
                                             規格二-1
                                         </div>
+                                        <input type="hidden" id="typedive11hidden" name="typedive11hidden">
                                         <input id="price1" style="width: 8vw;display:none!important" type="text" name="price1">
                                         <input id="quantity1" style="width: 7vw;display:none!important;" type="text" name="quantity1">
                                     </div>
@@ -1970,7 +1975,6 @@
         var backdrops = document.getElementsByClassName('modal-backdrop');
         for (var i = 0; i < backdrops.length; i++) {
             backdrops[i].parentNode.removeChild(backdrops[i]); }
-
     }
 </script>
 <script>
@@ -1978,9 +1982,23 @@
     modalElement.addEventListener('hidden.bs.modal', function () {
         document.body.style.overflow = ''; // 恢復滾動卷軸
     });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 將 #typedive1 的內容傳遞到其他 input 中
+        var typedive1Content = document.getElementById("specific2").textContent;
+        document.getElementById("typedive1hidden").value = typedive1Content;
+        document.getElementById("typedive2hidden").value = typedive1Content;
+        document.getElementById("typedive3hidden").value = typedive1Content;
+        document.getElementById("typedive4hidden").value = typedive1Content;
 
-
-
+        // 將 #typedive11 的內容傳遞到 #typedive11hidden 中
+        var typedive11Content = document.getElementById("specific22").textContent;
+        document.getElementById("typedive11hidden").value = typedive11Content;
+    });
+</script>
+<script>
+    console.log(specific22)
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
