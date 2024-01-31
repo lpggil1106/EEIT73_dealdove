@@ -1,5 +1,6 @@
 package com.dealdove.dealdove.controller;
 
+import com.dealdove.dealdove.model.enitity.ModelInfo;
 import com.dealdove.dealdove.model.enitity.Product;
 import com.dealdove.dealdove.model.enitity.ProductModelAssociateTable;
 import com.dealdove.dealdove.service.ModelInfoService;
