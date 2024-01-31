@@ -18,7 +18,7 @@ public class CouponBaseController {
 
     @GetMapping("/15_coupon_page")
     public List<CouponBase> test(){
-        System.out.println(couponBaseService.findAllCouponBases());
+//        System.out.println(couponBaseService.findAllCouponBases());
         return couponBaseService.findAllCouponBases();
     }
 

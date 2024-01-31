@@ -1,5 +1,7 @@
 package com.dealdove.dealdove.model.enitity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +31,7 @@ public class Coupon {
     @Column(name = "creationDate", nullable = false)
     private ZonedDateTime creationDate;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "couponBaseID", nullable = false)
     private CouponBase couponBase;
