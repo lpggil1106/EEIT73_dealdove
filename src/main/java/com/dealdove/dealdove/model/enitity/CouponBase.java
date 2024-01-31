@@ -25,6 +25,18 @@ public class CouponBase {
     @Column(name = "couponDescription", nullable = false, length = 200)
     private String couponDescription;
 
+    @Column(name = "discount")
+    private double discount;
+
+    @Column(name = "discountMethod")
+    private int discountMethod;
+
+    @Column(name = "applicableCategoriesID")
+    private int applicableCategoriesID;
+
+    @Column(name = "minimumAmount")
+    private int minimumAmount;
+
     @OneToMany(mappedBy = "couponBase")
     private List<Coupon> coupon;
 
