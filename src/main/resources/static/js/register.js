@@ -23,6 +23,9 @@ $(document).ready(() => {
                 window.alert("請輸入正確的電子信箱");
             } else if (res === 20) {
                 window.alert("輸入的密碼要是8~16碼的英數字");
+            }else if(res===30){
+              window.alert("已註冊過帳號");
+              window.location.href="/Login";
             } else if (res === 1) {
                 if ($('#privacy-checkbox').prop('checked')) {
                     const email = $('#email').val();

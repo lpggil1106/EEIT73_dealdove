@@ -9,6 +9,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -36,9 +38,8 @@ public class UserController {
 
 //    顯示使用者資訊
     @PostMapping("/showInfo")
-    public @ResponseBody String member(@RequestBody  LinkedHashMap<String, String> user) {
-      Object[] userInfo =  userService.showInfo(user);
-        return "{\"email\":\"" + userInfo[0] + "\",\"gender\":\""+userInfo[1]+"\",\"birthday\":\""+userInfo[2]+"\"}";
+    public @ResponseBody  List<HashMap<String,String>> member(@RequestBody  LinkedHashMap<String, String> user) {
+     return userService.showInfo(user);
     }
     @MessageMapping("/user.addUser")
     @SendTo("/user/public")

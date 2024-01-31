@@ -111,55 +111,39 @@
                     <button class="viewDetails">查看詳情</button>
                 </div>
 
-<!--                        <div class="row col-12 text-center bigImage border border-dark">-->
-<!--                            <img src="./images/pId1.jpg" alt="圖片描述">-->
-<!--                        </div>-->
-<!--                        <div class="row col-12 justify-content-center smallImage">-->
-<!--                            <div class="col-1"><button>&lt</button></div>-->
-<!--                            <div class="col-3 border border-dark">-->
-<!--                                <img src="./images/pId11.jpg" alt="圖片描述">-->
-<!--                            </div>-->
-<!--                            <div class="col-3 border border-dark">-->
-<!--                                <img src="./images/pId12.jpg" alt="圖片描述">-->
-<!--                            </div>-->
-<!--                            <div class="col-3 border border-dark">-->
-<!--                                <img src="./images/pId13.jpeg" alt="圖片描述">-->
-<!--                            </div>-->
-<!--                            <div class="col-1 ps-0"><button>&gt</button></div>-->
-<!--                        </div>-->
                 <div class="row product mt-5">
                     <div class="col-5 productImage">
-                        <div class="row col-12 text-center bigImage border border-dark">
-                            <img id="mainImage" src="./images/pId1.jpg" alt="圖片描述">
+                        <div class="row col-12 text-center bigImage">
+                            <img id="mainImage" src="./images/p1.jpeg" alt="圖片描述">
                         </div>
-                        <div class="row col-12 justify-content-center smallImage">
+                        <div class="row col-12 justify-content-center smallImage" style="margin-bottom: 1vw">
                             <div class="col-1"><button id="prevBtn">&lt</button></div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId11.jpg" alt="圖片描述">
+                            <div class="col-3" >
+                                <img src="./images/p1.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId12.jpg" alt="圖片描述">
+                            <div class="col-3 ">
+                                <img src="./images/p2.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId13.jpeg" alt="圖片描述">
+                            <div class="col-3">
+                                <img src="./images/p3.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
+                            <div class="col-3">
                                 <img src="./images/商品圖.png" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
+                            <div class="col-3">
                                 <img src="./images/商品圖2.jpg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
+                            <div class="col-3">
                                 <img src="./images/商品圖3.jpg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId11.jpg" alt="圖片描述">
+                            <div class="col-3">
+                                <img src="./images/p1.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId12.jpg" alt="圖片描述">
+                            <div class="col-3">
+                                <img src="./images/p2.jpeg" alt="圖片描述">
                             </div>
-                            <div class="col-3 border border-dark">
-                                <img src="./images/pId13.jpeg" alt="圖片描述">
+                            <div class="col-3">
+                                <img src="./images/p3.jpeg" alt="圖片描述">
                             </div>
                             <div class="col-1 ps-0"><button id="nextBtn">&gt</button></div>
                         </div>
@@ -170,7 +154,7 @@
                             const mainImage = document.getElementById('mainImage');
                             const prevBtn = document.getElementById('prevBtn');
                             const nextBtn = document.getElementById('nextBtn');
-                            const smallImages = document.querySelectorAll('.smallImage .border-dark');
+                            const smallImages = document.querySelectorAll('.smallImage .col-3');
                             const totalImages = smallImages.length;
                             const imagesPerSet = 3;
                             let currentImageIndex = 0;
@@ -230,79 +214,6 @@
                         });
 
                     </script>
-<!--                    <script>-->
-<!--                        document.addEventListener('DOMContentLoaded', function () {-->
-<!--                            const mainImage = document.getElementById('mainImage');-->
-<!--                            const prevBtn = document.getElementById('prevBtn');-->
-<!--                            const nextBtn = document.getElementById('nextBtn');-->
-<!--                            const smallImages = document.querySelectorAll('.smallImage .border-dark');-->
-<!--                            const totalImages = smallImages.length;-->
-<!--                            const imagesPerSet = 3;-->
-<!--                            let currentImageIndex = 0;-->
-
-<!--                            // 初始化顯示前三個小圖-->
-<!--                            showSmallImages(0, imagesPerSet - 1);-->
-<!--console.log(currentImageIndex+"currentImageIndex");-->
-<!--                            nextBtn.addEventListener('click', function () {-->
-<!--                                // 計算下一組小圖的起始索引和結束索引-->
-<!--                                const startIndex = currentImageIndex + 1;-->
-<!--                                const endIndex = startIndex + imagesPerSet - 1;-->
-
-<!--                                // 顯示下一個三個小圖-->
-<!--                                showSmallImages(startIndex, endIndex);-->
-
-<!--                                // 如果已經顯示到最後一組小圖，則鎖定在倒數三個區塊-->
-<!--                                if (currentImageIndex >= totalImages - imagesPerSet) {-->
-<!--                                    currentImageIndex = totalImages - imagesPerSet;-->
-<!--                                    showSmallImages(currentImageIndex, totalImages - 1);-->
-<!--                                }-->
-<!--                            });-->
-
-<!--                            prevBtn.addEventListener('click', function () {-->
-<!--                                // 計算上一組小圖的起始索引和結束索引-->
-<!--                                const startIndex = Math.max(0, currentImageIndex - imagesPerSet);-->
-<!--                                const endIndex = startIndex + imagesPerSet - 1;-->
-
-<!--                                // 顯示上一個三個小圖-->
-<!--                                showSmallImages(startIndex, endIndex);-->
-
-<!--                                // 如果已經顯示到第一組小圖，則鎖定在前三個區塊-->
-<!--                                if (currentImageIndex <= imagesPerSet - 1) {-->
-<!--                                    currentImageIndex = 0;-->
-<!--                                    showSmallImages(0, imagesPerSet - 1);-->
-<!--                                }-->
-<!--                            });-->
-
-<!--                            function showSmallImages(startIndex, endIndex) {-->
-<!--                                // 隱藏所有小圖-->
-<!--                                hideAllSmallImages();-->
-
-<!--                                // 計算實際顯示的區塊索引-->
-<!--                                const displayedIndexes = [];-->
-<!--                                for (let i = startIndex; i <= endIndex; i++) {-->
-<!--                                    const actualIndex = i % totalImages; // 計算實際索引，避免超出邊界-->
-<!--                                    displayedIndexes.push(actualIndex);-->
-<!--                                }-->
-
-<!--                                // 顯示指定範圍的小圖-->
-<!--                                displayedIndexes.forEach(index => {-->
-<!--                                    if (smallImages[index]) {-->
-<!--                                        smallImages[index].style.display = 'block';-->
-<!--                                    }-->
-<!--                                });-->
-
-<!--                                // 更新目前顯示的小圖索引-->
-<!--                                currentImageIndex = endIndex;-->
-<!--                            }-->
-<!--                            function hideAllSmallImages() {-->
-<!--                                smallImages.forEach(image => {-->
-<!--                                    image.style.display = 'none';-->
-<!--                                });-->
-<!--                            }-->
-<!--                        });-->
-
-
-<!--                    </script>-->
                     <div class="col-7 productDescribe">
                         <p id="productidmodel" style="display: none"></p>
                         <p class="productName" id="productName">商品名稱</p>
@@ -318,8 +229,7 @@
                         <div class="col-12 quantity">
                             <p>數量</p>
                             <button id="increaseBtn">+</button>
-                            <input id="quantityValue" style="padding:0.5vw 1vw" value="1" readonly/>
-
+                            <input id="quantityValue" style="padding:0.5vw 1.4vw; width:4vw;" value="1" readonly/>
                             <button id="decreaseBtn" style="margin-right: 2vw;">-</button>
                             <p>庫存 <p id="quantity"></p></p>
                             <input name="firstModelid" style="display: none;"/>
@@ -493,95 +403,84 @@
 
                 fetch(`api/products/getProduct/${productId}`)
                     .then(response => response.json())
-                        // console.log(response+"__response__"))
-                        // response.json())
                     .then(product => product.forEach((product)=>{
-                        // console.log(product.productName);
-                        // console.log(product.productDes);
                         document.getElementById('productName').innerText =product.productName;
                         document.getElementById('descriptionContent').innerText = product.productDes;
+
                         // 清空原有的內容
-                            document.getElementById('specificContainer').innerHTML = '';
-                    }));
+                        document.getElementById('specificContainer').innerHTML = '';
+                        // 使用 Fetch API 來呼叫後端 API 取得產品規格
+                        fetch(`api/products/${productId}/specifications`)
+                            .then(response => response.json())
+                            .then(specifications => {
+                                // 將規格資料動態生成到 HTML 中
+                                Object.entries(specifications).forEach(([specType, specValues]) => {
 
-                    //     document.getElementById('productName').innerText = product.productName;
-                    //     document.getElementById('descriptionContent').innerText = product.productDescription;
-                    //
-                    //     // 清空原有的內容
-                    //     document.getElementById('specificContainer').innerHTML = '';
-                    //
-                    //     // 使用 Fetch API 來呼叫後端 API 取得產品規格
-                    //    // fetch(`api/products/${productId}/specifications`)
-                    //    //      .then(response => response.json())
-                    //    //      .then(specifications => {
-                    //    //          // 將規格資料動態生成到 HTML 中
-                    //    //          Object.entries(specifications).forEach(([specType, specValues]) => {
-                    //    //
-                    //    //              const specTypeContainer = document.createElement('div');
-                    //    //              specTypeContainer.classList.add('col-12', 'mt-3', 'specification');
-                    //    //              specTypeContainer.id = `container${specType}`;
-                    //    //              // 產生規格名稱的區塊
-                    //    //              const specTypeLabel = document.createElement('p');
-                    //    //              specTypeLabel.classList.add('col-2');
-                    //    //              if('name' in specValues){
-                    //    //                  specTypeLabel.textContent = specValues['name'];
-                    //    //             }
-                    //    //              specTypeContainer.appendChild(specTypeLabel);
-                    //    //
-                    //    //              // 產生規格內容的區塊
-                    //    //              specValues.dataMapList.forEach(data => {
-                    //    //                  const specValuesContainer = document.createElement('div');
-                    //    //                  specValuesContainer.classList.add('div');
-                    //    //                  specValuesContainer.classList.add(`${specType}modelinfos`); //black
-                    //    //                  specValuesContainer.textContent = data.name;
-                    //    //
-                    //    //                  const specValuesContainer2 = document.createElement('div');
-                    //    //                  specValuesContainer2.classList.add('modelid');
-                    //    //                  specValuesContainer2.textContent = data.id;
-                    //    //                  specValuesContainer2.style.display = 'none';
-                    //    //
-                    //    //                  specTypeContainer.appendChild(specValuesContainer);
-                    //    //                  specValuesContainer.appendChild(specValuesContainer2);
-                    //    //                  // 註冊點擊事件
-                    //    //                  specValuesContainer.addEventListener('click', function() {
-                    //    //                      const modelId = specValuesContainer.querySelector('.modelid').innerText;
-                    //    //                      if(`${specType}` === "map1"){
-                    //    //                          const firstModelidInput = document.getElementsByName('firstModelid')[0];
-                    //    //                          const modelId1 = modelId; // 替換為實際的值
-                    //    //                          // 設置元素的值
-                    //    //                          firstModelidInput.value = modelId1;
-                    //    //                          // 創建 input 事件
-                    //    //                          const inputEvent = new Event('input', {
-                    //    //                              bubbles: true,
-                    //    //                              cancelable: true,
-                    //    //                          });
-                    //    //                          // 分派 input 事件
-                    //    //                          firstModelidInput.dispatchEvent(inputEvent);
-                    //    //                      }else{
-                    //    //
-                    //    //                          const secondModelidInput = document.getElementsByName('secondModelid')[0];
-                    //    //                          const modelId2 = modelId;
-                    //    //                          secondModelidInput.value = modelId2;
-                    //    //                          const inputEvent = new Event('input', {
-                    //    //                              bubbles: true,
-                    //    //                              cancelable: true,
-                    //    //                          });
-                    //    //                          secondModelidInput.dispatchEvent(inputEvent);
-                    //    //                      }
-                    //    //                  });
-                    //    //              });
-                    //    //
-                    //    //              // 將整個規格區塊加入到主容器中
-                    //    //              document.getElementById('specificContainer').appendChild(specTypeContainer);
-                    //    //
-                    //    //              // 新增換行元素
-                    //    //              const lineBreak = document.createElement('br');
-                    //    //              document.getElementById('specificContainer').appendChild(lineBreak);
-                    //    //          });
-                    //    //      })
-                    //    //      .catch(error => console.log(error));
+                                    const specTypeContainer = document.createElement('div');
+                                    specTypeContainer.classList.add('col-12', 'mt-3', 'specification');
+                                    specTypeContainer.id = `container${specType}`;
+                                    // 產生規格名稱的區塊
+                                    const specTypeLabel = document.createElement('p');
+                                    specTypeLabel.classList.add('col-2');
+                                    if('name' in specValues){
+                                        specTypeLabel.textContent = specValues['name'];
+                                    }
+                                    specTypeContainer.appendChild(specTypeLabel);
 
-                    // .catch(error => console.log(error));
+                                    // 產生規格內容的區塊
+                                    specValues.dataMapList.forEach(data => {
+                                        const specValuesContainer = document.createElement('div');
+                                        specValuesContainer.classList.add('div');
+                                        specValuesContainer.classList.add(`${specType}modelinfos`); //black
+                                        specValuesContainer.textContent = data.name;
+
+                                        const specValuesContainer2 = document.createElement('div');
+                                        specValuesContainer2.classList.add('modelid');
+                                        specValuesContainer2.textContent = data.id;
+                                        specValuesContainer2.style.display = 'none';
+
+                                        specTypeContainer.appendChild(specValuesContainer);
+                                        specValuesContainer.appendChild(specValuesContainer2);
+                                        // 註冊點擊事件
+                                        specValuesContainer.addEventListener('click', function() {
+                                            const modelId = specValuesContainer.querySelector('.modelid').innerText;
+                                            if(`${specType}` === "map1"){
+                                                const firstModelidInput = document.getElementsByName('firstModelid')[0];
+                                                const modelId1 = modelId; // 替換為實際的值
+                                                // 設置元素的值
+                                                firstModelidInput.value = modelId1;
+                                                // 創建 input 事件
+                                                const inputEvent = new Event('input', {
+                                                    bubbles: true,
+                                                    cancelable: true,
+                                                });
+                                                // 分派 input 事件
+                                                firstModelidInput.dispatchEvent(inputEvent);
+                                            }else{
+
+                                                const secondModelidInput = document.getElementsByName('secondModelid')[0];
+                                                const modelId2 = modelId;
+                                                secondModelidInput.value = modelId2;
+                                                const inputEvent = new Event('input', {
+                                                    bubbles: true,
+                                                    cancelable: true,
+                                                });
+                                                secondModelidInput.dispatchEvent(inputEvent);
+                                            }
+                                        });
+                                    });
+
+                                    // 將整個規格區塊加入到主容器中
+                                    document.getElementById('specificContainer').appendChild(specTypeContainer);
+
+                                    // 新增換行元素
+                                    const lineBreak = document.createElement('br');
+                                    document.getElementById('specificContainer').appendChild(lineBreak);
+                                });
+                            })
+                            .catch(error => console.log(error));
+                    }))
+                    .catch(error => console.log(error));
             });
         });
 

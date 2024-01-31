@@ -153,4 +153,12 @@ public class Product {
     }
 
 
+//    public String getSubCategory() {
+//        String subCategory = null;
+//        return subCategory;
+//    }
+//
+//    public void setSubCategory(String subCategory) {
+//        this.subCategory = subCategory;
+//    }
 }

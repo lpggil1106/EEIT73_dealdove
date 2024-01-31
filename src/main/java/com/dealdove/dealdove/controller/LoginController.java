@@ -2,6 +2,7 @@ package com.dealdove.dealdove.controller;
 
 import com.dealdove.dealdove.model.IdToken;
 import com.dealdove.dealdove.model.MyRequest;
+import com.dealdove.dealdove.service.UserService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
@@ -23,10 +24,13 @@ import java.util.regex.Pattern;
 @RestController
 public class LoginController {
 
+    UserService userService;
 
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
-
-//    帳號註冊驗證
+    //    帳號註冊驗證
     @PostMapping("/verify")
     public int emailVerify(@RequestBody MyRequest user){
         String email = user.getEmail();
@@ -39,11 +43,16 @@ public class LoginController {
         Pattern passwordRegex = Pattern.compile(passwordPattern);
         Matcher passwordMatcher = passwordRegex.matcher(password);
 
+
+
         if(!emailMatcher.matches()){
             return 10;
         }
         if(!passwordMatcher.matches()){
             return 20;
+        }
+        if(userService.findUserByEmail(email)>0){
+            return 30;
         }
         return 1;
     }

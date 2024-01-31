@@ -1,6 +1,7 @@
 package com.dealdove.dealdove.dao;
 
 import com.dealdove.dealdove.model.Order;
+import com.dealdove.dealdove.model.OrderItem;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,3 +22,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findOrderByBuyerIDAndStatus2(@Param("buyerID") String buyerID,@Param("orderStatus") int orderStatus,
                                             @Param("start")int start,@Param("end") int end);
 }
+
+
