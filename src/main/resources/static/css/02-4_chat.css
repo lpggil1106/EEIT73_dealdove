@@ -135,7 +135,7 @@
 .message {
     position: relative;
     max-width: 80%;
-    margin-bottom: 5px;
+    margin: 5px;
     border-radius: 5px;
     word-wrap: break-word;
     /*padding-bottom: 12px;*/
@@ -209,7 +209,7 @@
 .user-item {
     width: max-content;
     cursor: pointer;
-    display: flex;
+    /*display: flex;*/
     padding: 5px;
 }
 
@@ -364,3 +364,4 @@
     text-align: center;
     margin-bottom: 5px;
 }
+
