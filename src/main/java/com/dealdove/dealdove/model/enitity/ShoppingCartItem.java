@@ -19,8 +19,7 @@ public class ShoppingCartItem {
     @Column(name = "productID", nullable = false)
     private Integer productID;
 
-    @Column(name = "models", nullable = false)
-    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "models",length = 10, nullable = false)
     private String models;
 
     @Column(name = "quantity", nullable = false)
