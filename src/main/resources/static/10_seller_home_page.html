@@ -309,7 +309,8 @@
                             </button>
                             <div id="mainCategory" style="border-color: black"></div>
                             <div>＞</div>
-                            <div id="subCategory" style="border-color: black"></div>
+                            <div id="categoryName" style="border-color: black"></div>
+                            <input type="hidden" id="hiddenCategoryName" name="categoryName">
                         </div>
                     </div>
                         <!-- Modal -->
@@ -1954,10 +1955,13 @@
         document.getElementById(category).style.display = 'block';
     }
 
-    function showSelectedCategory(subCategory) {
-        // 更新 mainCategory 和 subCategory 的內容
+    function showSelectedCategory(categoryName) {
+        // 更新 mainCategory 和 categoryName 的內容
         document.getElementById("mainCategory").innerHTML = currentMainCategory;
-        document.getElementById("subCategory").innerHTML = subCategory;
+        document.getElementById("categoryName").innerHTML = categoryName;
+
+        // 更新隱藏輸入字段的值
+        document.getElementById("hiddenCategoryName").value = categoryName;
 
         var modalElement = document.getElementById('exampleModal');
         var modalInstance = bootstrap.Modal.getInstance(modalElement);
