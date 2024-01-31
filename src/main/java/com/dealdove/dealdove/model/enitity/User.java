@@ -48,6 +48,10 @@ public class User {
     @Column(name = "lastedit")
     private ZonedDateTime lastedit;
 
+    @OneToMany
+    @JoinColumn(name = "userID")
+    private List<ShoppingCartItem> shoppingCartItems;
+
 
     public User() {
     }
