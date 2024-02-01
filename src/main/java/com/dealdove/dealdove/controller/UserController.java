@@ -41,6 +41,18 @@ public class UserController {
     public @ResponseBody  List<HashMap<String,String>> member(@RequestBody  LinkedHashMap<String, String> user) {
      return userService.showInfo(user);
     }
+
+    @PostMapping("/showCoupon")
+    public List<String> showCoupon(@RequestBody  LinkedHashMap<String, String> user){
+         return userService.showCoupon(user);
+    }
+
+
+
+
+
+
+
     @MessageMapping("/user.addUser")
     @SendTo("/user/public")
     public User addUser(

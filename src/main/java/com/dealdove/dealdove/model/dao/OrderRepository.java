@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    @Query(value = "SELECT * FROM order", nativeQuery = true)
-    List<Order> findAllOrders();
+    @Query(value = "SELECT * FROM `order` WHERE buyerID= :buyerID", nativeQuery = true)
+    List<Order> findAllOrders(@Param("buyerID") String buyerID);
 
     @Query(value = "SELECT * FROM `order` WHERE buyerID= :buyerID AND orderStatus= :orderStatus",nativeQuery = true)
     List<Order> findOrderByBuyerIDAndStatus(@Param("buyerID") String buyerID,@Param("orderStatus") int orderStatus);
@@ -19,6 +19,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT * FROM  `order` WHERE buyerID= :buyerID AND orderStatus= :orderStatus LIMIT :start,:end",nativeQuery = true)
     List<Order> findOrderByBuyerIDAndStatus2(@Param("buyerID") String buyerID,@Param("orderStatus") int orderStatus,
                                             @Param("start")int start,@Param("end") int end);
+
 }
 
 

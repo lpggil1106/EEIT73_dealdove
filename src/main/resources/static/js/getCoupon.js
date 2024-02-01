@@ -1,37 +1,11 @@
 import "https://code.jquery.com/jquery-3.6.0.min.js";
 import {auth, onAuthStateChanged} from './firebase.js';
 $(document).ready(()=>{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     fetch("/15_coupon_page")
         .then(response => response.json())
         .then(data => {
             data.forEach((couponBase, index) => {
-                console.log(couponBase);
                 const target =  parseInt(couponBase.discount)!=0 ? "specify" : "tar";
-                console.log(target);
                 let targetContainer = document.getElementById(target);
 
                 if (index % 2 === 0) {
@@ -61,6 +35,7 @@ $(document).ready(()=>{
                 couponCode.innerText = couponBase.couponName;
                 couponCode.id=`couponCode${index}`
                 details.appendChild(couponCode);
+
 
                 // 創建其他元素（可根據需要添加）
                 const couponNumber = document.createElement("p");
@@ -92,6 +67,7 @@ $(document).ready(()=>{
                 details.appendChild(productPricing);
                 couponCard.appendChild(details);
 
+                let couponBaseID = couponBase.couponBaseID;
                 // 創建領取按鈕
                 const getCouponButton = document.createElement("button");
                 getCouponButton.innerText = "領取";
@@ -101,6 +77,7 @@ $(document).ready(()=>{
                 couponCard.appendChild(getCouponButton);
                 //const currentRow = document.querySelector(`#${target}`).querySelector(".coupon-row:last-child");
                 const currentRow = targetContainer.querySelector(".coupon-row:last-child");
+                console.log(couponCard)
                 currentRow.appendChild(couponCard);
 
                $(`#getCouponButton${index}`).on('click',()=>{
@@ -110,27 +87,32 @@ $(document).ready(()=>{
                                user.getIdToken()
                                    .then(idToken => {
                                        console.log(`couponCode${index}`);
-                                       sendCouponToBack(idToken,`couponCode${index}`)
+                                       sendCouponToBack(idToken,couponBaseID)
                                    })
                                    .catch(err=>console.log(err))
                            }
                        })
                    );
                });
-
-
-
             });
         })
         .catch(error => console.log(error));
 
 
-    function sendCouponToBack(idToken,couponCode){
+    function sendCouponToBack(idToken,couponBaseID){
         fetch('/getCoupon',{
             method:'POST',
             headers: {'Content-Type': 'application/json;charset=utf-8'},
-            body:JSON.stringify({"idToken":idToken,"couponCode":couponCode})
-        }).then(res=>console.log(res))
+            body:JSON.stringify({"idToken":idToken,"couponBaseID":couponBaseID})
+        }).then(res=>res.json())
+            .then(data=>{
+                if (data===10){
+                    window.alert('領取成功')
+                }else if(data===20){
+                    window.alert('領取過了')
+                }
+            })
+
     }
 
 

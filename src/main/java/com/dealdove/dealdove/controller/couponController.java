@@ -19,7 +19,7 @@ public class couponController {
 
 
     @PostMapping("/getCoupon")
-    public void test(@RequestBody LinkedHashMap<String, String> user){
-        couponService.saveCoupon(user);
+    public int getCoupon(@RequestBody LinkedHashMap<String, String> user) {
+        return couponService.saveCoupon(user);
     }
 }

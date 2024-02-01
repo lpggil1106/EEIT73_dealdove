@@ -17,23 +17,20 @@ public class OrderController {
 
     @PostMapping("/showOrderName")
     public List<HashMap<String,String>> getOrderItemsByOrderID(@RequestBody LinkedHashMap<String, String> user) {
-//        orderService.findOrderByBuyerIDAndStaus2(user);
         return orderService.getOrderItemsNameByOrderID(user);
 
     }
+    @PostMapping("/showOrderStatus")
+    public List<HashMap<String,String>> showOrderStatus(@RequestBody LinkedHashMap<String, String> user){
+        return orderService.findAllOrder(user);
+    }
 
-
-//    @PostMapping("/showOrderQuantity")
-//    public List<String> getOrderItemsQuantityByOrderID(@RequestBody LinkedHashMap<String, String> user) {
-//        return orderService.getOrderItemsQuantityByOrderID(user);
-//    }
     @CrossOrigin(origins = "*",maxAge = 3600)
     @PostMapping("/ecpayCheckout")
     public String ecpayCheckout() {
         String aioCheckOutALLForm = orderService.ecpayCheckout();
         return  aioCheckOutALLForm;
-//        return "{\"form\":\""+aioCheckOutALLForm+"\"}";
-    }
+}
 
 //    遊戲直接結束
     @PostMapping("/ecpayMapChoosing")

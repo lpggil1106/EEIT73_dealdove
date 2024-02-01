@@ -22,14 +22,9 @@ import ecpay.payment.integration.domain.AioCheckOutALL;
 @Service
 public class OrderService {
     private OrderRepository orderRepository;
-
     @Autowired
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-    }
-
-    public List<Order> findAllOrders(){
-        return orderRepository.findAllOrders();
     }
 
     public FirebaseToken getFirebaseToken(String userToken) {
@@ -39,7 +34,6 @@ public class OrderService {
             throw new RuntimeException(e);
         }
     }
-
 
     public List<HashMap<String,String>> getOrderItemsNameByOrderID(LinkedHashMap<String, String> user) {
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
@@ -61,33 +55,26 @@ public class OrderService {
                 }
             }
         }
-        System.out.println(productList);
         return productList;
     }
 
-//    public void findOrderByBuyerIDAndStaus2(LinkedHashMap<String, String> user){
-//        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
-//        String buyerID = decodedToken.getUid();
-//        int status = (user.get("status")==null)?1:Integer.parseInt(user.get("status"));
-//        int page = 0;
-//        List<Order> orders = orderRepository.findOrderByBuyerIDAndStatus2(buyerID,status,0,1);
-//        List<HashMap<String,String>> productList = new ArrayList<>();
-//        for(Order order : orders){
-//            List<OrderItem> orderItems = order.getOrderItems();
-//            for(int i = 0;i<2;i++){
-//                OrderItem orderItem = orderItems.get(i);
-//                HashMap<String,String> productMap = new HashMap<>();
-//                Product product = orderItem.getProduct();
-//                productMap.put("productName",product.getProductName());
-//                productMap.put("orderQuantity",orderItem.getQuantity().toString());
-//
-//                productList.add(productMap);
-//            }
-//        }
-//        System.out.println(productList.size()+"From 2");
-//
-//
-//    }
+    public List<HashMap<String,String>> findAllOrder(LinkedHashMap<String, String> user){
+        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
+        String userID = decodedToken.getUid();
+        orderRepository.findAllOrders(userID);
+        List<Order> orders = orderRepository.findAllOrders(userID);
+        List<HashMap<String,String>> orderList = new ArrayList<>();
+        for(Order order : orders){
+            List<OrderItem> orderItems = order.getOrderItems();
+            for (OrderItem orderItem :orderItems){
+                HashMap<String,String> orderMap = new HashMap<>();
+                orderMap.put("image",orderItem.getProduct().getFirstImage());
+                orderMap.put("Status",order.getOrderStatus().toString());
+                orderList.add(orderMap);
+            }
+        }
+        return orderList;
+    }
 
     public String ecpayCheckout() {
         String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);

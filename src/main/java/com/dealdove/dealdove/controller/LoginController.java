@@ -2,6 +2,7 @@ package com.dealdove.dealdove.controller;
 
 import com.dealdove.dealdove.model.enitity.MyRequest;
 import com.dealdove.dealdove.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
@@ -9,7 +10,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Random;
@@ -22,6 +22,7 @@ public class LoginController {
 
     UserService userService;
 
+    @Autowired
     public LoginController(UserService userService) {
         this.userService = userService;
     }

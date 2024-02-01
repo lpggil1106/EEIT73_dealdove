@@ -18,11 +18,8 @@ public class CouponBaseController {
 
     @RequestMapping("/15_coupon_page")
     @ResponseBody
-    public void test(){
-        System.out.println("breakPoint");
-
-//        System.out.println(couponBaseService.findAllCouponBases());
-//        return couponBaseService.findAllCouponBases();
+    public List<CouponBase> test(){
+        return couponBaseService.findAllCouponBases();
     }
 
 }

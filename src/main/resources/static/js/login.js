@@ -46,7 +46,7 @@ $(document).ready(() => {
                     const email = $('#email').val();
                     const password = $('#password').val();
 
-                    if (isEmailVerified) {
+                    // if (isEmailVerified) {
                         signInWithEmailAndPassword(auth, email, password)
                             .then(result => {
                                 const user = result.user;
@@ -56,10 +56,10 @@ $(document).ready(() => {
                                 sendTokenToBackend(IdToken);
                                 window.location.href = '/Dealdove';
                             })
-                    } else {
-                        window.alert('尚未認證')
-                        window.location.reload();
-                    }
+                    // } else {
+                    //     window.alert('尚未認證')
+                    //     window.location.reload();
+                    // }
                 } else {
                     console.log('error')
                 }
