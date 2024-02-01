@@ -1,6 +1,5 @@
 package com.dealdove.dealdove.model.dto;
 
-import com.dealdove.dealdove.model.enitity.Product;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,44 +7,40 @@ import lombok.Setter;
 @Setter
 public class ProductHomeDTO {
 
-    private int productID;
+    private Integer productID;
     private String productName;
-    private String PriceRange;
-    private String frontImage;
-    private double averageRating;
+    private Integer minPrice;
+    private Integer maxPrice;
+    private Double avgRating;
+    private String coverImageURL;
+    private Integer soldQuantity;
 
-    public String getPriceRange() {
-        return PriceRange;
-    }
+    // Constructors, getters, and setters
 
-    public void setPriceRange(String priceRange) {
-        PriceRange = priceRange;
-    }
-
-    public String getFrontImage() {
-        return frontImage;
-    }
-
-    public void setFrontImage(String frontImage) {
-        this.frontImage = frontImage;
-    }
-
-    public double getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public ProductHomeDTO(int productID,String productName, String PriceRange, String frontImage, double averageRating) {
+    public ProductHomeDTO(Integer productID, String productName, Integer minPrice, Integer maxPrice, Double avgRating, String coverImageURL, Integer soldQuantity) {
         this.productID = productID;
         this.productName = productName;
-        this.frontImage = frontImage;
-        this.PriceRange = PriceRange;
-        this.averageRating = averageRating;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+        this.avgRating = avgRating;
+        this.coverImageURL = coverImageURL;
+        this.soldQuantity = soldQuantity;
     }
 
+    public ProductHomeDTO() {
+        // Default constructor
+    }
 
-
+    @Override
+    public String toString() {
+        return "ProductHomeDTO{" +
+                "productID=" + productID +
+                ", productName='" + productName + '\'' +
+                ", minPrice=" + minPrice +
+                ", maxPrice=" + maxPrice +
+                ", avgRating=" + avgRating +
+                ", coverImageURL='" + coverImageURL + '\'' +
+                ", soldQuantity=" + soldQuantity +
+                '}';
+    }
 }

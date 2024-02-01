@@ -236,13 +236,13 @@
                 let productCard = document.createElement('div')
                 productCard.classList.add('col-3')
                 productCard.innerHTML = `
-                        <a href="./04_product_page.html?id=${product.productID}">
+                        <a href="./04_product_page.html?id=${product.id}">
                             <div class="product-card">
-                            <img class="product-image" src="${product.frontImage}" alt="Product Image">
+                            <img class="product-image" src="${product.coverImageURL}" alt="Product Image">
                             <div class="product-info">
                                 <div>
                                     <div class="product-name">${product.productName}</div>
-                                    <div class="product-price">${product.priceRange}</div>
+                                    <div class="product-price">$ ${product.minPrice} ~ ${product.maxPrice}</div>
                                 </div>
                                 <div class="product-rating-sold">
                                     <div class="product-rating">
@@ -252,7 +252,7 @@
                                         <span class="star">&#9734;</span>
                                         <span class="star">&#9734;</span>
                                     </div>
-                                    <div class="product-sold">已售出: 10 件</div>
+                                    <div class="product-sold">已售出: ${product.soldQuantity} 件</div>
                                 </div>
                             </div>
                         </div>
@@ -279,11 +279,11 @@
                     productCard.innerHTML = `
                         <a href="./04_product_page.html?id=${product.id}">
                             <div class="product-card">
-                            <img class="product-image" src="$https://media.tenor.com/MhclY3lWLUEAAAAe/nl-nlnlsofun.png" alt="Product Image">
+                            <img class="product-image" src="${product.coverImageURL}" alt="Product Image">
                             <div class="product-info">
                                 <div>
                                     <div class="product-name">${product.name}</div>
-                                    <div class="product-price">${product.price}</div>
+                                    <div class="product-price">$ ${product.minPrice} ~ ${product.maxPrice}</div>
                                 </div>
                                 <div class="product-rating-sold">
                                     <div class="product-rating">

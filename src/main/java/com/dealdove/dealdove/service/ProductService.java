@@ -2,6 +2,7 @@ package com.dealdove.dealdove.service;
 
 import com.dealdove.dealdove.model.dao.ProductCategoryRepository;
 import com.dealdove.dealdove.model.dao.ProductRepository;
+import com.dealdove.dealdove.model.dto.ProductHomeDTO;
 import com.dealdove.dealdove.model.enitity.Product;
 import com.dealdove.dealdove.model.enitity.ProductCategory;
 import com.dealdove.dealdove.model.enitity.ProductImageTable;
@@ -76,5 +77,8 @@ public class ProductService {
         }
     }
 
+    public List<Object[]> getProductDetails() {
+        return productRepository.getProductDetails();
+    }
 
 }
