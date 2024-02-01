@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
@@ -12,6 +13,7 @@ import java.time.ZonedDateTime;
 @Getter
 @Setter
 @Entity
+@DynamicInsert
 @Table(name = "coupon", schema = "dealdove")
 public class Coupon {
     @Id
@@ -25,12 +27,13 @@ public class Coupon {
     @Column(name = "isUsed", nullable = false)
     private Byte isUsed;
 
-    @Column(name = "creationDate", nullable = false)
+    @Column(name = "creationDate", nullable = true)
     private ZonedDateTime creationDate;
 
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "couponBaseID", nullable = false)
     private CouponBase couponBase;
+
 
 }

@@ -1,6 +1,9 @@
 package com.dealdove.dealdove.service;
 
+import com.dealdove.dealdove.model.dao.CouponRepository;
 import com.dealdove.dealdove.model.dao.UserRepository;
+import com.dealdove.dealdove.model.enitity.Coupon;
+import com.dealdove.dealdove.model.enitity.CouponBase;
 import com.dealdove.dealdove.model.enitity.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -19,10 +22,11 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-
+    private final CouponRepository couponRepository;
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, CouponRepository couponRepository) {
         this.userRepository = userRepository;
+        this.couponRepository = couponRepository;
     }
 
     //    Firebase 解析器
@@ -84,6 +88,20 @@ public class UserService {
         userInfoMap.put("birthday", birthday.toString());
         userInfoList.add(userInfoMap);
         return userInfoList;
+    }
+
+    public List<String> showCoupon(LinkedHashMap<String, String> user){
+        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
+        String userID = decodedToken.getUid();
+        List<Coupon> coupons =  couponRepository.findCouponByUserID(userID);
+            List<String> Desc = new ArrayList<>();
+        for(Coupon coupon : coupons){
+            CouponBase couponBases = coupon.getCouponBase();
+            System.out.println(couponBases.getCouponDescription());
+            Desc.add(couponBases.getCouponDescription());
+        }
+            return Desc;
+
     }
 
     public int findUserByEmail(String email){

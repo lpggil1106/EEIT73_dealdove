@@ -8,6 +8,7 @@ $(document).ready(() => {
                 user.getIdToken()
                     .then(idToken => {
                         showInfoFromBack(idToken);
+                        showCoupon(idToken);
                         resetOrder()
                         showOrder(idToken);
                         $('#status1').on('click', () => {
@@ -93,12 +94,25 @@ function showOrder(idToken, status) {
         .catch(error => console.log(error))
 }
 
+function showCoupon(idToken) {
+    fetch('/showCoupon',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json;charset=utf-8'},
+        body: JSON.stringify({"idToken": idToken})
+    }).then(res=>res.json())
+        .then(data=>data.forEach((data,index)=>{
+            console.log(index);
+            $(`#desc${index}`).text(data);
+        }))
+}
+
+
 function resetOrder() {
     for (let i = 0; i < 99; i++) {
         $(`#commodity${i}`).text('商品名: ')
         $(`#quantity${i}`).text('數量: ');
-        $(`#img${i}`).prop('src','');
-        $(`#img${i}`).prop('alt','1');
+        $(`#img${i}`).prop('src','./images/coupon3.png');
+        $(`#img${i}`).prop('alt','');
     }
 }
 

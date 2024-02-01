@@ -13,4 +13,6 @@ public interface CouponBaseRepository extends JpaRepository<CouponBase,Integer> 
 
     @Query(value = "SELECT * FROM couponBase",nativeQuery = true)
     public List<CouponBase> findAllCouponBases();
+
+    CouponBase findByCouponBaseID(Integer CouponBaseID);
 }
