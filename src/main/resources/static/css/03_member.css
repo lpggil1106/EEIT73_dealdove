@@ -85,11 +85,11 @@
     padding: 0px 20px 20px 20px;
 }
 
-.content-section-couponst {
+.content-section-coupons {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 0px 20px 20px 20px;
+    padding: 0 20px 20px 20px;
 }
 
 
@@ -314,7 +314,7 @@
 
 .bottom-section {
     width: 800px;
-    height: 370px;
+    height: auto;
     border: 20px solid #F9F3E7;
     border-width: 0 20px 20px;
     display: flex;
@@ -327,16 +327,16 @@
 
 .coupon-block {
     flex: 1 1 40%;
+    width: 360px;
     display: flex;
     align-items: center;
     margin: 10px;
 }
 
 .coupon-block img {
-
-    width: 150px;
+    width: 180px;
     height: 150px;
-    width: 50%;
+    /*width: 50%;*/
 }
 
 .coupon-block p {

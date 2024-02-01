@@ -5,9 +5,7 @@ $(document).ready(()=>{
         .then(response => response.json())
         .then(data => {
             data.forEach((couponBase, index) => {
-                console.log(couponBase);
                 const target =  parseInt(couponBase.discount)!=0 ? "specify" : "tar";
-                console.log(target);
                 let targetContainer = document.getElementById(target);
 
                 if (index % 2 === 0) {
@@ -79,6 +77,7 @@ $(document).ready(()=>{
                 couponCard.appendChild(getCouponButton);
                 //const currentRow = document.querySelector(`#${target}`).querySelector(".coupon-row:last-child");
                 const currentRow = targetContainer.querySelector(".coupon-row:last-child");
+                console.log(couponCard)
                 currentRow.appendChild(couponCard);
 
                $(`#getCouponButton${index}`).on('click',()=>{

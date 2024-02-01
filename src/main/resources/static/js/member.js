@@ -9,6 +9,7 @@ $(document).ready(() => {
                     .then(idToken => {
                         showInfoFromBack(idToken);
                         showCoupon(idToken);
+                        showOrderStatus(idToken);
                         resetOrder()
                         showOrder(idToken);
                         $('#status1').on('click', () => {
@@ -93,6 +94,30 @@ function showOrder(idToken, status) {
         )
         .catch(error => console.log(error))
 }
+function showOrderStatus(idToken) {
+    fetch('/showOrderStatus', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json;charset=utf-8'},
+        body: JSON.stringify({"idToken": idToken})
+    })
+        .then(res => res.json())
+        .then(data=>data.forEach((order, index) => {
+            console.log(order.image);
+                if(order.Status==='1'){
+                    const status = '待出貨';
+                    $(`#orderStatus${index}`).text('訂單狀態 :'+status);
+                }else if (order.Status==='2'){
+                    const status = '待收貨'
+                    $(`#orderStatus${index}`).text('訂單狀態 :'+status);
+                }else if (order.Status==='3'){
+                    const status = '已完成'
+                    $(`#orderStatus${index}`).text('訂單狀態 :'+status);
+                }
+                $(`#orderImg${index}`).prop('src',order.image);
+            })
+        )
+        .catch(error => console.log(error))
+}
 
 function showCoupon(idToken) {
     fetch('/showCoupon',{
@@ -101,8 +126,14 @@ function showCoupon(idToken) {
         body: JSON.stringify({"idToken": idToken})
     }).then(res=>res.json())
         .then(data=>data.forEach((data,index)=>{
-            console.log(index);
             $(`#desc${index}`).text(data);
+            if(index>=4){
+                $('.bottom-section').append(
+                    `<div class="coupon-block"> <img src="./images/coupon2.png" alt="圖片 1"> <p id="desc${index}"></p> </div>`
+                )
+                console.log(index+"in if");
+                $(`#desc${index}`).text(data);
+            }
         }))
 }
 
