@@ -37,7 +37,21 @@ public class CheckoutService {
 
     public String getModelsForUser(String userID) {
         ShoppingCartItem cartItem = shoppingCartItemRepository.findByUserID(userID);
-        return cartItem != null ? cartItem.getModels() : null; // 返回 models 字段，如果找不到条目，则返回 null
+        return cartItem != null ? cartItem.getModels() : null; // 返回 models
+    }
+
+    public Integer getQuantityForUser(String userID) {
+        // 根据 userID 查找购物车项
+        ShoppingCartItem cartItem = shoppingCartItemRepository.findByUserID(userID);
+        // 如果找到了购物车项，返回商品数量；否则返回 null
+        return cartItem != null ? cartItem.getQuantity() : null;
+    }
+
+    public Integer getProductNameForUser(String userID) {
+        // 根据 userID 查找购物车项
+        ShoppingCartItem cartItem = shoppingCartItemRepository.findByUserID(userID);
+        // 如果找到了购物车项，返回商品数量；否则返回 null
+        return cartItem != null ? cartItem.getQuantity() : null;
     }
 }
 

@@ -8,8 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
+    <script src="./js/isLogin.js" type="module"></script>
     <title>Checkout Page</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <nav class="header">
@@ -73,7 +74,7 @@
                         <path d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
                               stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <a href="" class=" link-underline link-underline-opacity-0 text-secondary"> 註冊/登入</a>
+                    <a href="/Login" id="login" class=" link-underline link-underline-opacity-0 text-secondary"> 註冊/登入</a>
                 </li>
             </ul>
         </div>
@@ -111,9 +112,9 @@
             </div>
         </div>
         <div class="cart-item">
-            <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7qukz-lg3gbyeti5gq16" alt="Product Image">
+            <img id="productImg1" src="https://down-tw.img.susercontent.com/file/tw-11134207-7qukz-lg3gbyeti5gq16" alt="Product Image">
             <div class="item-name">
-                <p>男士休閒襯衫</p>
+                <P id="productName1">男士休閒襯衫</P>
             </div>
             <div class="item-model">
                 <p id="model1">黑,M</p>
@@ -203,6 +204,8 @@
                     <p class="text-sm">付款方式:</p>
                 </div>
                 <div class="payment-options">
+                    <button id="payButton" onclick="redirectToPayment()">前往付款</button>
+                    <div id="ECPayPayment"></div>
                     <input type="radio" id="ecpayment" name="payment" value="ecpayment">
                     <label for="ecpayment">綠界支付</label>
                     <input type="radio" id="cash" name="payment" value="cash">
@@ -314,7 +317,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // 假设您已经有了 userID
-        const userID = 'Nqh3tSKrZeXmDeB8gBzrwJkXxSa2'; // 您需要根据实际情况获取这个值
+        const userID = '4uIXMQan5kRprMeKC1QXLrIzw2D2'; // 您需要根据实际情况获取这个值
 
         fetchModelInfo(userID);
     });
@@ -332,6 +335,7 @@
             .then(data => {
                 // 假设返回的数据包含 models 属性
                 document.getElementById('model1').textContent = data.models;
+                document.getElementById('quantity1').textContent = data.quantity;
             })
             .catch(error => console.error('Error:', error));
     }
@@ -351,6 +355,38 @@
     //         .catch(error => console.error('Error fetching model info:', error));
     // }
 </script>
+<script src="https://ecpg-stage.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116"></script>
+<script>
+    function redirectToPayment() {
+        fetch('/ecpayCheckout', {
+            method: 'POST'
+        }).then(res => res.text())
+            .then(data => {
+                    var div = document.createElement('div');
+                    div.innerHTML = data;
+
+                    // 將 div 中的 form 元素添加到 body 中
+                    var form = div.querySelector('form');
+                    if (form) {
+                        document.body.appendChild(form);
+
+                        // 提交表單
+                        form.submit();
+                    } else {
+                        console.error('Form element not found in HTML content.');
+                    }
+                }
+            )
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+
+    }
+
+
+
+</script>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
