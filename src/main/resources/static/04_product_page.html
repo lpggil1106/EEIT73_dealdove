@@ -500,27 +500,29 @@
         const addToCartButton = document.querySelector('.add');
 
         addToCartButton.addEventListener('click', function() {
-            const productId = document.getElementById('productidmodel').innerText;
-            let modelName =firName+","+secName;
+            const productID = document.getElementById('productidmodel').innerText;
+            let models =firName+","+secName;
             const quantity = document.getElementById('quantityValue').value;
             const userID = document.getElementById('userid').innerText;
-            console.log(productId); //3
-            console.log(modelName); //黑色,S
+            console.log(productID); //3
+            console.log(models); //黑色,S
             console.log(quantity);  //6
             console.log(userid);    //4uIXMQan5kRprMeKC1QXLrIzw2D2
+            const data = {
+                "productID": productID,
+                "models": models,
+                "quantity": quantity,
+                "userID": userID,
+            };
+            console.log(data);
             // 使用 Fetch API 向後端發送 POST 請求
             fetch(`api/shoppingCart/addToCart`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    productId: productId,
-                    models: modelName,
-                    quantity: quantity,
-                    userID: userID,
-                }),
-            })
+                body: JSON.stringify(data)
+            }).catch(error => console.error('Error:', error));
         });
 
     </script>
