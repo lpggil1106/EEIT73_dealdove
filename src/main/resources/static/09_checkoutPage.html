@@ -9,9 +9,7 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
     <title>Checkout Page</title>
-    <style>
-
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <nav class="header">
@@ -113,18 +111,18 @@
             </div>
         </div>
         <div class="cart-item">
-            <img src="./images/ball2.png" alt="Product Image">
+            <img src="https://down-tw.img.susercontent.com/file/tw-11134207-7qukz-lg3gbyeti5gq16" alt="Product Image">
             <div class="item-name">
-                <p>Product Name</p>
+                <p>男士休閒襯衫</p>
             </div>
             <div class="item-model">
-                <p>Unit Price</p>
+                <p id="model1">黑,M</p>
             </div>
             <div class="item-unit">
-                <p id="price1">222</p>
+                <p id="price1">900</p>
             </div>
             <div class="item-quantity">
-                <p id="quantity1">2</p>
+                <p id="quantity1">10</p>
             </div>
             <div class="item-total">
                 <p>Total Price</p>
@@ -152,93 +150,92 @@
         </div>
 
 
-        </div>
     </div>
+</div>
 
-    <form>
-        <div class="container" style="padding-left:3.5vw">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group row" style=" height:50px">
-                        <label for="name" class="col-sm-3 col-form-label form-p"><p class="text-sm">姓名:</p></label>
-                        <div class="col-sm-5">
-                            <input type="name" class="form-control" id="name">
-                        </div>
+<form>
+    <div class="container" style="padding-left:3.5vw">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group row" style=" height:50px">
+                    <label for="name" class="col-sm-3 col-form-label form-p"><p class="text-sm">姓名:</p></label>
+                    <div class="col-sm-5">
+                        <input type="name" class="form-control" id="name">
                     </div>
-                    <div class="form-group row" style=" height:50px">
-                        <label for="email" class="col-sm-3 col-form-label form-p"><p class="">電話:</p></label>
-                        <div class="col-sm-5">
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                    </div>
-                    <div class="form-group row" style=" height:50px">
-                        <label for="email" class="col-sm-3 col-form-label form-p"><p class="text-sm">收件門市:</p>
-                        </label>
-                        <div class="col-sm-5">
-                            <input type="email" class="form-control" id="deliever">
-                        </div>
-                    </div>
-
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group row" style="height:50px">
-                        <label for="email" class="col-sm-3 col-form-label text-center d-flex align-items-center"><p
-                                class="text-sm">買家備註:</p></label>
-                        <div class="col-sm-8">
+                <div class="form-group row" style=" height:50px">
+                    <label for="email" class="col-sm-3 col-form-label form-p"><p class="">電話:</p></label>
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                </div>
+                <div class="form-group row" style=" height:50px">
+                    <label for="email" class="col-sm-3 col-form-label form-p"><p class="text-sm">收件門市:</p>
+                    </label>
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" id="deliever">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group row" style="height:50px">
+                    <label for="email" class="col-sm-3 col-form-label text-center d-flex align-items-center"><p
+                            class="text-sm">買家備註:</p></label>
+                    <div class="col-sm-8">
                             <textarea class="form-control" id="buyerNote" placeholder="請輸入買家備註"
                                       rows="5"></textarea>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
+    </div>
+    <div class="container coupon-container">
+        <div class="">
+            <p class="text-sm">優惠券:</p>
         </div>
-        <div class="container coupon-container">
-            <div class="">
-                <p class="text-sm">優惠券:</p>
-            </div>
-        </div>
-        <div class="container">
-            <div class="container-checkout">
+    </div>
+    <div class="container">
+        <div class="container-checkout">
+            <div class="payment-options">
+                <div class="payment-option" style="padding-top:2px">
+                    <p class="text-sm">付款方式:</p>
+                </div>
                 <div class="payment-options">
-                    <div class="payment-option" style="padding-top:2px">
-                        <p class="text-sm">付款方式:</p>
-                    </div>
-                    <div class="payment-options">
-                        <input type="radio" id="creditCard" name="payment" value="creditCard">
-                        <label for="creditCard">信用卡</label>
-                        <input type="radio" id="cash" name="payment" value="cash">
-                        <label for="cash">貨到付款</label>
-                        <input type="radio" id="linePay" name="payment" value="linePay">
-                        <label for="linePay">Line Pay</label>
-                    </div>
+                    <input type="radio" id="ecpayment" name="payment" value="ecpayment">
+                    <label for="ecpayment">綠界支付</label>
+                    <input type="radio" id="cash" name="payment" value="cash">
+                    <label for="cash">貨到付款</label>
                 </div>
-
             </div>
-            <div id="orderSummary" class="container">
-                <div class="summary-item">
-                    <div class="summary-label">
-                        <p>商品數量:</p>
-                    </div>
-                    <div class="summary-value">
-                        <p id="productQuantity">0</p>
-                    </div>
-                </div>
-                <div class="summary-item">
-                    <p class="summary-label">折扣金額:</p>
-                    <p id="discountAmount" class="summary-value">$0.00</p>
-                </div>
-                <div class="summary-item">
-                    <p class="summary-label">總金額:</p>
-                    <p id="totalAmount" class="summary-value">$0.00</p>
-                </div>
 
-                <button id="submitOrderBtn" class="submit-btn">下訂單</button>
-            </div>
         </div>
-    </form>
+        <div id="orderSummary" class="container">
+            <div class="summary-item">
+                <div class="summary-label">
+                    <p>商品數量:</p>
+                </div>
+                <div class="summary-value">
+                    <p id="productQuantity">0</p>
+                </div>
+            </div>
+            <div class="summary-item">
+                <p class="summary-label">折扣金額:</p>
+                <p id="discountAmount" class="summary-value">$0.00</p>
+            </div>
+            <div class="summary-item">
+                <p class="summary-label">總金額:</p>
+                <p id="totalAmount" class="summary-value">$0.00</p>
+            </div>
+
+            <button id="submitOrderBtn" class="submit-btn">下訂單</button>
+        </div>
+    </div>
+</form>
 </div>
 <script>
+
     // 獲取所有的 .cart-item 元素
     const cartItems = document.querySelectorAll('.cart-item');
 
@@ -261,22 +258,98 @@
         { quantity: 10, discount: 10, total: 90 }
     ];
 
+    // 更新訂單摘要
+    document.addEventListener('DOMContentLoaded', function() {
+        updateOrderSummary(); // 调用函数以更新订单摘要
+    });
     function updateOrderSummary() {
+        const cartItems = document.querySelectorAll('.container .cart-item'); // 获取所有购物车项目
         const productQuantityElement = document.getElementById('productQuantity');
         const discountAmountElement = document.getElementById('discountAmount');
         const totalAmountElement = document.getElementById('totalAmount');
 
-        // 計算總商品數量、折扣金額、總金額
-        const productQuantity = cartData.reduce((sum, item) => sum + item.quantity, 0);
-        const discountAmount = cartData.reduce((sum, item) => sum + item.discount, 0);
-        const totalAmount = cartData.reduce((sum, item) => sum + item.total, 0);
+
+        let totalQuantity = 0;
+        let totalAmount = 0;
+        let discountAmount = 0;
+
+        cartItems.forEach(item => {
+            const quantityElement = item.querySelector('.item-quantity p');
+            const unitPriceElement = item.querySelector('.item-unit p');
+            const totalElement = item.querySelector('.item-total p');
+
+            const quantity = parseInt(quantityElement.textContent, 10);
+            const unitPrice = parseFloat(unitPriceElement.textContent);
+            const totalPrice = quantity * unitPrice;
+
+
+
+            totalQuantity += quantity; // 累加商品数量
+            totalAmount += totalPrice; // 累加商品总价
+
+            totalElement.textContent = totalPrice.toFixed(2); // 更新该项目的总价
+        });
 
         // 更新顯示
-        productQuantityElement.textContent = productQuantity;
+        productQuantityElement.textContent = totalQuantity;
         discountAmountElement.textContent = `$${discountAmount.toFixed(2)}`;
-        totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
+        totalAmountElement.textContent = `$${(totalAmount - discountAmount).toFixed(2)}`;
     }
+    // function updateOrderSummary() {
+    //     const productQuantityElement = document.getElementById('productQuantity');
+    //     const discountAmountElement = document.getElementById('discountAmount');
+    //     const totalAmountElement = document.getElementById('totalAmount');
+    //
+    //     // 計算總商品數量、折扣金額、總金額
+    //     const productQuantity = cartData.reduce((sum, item) => sum + item.quantity, 0);
+    //     const discountAmount = cartData.reduce((sum, item) => sum + item.discount, 0);
+    //     const totalAmount = cartData.reduce((sum, item) => sum + item.total, 0);
+    //
+    //     // 更新顯示
+    //     productQuantityElement.textContent = productQuantity;
+    //     discountAmountElement.textContent = `$${discountAmount.toFixed(2)}`;
+    //     totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
+    // }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 假设您已经有了 userID
+        const userID = 'Nqh3tSKrZeXmDeB8gBzrwJkXxSa2'; // 您需要根据实际情况获取这个值
 
+        fetchModelInfo(userID);
+    });
+    function fetchModelInfo(userID) {
+        // 使用固定的 userId 构建请求 URL
+        const url = `/09_checkoutPage/shoppingCart/${userID}/modelInfo`;
+
+        fetch(url)
+            .then(response => {
+                if(response.ok) {
+                    return response.json();
+                }
+                throw new Error('Failed to fetch model info');
+            })
+            .then(data => {
+                // 假设返回的数据包含 models 属性
+                document.getElementById('model1').textContent = data.models;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+    // function fetchModelInfo(userId) {
+    //     // 根据您的后端API实际地址进行更改
+    //     fetch(`/09_checkoutPage/shoppingCart/${userId}/modelInfo`)
+    //         .then(response => {
+    //             if(response.ok) {
+    //                 return response.json();
+    //             }
+    //             throw new Error('Models not found');
+    //         })
+    //         .then(data => {
+    //             // 更新页面上的元素
+    //             document.getElementById('model1').textContent = data.models;
+    //         })
+    //         .catch(error => console.error('Error fetching model info:', error));
+    // }
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

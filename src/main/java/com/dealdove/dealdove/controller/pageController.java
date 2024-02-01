@@ -37,8 +37,13 @@ public class pageController {
     }
 
     @GetMapping("/seller")
-    public String userPage(){
+    public String seller(){
         return "10_seller_home_page";
+    }
+
+    @GetMapping("/checkout")
+    public String checkout(){
+        return "09_checkoutPage";
     }
 
     @GetMapping("/Coupon")
