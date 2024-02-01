@@ -49,12 +49,6 @@ public class CouponService {
         if(temp.getOwnerID().equals(ownerID)&&temp.getCouponBase().getCouponBaseID()==couponBaseID) {
             canInsert=false;
         }
-
-
-
-//            if(temp.getCouponBase().getCouponBaseID() == couponBaseID){
-//                canInsert = false;
-//            }
         }
 
         if(canInsert){

@@ -58,6 +58,24 @@ public class OrderService {
         return productList;
     }
 
+    public List<HashMap<String,String>> findAllOrder(LinkedHashMap<String, String> user){
+        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
+        String userID = decodedToken.getUid();
+        orderRepository.findAllOrders(userID);
+        List<Order> orders = orderRepository.findAllOrders(userID);
+        List<HashMap<String,String>> orderList = new ArrayList<>();
+        for(Order order : orders){
+            List<OrderItem> orderItems = order.getOrderItems();
+            for (OrderItem orderItem :orderItems){
+                HashMap<String,String> orderMap = new HashMap<>();
+                orderMap.put("image",orderItem.getProduct().getFirstImage());
+                orderMap.put("Status",order.getOrderStatus().toString());
+                orderList.add(orderMap);
+            }
+        }
+        return orderList;
+    }
+
     public String ecpayCheckout() {
         String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
         AllInOne all = new AllInOne("");
