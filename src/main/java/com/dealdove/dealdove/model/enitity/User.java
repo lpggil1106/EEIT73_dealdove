@@ -49,7 +49,7 @@ public class User {
     private ZonedDateTime lastedit;
 
     @OneToMany
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "userID", nullable = true)
     private List<ShoppingCartItem> shoppingCartItems;
 
 

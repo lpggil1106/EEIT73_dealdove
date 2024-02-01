@@ -10,7 +10,7 @@ public class ModelInfo {
     @Column(name = "modelInfoID", nullable = false)
     private Integer id;
 
-    @Column(name = "productID", nullable = true)
+    @Column(name="productID",nullable = true)
     private Integer productID;
 
     @Column(name = "firstModelID", nullable = true)

@@ -27,7 +27,7 @@ public class pageController {
     public String memberPage(){
         return "03_member";
     }
-    @GetMapping("/product")
+    @GetMapping("/productHome")
     public String productPage(){
         return "06_product_home_page";
     }
@@ -53,6 +53,7 @@ public class pageController {
     public String ecpayReturn(){
         return "ecpayReturn";
     }
+
 
 
 }

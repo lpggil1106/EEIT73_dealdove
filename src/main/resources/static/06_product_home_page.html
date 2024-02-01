@@ -153,30 +153,29 @@
         <div class="container-fluid">
             <div class="row similar">
 
-                <div class="col-3">
-                    <a href="">
-                        <div class="product-card">
-                            <img class="product-image" src="https://via.placeholder.com/200" alt="Product Image">
-                            <div class="product-info">
-                                <div>
-                                    <div class="product-name">商品名稱很長很長的商品名稱可能會跑好幾行</div>
-                                    <div class="product-price">$ 100.00</div>
-                                </div>
-                                <div class="product-rating-sold">
-                                    <div class="product-rating">
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-                                    <div class="product-sold">已售出: 100 件</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
+<!--                <div class="col-3">-->
+<!--                    <a href="">-->
+<!--                        <div class="product-card">-->
+<!--                            <img class="product-image" src="https://via.placeholder.com/200" alt="Product Image">-->
+<!--                            <div class="product-info">-->
+<!--                                <div>-->
+<!--                                    <div class="product-name">商品名稱很長很長的商品名稱可能會跑好幾行</div>-->
+<!--                                    <div class="product-price">$ 100.00</div>-->
+<!--                                </div>-->
+<!--                                <div class="product-rating-sold">-->
+<!--                                    <div class="product-rating">-->
+<!--                                        <span class="star">&#9733;</span>-->
+<!--                                        <span class="star">&#9733;</span>-->
+<!--                                        <span class="star">&#9733;</span>-->
+<!--                                        <span class="star">&#9734;</span>-->
+<!--                                        <span class="star">&#9734;</span>-->
+<!--                                    </div>-->
+<!--                                    <div class="product-sold">已售出: 100 件</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
 
                 <!-- ... (repeat for other cards) ... -->
 
@@ -223,25 +222,27 @@
         <img class="qrcode" src="./images/qrCode.png">
     </div>
 </footer>
-<script src="./js/06_product_home_page.js"></script>
+<!--<script src="./js/06_product_home_page.js"></script>-->
 <!--        <script src="./js/productHome.js"></script>-->
+</body>
 <script>
-    fetch('api/products')
-        .then(response => response.json())
+    fetch("/getProduct")
+        .then(res => res.json())
         .then(data => {
             console.log(data)
             let similar = document.querySelector('.similar')
+            similar.innerHTML = ''
             data.forEach(product => {
                 let productCard = document.createElement('div')
                 productCard.classList.add('col-3')
                 productCard.innerHTML = `
-                        <a href="./04_product_page.html?id=${product.id}">
+                        <a href="./04_product_page.html?id=${product.productID}">
                             <div class="product-card">
-                            <img class="product-image" src="$https://media.tenor.com/MhclY3lWLUEAAAAe/nl-nlnlsofun.png" alt="Product Image">
+                            <img class="product-image" src="${product.frontImage}" alt="Product Image">
                             <div class="product-info">
                                 <div>
-                                    <div class="product-name">${product.name}</div>
-                                    <div class="product-price">$ ${product.price}</div>
+                                    <div class="product-name">${product.productName}</div>
+                                    <div class="product-price">${product.priceRange}</div>
                                 </div>
                                 <div class="product-rating-sold">
                                     <div class="product-rating">
@@ -251,18 +252,17 @@
                                         <span class="star">&#9734;</span>
                                         <span class="star">&#9734;</span>
                                     </div>
-                                    <div class="product-sold">已售出: ${product.soldQuantity} 件</div>
+                                    <div class="product-sold">已售出: 10 件</div>
                                 </div>
                             </div>
                         </div>
                         </a>
                         `
                 similar.appendChild(productCard)
-            })
+        })}).catch(err => {
+            console.log(err)
         })
-</script>
-</body>
-<script>
+
     let search = document.querySelector('.search-input')
     let searchIcon = document.querySelector('.search-icon')
     searchIcon.addEventListener('click', () => {
@@ -283,7 +283,7 @@
                             <div class="product-info">
                                 <div>
                                     <div class="product-name">${product.name}</div>
-                                    <div class="product-price">$ ${product.price}</div>
+                                    <div class="product-price">${product.price}</div>
                                 </div>
                                 <div class="product-rating-sold">
                                     <div class="product-rating">
@@ -309,6 +309,7 @@
             window.location.href = `./06_product_home_page.html?keyword=${keyword}`
         }
     })
+
     let url = new URL(window.location.href)
     let keyword = url.searchParams.get('keyword')
     if (keyword) {

@@ -1,13 +1,17 @@
 package com.dealdove.dealdove.controller;
 
+import com.dealdove.dealdove.model.dto.ProductHomeDTO;
 import com.dealdove.dealdove.model.enitity.ModelInfo;
 import com.dealdove.dealdove.model.enitity.Product;
 import com.dealdove.dealdove.model.enitity.ProductModelAssociateTable;
 import com.dealdove.dealdove.service.ModelInfoService;
 import com.dealdove.dealdove.service.ProductService;
+import com.dealdove.dealdove.service.ReviewService;
 import com.dealdove.dealdove.service.productModelAssociateTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/10_seller_home_page")
@@ -16,15 +20,19 @@ public class ProductController {
     private final ProductService productService;
     private final productModelAssociateTableService productModelAssociateTableService;
     private final ModelInfoService modelInfoService;
+    private final ReviewService reviewService;
 
     @Autowired
     public ProductController(ProductService productService,
                              productModelAssociateTableService productModelAssociateTableService,
-                             ModelInfoService modelInfoService) {
+                             ModelInfoService modelInfoService, ReviewService reviewService) {
         this.productService = productService;
         this.productModelAssociateTableService = productModelAssociateTableService;
         this.modelInfoService = modelInfoService;
+        this.reviewService = reviewService;
     }
+
+
 
 
     @PostMapping("/add_product")
@@ -45,8 +53,6 @@ public class ProductController {
                              @RequestParam("typedive11hidden") String typedive11hidden,
                              @RequestParam("price1") Integer price,
                              @RequestParam("quantity1") Integer quantity)
-
-
     {
 
 
@@ -89,4 +95,5 @@ public class ProductController {
         // 在這裡實現查詢邏輯，返回匹配的 categoryID
         return productService.findCategoryIDByName(categoryName);
     }
+
 }

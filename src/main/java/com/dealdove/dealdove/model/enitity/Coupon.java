@@ -33,4 +33,14 @@ public class Coupon {
     @JoinColumn(name = "couponBaseID", nullable = false)
     private CouponBase couponBase;
 
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "couponID=" + couponID +
+                ", ownerID='" + ownerID + '\'' +
+                ", isUsed=" + isUsed +
+                ", creationDate=" + creationDate +
+                ", couponBase=" + couponBase +
+                '}';
+    }
 }

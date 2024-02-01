@@ -1,5 +1,7 @@
 package com.dealdove.dealdove.model.enitity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +13,7 @@ public class ProductImageTable {
     private Integer id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "productID", nullable = false)
     private Product product;
 
