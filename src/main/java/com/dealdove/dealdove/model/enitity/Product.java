@@ -1,12 +1,17 @@
 package com.dealdove.dealdove.model.enitity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 import java.util.List;
 
 @Entity
-
+@Getter
+@Setter
 @Table(name = "product", schema = "dealdove")
 public class Product {
     @Id
@@ -20,6 +25,9 @@ public class Product {
     @Column(name = "productDescription", nullable = false, length = 500)
     private String productDescription;
 
+    @OneToMany
+    @JsonManagedReference
+    private List<Review> reviews;
     @Column(name = "productCategoryID", nullable = true)
     private Integer productCategoryID;
 
@@ -27,6 +35,7 @@ public class Product {
     private String userID;
 
     @OneToMany(mappedBy = "product")
+    @JsonManagedReference
     private List<OrderItem> orderItems;
 
     @Column(name = "productImageID", nullable = true)
@@ -48,10 +57,10 @@ public class Product {
         this.productImageTables = productImageTable;
     }
 
-//      @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
+    //      @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(mappedBy = "product")
+    @JsonManagedReference
     private List<ProductImageTable> productImageTables;
-
 
     @Column(name = "isAvailable", nullable = true)
     private Byte isAvailable;
@@ -93,7 +102,6 @@ public class Product {
     public void setProductCategoryID(Integer productCategoryID) {
         this.productCategoryID = productCategoryID;
     }
-
 
 
     public String getUserID() {
@@ -148,13 +156,23 @@ public class Product {
         productImagetable.setProduct(null);
     }
 
+    public String getFirstImage() {
+        if (productImageTables != null && !productImageTables.isEmpty()) {
+            return productImageTables.get(0).getImage();
+        }
+        return "https://i0.wp.com/kanzaki-yokkaichi.com/cms/wp-content/uploads/2020/03/non-image.jpg?w=730&ssl=1";
 
-//    public String getSubCategory() {
-//        String subCategory = null;
-//        return subCategory;
-//    }
-//
-//    public void setSubCategory(String subCategory) {
-//        this.subCategory = subCategory;
-//    }
+    }
+
+    public Double getReviewsAvgRating() {
+        if (reviews.isEmpty()) {
+            return 0.0;
+        }
+        Double sum = 0.0;
+        for (Review review : reviews) {
+            sum += review.getRating();
+        }
+        sum = sum / reviews.size();
+        return sum;
+    }
 }

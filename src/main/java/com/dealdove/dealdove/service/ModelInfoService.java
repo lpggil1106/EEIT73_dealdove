@@ -26,9 +26,12 @@ public class ModelInfoService {
         this.modelInfoRepository = modelInfoRepository;
         this.productModelAssociateTableRepository = productModelAssociateTableRepository;
     }
+
+
     public void saveModelInfo(ModelInfo modelInfo){
         modelInfoRepository.save(modelInfo);
     }
+
     public String getMaxMinPrice(Integer productID){
         //最小值
         int Max = Integer.MIN_VALUE;
@@ -39,7 +42,6 @@ public class ModelInfoService {
 
         //遍歷表單
         for (ModelInfo modelInfo : list) {
-            System.out.println(modelInfo.getPrice());
             int price = modelInfo.getPrice();
 
             if(price > Max){
@@ -57,5 +59,10 @@ public class ModelInfoService {
             return "$" + Integer.toString(Min) + " ~ $" + Integer.toString(Max);
         }
     }
+
+    public List<ModelInfo> findByProductID(Integer productID){
+        return modelInfoRepository.findByProductID(productID);
+    }
+
 }
 

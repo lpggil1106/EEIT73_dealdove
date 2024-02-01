@@ -1,5 +1,6 @@
 package com.dealdove.dealdove.model.enitity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,8 +17,10 @@ public class Review {
     @Column(name = "reviewID", nullable = false)
     private Integer reviewID;
 
-    @Column(name = "productID", nullable = false)
-    private Integer productID;
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "productID", nullable = false)
+    private Product product;
 
     @Column(name = "userID", nullable = false)
     private String userID;

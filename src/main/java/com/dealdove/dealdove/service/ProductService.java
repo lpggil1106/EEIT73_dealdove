@@ -4,6 +4,7 @@ import com.dealdove.dealdove.model.dao.ProductCategoryRepository;
 import com.dealdove.dealdove.model.dao.ProductRepository;
 import com.dealdove.dealdove.model.enitity.Product;
 import com.dealdove.dealdove.model.enitity.ProductCategory;
+import com.dealdove.dealdove.model.enitity.ProductImageTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,5 +63,18 @@ public class ProductService {
             return null;
         }
     }
+
+    public String getFrontImage(Integer productID){
+        Product temp = productRepository.findProductByproductID(productID);
+        List<ProductImageTable> images = temp.getProductImageTables();
+        if(images.isEmpty()){
+            return "https://i0.wp.com/kanzaki-yokkaichi.com/cms/wp-content/uploads/2020/03/non-image.jpg?w=730&ssl=1";
+        }else {
+//            return images.get(0).getImage();
+            return "https://i0.wp.com/kanzaki-yokkaichi.com/cms/wp-content/uploads/2020/03/non-image.jpg?w=730&ssl=1";
+
+        }
+    }
+
 
 }

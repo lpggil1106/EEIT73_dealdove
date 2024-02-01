@@ -1,9 +1,15 @@
 package com.dealdove.dealdove.model.dto;
 
 import com.dealdove.dealdove.model.enitity.Product;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ProductHomeDTO {
-    private Product product;
+
+    private int productID;
+    private String productName;
     private String PriceRange;
     private String frontImage;
     private double averageRating;
@@ -32,24 +38,14 @@ public class ProductHomeDTO {
         this.averageRating = averageRating;
     }
 
-    public ProductHomeDTO(Product product, String PriceRange, String frontImage, double averageRating) {
-        this.product = product;
+    public ProductHomeDTO(int productID,String productName, String PriceRange, String frontImage, double averageRating) {
+        this.productID = productID;
+        this.productName = productName;
         this.frontImage = frontImage;
         this.PriceRange = PriceRange;
         this.averageRating = averageRating;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-
-
-
-
-    public Product getProduct() {
-        return product;
-    }
 
 
 }

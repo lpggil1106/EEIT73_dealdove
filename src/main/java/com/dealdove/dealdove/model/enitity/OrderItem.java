@@ -1,5 +1,7 @@
 package com.dealdove.dealdove.model.enitity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +22,7 @@ public class OrderItem {
     private Integer orderID;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "productID", nullable = false)
     private Product product;
 

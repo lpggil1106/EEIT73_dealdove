@@ -17,7 +17,7 @@ public class ShoppingCartItem {
     @Column(name = "productID", nullable = false)
     private Integer productID;
 
-    @Column(name = "models", length = 10, nullable = false)
+    @Column(name = "models",length = 10, nullable = false)
     private String models;
 
     @Column(name = "quantity", nullable = false)
@@ -25,4 +25,5 @@ public class ShoppingCartItem {
 
     @Column(name = "userID", nullable = false)
     private String userID;
+
 }

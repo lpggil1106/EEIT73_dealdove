@@ -27,7 +27,7 @@ public class pageController {
     public String memberPage(){
         return "03_member";
     }
-    @GetMapping("/product")
+    @GetMapping("/productHome")
     public String productPage(){
         return "06_product_home_page";
     }
@@ -37,8 +37,13 @@ public class pageController {
     }
 
     @GetMapping("/seller")
-    public String userPage(){
+    public String seller(){
         return "10_seller_home_page";
+    }
+
+    @GetMapping("/checkout")
+    public String checkout(){
+        return "09_checkoutPage";
     }
 
     @GetMapping("/Coupon")
@@ -48,6 +53,7 @@ public class pageController {
     public String ecpayReturn(){
         return "ecpayReturn";
     }
+
 
 
 }

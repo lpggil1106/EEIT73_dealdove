@@ -10,16 +10,19 @@ import java.util.List;
 
 @RestController
 public class CouponBaseController {
-    CouponBaseService couponBaseService;
+    private CouponBaseService couponBaseService;
 
     public CouponBaseController(CouponBaseService couponBaseService) {
         this.couponBaseService = couponBaseService;
     }
 
-    @GetMapping("/15_coupon_page")
-    public List<CouponBase> test(){
+    @RequestMapping("/15_coupon_page")
+    @ResponseBody
+    public void test(){
+        System.out.println("breakPoint");
+
 //        System.out.println(couponBaseService.findAllCouponBases());
-        return couponBaseService.findAllCouponBases();
+//        return couponBaseService.findAllCouponBases();
     }
 
 }
