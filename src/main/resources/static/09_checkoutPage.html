@@ -121,10 +121,10 @@
                 <p>Unit Price</p>
             </div>
             <div class="item-unit">
-                <p>222</p>
+                <p id="price1">222</p>
             </div>
             <div class="item-quantity">
-                <p>1</p>
+                <p id="quantity1">2</p>
             </div>
             <div class="item-total">
                 <p>Total Price</p>
@@ -151,23 +151,7 @@
             </div>
         </div>
 
-        <div class="cart-item" style="border-bottom:0;">
-            <img src="./images/ball2.png" alt="Product Image">
-            <div class="item-name">
-                <p>Product NameProduct NameProduct NameProduct Name</p>
-            </div>
-            <div class="item-model">
-                <p>Unit Price</p>
-            </div>
-            <div class="item-unit">
-                <p>222</p>
-            </div>
-            <div class="item-quantity">
-                <p>1</p>
-            </div>
-            <div class="item-total">
-                <p>Total Price</p>
-            </div>
+
         </div>
     </div>
 
@@ -274,7 +258,7 @@
 
     // 假的購物車結果資料，請在這邊實現entity購物車連結
     const cartData = [
-        { quantity: 2, discount: 10, total: 90 }
+        { quantity: 10, discount: 10, total: 90 }
     ];
 
     function updateOrderSummary() {

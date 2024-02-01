@@ -26,6 +26,8 @@ public class ModelInfoService {
         this.modelInfoRepository = modelInfoRepository;
         this.productModelAssociateTableRepository = productModelAssociateTableRepository;
     }
+
+
     public void saveModelInfo(ModelInfo modelInfo){
         modelInfoRepository.save(modelInfo);
     }
@@ -57,5 +59,6 @@ public class ModelInfoService {
             return "$" + Integer.toString(Min) + " ~ $" + Integer.toString(Max);
         }
     }
+
 }
 

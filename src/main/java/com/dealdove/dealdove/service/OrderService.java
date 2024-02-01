@@ -124,6 +124,9 @@ public class OrderService {
         return result;
     }
 
+    public class OrderForm {
+        // 包含表單中的所有字段
+    }
 
 }
 
