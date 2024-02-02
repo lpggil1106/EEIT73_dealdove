@@ -22,7 +22,6 @@ public class productPageController {
     }
     @GetMapping("/{productId}/specifications")
     public Map<String, Object> getProductSpecifications(@PathVariable Integer productId) {
-        System.out.println(productPageService.getProductById(productId)+"_spec_controller__");
         return productPageService.getProductSpecifications(productId);
     }
     @GetMapping("/{productid}/{firstModelid}/{secondModelid}/modelinfo")
