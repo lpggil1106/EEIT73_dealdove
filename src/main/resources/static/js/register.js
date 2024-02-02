@@ -1,5 +1,6 @@
 import {auth, createUserWithEmailAndPassword, sendEmailVerification} from "./firebase.js"
 import "https://code.jquery.com/jquery-3.6.0.min.js";
+import {showToast} from "./jquery.toast.js";
 
 $(document).ready(() => {
 
@@ -20,11 +21,11 @@ $(document).ready(() => {
             res.json()
         ).then(res => {
             if (res === 10) {
-                window.alert("請輸入正確的電子信箱");
+                showToast('註冊失敗',"請輸入正確的電子信箱");
             } else if (res === 20) {
-                window.alert("輸入的密碼要是8~16碼的英數字");
+                showToast('註冊失敗',"輸入的密碼要是8~16碼的英數字");
             }else if(res===30){
-              window.alert("已註冊過帳號");
+              showToast('註冊失敗',"已註冊過帳號");
               window.location.href="/Login";
             } else if (res === 1) {
                 if ($('#privacy-checkbox').prop('checked')) {
@@ -35,7 +36,7 @@ $(document).ready(() => {
                         .then(userCredential => {
                             sendEmailVerification(userCredential.user)
                                 .then(() => {
-                                    window.alert('驗證信已送出')
+                                    showToast('註冊失敗','驗證信已送出')
                                     window.location.href = '/Login'
                                 })
                                 .catch(error => console.log(error))
@@ -48,7 +49,7 @@ $(document).ready(() => {
                         })
                         .catch(error => console.log(error))
                 } else {
-                    window.alert('尚未確認隱私條款');
+                    showToast('註冊失敗','尚未確認隱私條款');
                 }
             }
         }).catch(error => console.log(error))

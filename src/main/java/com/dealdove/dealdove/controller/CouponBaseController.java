@@ -16,7 +16,7 @@ public class CouponBaseController {
         this.couponBaseService = couponBaseService;
     }
 
-    @RequestMapping("/15_coupon_page")
+    @RequestMapping("/Coupon/showCoupon")
     @ResponseBody
     public List<CouponBase> test(){
         return couponBaseService.findAllCouponBases();

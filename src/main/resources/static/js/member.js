@@ -1,6 +1,6 @@
 import {auth, onAuthStateChanged} from './firebase.js';
 import "https://code.jquery.com/jquery-3.6.0.min.js";
-
+import {showToast} from "./jquery.toast.js";
 
 $(document).ready(() => {
     onAuthStateChanged(auth, (user => {
