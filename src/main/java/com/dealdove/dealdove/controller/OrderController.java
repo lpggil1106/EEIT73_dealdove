@@ -39,6 +39,11 @@ public class OrderController {
         return map;
     }
 
+    @GetMapping("/orderConfirmation")
+    public String orderConfirmation() {
+        return "orderConfirmation";
+    }
+
     @PostMapping("/submitOrder")
     public String submitOrder(OrderService.OrderForm orderForm) {
 
