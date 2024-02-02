@@ -1,5 +1,9 @@
 package com.dealdove.dealdove.controller;
 
+import com.dealdove.dealdove.model.dao.OrderRepository;
+import com.dealdove.dealdove.model.dto.OrderDto;
+import com.dealdove.dealdove.model.enitity.Order;
+import com.dealdove.dealdove.model.enitity.Product;
 import com.dealdove.dealdove.model.enitity.ShoppingCartItem;
 import com.dealdove.dealdove.service.CheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +20,30 @@ import java.util.Map;
 public class CheckoutController {
 
     private final CheckoutService checkoutService;
+    private final OrderRepository orderRepository; // 添加对 OrderRepository 的引用
+
 
     @Autowired
-    public CheckoutController(CheckoutService checkoutService) {
+    public CheckoutController(CheckoutService checkoutService, OrderRepository orderRepository) {
         this.checkoutService = checkoutService;
+        this.orderRepository = orderRepository; // 初始化 orderRepository
+    }
+    @PostMapping("/submitOrder")
+    public ResponseEntity<?> submitOrder(@RequestBody OrderDto orderDto) {
+        // 从 DTO 获取 buyerComment
+        String buyerComment = orderDto.getBuyerComment();
+        String shippingAddress = orderDto.getShippingAddress();
+        Order order = new Order();
+        order.setBuyerComment(buyerComment);
+        order.setShippingAddress(shippingAddress);
+
+        Order savedOrder = orderRepository.save(order);
+        // 創建響應
+        Map<String, Object> response = new HashMap<>();
+        response.put("orderId", savedOrder.getOrderID());
+
+
+        return ResponseEntity.ok(response);
     }
 
 
@@ -50,7 +74,6 @@ public class CheckoutController {
             return ResponseEntity.notFound().build();
         }
     }
-
 //    @GetMapping("/shoppingCart/{userID}/modelInfo")
 //    public ResponseEntity<?> getShoppingCartModelAndQuantity(@PathVariable String userID) {
 //        // 找商品規格

@@ -1,6 +1,7 @@
 package com.dealdove.dealdove.service;
 
 import com.dealdove.dealdove.model.dao.*;
+import com.dealdove.dealdove.model.enitity.Order;
 import com.dealdove.dealdove.model.enitity.ShoppingCartItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,17 +21,18 @@ public class CheckoutService {
 
 
     @Autowired
-    public CheckoutService(OrderRepository orderRepository,
+    public CheckoutService(
                            ProductRepository productRepository,
                            ProductModelAssociateTableRepository productModelAssociateTableRepository,
                            ModelInfoRepository modelInfoRepository,
-                           ShoppingCartItemRepository shoppingCartItemRepository, ProductImageTableRepository productImageTableRepository, ProductImageTableRepository productImageTableRepository1) {
+                           ShoppingCartItemRepository shoppingCartItemRepository, ProductImageTableRepository productImageTableRepository, ProductImageTableRepository productImageTableRepository1,OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.productModelAssociateTableRepository = productModelAssociateTableRepository;
         this.modelInfoRepository = modelInfoRepository;
         this.shoppingCartItemRepository = shoppingCartItemRepository;
         this.productImageTableRepository = productImageTableRepository1;
+
     }
 
     public List<String> getProductImages(Integer productId) {
@@ -43,6 +45,12 @@ public class CheckoutService {
         return shoppingCartItemRepository.findByUserID(userID);
     }
 
+    public Order saveOrder(String buyerComment) {
+        Order order = new Order();
+        order.setBuyerComment(buyerComment);
+        // 正确使用 orderRepository
+        return orderRepository.save(order);
+    }
 //    public String getModelsForUser(String userID) {
 //        ShoppingCartItem cartItem = shoppingCartItemRepository.findByUserID(userID);
 //        return cartItem != null ? cartItem.getModels() : null; // 返回 models
