@@ -94,6 +94,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 
 
+    // 添加一個新的查詢方法來獲取特定productID的productName
+    @Query("SELECT p.productName FROM Product p WHERE p.productID = :productID")
+    String findProductNameById(@Param("productID") int productID);
 
     @Query(value = "SELECT * FROM product WHERE productID = 1 ", nativeQuery = true)
     List<Product> findProduct();

@@ -2,7 +2,6 @@ package com.dealdove.dealdove.service;
 
 import com.dealdove.dealdove.model.dao.ProductCategoryRepository;
 import com.dealdove.dealdove.model.dao.ProductRepository;
-import com.dealdove.dealdove.model.dto.ProductHomeDTO;
 import com.dealdove.dealdove.model.enitity.Product;
 import com.dealdove.dealdove.model.enitity.ProductCategory;
 import com.dealdove.dealdove.model.enitity.ProductImageTable;
@@ -39,7 +38,7 @@ public class ProductService {
         return productRepository.findProductByproductID(productID);
     }
 //    定義getProductByID方法，調用ProductRepository的findProductByproductID方法，通過產品ID檢索特定產品。
-    public Product saveProduct(String productName, String productDescription, String categoryName) {
+    public Product saveProduct(String productName, String productDescription,String userID, String categoryName) {
     Integer productCategoryID = findCategoryIDByName(categoryName);
     if (productCategoryID == null) {
         // 處理錯誤情況，比如拋出一個異常或者返回 null
@@ -48,6 +47,7 @@ public class ProductService {
         Product product = new Product();
         product.setProductName(productName);
         product.setProductDescription(productDescription);
+        product.setUserID(userID);
         product.setProductCategoryID(productCategoryID);
 
 

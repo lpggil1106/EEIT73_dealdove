@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
+    <script src="./js/isLogin.js" type="module"></script>
 
 </head>
 
@@ -67,8 +68,8 @@
                                     d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <a href="./02-1_login.html" class=" link-underline link-underline-opacity-0 text-secondary">
-                            註冊/登入</a>
+                        <a href="/Login" id="login" class=" link-underline link-underline-opacity-0 text-secondary"> 註冊/登入</a>
+
                     </li>
                 </ul>
             </div>
@@ -311,6 +312,7 @@
                             <div>＞</div>
                             <div id="categoryName" style="border-color: black"></div>
                             <input type="hidden" id="hiddenCategoryName" name="categoryName">
+                            <input type="hidden" id="userID" name="userID">
                         </div>
                     </div>
                         <!-- Modal -->
@@ -1464,21 +1466,22 @@
 
 </script>
 <script>
-    <!--    document.addEventListener('DOMContentLoaded', function () {-->
-        <!--        // 获取 typeDiv2 和 plustype 元素-->
-        <!--        var typeDiv2 = document.getElementById('typeDiv2');-->
-        <!--        var plustype = document.getElementById('plustype');-->
+        document.addEventListener('DOMContentLoaded', function () {
+              // 获取 typeDiv2 和 plustype 元素-->
+              var typeDiv2 = document.getElementById('typeDiv2');
+               var plustype = document.getElementById('plustype');
 
-        <!--        // 初始化 typeDiv2 为隐藏状态-->
-        <!--        typeDiv2.style.display = 'none';-->
-
-        <!--        // 为 plustype 添加点击事件监听器-->
-        <!--        plustype.addEventListener('click', function() {-->
-            <!--            // 显示 typeDiv2-->
-            <!--            typeDiv2.style.display = 'block';-->
-            <!--        });-->
-    <!--    });-->
+               // 初始化 typeDiv2 为隐藏状态-->
+               typeDiv2.style.display = 'none';
+            // 为 plustype 添加点击事件监听器-->
+               plustype.addEventListener('click', function() {
+                       // 显示 typeDiv2-->
+                       typeDiv2.style.display = 'block';
+                 });
+      });
 </script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -2012,11 +2015,53 @@
         var content = document.getElementById("typedive11hidden").value;
         console.log("Button clicked, content:", content);
     });
-
 </script>
+<script type="module">
+    import {auth, onAuthStateChanged} from "./js/firebase.js";
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userID = user.uid; // 得到用戶uid
+            console.log("目前登入的ID:", userID);
+
+            // 將userID存儲到前端的div中
+            const userIDElement = document.getElementById('userID');
+            if (userIDElement) {
+                userIDElement.textContent = userID; // 或者使用innerHTML根據需要
+            } else {
+                console.log('Element with id="userID" not found.');
+            }
+
+            // 如果需要發送到後端，可以繼續使用fetch
+            let formData = new URLSearchParams();
+            formData.append('userID', userID);
+            fetch('/10_seller_home_page/add_product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString()
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
+        } else {
+            console.log("未登入");
+        }
+    });
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 
 </html>
