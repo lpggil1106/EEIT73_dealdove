@@ -1,17 +1,21 @@
 import "https://code.jquery.com/jquery-3.6.0.min.js";
 import {auth, onAuthStateChanged} from './firebase.js';
+import{showToast} from "./jquery.toast.js";
+
 $(document).ready(()=>{
-    fetch("/15_coupon_page")
+    fetch("/Coupon/showCoupon")
         .then(response => response.json())
         .then(data => {
             data.forEach((couponBase, index) => {
-                const target =  parseInt(couponBase.discount)!=0 ? "specify" : "tar";
-                let targetContainer = document.getElementById(target);
+                console.log(couponBase)
+                // const target =  parseInt(couponBase.discount)>=1 ? "specify" : "tar";
+                let targetContainer = document.getElementById("specify");
 
                 if (index % 2 === 0) {
                     // 每一行的第一張優惠券，新增 .coupon-row 類別
                     const couponRow = document.createElement("div");
                     couponRow.className = "coupon-row";
+                    console.log(couponRow)
                     targetContainer.appendChild(couponRow);
                 }
 
@@ -74,10 +78,11 @@ $(document).ready(()=>{
                 getCouponButton.id=`getCouponButton${index}`;
                 getCouponButton.classList.add("get-coupon"); // 使用 classList.add 方法
                 getCouponButton.style.marginLeft = "1vw";
+                // console.log(getCouponButton)
                 couponCard.appendChild(getCouponButton);
                 //const currentRow = document.querySelector(`#${target}`).querySelector(".coupon-row:last-child");
                 const currentRow = targetContainer.querySelector(".coupon-row:last-child");
-                console.log(couponCard)
+                // console.log(couponCard)
                 currentRow.appendChild(couponCard);
 
                $(`#getCouponButton${index}`).on('click',()=>{
@@ -107,9 +112,9 @@ $(document).ready(()=>{
         }).then(res=>res.json())
             .then(data=>{
                 if (data===10){
-                    window.alert('領取成功')
+                    showToast('領取成功')
                 }else if(data===20){
-                    window.alert('領取過了')
+                    showToast('領取過了')
                 }
             })
 

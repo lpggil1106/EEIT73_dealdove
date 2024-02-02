@@ -1,6 +1,6 @@
 import {auth, provider, signInWithPopup, onAuthStateChanged, signInWithEmailAndPassword} from "./firebase.js";
 import "https://code.jquery.com/jquery-3.6.0.min.js";
-
+import{showToast} from "./jquery.toast.js";
 
 function reflash() {
 
@@ -84,13 +84,14 @@ $(document).ready(() => {
                             const errorMessage = error.message;
                             console.log(errorCode);
                            if(errorCode==='auth/too-many-requests'){
-                               window.alert('登入失敗太多次請更改密碼或稍後重新登入');
+                               showToast('登入失敗','登入失敗太多次請更改密碼或稍後重新登入');
                            }else if(errorCode==='auth/invalid-credential'){
-                               window.alert('尚未註冊或是密碼錯誤')
+                               showToast('登入失敗','尚未註冊或是密碼錯誤')
                            }
                         })
                 } else {
                     console.log('error')
+                    showToast('Error','驗證碼輸入錯誤')
                 }
             }
         }))

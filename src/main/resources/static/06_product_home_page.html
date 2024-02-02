@@ -257,17 +257,17 @@
         renderProducts(products);
     });
 
-    function updateSort(newOrderBy) {
-        console.log('orderBy:', orderBy)
-        console.log('orderDirection:', orderDirection)
-        // 判斷是否同一個排序欄位
-        if (orderBy == newOrderBy) {
-            // 如果是同一個排序欄位，切換排序方向
-            orderDirection = orderDirection == 'asc' ? 'desc' : 'asc';
-        } else {
-            // 如果是不同的排序欄位，默認升序排序
-            orderDirection = 'asc';
-        }
+        function updateSort(newOrderBy) {
+            console.log('orderBy:', orderBy)
+            console.log('orderDirection:', orderDirection)
+            // 判斷是否同一個排序欄位
+            if (orderBy === newOrderBy) {
+                // 如果是同一個排序欄位，切換排序方向
+                orderDirection = orderDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                // 如果是不同的排序欄位，默認升序排序
+                orderDirection = 'asc';
+            }
 
         // 更新排序欄位和方向到 localStorage
         localStorage.setItem('orderBy', newOrderBy);

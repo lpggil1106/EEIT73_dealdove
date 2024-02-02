@@ -1,5 +1,6 @@
 import {auth, onAuthStateChanged, signOut} from "./firebase.js";
 import "https://code.jquery.com/jquery-3.6.0.min.js";
+import {showToast} from "./jquery.toast.js";
 
 $(document).ready(() => {
     let canLogin = true;
@@ -21,7 +22,7 @@ $(document).ready(() => {
             if (isLogout) {
                 signOut(auth)
                     .then(()=>
-                        {window.alert('已登出');
+                        {showToast('登出提醒','已登出');
                         canLogin=true;
                         window.location.href='/Dealdove'
                         })
