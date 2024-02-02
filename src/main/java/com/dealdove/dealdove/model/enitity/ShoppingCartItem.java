@@ -26,4 +26,6 @@ public class ShoppingCartItem {
     @Column(name = "userID", nullable = false)
     private String userID;
 
+    @Column(name = "price", nullable = false)
+    private Integer price;
 }
