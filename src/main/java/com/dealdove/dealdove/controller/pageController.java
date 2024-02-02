@@ -2,6 +2,8 @@ package com.dealdove.dealdove.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class pageController {
@@ -50,6 +52,12 @@ public class pageController {
         return "ecpayReturn";
     }
 
+    @PostMapping("/cvs_callback")
+    public String cvs_callback(@RequestBody String callbackData){
+        System.out.println("收到cvs_callback");
+        System.out.println(callbackData);
+        return "cvs_callback";
+    }
 
 
 }
