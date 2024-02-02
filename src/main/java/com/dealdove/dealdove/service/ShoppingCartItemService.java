@@ -34,6 +34,7 @@ public class ShoppingCartItemService {
         shoppingCartItem.setModels(shoppingCart.get("models"));
         shoppingCartItem.setQuantity(Integer.valueOf(shoppingCart.get("quantity")));
         shoppingCartItem.setUserID(userID);
+        shoppingCartItem.setPrice(Integer.valueOf(shoppingCart.get("price")));
         shoppingCartItemRepository.save(shoppingCartItem);
     }
 }

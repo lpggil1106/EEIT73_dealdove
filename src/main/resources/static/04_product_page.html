@@ -104,16 +104,6 @@
         </header>
         <main>
             <section class="mb-5" >
-                <div class="product" data-product-id="3">
-                    <p class="productName">商品名稱</p>
-                    <button class="viewDetails">查看詳情</button>
-                </div>
-
-                <div class="product" data-product-id="2">
-                    <p class="productName">另一個商品</p>
-                    <button class="viewDetails">查看詳情</button>
-                </div>
-
                 <div class="row product mt-5">
                     <div class="col-5 productImage">
                         <div class="row col-12 text-center bigImage">
@@ -156,11 +146,11 @@
                         <p id="productidmodel" style="display: none"></p>
                         <p class="productName" id="productName">商品名稱</p>
                         <ul class="col-12 justify-content-start evaluate ">
-                            <li class="col-1">3.1</li>
-                            <li class="col-1"></li>
-                            <li class="col-3">69評價</li>
+<!--                            <li class="col-1">3.1</li>-->
+<!--                            <li class="col-1"></li>-->
+                            <li class="col-3">84評價</li>
                             <li class="col-3">810售出</li>
-                            <li class="col-3"><a href="">加入收藏</a></li>
+<!--                            <li class="col-3"><a href="">加入收藏</a></li>-->
                         </ul>
                         <div id="specificContainer"></div>
 
@@ -186,12 +176,12 @@
                 </div>
             </section>
             <section>
-                <div id="userid"></div>>
+                <div id="userid"></div>
                 <div class="row seller">
                     <div class="col-5">
                         <div class="col-7 d-flex">
-                            <div class="col-5 profileImage"><img src="./images/使用者頭像.png" alt=""></div>
-                            <p class="sellerName">賣家名稱<br><span>粉絲數:<span>155555</span></span></p>
+                            <div class="col-5 profileImage"><img src="./images/userImg4.png" alt=""></div>
+                            <p class="sellerName">賣家名稱<br><span>粉絲數:<span>1532</span></span></p>
                         </div>
                         <div class="col-7 d-flex collect">
                             <a href="">加入收藏</a>
@@ -200,20 +190,21 @@
                     </div>
                     <div class="col-7 d-flex text-center sellerDecribe">
                         <div class="col-3">
-                            <p>300</p>
+                            <p>154</p>
                             <p>商品總數</p>
                         </div>
                         <div class="col-3">
-                            <p>200</p>
+                            <p>56</p>
                             <p>賣場評價</p>
                         </div>
                         <div class="col-3">
-                            <p>300</p>
-                            <p>不成功率</p>
+                            <p>98%</p>
+                            <p>聊聊回應率</p>
+
                         </div>
                         <div class="col-3">
-                            <p>100</p>
-                            <p>聊聊回應率</p>
+                            <p>1.2%</p>
+                            <p>不成功率</p>
                         </div>
                     </div>
                 </div>
@@ -236,26 +227,26 @@
                         <div class="col-1">3星<span></span></div>
                         <div class="col-1">2星<span></span></div>
                         <div class="col-1">1星<span></span></div>
-                        <span class="col-5  text-center">5.0/5</span>
+<!--                        <span class="col-5  text-center">5.0/5</span>-->
                     </div>
                     <div class="row userComment">
                         <div class="user">
-                            <span class="userName">使用者名稱:<img class="userIcon" src="./images/使用者頭像.png" ><span><b>@buydeep</b></span></span>
+                            <span class="userName">使用者名稱:<img class="userIcon" src="./images/userImg2.jpeg" ><span><b>@buydeep</b></span></span>
                             <span class="commentContainer">評價內容</span>
                         </div>
                         <div class="row productComment">
-                            <div class="col-2 div  productCommentImage"></div>
+                            <div class="col-2 div  productCommentImage"><img src="./images/p2.jpeg" ></div>
                             <div class="col-2 div "></div>
-                            <div class="col-7 div "></div>
+                            <div class="col-7 div " style="margin-top:1.5vw">賣家寄貨快速包裝仔細，摸起來質感很不錯，尺寸也相當適合，價錢也是相當超值，準備洗過以後來穿了，以後有機會再來買</div>
                         </div>
                         <div class="user">
-                            <span class="userName">使用者名稱:<img class="userIcon" src="./images/使用者頭像.png" ><span><b>@buydeep</b></span></span>
+                            <span class="userName">使用者名稱:<img class="userIcon" src="./images/userImg1.jpeg" ><span><b>@buydeep</b></span></span>
                             <span class="commentContainer">評價內容</span>
                         </div>
                         <div class="row productComment">
                             <div class="col-2 div  productCommentImage"></div>
                             <div class="col-2 div "></div>
-                            <div class="col-7 div "></div>
+                            <div class="col-7 div " style="margin-top:1.5vw">賣家出貨速度很快，商品包裝妥當沒有任何破損，材質是純棉的穿起來超舒服，訂價也合適整體來說CP值很高，已經再這店家買過好幾次了下次如果還有需要會再回購，謝謝。</div>
                         </div>
                         <div class="commentPage d-flex justify-content-end ">
                             <button>&lt</button>
@@ -335,8 +326,6 @@
         </footer>
     <script src="./js/isLogin.js" type="module"></script>
     <script>
-        // const selectedModelFir = [];
-        // const selectedModelSec = [];
         let firName='';
         let secName='';
 
@@ -344,14 +333,7 @@
         let urlParams = new URLSearchParams(window.location.search);
         let param = urlParams.get('productID');
         console.log(param+"param");
-        //測試productID用
-        document.querySelectorAll('.viewDetails').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = this.closest('.product').dataset.productId;
-                console.log(productId+"click");
-                document.getElementById('productidmodel').innerText = productId;
-//測試productID用
-                param=1;
+        document.getElementById('productidmodel').innerText=param;
                 fetch(`api/products/getProduct/${param}`)
                     .then(response => response.json())
                     .then(product => product.forEach((product)=>{
@@ -447,10 +429,8 @@
                                 });
                             })
                             .catch(error => console.log(error));
-                    }))
-                    .catch(error => console.log(error));
-            });
-        });
+                    })).catch(error => console.log(error));
+
 
         const firstModelidInput = document.getElementsByName('firstModelid')[0];
         const secondModelidInput = document.getElementsByName('secondModelid')[0];
@@ -459,7 +439,6 @@
             secondModelidInput.addEventListener("input", handleInput);
 
             function handleInput() {
-                const productid = document.getElementById('productidmodel').innerText;
                 const firstModelid = firstModelidInput.value;
                 const secondModelid = secondModelidInput.value;
                 if(firstModelid!= '' && secondModelid != ''){   // 取到兩值才顯示庫存、價格
@@ -548,8 +527,6 @@
                 }
             });
             function showSmallImages(startIndex, endIndex) {
-                // console.log(startIndex+"startIndex");
-                // console.log(endIndex+"endIndex");
                 // 隱藏所有小圖
                 hideAllSmallImages();
 
