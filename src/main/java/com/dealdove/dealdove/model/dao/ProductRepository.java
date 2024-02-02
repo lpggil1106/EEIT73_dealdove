@@ -4,6 +4,7 @@ package com.dealdove.dealdove.model.dao;
 
 import com.dealdove.dealdove.model.dto.ProductHomeDTO;
 import com.dealdove.dealdove.model.enitity.Product;
+import com.dealdove.dealdove.model.enitity.ProductImageTable;
 import com.google.firebase.internal.NonNull;
 
 
@@ -115,6 +116,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT * FROM product WHERE productID = :productId", nativeQuery = true)
     List<Product> findProductByProductId(@Param("productId") int productId);
 
+    List<ProductImageTable> findALLByProductID(Integer ProductID);
 
     Product findProductByproductID(Integer productID);
 
