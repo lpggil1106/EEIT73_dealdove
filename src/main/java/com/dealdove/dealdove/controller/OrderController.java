@@ -44,11 +44,11 @@ public class OrderController {
         return "orderConfirmation";
     }
 
-    @PostMapping("/submitOrder")
-    public String submitOrder(OrderService.OrderForm orderForm) {
-
-        return "orderConfirmation"; // 訂單確認頁面
-    }
+//    @PostMapping("/submitOrder")
+//    public String submitOrder(OrderService.OrderForm orderForm) {
+//
+//        return "orderConfirmation"; // 訂單確認頁面
+//    }
 
 }
 
