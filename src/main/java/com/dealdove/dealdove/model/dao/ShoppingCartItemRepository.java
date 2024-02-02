@@ -34,7 +34,7 @@ public interface ShoppingCartItemRepository extends JpaRepository<ShoppingCartIt
             "    review r ON p.productID = r.productID\n" +
             "        LEFT JOIN\n" +
             "    ProductImagesRanked pir ON p.productID = pir.productID AND pir.ImageRank = 1\n" +
-            "WHERE userID = :userID\n" +
+            "WHERE sc.userID = :userID\n" +
             "GROUP BY\n" +
             "    p.productID, p.productName, pir.image;",nativeQuery = true)
     List<Object[]> findCheckoutDetailByUserID(@Param("userID") String userID);

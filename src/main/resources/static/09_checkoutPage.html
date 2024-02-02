@@ -274,13 +274,25 @@
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userID = user.uid; // 得到用戶uid
-            console.log("目前登入的ID:", userID);
+            getCheckOutDetail(userID);
+            console.log("getCheckout end")
             fetchCartInfo(userID);
+            console.log("目前登入的ID:", userID);
+
+
         } else {
             console.log("未登入");
         }
     });
 
+    function getCheckOutDetail(userID) {
+        fetch(`/checkoutDetail/${userID}`)
+            .then(response => response.json())
+            .then(details => {
+                return details; // 直接返回字符串
+            })
+            .catch(error => console.error('Error:', error));
+    }
     function getProductImages(productID) {
         return fetch(`/09_checkoutPage/${productID}/images`)
             .then(response => {

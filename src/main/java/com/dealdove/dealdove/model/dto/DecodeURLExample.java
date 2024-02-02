@@ -5,7 +5,7 @@ import java.net.URLDecoder;
 public class DecodeURLExample {
 
     public static void main(String[] args) {
-        String encodedStoreName = "%E9%BE%8D%E6%98%8C%E9%96%80%E5%B8%82";
+        String encodedStoreName = "%E8%A5%BF%E5%AE%89%E9%96%80%E5%B8%82&";
 
         try {
             // 解碼

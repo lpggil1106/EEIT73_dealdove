@@ -48,12 +48,15 @@ public class CheckoutController {
 
     //拿
     @GetMapping("/checkoutDetail/{userID}")
-    public ResponseEntity<List<Object[]>> getCheckoutDetailByUserID(@PathVariable String userID) {
+    public void getCheckoutDetailByUserID(@PathVariable String userID) {
+        System.out.println("User ID: " + userID);
         List<Object[]> checkoutDetail = checkoutService.findCheckoutDetailByUserID(userID);
-        if (checkoutDetail != null && !checkoutDetail.isEmpty()) {
-            return ResponseEntity.ok(checkoutDetail);
-        } else {
-            return ResponseEntity.notFound().build();
+        for (Object[] objects : checkoutDetail) {
+            System.out.println("Product ID: " + objects[0]);
+            System.out.println("Product Name: " + objects[1]);
+            System.out.println("Product Price: " + objects[2]);
+            System.out.println("Product Quantity: " + objects[3]);
+            System.out.println("Product Model: " + objects[4]);
         }
     }
 
