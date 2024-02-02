@@ -111,10 +111,13 @@ public class OrderService {
         return result;
     }
 
-    public class OrderForm {
-        // 包含表單中的所有字段
-    }
+    public Order saveOrder(String buyerComment,String shippingAddress) {
+        Order order = new Order();
+        order.setBuyerComment(buyerComment);
+        order.setShippingAddress(shippingAddress);
 
+        return orderRepository.save(order);
+    }
 }
 
 

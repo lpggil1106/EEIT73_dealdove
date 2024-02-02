@@ -39,11 +39,5 @@ public class OrderController {
         return map;
     }
 
-    @PostMapping("/submitOrder")
-    public String submitOrder(OrderService.OrderForm orderForm) {
-
-        return "orderConfirmation"; // 訂單確認頁面
-    }
-
 }
 

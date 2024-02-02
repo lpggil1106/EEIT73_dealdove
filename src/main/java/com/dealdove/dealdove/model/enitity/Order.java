@@ -18,7 +18,7 @@ public class Order {
     @Column(name = "orderID", nullable = false)
     private Integer orderID;
 
-    @Column(name = "sellerID", nullable = false)
+    @Column(name = "sellerID", nullable = true)
     private Integer sellerID;
 
     public List<OrderItem> getOrderItems() {
@@ -33,10 +33,10 @@ public class Order {
     @JoinColumn(name = "orderID")
     private List<OrderItem> orderItems;
 
-    @Column(name = "buyerID", nullable = false)
+    @Column(name = "buyerID", nullable = true)
     private String buyerID;
 
-    @Column(name = "paymentID", nullable = false)
+    @Column(name = "paymentID", nullable = true)
     private Integer paymentID;
 
     @Column(name = "couponID")
@@ -48,15 +48,15 @@ public class Order {
     @Column(name = "sellerComment", length = 300)
     private String sellerComment;
 
-    @Column(name = "orderStatus", nullable = false)
+    @Column(name = "orderStatus", nullable = true)
     private Byte orderStatus;
 
-    @Column(name = "orderDate", nullable = false)
+    @Column(name = "orderDate", nullable = true)
     private ZonedDateTime orderDate;
 
-    @Column(name = "totalPrice", nullable = false)
+    @Column(name = "totalPrice", nullable = true)
     private Integer totalPrice;
 
-    @Column(name = "shippingAddress", nullable = false, length = 100)
+    @Column(name = "shippingAddress", nullable = true, length = 100)
     private String shippingAddress;
 }
