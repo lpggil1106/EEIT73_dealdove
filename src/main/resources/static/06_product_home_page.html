@@ -139,15 +139,10 @@
 
         <div class="result">
             <div class=" dropdown selector">
-                <span>搜尋結果:<span>行動電源</span></span>
-                <span>最熱銷</span>
-                <span class="dropdown-toggle selector-item" type="" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                      aria-expanded="false">評價</span>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li class="dropdown-item">高到低</li>
-                    <li class="dropdown-item">低到高</li>
-                </ul>
-                <span class="selector-item">價格</span>
+                <span>搜尋結果:<span id="searchResult"></span></span>
+                <a href="#" id="orderBysoldQuantity" class="selector-item">最熱銷</a>
+                <a href="#" id="orderByRating" class="selector-item">評價</a>
+                <a href="#" id="orderByPrice" class="selector-item">價格</a>
             </div>
         </div>
         <div class="container-fluid">
@@ -226,83 +221,126 @@
 <!--        <script src="./js/productHome.js"></script>-->
 </body>
 <script>
-    fetch("/getProduct")
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            let similar = document.querySelector('.similar')
-            similar.innerHTML = ''
-            data.forEach(product => {
-                let productCard = document.createElement('div')
-                productCard.classList.add('col-3')
-                productCard.innerHTML = `
-                        <a href="./04_product_page.html?id=${product.id}">
-                            <div class="product-card">
-                            <img class="product-image" src="${product.coverImageURL}" alt="Product Image">
-                            <div class="product-info">
-                                <div>
-                                    <div class="product-name">${product.productName}</div>
-                                    <div class="product-price">$ ${product.minPrice} ~ ${product.maxPrice}</div>
-                                </div>
-                                <div class="product-rating-sold">
-                                    <div class="product-rating">
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-                                    <div class="product-sold">已售出: ${product.soldQuantity} 件</div>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                        `
-                similar.appendChild(productCard)
-        })}).catch(err => {
-            console.log(err)
-        })
+        let url = new URL(window.location.href);
+        let keyword = url.searchParams.get('keyword');
 
-    let search = document.querySelector('.search-input')
-    let searchIcon = document.querySelector('.search-icon')
-    searchIcon.addEventListener('click', () => {
-        let keyword = search.value
-        fetch(`api/products?keyword=${keyword}`)
+        // 默認是按照熱銷量降序排序
+        let orderBy = 'soldQuantity';
+        let orderDirection = 'desc';
+
+        // 從 localStorage 中取得資料
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+
+        // 根據排序方式和方向排序
+        sortProducts(products, orderBy, orderDirection);
+
+        // 渲染排序後的產品
+        renderProducts(products);
+
+        // 綁定排序按鈕的點擊事件
+        let orderBySoldQuantity = document.getElementById('orderBysoldQuantity');
+        let orderByRating = document.getElementById('orderByRating');
+        let orderByPrice = document.getElementById('orderByPrice');
+
+            orderBySoldQuantity.addEventListener('click', function () {
+                updateSort('soldQuantity');
+                renderProducts(products);
+            });
+
+            orderByRating.addEventListener('click', function () {
+                updateSort('rating');
+                renderProducts(products);
+            });
+
+            orderByPrice.addEventListener('click', function () {
+                updateSort('price');
+                renderProducts(products);
+            });
+
+        function updateSort(newOrderBy) {
+            console.log('orderBy:', orderBy)
+            console.log('orderDirection:', orderDirection)
+            // 判斷是否同一個排序欄位
+            if (orderBy == newOrderBy) {
+                // 如果是同一個排序欄位，切換排序方向
+                orderDirection = orderDirection == 'asc' ? 'desc' : 'asc';
+            } else {
+                // 如果是不同的排序欄位，默認升序排序
+                orderDirection = 'asc';
+            }
+
+            // 更新排序欄位和方向到 localStorage
+            localStorage.setItem('orderBy', newOrderBy);
+            localStorage.setItem('orderDirection', orderDirection);
+
+            // 根據排序方式和方向排序
+            sortProducts(products, newOrderBy, orderDirection);
+
+            // 渲染排序後的產品
+            renderProducts(products);
+        }
+
+        function sortProducts(products, orderBy, orderDirection) {
+            products.sort((a, b) => {
+                let comparison = 0;
+                switch (orderBy) {
+                    case 'soldQuantity':
+                        comparison = b.soldQuantity - a.soldQuantity;
+                        break;
+                    case 'rating':
+                        comparison = b.avgRating - a.avgRating;
+                        break;
+                    case 'price':
+                        comparison = a.minPrice - b.minPrice;
+                        break;
+                    default:
+                        comparison = 0;
+                        break;
+                }
+
+                return orderDirection === 'desc' ? -comparison : comparison;
+            });
+        }
+
+
+    const searchResult = document.getElementById('searchResult')
+    searchResult.innerText = keyword;
+    if (keyword) {
+        fetch(`/keyWordProduct?keyword=${keyword}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
-                let similar = document.querySelector('.similar')
-                similar.innerHTML = ''
-                data.forEach(product => {
-                    let productCard = document.createElement('div')
-                    productCard.classList.add('col-3')
-                    productCard.innerHTML = `
-                        <a href="./04_product_page.html?id=${product.id}">
-                            <div class="product-card">
-                            <img class="product-image" src="${product.coverImageURL}" alt="Product Image">
-                            <div class="product-info">
-                                <div>
-                                    <div class="product-name">${product.name}</div>
-                                    <div class="product-price">$ ${product.minPrice} ~ ${product.maxPrice}</div>
-                                </div>
-                                <div class="product-rating-sold">
-                                    <div class="product-rating">
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9733;</span>
-                                        <span class="star">&#9734;</span>
-                                        <span class="star">&#9734;</span>
-                                    </div>
-                                    <div class="product-sold">已售出: ${product.soldQuantity} 件</div>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                        `
-                    similar.appendChild(productCard)
-                })
+                //本地儲存Product資料方便後續使用
+                localStorage.setItem('products', JSON.stringify(data));
+                renderProducts(data);
+            })
+    }else{
+        fetch("/getProduct")
+            .then(res => res.json())
+            .then(data => {
+                //本地儲存Product資料方便後續使用
+                localStorage.setItem('products', JSON.stringify(data));
+                renderProducts(data);
+            })
+            .catch(err => {
+                console.error("Fetch error:", err);
+            });
+    }
+    let search = document.querySelector('.search-input')
+    let searchIcon = document.querySelector('.search-icon')
+
+
+    searchIcon.addEventListener('click', () => {
+        let keyword = search.value
+        fetch(`/keyWordProduct?keyword=${keyword}`)
+            .then(response => response.json())
+            .then(data => {
+                searchResult.innerText = keyword;
+                //本地儲存Product資料方便後續使用
+                localStorage.setItem('products', JSON.stringify(data));
+                renderProducts(data);
             })
     })
+
     search.addEventListener('keyup', (e) => {
         if (e.keyCode === 13) {
             let keyword = search.value
@@ -310,10 +348,68 @@
         }
     })
 
-    let url = new URL(window.location.href)
-    let keyword = url.searchParams.get('keyword')
-    if (keyword) {
-        search.value = keyword
+    // 生成星星
+    function generateStarRating(avgRating) {
+        // 将 avgRating 映射到星级数量（假设满分是5星）
+        const maxRating = 5;
+        const ratingPercentage = (avgRating / maxRating) * 100;
+
+        // 创建包含星星的容器
+        const starContainer = document.createElement('div');
+        starContainer.classList.add('product-rating');
+
+        // 创建五颗星星
+        for (let i = 1; i <= maxRating; i++) {
+            const star = document.createElement('span');
+            star.classList.add('star');
+
+            // 根据 avgRating 设置星星的填充样式
+            if (i <= (ratingPercentage / 20)) {
+                star.innerHTML = '&#9733;'; // 实心星星
+            } else {
+                star.innerHTML = '&#9734;'; // 空心星星
+            }
+
+            starContainer.appendChild(star);
+        }
+
+        return starContainer;
+    }
+
+    // 渲染產品
+    function renderProducts(products) {
+        const similar = document.querySelector('.similar');
+        similar.innerHTML = '';
+        products.forEach(product => {
+            const productCard = createProductCard(product);
+            similar.appendChild(productCard);
+        });
+    }
+
+    // 生成產品卡片
+    function createProductCard(product){
+        let productCard = document.createElement('div')
+        productCard.classList.add('col-3')
+        productCard.innerHTML = `
+            <a href="./04_product_page.html?productID=${product.productID}">
+                <div class="product-card">
+                <img class="product-image" src="${product.coverImageURL}" alt="Product Image">
+                <div class="product-info">
+                    <div>
+                        <div class="product-name">${product.productName}</div>
+                        <div class="product-price">$ ${product.minPrice} ~ ${product.maxPrice}</div>
+                    </div>
+                    <div class="product-rating-sold">
+                        <div class="product-rating">
+                            ${generateStarRating(product.avgRating).outerHTML}
+                        </div>
+                        <div class="product-sold">已售出: ${product.soldQuantity} 件</div>
+                    </div>
+                </div>
+            </div>
+            </a>
+            `
+        return productCard
     }
 </script>
 </html>

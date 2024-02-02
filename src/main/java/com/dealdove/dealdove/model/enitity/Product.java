@@ -28,6 +28,7 @@ public class Product {
     @OneToMany
     @JsonManagedReference
     private List<Review> reviews;
+
     @Column(name = "productCategoryID", nullable = true)
     private Integer productCategoryID;
 

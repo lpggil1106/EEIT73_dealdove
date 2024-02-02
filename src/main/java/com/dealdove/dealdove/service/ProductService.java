@@ -81,4 +81,8 @@ public class ProductService {
         return productRepository.getProductDetails();
     }
 
+    public List<Object[]> getProductDetailsByKeyword(String keyword) {
+        return productRepository.getProductDetailsByKeyword(keyword);
+    }
+
 }

@@ -335,6 +335,11 @@
         // const selectedModelSec = [];
         let firName='';
         let secName='';
+
+        //新增取得URL參數
+        let urlParams = new URLSearchParams(window.location.search);
+        let param = urlParams.get('productID');
+        console.log(param+"param");
         //測試productID用
         document.querySelectorAll('.viewDetails').forEach(button => {
             button.addEventListener('click', function() {
@@ -343,7 +348,7 @@
                 document.getElementById('productidmodel').innerText = productId;
                 document.getElementById('userid').innerText = '4uIXMQan5kRprMeKC1QXLrIzw2D2';
 //測試productID用
-                fetch(`api/products/getProduct/${productId}`)
+                fetch(`api/products/getProduct/${param}`)
                     .then(response => response.json())
                     .then(product => product.forEach((product)=>{
                         document.getElementById('productName').innerText =product.productName;
@@ -352,7 +357,7 @@
                         // 清空原有的內容
                         document.getElementById('specificContainer').innerHTML = '';
                         // 使用 Fetch API 來呼叫後端 API 取得產品規格
-                        fetch(`api/products/${productId}/specifications`)
+                        fetch(`api/products/${param}/specifications`)
                             .then(response => response.json())
                             .then(specifications => {
                                 // 將規格資料動態生成到 HTML 中
@@ -454,7 +459,7 @@
                 const firstModelid = firstModelidInput.value;
                 const secondModelid = secondModelidInput.value;
                 if(firstModelid!= '' && secondModelid != ''){   // 取到兩值才顯示庫存、價格
-            fetch(`api/products/${productid}/${firstModelid}/${secondModelid}/modelinfo`)
+            fetch(`api/products/${param}/${firstModelid}/${secondModelid}/modelinfo`)
                 .then(response => response.json())
                 .then(modelinfo => {
                     document.getElementsByClassName('modelinfos');

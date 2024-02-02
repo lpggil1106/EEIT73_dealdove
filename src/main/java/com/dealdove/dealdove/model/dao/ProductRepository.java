@@ -62,6 +62,38 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "    p.productID, p.productName, pir.image;", nativeQuery = true)
     List<Object[]> getProductDetails();
 
+    @Query(value = "WITH ProductImagesRanked AS (\n" +
+            "    SELECT\n" +
+            "        pi.productID,\n" +
+            "        pi.image,\n" +
+            "        ROW_NUMBER() OVER (PARTITION BY pi.productID ORDER BY pi.image) AS ImageRank\n" +
+            "    FROM\n" +
+            "        productImageTable pi\n" +
+            ")\n" +
+            "SELECT\n" +
+            "    p.productID,\n" +
+            "    p.productName,\n" +
+            "    MIN(mi.price) AS minPrice,\n" +
+            "    MAX(mi.price) AS maxPrice,\n" +
+            "    AVG(r.rating) AS avgRating,\n" +
+            "    pir.image AS coverImageURL,\n" +
+            "    p.soldQuantity AS soldQuantity\n" +
+            "FROM\n" +
+            "    product p\n" +
+            "        JOIN\n" +
+            "    modelInfo mi ON p.productID = mi.productID\n" +
+            "        LEFT JOIN\n" +
+            "    review r ON p.productID = r.productID\n" +
+            "        LEFT JOIN\n" +
+            "    ProductImagesRanked pir ON p.productID = pir.productID AND pir.ImageRank = 1\n" +
+            "WHERE\n" +
+            "    p.productName LIKE %:keyword% OR p.productDescription LIKE %:keyword%\n" +
+            "GROUP BY\n" +
+            "    p.productID, p.productName, pir.image;", nativeQuery = true)
+    List<Object[]> getProductDetailsByKeyword(@Param("keyword") String keyword);
+
+
+
 
     @Query(value = "SELECT * FROM product WHERE productID = 1 ", nativeQuery = true)
     List<Product> findProduct();

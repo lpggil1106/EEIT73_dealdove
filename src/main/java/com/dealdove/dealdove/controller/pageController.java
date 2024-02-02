@@ -14,7 +14,6 @@ public class pageController {
     public String homePage(){
         return "01_home_page";
     }
-
     @GetMapping("/Login")
     public String loginPage(){
         return "02-1_login";
@@ -35,17 +34,14 @@ public class pageController {
     public String test2(){
         return "test";
     }
-
     @GetMapping("/seller")
     public String seller(){
         return "10_seller_home_page";
     }
-
     @GetMapping("/checkout")
     public String checkout(){
         return "09_checkoutPage";
     }
-
     @GetMapping("/Coupon")
     public String Coupon(){return "15_coupon_page";};
 

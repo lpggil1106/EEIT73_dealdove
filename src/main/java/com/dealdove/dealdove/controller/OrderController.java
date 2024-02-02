@@ -30,7 +30,7 @@ public class OrderController {
     public String ecpayCheckout() {
         String aioCheckOutALLForm = orderService.ecpayCheckout();
         return  aioCheckOutALLForm;
-}
+    }
 
 //    遊戲直接結束
     @PostMapping("/ecpayMapChoosing")
