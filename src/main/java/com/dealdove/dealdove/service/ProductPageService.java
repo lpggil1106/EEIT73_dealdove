@@ -19,7 +19,6 @@ public class ProductPageService {
     @Autowired
     private ModelInfoRepository modelInfoRepository;
     public List<HashMap<String, String>> getProductById(Integer productId) {
-        System.out.println(productId + "__service__");
         List<Product> products = productRepository.getProductByID(productId);
         List<HashMap<String, String>> productList = new ArrayList<>();
         HashMap<String, String> productMap = null;
