@@ -46,6 +46,16 @@ public class CheckoutController {
         return ResponseEntity.ok(response);
     }
 
+    //拿
+    @GetMapping("/checkoutDetail/{userID}")
+    public ResponseEntity<List<Object[]>> getCheckoutDetailByUserID(@PathVariable String userID) {
+        List<Object[]> checkoutDetail = checkoutService.findCheckoutDetailByUserID(userID);
+        if (checkoutDetail != null && !checkoutDetail.isEmpty()) {
+            return ResponseEntity.ok(checkoutDetail);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @GetMapping("/{productID}/images")
     public ResponseEntity<List<String>> getProductImages(@PathVariable Integer productID) {

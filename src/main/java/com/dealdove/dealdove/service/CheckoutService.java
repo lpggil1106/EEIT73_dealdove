@@ -19,6 +19,9 @@ public class CheckoutService {
     private final ModelInfoRepository modelInfoRepository;
     private final ProductImageTableRepository productImageTableRepository;
 
+    public List<Object[]> findCheckoutDetailByUserID(String userID) {
+        return shoppingCartItemRepository.findCheckoutDetailByUserID(userID);
+    }
 
     @Autowired
     public CheckoutService(
