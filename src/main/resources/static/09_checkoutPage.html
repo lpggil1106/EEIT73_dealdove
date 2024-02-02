@@ -89,6 +89,32 @@
 <h1 class="text-center mt-4 mb-0" style="font-size:3vw">結帳</h1>
 <hr class="custom-hr">
 <hr class="my-2 text-center mx-auto mb-0 " style=" boarder-color:red;width:83vw">
+
+<div class="checkout-container"2>
+<div class="container2">
+<div class="cart-item-head">
+    <div class="item-info">
+        <p>商品資訊</p>
+    </div>
+    <div class="item-name">
+        <p></p>
+    </div>
+    <div class="item-model">
+        <p>商品規格</p>
+    </div>
+    <div class="item-unit-head">
+        <p>商品單價</p>
+    </div>
+    <div class="item-quantity-head">
+        <p>下單數量</p>
+    </div>
+    <div class="item-total-head">
+        <p>價格總價</p>
+    </div>
+</div>
+</div>
+</div>
+
 <div class="checkout-container">
     <div class="container">
         <div class="cart-item-head">
@@ -154,7 +180,7 @@
     </div>
 </div>
 
-<form>
+<form  id="checkoutForm">
     <div class="container" style="padding-left:3.5vw">
         <div class="row">
             <div class="col-sm-6">
@@ -232,7 +258,8 @@
                 <p id="totalAmount" class="summary-value">$0.00</p>
             </div>
 
-            <button id="submitOrderBtn" class="submit-btn">下訂單</button>
+            <button id="submitOrderBtn" type="submit" class="submit-btn">下訂單</button>
+            <input type="hidden" id="totalPriceInput" name="totalPrice" value="0">
         </div>
     </div>
 </form>
@@ -314,48 +341,101 @@
     //     totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
     // }
 </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 假设您已经有了 userID
-        const userID = '4uIXMQan5kRprMeKC1QXLrIzw2D2'; // 您需要根据实际情况获取这个值
-
-        fetchModelInfo(userID);
+<script type="module">
+    import {auth, onAuthStateChanged} from "./js/firebase.js";
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userID = user.uid; // 得到用戶uid
+            console.log("目前登入的ID:", userID);
+            fetchCartInfo(userID);
+        } else {
+            console.log("未登入");
+        }
     });
-    function fetchModelInfo(userID) {
-        // 使用固定的 userId 构建请求 URL
-        const url = `/09_checkoutPage/shoppingCart/${userID}/modelInfo`;
 
-        fetch(url)
+    function getProductImages(productID) {
+        return fetch(`/09_checkoutPage/${productID}/images`)
             .then(response => {
                 if(response.ok) {
                     return response.json();
                 }
-                throw new Error('Failed to fetch model info');
+                throw new Error('Failed to fetch product details');
             })
-            .then(data => {
-                // 假设返回的数据包含 models 属性
-                document.getElementById('model1').textContent = data.models;
-                document.getElementById('quantity1').textContent = data.quantity;
+            .then(images => {
+                return images; // 直接返回字符串
             })
             .catch(error => console.error('Error:', error));
     }
-    // function fetchModelInfo(userId) {
-    //     // 根据您的后端API实际地址进行更改
-    //     fetch(`/09_checkoutPage/shoppingCart/${userId}/modelInfo`)
-    //         .then(response => {
-    //             if(response.ok) {
-    //                 return response.json();
-    //             }
-    //             throw new Error('Models not found');
-    //         })
-    //         .then(data => {
-    //             // 更新页面上的元素
-    //             document.getElementById('model1').textContent = data.models;
-    //         })
-    //         .catch(error => console.error('Error fetching model info:', error));
-    // }
+
+    // 獲取產品名稱的函數
+    function getProductName(productID) {
+        return fetch(`/09_checkoutPage/product/details/${productID}`)
+            .then(response => {
+                if(response.ok) {
+                    return response.text();
+                }
+                throw new Error('Failed to fetch product details');
+            })
+            .then(productName => {
+                return productName; // 直接返回字符串
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function renderCartItems(cartItems) {
+        // 清空當前購物車項目列表
+        const cartContainer = document.querySelector('.container '); // 假設這是您的購物車項目容器
+        cartContainer.innerHTML = ''; // 清空現有內容
+
+        // 對於每個購物車項目，先獲取產品名稱然後渲染
+        cartItems.forEach(item => {
+            getProductName(item.productID).then(productName => {
+                getProductImages(item.productID).then(images => {
+                    const imageSrc = images.length > 0 ? images[0] : 'https://down-tw.img.susercontent.com/file/tw-11134201-7r98r-lnc0ffucu9lpf9';
+                 // 如果没有图片，可以设置一个默认图片路径
+                const cartItemElement = document.createElement('div');
+                cartItemElement.classList.add('cart-item');
+                cartItemElement.innerHTML = `
+                <img src="${imageSrc}" alt="Product Image">
+                <div class="item-name">
+                    <p>${productName}</p>
+                </div>
+                <div class="item-model">
+                    <p>${item.models}</p>
+                </div>
+                <div class="item-unit">
+                    <p>${item.quantity}</p>
+                </div>
+                <div class="item-quantity">
+                    <p>${item.quantity}</p>
+                </div>
+                <div class="item-total">
+                    <p>Total Price</p>
+                </div>
+            `;
+                cartContainer.appendChild(cartItemElement);
+                });
+            });
+        });
+    }
+
+    // 獲取購物車項目資料的函數
+    function fetchCartInfo(userID) {
+        fetch(`/09_checkoutPage/shoppingCart/${userID}/cartItems`)
+            .then(response => {
+                if(response.ok) {
+                    return response.json();
+                }
+                throw new Error('Failed to fetch cart info');
+            })
+            .then(cartItems => {
+                renderCartItems(cartItems);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
 </script>
-<script src="https://ecpg-stage.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116"></script>
+
 <script>
     function redirectToPayment() {
         fetch('/ecpayCheckout', {
@@ -380,15 +460,43 @@
             .catch(error => {
                 console.error('Fetch error:', error);
             });
-
     }
+</script>
+<script>
 
+        // 當 DOM 完全加載後執行
+        document.addEventListener('DOMContentLoaded', function() {
+        updateCartItemsTotalPrice(); // 更新購物車商品總價
+    });
+
+        function updateCartItemsTotalPrice() {
+        const cartItems = document.querySelectorAll('.checkout-container .cart-item'); // 確保選擇器正確
+        cartItems.forEach((item) => {
+        const unitPriceElement = item.querySelector('.item-unit p');
+        const quantityElement = item.querySelector('.item-quantity p');
+        const totalElement = item.querySelector('.item-total p');
+
+        // 確認元素存在
+        if (unitPriceElement && quantityElement && totalElement) {
+        const unitPrice = parseFloat(unitPriceElement.textContent);
+        const quantity = parseInt(quantityElement.textContent, 10);
+
+        // 計算並更新總價格
+        if (!isNaN(unitPrice) && !isNaN(quantity)) {
+        const totalPrice = unitPrice * quantity;
+        totalElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+    }
+    }
+    });
+    }
 
 
 </script>
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ecpg-stage.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116"></script>
 </body>
 </html>

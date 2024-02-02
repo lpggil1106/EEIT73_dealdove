@@ -12,6 +12,8 @@ body {
     text-align: center;
   }
 
+
+
   .checkout-container {
     max-width: 83vw;
     margin: 0px auto;
@@ -21,6 +23,15 @@ body {
     padding-top:10px;
     border-radius: 70px;
   }
+.checkout-container2 {
+  max-width: 300vw;
+  margin: 0px auto;
+  padding-top:0;
+  background-color: #fff;
+  padding: 20px;
+  padding-top:10px;
+  border-radius: 70px;
+}
 
   .cart-section {
     margin-top: 20px;
@@ -63,6 +74,14 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+.container2 {
+  max-width: 1800px;
+  background-color: #F9F3E7;
+  padding:20px;
+  border-radius: 10px;
+  margin-bottom: -1.3vw;
+}
   .custom-hr {
     width: 83vw;      
     margin: 0 auto;  

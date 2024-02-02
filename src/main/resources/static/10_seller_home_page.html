@@ -312,6 +312,7 @@
                             <div>＞</div>
                             <div id="categoryName" style="border-color: black"></div>
                             <input type="hidden" id="hiddenCategoryName" name="categoryName">
+                            <input type="hidden" id="userID" name="userID">
                         </div>
                     </div>
                         <!-- Modal -->
@@ -1465,21 +1466,22 @@
 
 </script>
 <script>
-    <!--    document.addEventListener('DOMContentLoaded', function () {-->
-        <!--        // 获取 typeDiv2 和 plustype 元素-->
-        <!--        var typeDiv2 = document.getElementById('typeDiv2');-->
-        <!--        var plustype = document.getElementById('plustype');-->
+        document.addEventListener('DOMContentLoaded', function () {
+              // 获取 typeDiv2 和 plustype 元素-->
+              var typeDiv2 = document.getElementById('typeDiv2');
+               var plustype = document.getElementById('plustype');
 
-        <!--        // 初始化 typeDiv2 为隐藏状态-->
-        <!--        typeDiv2.style.display = 'none';-->
-
-        <!--        // 为 plustype 添加点击事件监听器-->
-        <!--        plustype.addEventListener('click', function() {-->
-            <!--            // 显示 typeDiv2-->
-            <!--            typeDiv2.style.display = 'block';-->
-            <!--        });-->
-    <!--    });-->
+               // 初始化 typeDiv2 为隐藏状态-->
+               typeDiv2.style.display = 'none';
+            // 为 plustype 添加点击事件监听器-->
+               plustype.addEventListener('click', function() {
+                       // 显示 typeDiv2-->
+                       typeDiv2.style.display = 'block';
+                 });
+      });
 </script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -2013,11 +2015,53 @@
         var content = document.getElementById("typedive11hidden").value;
         console.log("Button clicked, content:", content);
     });
-
 </script>
+<script type="module">
+    import {auth, onAuthStateChanged} from "./js/firebase.js";
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userID = user.uid; // 得到用戶uid
+            console.log("目前登入的ID:", userID);
+
+            // 將userID存儲到前端的div中
+            const userIDElement = document.getElementById('userID');
+            if (userIDElement) {
+                userIDElement.textContent = userID; // 或者使用innerHTML根據需要
+            } else {
+                console.log('Element with id="userID" not found.');
+            }
+
+            // 如果需要發送到後端，可以繼續使用fetch
+            let formData = new URLSearchParams();
+            formData.append('userID', userID);
+            fetch('/10_seller_home_page/add_product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString()
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
+        } else {
+            console.log("未登入");
+        }
+    });
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 
 </html>
