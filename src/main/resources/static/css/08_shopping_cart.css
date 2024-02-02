@@ -201,6 +201,13 @@ body {
     text-wrap:wrap;
     width:10vw;
   }
+
+.item-total-cart{
+  margin-right:3.5vw;
+  padding-left:0vw;
+  text-wrap:wrap;
+  width:8vw;
+}
 .item-total-head{
   margin-right:2vw;
   padding-left:2.5vw;
@@ -449,4 +456,43 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+
+label {
+  font-size: 18px;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  margin: 0 10px;
+  height: 30px;
+}
+
+.function-button{
+  padding:0;
+  padding-left:0.25vw;
+  background-color: #E2C89C;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width:1vw;
+  height:2vw;
+}
+
+.quantity-input {
+  margin: 0;
 }

@@ -221,41 +221,41 @@
 <!--        <script src="./js/productHome.js"></script>-->
 </body>
 <script>
-        let url = new URL(window.location.href);
-        let keyword = url.searchParams.get('keyword');
+    let url = new URL(window.location.href);
+    let keyword = url.searchParams.get('keyword');
 
-        // 默認是按照熱銷量降序排序
-        let orderBy = 'soldQuantity';
-        let orderDirection = 'desc';
+    // 默認是按照熱銷量降序排序
+    let orderBy = 'soldQuantity';
+    let orderDirection = 'desc';
 
-        // 從 localStorage 中取得資料
-        let products = JSON.parse(localStorage.getItem('products')) || [];
+    // 從 localStorage 中取得資料
+    let products = JSON.parse(localStorage.getItem('products')) || [];
 
-        // 根據排序方式和方向排序
-        sortProducts(products, orderBy, orderDirection);
+    // 根據排序方式和方向排序
+    sortProducts(products, orderBy, orderDirection);
 
-        // 渲染排序後的產品
+    // 渲染排序後的產品
+    renderProducts(products);
+
+    // 綁定排序按鈕的點擊事件
+    let orderBySoldQuantity = document.getElementById('orderBysoldQuantity');
+    let orderByRating = document.getElementById('orderByRating');
+    let orderByPrice = document.getElementById('orderByPrice');
+
+    orderBySoldQuantity.addEventListener('click', function () {
+        updateSort('soldQuantity');
         renderProducts(products);
+    });
 
-        // 綁定排序按鈕的點擊事件
-        let orderBySoldQuantity = document.getElementById('orderBysoldQuantity');
-        let orderByRating = document.getElementById('orderByRating');
-        let orderByPrice = document.getElementById('orderByPrice');
+    orderByRating.addEventListener('click', function () {
+        updateSort('rating');
+        renderProducts(products);
+    });
 
-            orderBySoldQuantity.addEventListener('click', function () {
-                updateSort('soldQuantity');
-                renderProducts(products);
-            });
-
-            orderByRating.addEventListener('click', function () {
-                updateSort('rating');
-                renderProducts(products);
-            });
-
-            orderByPrice.addEventListener('click', function () {
-                updateSort('price');
-                renderProducts(products);
-            });
+    orderByPrice.addEventListener('click', function () {
+        updateSort('price');
+        renderProducts(products);
+    });
 
         function updateSort(newOrderBy) {
             console.log('orderBy:', orderBy)
@@ -269,38 +269,38 @@
                 orderDirection = 'asc';
             }
 
-            // 更新排序欄位和方向到 localStorage
-            localStorage.setItem('orderBy', newOrderBy);
-            localStorage.setItem('orderDirection', orderDirection);
+        // 更新排序欄位和方向到 localStorage
+        localStorage.setItem('orderBy', newOrderBy);
+        localStorage.setItem('orderDirection', orderDirection);
 
-            // 根據排序方式和方向排序
-            sortProducts(products, newOrderBy, orderDirection);
+        // 根據排序方式和方向排序
+        sortProducts(products, newOrderBy, orderDirection);
 
-            // 渲染排序後的產品
-            renderProducts(products);
-        }
+        // 渲染排序後的產品
+        renderProducts(products);
+    }
 
-        function sortProducts(products, orderBy, orderDirection) {
-            products.sort((a, b) => {
-                let comparison = 0;
-                switch (orderBy) {
-                    case 'soldQuantity':
-                        comparison = b.soldQuantity - a.soldQuantity;
-                        break;
-                    case 'rating':
-                        comparison = b.avgRating - a.avgRating;
-                        break;
-                    case 'price':
-                        comparison = a.minPrice - b.minPrice;
-                        break;
-                    default:
-                        comparison = 0;
-                        break;
-                }
+    function sortProducts(products, orderBy, orderDirection) {
+        products.sort((a, b) => {
+            let comparison = 0;
+            switch (orderBy) {
+                case 'soldQuantity':
+                    comparison = b.soldQuantity - a.soldQuantity;
+                    break;
+                case 'rating':
+                    comparison = b.avgRating - a.avgRating;
+                    break;
+                case 'price':
+                    comparison = a.minPrice - b.minPrice;
+                    break;
+                default:
+                    comparison = 0;
+                    break;
+            }
 
-                return orderDirection === 'desc' ? -comparison : comparison;
-            });
-        }
+            return orderDirection === 'desc' ? -comparison : comparison;
+        });
+    }
 
 
     const searchResult = document.getElementById('searchResult')
@@ -313,7 +313,7 @@
                 localStorage.setItem('products', JSON.stringify(data));
                 renderProducts(data);
             })
-    }else{
+    } else {
         fetch("/getProduct")
             .then(res => res.json())
             .then(data => {
@@ -387,7 +387,7 @@
     }
 
     // 生成產品卡片
-    function createProductCard(product){
+    function createProductCard(product) {
         let productCard = document.createElement('div')
         productCard.classList.add('col-3')
         productCard.innerHTML = `
@@ -411,5 +411,6 @@
             `
         return productCard
     }
+
 </script>
 </html>
