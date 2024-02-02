@@ -200,7 +200,7 @@
                     <label for="email" class="col-sm-3 col-form-label form-p"><p class="text-sm">收件門市:</p>
                     </label>
                     <div class="col-sm-5">
-                        <input type="email" class="form-control" id="deliever">
+                        <input class="form-control" id="shippingAddress">
                     </div>
                 </div>
 
@@ -230,7 +230,7 @@
                     <p class="text-sm">付款方式:</p>
                 </div>
                 <div class="payment-options">
-                    <button id="payButton" onclick="redirectToPayment()">前往付款</button>
+<!--                    <button id="payButton" onclick="redirectToPayment()">前往付款</button>-->
                     <div id="ECPayPayment"></div>
                     <input type="radio" id="ecpayment" name="payment" value="ecpayment">
                     <label for="ecpayment">綠界支付</label>
@@ -258,89 +258,17 @@
                 <p id="totalAmount" class="summary-value">$0.00</p>
             </div>
 
-            <button id="submitOrderBtn" type="submit" class="submit-btn">下訂單</button>
+            <button id="payButton" type="submit" class="submit-btn" onclick="redirectToPayment()">下訂單</button>
+            <button style="display: none" id="payButtonmormal" type="submit" class="submit-btn" onclick="redirectToPayment()">下訂單</button>
+
             <input type="hidden" id="totalPriceInput" name="totalPrice" value="0">
         </div>
     </div>
 </form>
 </div>
-<script>
-
-    // 獲取所有的 .cart-item 元素
-    const cartItems = document.querySelectorAll('.cart-item');
-
-    // 計算並更新總價的值
-    cartItems.forEach(item => {
-        const unitElement = item.querySelector('.item-unit p');
-        const quantityElement = item.querySelector('.item-quantity p');
-
-        const totalElement = item.querySelector('.item-total p');
-
-        const unitPrice = parseFloat(unitElement.textContent);
-        const quantity = parseInt(quantityElement.textContent);
-
-        const totalPrice = unitPrice * quantity;
-        totalElement.textContent = totalPrice.toString(); // 更新 .item-total 的內容
-    });
-
-    // 假的購物車結果資料，請在這邊實現entity購物車連結
-    const cartData = [
-        { quantity: 10, discount: 10, total: 90 }
-    ];
-
-    // 更新訂單摘要
-    document.addEventListener('DOMContentLoaded', function() {
-        updateOrderSummary(); // 调用函数以更新订单摘要
-    });
-    function updateOrderSummary() {
-        const cartItems = document.querySelectorAll('.container .cart-item'); // 获取所有购物车项目
-        const productQuantityElement = document.getElementById('productQuantity');
-        const discountAmountElement = document.getElementById('discountAmount');
-        const totalAmountElement = document.getElementById('totalAmount');
-
-
-        let totalQuantity = 0;
-        let totalAmount = 0;
-        let discountAmount = 0;
-
-        cartItems.forEach(item => {
-            const quantityElement = item.querySelector('.item-quantity p');
-            const unitPriceElement = item.querySelector('.item-unit p');
-            const totalElement = item.querySelector('.item-total p');
-
-            const quantity = parseInt(quantityElement.textContent, 10);
-            const unitPrice = parseFloat(unitPriceElement.textContent);
-            const totalPrice = quantity * unitPrice;
 
 
 
-            totalQuantity += quantity; // 累加商品数量
-            totalAmount += totalPrice; // 累加商品总价
-
-            totalElement.textContent = totalPrice.toFixed(2); // 更新该项目的总价
-        });
-
-        // 更新顯示
-        productQuantityElement.textContent = totalQuantity;
-        discountAmountElement.textContent = `$${discountAmount.toFixed(2)}`;
-        totalAmountElement.textContent = `$${(totalAmount - discountAmount).toFixed(2)}`;
-    }
-    // function updateOrderSummary() {
-    //     const productQuantityElement = document.getElementById('productQuantity');
-    //     const discountAmountElement = document.getElementById('discountAmount');
-    //     const totalAmountElement = document.getElementById('totalAmount');
-    //
-    //     // 計算總商品數量、折扣金額、總金額
-    //     const productQuantity = cartData.reduce((sum, item) => sum + item.quantity, 0);
-    //     const discountAmount = cartData.reduce((sum, item) => sum + item.discount, 0);
-    //     const totalAmount = cartData.reduce((sum, item) => sum + item.total, 0);
-    //
-    //     // 更新顯示
-    //     productQuantityElement.textContent = productQuantity;
-    //     discountAmountElement.textContent = `$${discountAmount.toFixed(2)}`;
-    //     totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`;
-    // }
-</script>
 <script type="module">
     import {auth, onAuthStateChanged} from "./js/firebase.js";
     onAuthStateChanged(auth, (user) => {
@@ -382,7 +310,7 @@
             .catch(error => console.error('Error:', error));
     }
 
-    function renderCartItems(cartItems) {
+    async function renderCartItems(cartItems) {
         // 清空當前購物車項目列表
         const cartContainer = document.querySelector('.container '); // 假設這是您的購物車項目容器
         cartContainer.innerHTML = ''; // 清空現有內容
@@ -434,8 +362,64 @@
             .catch(error => console.error('Error:', error));
     }
 
-</script>
 
+    // 更新购物车项的总价
+    function updateCartItemTotal(item) {
+        const unitPriceElement = item.querySelector('.item-unit p');
+        const quantityElement = item.querySelector('.item-quantity p');
+        const totalElement = item.querySelector('.item-total p');
+
+        const unitPrice = parseFloat(unitPriceElement.textContent);
+        const quantity = parseInt(quantityElement.textContent);
+        const totalPrice = unitPrice * quantity;
+
+        totalElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`; // 更新 .item-total 的内容
+    }
+
+    // 更新所有购物车项的总价
+    function updateAllCartItemsTotal() {
+        const cartItems = document.querySelectorAll('.cart-item');
+        cartItems.forEach((item) => updateCartItemTotal(item));
+    }
+
+    // 更新订单摘要
+    function updateOrderSummary() {
+        let totalQuantity = 0;
+        let discountAmount = 0;
+        let totalAmount = 0;
+
+        const cartItems = document.querySelectorAll('.cart-item');
+        cartItems.forEach(item => {
+            const quantityElement = item.querySelector('.item-quantity p');
+            const totalElement = item.querySelector('.item-total p');
+
+            const quantity = parseInt(quantityElement.textContent, 10);
+            const totalPrice = parseFloat(totalElement.textContent.replace('Total Price: $', ''));
+
+            totalQuantity += quantity; // 累加商品数量
+            totalAmount += totalPrice; // 累加商品总价
+        });
+
+        // 更新显示
+        document.getElementById('productQuantity').textContent = totalQuantity;
+        document.getElementById('discountAmount').textContent = `$${discountAmount.toFixed(2)}`;
+        document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
+
+        // 更新隐藏的表单字段，以便可以提交总价
+        document.getElementById('totalPriceInput').value = totalAmount.toFixed(2);
+    }
+</script>
+<script>
+    // 当 DOM 完全加载后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        // 假设 renderCartItems 是您渲染购物车项的函数
+        renderCartItems(cartItems);
+
+        // 在渲染购物车项之后立即更新每项的总价和订单摘要
+        updateAllCartItemsTotal();
+        updateOrderSummary();
+    });
+</script>
 <script>
     function redirectToPayment() {
         fetch('/ecpayCheckout', {
@@ -463,37 +447,88 @@
     }
 </script>
 <script>
+document.getElementById('payButton').addEventListener('click', function(event) {
+event.preventDefault(); // 阻止表单默认提交行为
 
-        // 當 DOM 完全加載後執行
-        document.addEventListener('DOMContentLoaded', function() {
-        updateCartItemsTotalPrice(); // 更新購物車商品總價
-    });
+const buyerNote = document.getElementById('buyerNote').value;
+const shippingAddress = document.getElementById('shippingAddress').value;
 
-        function updateCartItemsTotalPrice() {
-        const cartItems = document.querySelectorAll('.checkout-container .cart-item'); // 確保選擇器正確
-        cartItems.forEach((item) => {
-        const unitPriceElement = item.querySelector('.item-unit p');
-        const quantityElement = item.querySelector('.item-quantity p');
-        const totalElement = item.querySelector('.item-total p');
+// 创建提交到后端的数据对象
+const orderData = {
+buyerComment: buyerNote,
+    shippingAddress: shippingAddress,
 
-        // 確認元素存在
-        if (unitPriceElement && quantityElement && totalElement) {
-        const unitPrice = parseFloat(unitPriceElement.textContent);
-        const quantity = parseInt(quantityElement.textContent, 10);
+};
 
-        // 計算並更新總價格
-        if (!isNaN(unitPrice) && !isNaN(quantity)) {
-        const totalPrice = unitPrice * quantity;
-        totalElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
-    }
-    }
-    });
-    }
-
-
+// 使用 fetch API 发送数据到后端
+fetch('/09_checkoutPage/submitOrder', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+},
+body: JSON.stringify(orderData),
+})
+.then(response => response.json())
+.then(data => {
+// 处理响应数据
+console.log('Order submitted successfully', data);
+})
+.catch((error) => {
+// 处理错误情况
+console.error('Error:', error);
+});
+});
 </script>
+<script>
+    document.getElementById('payButtonnormal').addEventListener('click', function(event) {
+        event.preventDefault(); // 阻止表单默认提交行为
 
+        const buyerNote = document.getElementById('buyerNote').value;
+        const shippingAddress = document.getElementById('shippingAddress').value;
 
+// 创建提交到后端的数据对象
+        const orderData = {
+            buyerComment: buyerNote,
+            shippingAddress: shippingAddress,
+
+        };
+
+// 使用 fetch API 发送数据到后端
+        fetch('/09_checkoutPage/submitOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+        })
+            .then(response => response.json())
+            .then(data => {
+// 处理响应数据
+                console.log('Order submitted successfully', data);
+            })
+            .catch((error) => {
+// 处理错误情况
+                console.error('Error:', error);
+            });
+    });
+</script>
+<script>
+    window.onload = function() {
+        // 獲取 radio button 和按鈕元素
+        var cashRadio = document.getElementById('cash');
+        var payButtonNormal = document.getElementById('payButtonmormal');
+        var payButton = document.getElementById('payButton');
+
+        // 為 radio button 添加 change 事件監聽器
+        cashRadio.addEventListener('change', function() {
+            if (this.checked) {
+                // 當選擇貨到付款時，改變按鈕顯示狀態
+                payButtonNormal.style.display = 'block'; // 顯示
+                payButton.style.display = 'none'; // 隱藏
+            }
+        });
+    };
+</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
