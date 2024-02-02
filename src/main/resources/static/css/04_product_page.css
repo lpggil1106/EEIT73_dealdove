@@ -159,7 +159,6 @@
     width: 100%;
     height: 7vw;
     border-radius: 50%;
-    border: 1px solid black;
     margin-right: 2vw;
     margin-left: 1.3vw;
 }
@@ -303,8 +302,11 @@
     border-style: solid;
 }
 
-.productCommentImage {
+.productCommentImage img{
     height: 14vw;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 等比例縮放，保持圖片完整顯示在容器內 */
 }
 
 .replyBtn {

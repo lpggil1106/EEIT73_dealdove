@@ -21,6 +21,7 @@ public class ShoppingCartItemController {
         String models = shoppingCart.get("models");
         String quantity = shoppingCart.get("quantity");
         String userID = shoppingCart.get("userID");
+        String price = shoppingCart.get("price");
         shoppingCartItemService.addToCart(shoppingCart);
         return "Product added to cart successfully";
     }

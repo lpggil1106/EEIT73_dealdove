@@ -5,6 +5,7 @@ import com.dealdove.dealdove.model.dao.ProductModelAssociateTableRepository;
 import com.dealdove.dealdove.model.dao.ProductRepository;
 import com.dealdove.dealdove.model.enitity.ModelInfo;
 import com.dealdove.dealdove.model.enitity.Product;
+import com.dealdove.dealdove.model.enitity.ProductImageTable;
 import com.dealdove.dealdove.model.enitity.ProductModelAssociateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,10 @@ public class ProductPageService {
         }
         productList.add(productMap);
         return productList;
+    }
+
+    public List<ProductImageTable> findAllImageByProdcutID(Integer productID){
+        return findAllImageByProdcutID(productID);
     }
 
     @Autowired
