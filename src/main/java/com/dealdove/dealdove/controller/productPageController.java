@@ -28,4 +28,10 @@ public class productPageController {
     public ModelInfo findModelInfoByProductIDAndFirstModelIDAndSecondModelID(@PathVariable Integer productid, @PathVariable Integer firstModelid, @PathVariable Integer secondModelid){
         return  productPageService.findModelInfoByProductIDAndFirstModelIDAndSecondModelID(productid, firstModelid, secondModelid);
     }
+
+    @GetMapping("/{productID}/images")
+    public List<String> getProductImages(@PathVariable Integer productID) {
+        return productPageService.getProductImages(productID);
+
+    }
 }

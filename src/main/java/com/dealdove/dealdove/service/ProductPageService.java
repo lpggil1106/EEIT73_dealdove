@@ -1,11 +1,11 @@
 package com.dealdove.dealdove.service;
 
 import com.dealdove.dealdove.model.dao.ModelInfoRepository;
+import com.dealdove.dealdove.model.dao.ProductImageTableRepository;
 import com.dealdove.dealdove.model.dao.ProductModelAssociateTableRepository;
 import com.dealdove.dealdove.model.dao.ProductRepository;
 import com.dealdove.dealdove.model.enitity.ModelInfo;
 import com.dealdove.dealdove.model.enitity.Product;
-import com.dealdove.dealdove.model.enitity.ProductImageTable;
 import com.dealdove.dealdove.model.enitity.ProductModelAssociateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +19,12 @@ public class ProductPageService {
     private ProductModelAssociateTableRepository productModelAssociateTableRepository;
     @Autowired
     private ModelInfoRepository modelInfoRepository;
+    private ProductImageTableRepository productImageTableRepository;
+    @Autowired
+    public ProductPageService(ProductRepository productRepository, ProductImageTableRepository productImageTableRepository){
+        this.productRepository = productRepository;
+        this.productImageTableRepository = productImageTableRepository;
+    }
     public List<HashMap<String, String>> getProductById(Integer productId) {
         List<Product> products = productRepository.getProductByID(productId);
         List<HashMap<String, String>> productList = new ArrayList<>();
@@ -32,13 +38,8 @@ public class ProductPageService {
         return productList;
     }
 
-    public List<ProductImageTable> findAllImageByProdcutID(Integer productID){
-        return findAllImageByProdcutID(productID);
-    }
-
-    @Autowired
-    public ProductPageService(ProductRepository productRepository){
-        this.productRepository = productRepository;
+    public List<String> getProductImages(Integer productId) {
+        return productImageTableRepository.findImagesByProductId(productId);
     }
 
     public ProductPageService(ProductModelAssociateTableRepository productModelAssociateTableRepository) {
@@ -50,8 +51,8 @@ public class ProductPageService {
     }
     public ModelInfo findModelInfoByProductIDAndFirstModelIDAndSecondModelID(Integer productid, Integer firstModelid, Integer secondModelid){
         return modelInfoRepository.findModelInfoByProductIDAndFirstModelIDAndSecondModelID(productid, firstModelid, secondModelid);
-
     }
+
     public Map<String, Object> getProductSpecifications(Integer productID) {
         List<ProductModelAssociateTable> specifications = productModelAssociateTableRepository.findByProductID(productID);
         Map<String, Object> map1 = new LinkedHashMap<>();
