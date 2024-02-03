@@ -99,10 +99,10 @@
     <div class="item-name">
         <p></p>
     </div>
-    <div class="item-model">
+    <div class="item-model" style="margin-left:-0.8vw">
         <p>商品規格</p>
     </div>
-    <div class="item-unit-head">
+    <div class="item-unit-head" style="margin-left:1.8vw">
         <p>商品單價</p>
     </div>
     <div class="item-quantity-head">
@@ -267,8 +267,6 @@
 </form>
 </div>
 
-
-
 <script type="module">
     import {auth, onAuthStateChanged} from "./js/firebase.js";
     onAuthStateChanged(auth, (user) => {
@@ -327,36 +325,36 @@
         const cartContainer = document.querySelector('.container '); // 假設這是您的購物車項目容器
         cartContainer.innerHTML = ''; // 清空現有內容
 
-        // 對於每個購物車項目，先獲取產品名稱然後渲染
-        cartItems.forEach(item => {
-            getProductName(item.productID).then(productName => {
-                getProductImages(item.productID).then(images => {
-                    const imageSrc = images.length > 0 ? images[0] : 'https://down-tw.img.susercontent.com/file/tw-11134201-7r98r-lnc0ffucu9lpf9';
-                 // 如果没有图片，可以设置一个默认图片路径
-                const cartItemElement = document.createElement('div');
-                cartItemElement.classList.add('cart-item');
-                cartItemElement.innerHTML = `
-                <img src="${imageSrc}" alt="Product Image">
-                <div class="item-name">
-                    <p>${productName}</p>
-                </div>
-                <div class="item-model">
-                    <p>${item.models}</p>
-                </div>
-                <div class="item-unit">
-                    <p>${item.quantity}</p>
-                </div>
-                <div class="item-quantity">
-                    <p>${item.quantity}</p>
-                </div>
-                <div class="item-total">
-                    <p>Total Price</p>
-                </div>
-            `;
-                cartContainer.appendChild(cartItemElement);
-                });
-            });
-        });
+        // 对于每个购物车项目，先获取产品名称然后渲染
+        for (const item of cartItems) {
+            const productName = await getProductName(item.productID);
+            const images = await getProductImages(item.productID);
+            const imageSrc = images.length > 0 ? images[0] : '';
+            // 如果没有图片，可以设置一个默认图片路径
+            const totalPrice = item.price * item.quantity; // 计算总价
+
+            const cartItemElement = document.createElement('div');
+            cartItemElement.classList.add('cart-item');
+            cartItemElement.innerHTML = `
+            <img src="${imageSrc}" alt="Product Image">
+            <div class="item-name">
+                <p>${productName}</p>
+            </div>
+            <div class="item-model">
+                <p>${item.models}</p>
+            </div>
+            <div class="item-unit">
+                <p>${item.price}</p>
+            </div>
+            <div class="item-quantity">
+                <p>${item.quantity}</p>
+            </div>
+            <div class="item-total">
+                <p>$${totalPrice.toFixed(2)}</p>
+            </div>
+        `;
+            cartContainer.appendChild(cartItemElement);
+        }
     }
 
     // 獲取購物車項目資料的函數
@@ -375,7 +373,7 @@
     }
 
 
-    // 更新购物车项的总价
+    // 更新購物車的總價
     function updateCartItemTotal(item) {
         const unitPriceElement = item.querySelector('.item-unit p');
         const quantityElement = item.querySelector('.item-quantity p');

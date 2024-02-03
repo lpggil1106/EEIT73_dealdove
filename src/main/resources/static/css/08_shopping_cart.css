@@ -15,10 +15,9 @@ body {
 
 
   .checkout-container {
-    max-width: 83vw;
+    max-width: 90vw;
     margin: 0px auto;
     padding-top:0;
-    background-color: #fff;
     padding: 20px;
     padding-top:10px;
     border-radius: 70px;
@@ -67,20 +66,21 @@ body {
   }
 
   .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 20px auto;
     background-color: #F9F3E7;
     padding:20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
 .container2 {
-  max-width: 1800px;
+
   background-color: #F9F3E7;
   padding:20px;
   border-radius: 10px;
-  margin-bottom: -1.3vw;
+  margin-bottom: -4vw;
+  width: 86vw;
+  margin-left: 0.75vw;
 }
   .custom-hr {
     width: 83vw;      

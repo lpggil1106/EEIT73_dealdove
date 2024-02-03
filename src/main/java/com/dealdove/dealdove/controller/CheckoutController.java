@@ -41,8 +41,6 @@ public class CheckoutController {
         // 創建響應
         Map<String, Object> response = new HashMap<>();
         response.put("orderId", savedOrder.getOrderID());
-
-
         return ResponseEntity.ok(response);
     }
 
