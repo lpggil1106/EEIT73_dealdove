@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+
+
 @RestController
 public class UserController {
 
@@ -39,16 +41,14 @@ public class UserController {
 //    顯示使用者資訊
     @PostMapping("/showInfo")
     public @ResponseBody  List<HashMap<String,String>> member(@RequestBody  LinkedHashMap<String, String> user) {
-     return userService.showInfo(user);
+
+        return userService.showInfo(user);
     }
 
     @PostMapping("/showCoupon")
     public List<String> showCoupon(@RequestBody  LinkedHashMap<String, String> user){
          return userService.showCoupon(user);
     }
-
-
-
 
 
 

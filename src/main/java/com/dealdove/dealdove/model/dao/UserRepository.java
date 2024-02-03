@@ -32,6 +32,8 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Query(value = "SELECT couponID FROM user WHERE userID= :userID",nativeQuery = true)
     List<Coupon> findCouponsByUserID(@Param("userID") String userID);
+    @Query(value = "SELECT shippingAddress FROM user WHERE userID= :userID",nativeQuery = true)
+    String findAddressByUserID(@Param("userID") String userID);
 
 
     User getUserNameByUserID(String userID);
@@ -45,6 +47,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Modifying
     @Query(value = "UPDATE user SET birthDate = :birthday WHERE userID = :userID", nativeQuery = true)
     void updateBirthday(@Param("birthday") LocalDate birthday, @Param("userID") String userID);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE user SET shippingAddress = :shippingAddress WHERE userID = :userID", nativeQuery = true)
+    void updateshippingAddress(@Param("shippingAddress") String  shippingAddress, @Param("userID") String userID);
 
     List<User> findAllByStatus(boolean status);
 

@@ -48,6 +48,9 @@ public class User {
     @Column(name = "lastedit")
     private ZonedDateTime lastedit;
 
+    @Column(name = "shippingAddress")
+    private String shippingAddress;
+
     @OneToMany
     @JoinColumn(name = "userID", nullable = true)
     private List<ShoppingCartItem> shoppingCartItems;

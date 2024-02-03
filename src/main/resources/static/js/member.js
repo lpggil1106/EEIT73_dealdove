@@ -47,6 +47,7 @@ $(document).ready(() => {
         )
     });
 
+    $('#pick-shop').prop('href','https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=http://localhost:8080/cvs_callback')
 
 })
 
@@ -61,6 +62,7 @@ function showInfoFromBack(idToken) {
                 $('#email').prop('value', data.email);
                 $('input[name="gender"][value="' + data.gender + '"]').prop('checked', true);
                 $('#birthday').prop('value', data.birthday);
+                $('#address').prop('value',data.address);
 
         })
         )
@@ -136,7 +138,6 @@ function showCoupon(idToken) {
             }
         }))
 }
-
 
 function resetOrder() {
     for (let i = 0; i < 99; i++) {

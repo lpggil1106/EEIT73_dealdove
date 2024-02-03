@@ -1,12 +1,24 @@
 package com.dealdove.dealdove.controller;
 
+import com.dealdove.dealdove.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
-public class pageController {
+public class PageController {
+
+    UserService userService;
+
+    public PageController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/test")
     public String test(){
@@ -53,10 +65,13 @@ public class pageController {
     }
 
     @PostMapping("/cvs_callback")
+    @ResponseBody
     public String cvs_callback(@RequestBody String callbackData){
         System.out.println("收到cvs_callback");
         System.out.println(callbackData);
-        return "cvs_callback";
+        HashMap<String,String> shopMap = userService.decoded(callbackData);
+        String htmlContent = "<html><body><a href='/Member' style='text-decoration=none'>返回會員中心</a></body></html>";
+        return "寄送店名:"+shopMap.get("storename")+"<br>店號:"+shopMap.get("storeid")+"<br>地址:"+shopMap.get("storeaddress")+"<br>"+htmlContent;
     }
 
 
