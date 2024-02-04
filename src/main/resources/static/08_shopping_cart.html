@@ -92,92 +92,26 @@
 <hr class="custom-hr">
 <hr class="my-2 text-center mx-auto mb-0 " style=" boarder-color:red;width:83vw">
 
-<div class="checkout-container">
-    <div class="container">
-        <div class="cart-item-head">
-            <div class="item-info">
-                <p>商品資訊</p>
-            </div>
-            <div class="item-name-shopping"></div>
-            <div class="item-model" style="width:16vw;margin-right:4vw;padding-left:2vw">
-                <p>商品規格</p>
-            </div>
-            <div class="item-unit-head" style="width:8vw;margin-right:0vw;padding-left:2vw">
-                <p>商品單價</p>
-            </div>
-            <div class="item-quantity-head" style="width:16vw;margin-right:0vw">
-                <p>下單數量</p>
-            </div>
-            <div class="item-total-head" style="width:16vw;margin-right:0.5vw">
-                <p>價格總價</p>
-            </div>
-
-        </div>
-        <div class="cart-item">
-            <img id="productImg1" src="https://down-tw.img.susercontent.com/file/tw-11134207-7qukz-lg3gbyeti5gq16"
-                 alt="Product Image">
-            <div class="item-name">
-                <P id="productName1">男士休閒襯衫</P>
-            </div>
-            <div class="item-model">
-                <p id="model1">黑,M</p>
-            </div>
-            <div class="item-unit">
-                <p id="price1">900</p>
-            </div>
-            <div class="item-quantity-head">
-                <div class="quantity-container">
-                    <button class="function-button" onclick="decreaseQuantity()">-</button>
-                    <input style="margin:0;" type="text" id="quantity2" class="quantity-input" value="1" readonly>
-                    <button class="function-button" onclick="increaseQuantity()">+</button>
-                </div>
-            </div>
-            <div class="item-total-head">
-                <p>Total Price</p>
-            </div>
-            <button class="delete-button" onclick="deleteShoppingCartItem()">刪除</button>
-
-        </div>
-
-        <!-- 添加更多商品行 -->
-        <div class="cart-item">
-            <img src="./images/ball2.png" alt="Product Image">
-            <div class="item-name">
-                <p>Product Name</p>
-            </div>
-            <div class="item-model">
-                <p>Unit Price</p>
-            </div>
-            <div class="item-unit">
-                <p>222</p>
-            </div>
-            <div class="item-quantity">
-                <div class="quantity-container">
-                    <button class="function-button" onclick="decreaseQuantity()">-</button>
-                    <input style="margin:0;" type="text" id="quantity1" class="quantity-input" value="1" readonly>
-                    <button class="function-button" onclick="increaseQuantity()">+</button>
-                </div>
-            </div>
-            <div class="item-total">
-                <p>Total Price</p>
-            </div>
-            <button class="delete-button" onclick="deleteShoppingCartItem()">刪除</button>
-
-        </div>
-
-
+<div id = "cartGroup" class="checkout-container">
     </div>
-    <div class = "container">
+
+    <div id = "checkout" class = "container">
         <div class="checkout-submit">
             <span>合計</span>
         </div>
         <div class="checkout-detail">
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>
+                    <input type="checkbox" id="selectAll">
+                    <label for="selectAll">全選商品</label>
+                </li>
+                <li class="spacing"></li>
+                <li>商品數量</li>
+                <li id = "checkOutQuantity">0</li>
+                <li>總金額</li>
+                <li id = "checkOutTotal" class="red-text">$0</li>
             </ul>
+            <button>去買單</button>
         </div>
     </div>
 </div>
@@ -187,40 +121,109 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="./js/search.js"></script>
 <script src="./js/firebase.js" type="module"></script>
-<script src="./js/isLogin.js"type = "module"></script>
+<script src="./js/isLogin.js" type="module"></script>
+<script src="./js/shoppingCart.js" type="module"></script>
 <script>
-    function increaseQuantity() {
-        var quantityInput = document.getElementById('quantity');
-        var currentQuantity = parseInt(quantityInput.value, 10);
-        quantityInput.value = currentQuantity + 1;
+    const selectAllCheckbox = document.getElementById('selectAll');
+
+    // 全選checkbox
+    selectAllCheckbox.addEventListener('change', function () {
+        const checkboxes = document.querySelectorAll('input[id^="select"]');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+        updateCheckoutTotal();
+    });
+
+    function decreaseQuantity(shoppingCartItemID,index) {
+        const quantityInput = document.getElementById(`quantity${shoppingCartItemID}`);
+        let quantity = parseInt(quantityInput.value);
+
+        if (quantity > 1) {
+            quantity--;
+            fetch(`/api/shoppingCart/updateCartItem/${shoppingCartItemID}/${quantity}`)
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);  // 這裡可以根據後端返回的數據進行相應的處理
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+        quantityInput.value = quantity;
+        updateTotal(shoppingCartItemID,index);
+        updateCheckoutTotal()
     }
 
-    function decreaseQuantity() {
-        var quantityInput = document.getElementById('quantity');
-        var currentQuantity = parseInt(quantityInput.value, 10);
-        if (currentQuantity > 1) {
-            quantityInput.value = currentQuantity - 1;
+    function increaseQuantity(shoppingCartItemID,index) {
+        console.log('increaseQuantity')
+        const quantityInput = document.getElementById(`quantity${shoppingCartItemID}`);
+        let quantity = parseInt(quantityInput.value, 10);
+        quantity++;
+        fetch(`/api/shoppingCart/updateCartItem/${shoppingCartItemID}/${quantity}`)
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);  // 這裡可以根據後端返回的數據進行相應的處理
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        quantityInput.value = quantity;
+        updateTotal(shoppingCartItemID,index);
+        updateCheckoutTotal()
+    }
+
+    // 刪除商品的相應函數
+    function deleteShoppingCartItem(index) {
+        // 在此處你可以實現刪除商品的相應操作，例如從後端刪除，或者只是在前端刪除顯示
+        const cartItem = document.getElementById(`productName${index}`);
+        if (cartItem) {
+            cartItem.parentElement.remove();  // 這只是一個示例，請根據你的需求進行相應的刪除操作
         }
     }
 
-    function addNewButtons() {
-        var container = document.querySelector('.quantity-container');
+    function updateTotal(shoppingCartItemID,index) {
+        const quantityInput = document.getElementById(`quantity${shoppingCartItemID}`);
+        const priceElement = document.getElementById(`price${shoppingCartItemID}`);
+        const totalElement = document.getElementById(`total_${index}_${shoppingCartItemID}`);
 
-        // 複製範本按鈕
-        var templateButton = document.getElementById('template-button');
-        var newButton = templateButton.cloneNode(true);
+        const quantity = parseInt(quantityInput.value);
+        const price = parseFloat(priceElement.innerText);
 
-        // 生成唯一ID，並設置給新按鈕的子元素
-        var newId = 'unique-id-' + Math.random().toString(36).substring(7);
-        newButton.querySelector('.function-button').id = newId;
+        let total = 0;
 
-        // 添加新按鈕到容器
-        container.appendChild(newButton);
+        total = quantity * price;
+        console.log(total)
+        totalElement.innerText = `$${total}`;
+    }
 
-        // 重新綁定事件，如果有需要的話
-        document.getElementById(newId).addEventListener('click', function () {
-            // 在這裡添加按鈕的點擊事件處理邏輯
+    function updateCheckoutTotal() {
+        let total = 0;
+        let count = 0;
+        // 獲取所有id以'select'開頭的checkbox
+        const checkboxes = document.querySelectorAll('input[id^="select"]');
+
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                // 從checkbox id中提取sellerID
+                const index = checkbox.id.replace('select', '');
+                // 獲取屬於該sellerID的所有項目
+                const items = document.querySelectorAll(`[id^="total_${index}_"]`);
+                console.log("selected items: " + items.length);
+                count += items.length;
+                items.forEach(item => {
+                    total += parseFloat(item.innerText.replace('$', ''));
+                });
+            }
         });
+
+        // 在結帳區域更新總金額
+    const checkoutCountElement = document.getElementById('checkOutQuantity');
+        const checkoutTotalElement = document.getElementById('checkOutTotal');
+        checkoutTotalElement.innerText = `$${total}`;
+        checkoutCountElement.innerText = `${count}`;
     }
 </script>
 </body>

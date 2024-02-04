@@ -309,6 +309,7 @@
         fetch(`/keyWordProduct?keyword=${keyword}`)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 //本地儲存Product資料方便後續使用
                 localStorage.setItem('products', JSON.stringify(data));
                 renderProducts(data);
@@ -317,6 +318,7 @@
         fetch("/getProduct")
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 //本地儲存Product資料方便後續使用
                 localStorage.setItem('products', JSON.stringify(data));
                 renderProducts(data);
@@ -350,24 +352,20 @@
 
     // 生成星星
     function generateStarRating(avgRating) {
-        // 将 avgRating 映射到星级数量（假设满分是5星）
         const maxRating = 5;
         const ratingPercentage = (avgRating / maxRating) * 100;
 
-        // 创建包含星星的容器
         const starContainer = document.createElement('div');
         starContainer.classList.add('product-rating');
 
-        // 创建五颗星星
         for (let i = 1; i <= maxRating; i++) {
             const star = document.createElement('span');
             star.classList.add('star');
 
-            // 根据 avgRating 设置星星的填充样式
             if (i <= (ratingPercentage / 20)) {
-                star.innerHTML = '&#9733;'; // 实心星星
+                star.innerHTML = '&#9733;';
             } else {
-                star.innerHTML = '&#9734;'; // 空心星星
+                star.innerHTML = '&#9734;';
             }
 
             starContainer.appendChild(star);

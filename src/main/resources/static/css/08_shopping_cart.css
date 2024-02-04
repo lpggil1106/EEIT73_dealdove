@@ -66,21 +66,20 @@ body {
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 20px auto;
     background-color: #F9F3E7;
     padding:20px;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
 .container2 {
-
+  max-width: 1800px;
   background-color: #F9F3E7;
   padding:20px;
   border-radius: 10px;
-  margin-bottom: -4vw;
-  width: 86vw;
-  margin-left: 0.75vw;
+  margin-bottom: -1.3vw;
 }
   .custom-hr {
     width: 83vw;      
@@ -144,7 +143,7 @@ body {
   }
 
   .item-info{
-    width: 10vw; 
+    width: 10vw;
     padding-left: 3.5vw;
   }
 
@@ -495,4 +494,53 @@ input {
 
 .quantity-input {
   margin: 0;
+}
+
+/*嘗試*/
+.checkout-submit span{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 2vw;
+}
+.checkout-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-detail ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding-top: 1.5vw;
+}
+
+.checkout-detail button{
+  padding: 10px 20px;
+  width: 10vw;
+  background-color: #E2C89C;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 2vw;
+}
+.checkout-detail ul li {
+  font-size:1.6vw;
+  margin-right: 20px; /* 根據需要調整項目之間的間距 */
+  align-items: center;
+}
+
+li label{
+  margin-top: 10px;
+  top: 50%;
+  transform: translateY(-35%);
+}
+
+.checkout-detail ul li.spacing {
+  margin-right:30vw; /* 調整"全選商品"和"商品數量 3個"之間的間距 */
+}
+
+.checkout-detail ul li.red-text {
+  color: red; /* 設置文本顏色為紅色 */
 }

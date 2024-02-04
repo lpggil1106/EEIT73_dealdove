@@ -64,6 +64,11 @@ public class PageController {
         return "ecpayReturn";
     }
 
+    @GetMapping("/shoppingCart")
+        public String shoppingCart(){
+        return "08_shopping_cart";
+    }
+
     @PostMapping("/cvs_callback")
     @ResponseBody
     public String cvs_callback(@RequestBody String callbackData){
