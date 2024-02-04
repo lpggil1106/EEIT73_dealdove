@@ -32,12 +32,14 @@ public class CheckoutController {
     }
     @PostMapping("/submitOrder")
     public ResponseEntity<?> submitOrder(@RequestBody OrderDto orderDto) {
-        // 从 DTO 获取 buyerComment
+        // 從OrderDto來取得前端回傳資料
         String buyerComment = orderDto.getBuyerComment();
         String shippingAddress = orderDto.getShippingAddress();
+        Integer totalPrice = orderDto.getTotalPrice();
         Order order = new Order();
         order.setBuyerComment(buyerComment);
         order.setShippingAddress(shippingAddress);
+        order.setTotalPrice(totalPrice);
 
         Order savedOrder = orderRepository.save(order);
         // 創建響應
