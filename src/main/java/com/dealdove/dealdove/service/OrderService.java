@@ -111,13 +111,7 @@ public class OrderService {
         return result;
     }
 
-    public Order saveOrder(String buyerComment,String shippingAddress) {
-        Order order = new Order();
-        order.setBuyerComment(buyerComment);
-        order.setShippingAddress(shippingAddress);
 
-        return orderRepository.save(order);
-    }
 }
 
 

@@ -1,6 +1,8 @@
 package com.dealdove.dealdove.service;
 
 import com.dealdove.dealdove.model.dao.*;
+import com.dealdove.dealdove.model.enitity.Coupon;
+import com.dealdove.dealdove.model.enitity.CouponBase;
 import com.dealdove.dealdove.model.enitity.Order;
 import com.dealdove.dealdove.model.enitity.ShoppingCartItem;
 import com.google.firebase.auth.FirebaseAuth;
@@ -8,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -22,12 +25,15 @@ public class CheckoutService {
     private final ModelInfoRepository modelInfoRepository;
     private final ProductImageTableRepository productImageTableRepository;
 
+    private final CouponRepository couponRepository;
+    private final CouponBaseRepository couponBaseRepository;
+
     public List<Object[]> findCheckoutDetailByUserID(String userID) {
         return shoppingCartItemRepository.findCheckoutDetailByUserID(userID);
     }
 
     @Autowired
-    public CheckoutService(
+    public CheckoutService(CouponRepository couponRepository,CouponBaseRepository couponBaseRepository,
                            ProductRepository productRepository,
                            ProductModelAssociateTableRepository productModelAssociateTableRepository,
                            ModelInfoRepository modelInfoRepository,
@@ -38,6 +44,8 @@ public class CheckoutService {
         this.modelInfoRepository = modelInfoRepository;
         this.shoppingCartItemRepository = shoppingCartItemRepository;
         this.productImageTableRepository = productImageTableRepository1;
+        this.couponRepository = couponRepository;
+        this.couponBaseRepository = couponBaseRepository;
 
     }
 
@@ -67,12 +75,32 @@ public class CheckoutService {
             throw new RuntimeException(e);
         }
     }
-    public Order saveOrder(String buyerComment) {
-        Order order = new Order();
-        order.setBuyerComment(buyerComment);
-        // 正确使用 orderRepository
-        return orderRepository.save(order);
+
+    public String getUserIdFromToken(String token) throws FirebaseAuthException {
+        FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(token);
+        return decodedToken.getUid();
     }
+
+    public Order saveOrderWithBuyerID(Order order, String token) {
+        try {
+            String buyerID = getUserIdFromToken(token);
+            order.setBuyerID(buyerID); // 设置 buyerID
+            return orderRepository.save(order); // 保存订单
+        } catch (FirebaseAuthException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+
+    public List<Coupon> getUserCoupons(String userID) {
+        return couponRepository.findCouponsByOwnerID(userID);
+    }
+
+    public CouponBase getCouponBaseDetails(Integer couponBaseID) {
+        return couponBaseRepository.findById(couponBaseID).orElse(null);
+    }
+
+
 
 //    public String getModelsForUser(String userID) {
 //        ShoppingCartItem cartItem = shoppingCartItemRepository.findByUserID(userID);

@@ -19,7 +19,7 @@ public class Order {
     private Integer orderID;
 
     @Column(name = "sellerID", nullable = true)
-    private Integer sellerID;
+    private String sellerID;
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
@@ -49,7 +49,7 @@ public class Order {
     private String sellerComment;
 
     @Column(name = "orderStatus", nullable = true)
-    private Byte orderStatus;
+    private Integer orderStatus;
 
     @Column(name = "orderDate", nullable = true)
     private ZonedDateTime orderDate;

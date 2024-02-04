@@ -30,6 +30,10 @@ public class Coupon {
     @Column(name = "creationDate", nullable = true)
     private ZonedDateTime creationDate;
 
+    // 由于@JsonBackReference的存在，我们添加了一个新的字段来显式存储couponBaseID
+    @Column(name = "couponBaseID", insertable = false, updatable = false)
+    private Integer couponBaseID;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "couponBaseID", nullable = false)

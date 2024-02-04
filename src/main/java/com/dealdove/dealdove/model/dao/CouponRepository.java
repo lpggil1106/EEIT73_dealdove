@@ -22,4 +22,6 @@ public interface CouponRepository extends JpaRepository<Coupon, Long> {
     Coupon save(Coupon coupon);
 
     List<Coupon> findAll();
+
+    List<Coupon> findCouponsByOwnerID(String ownerID);
 }
