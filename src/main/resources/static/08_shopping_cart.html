@@ -176,11 +176,25 @@
     }
 
     // 刪除商品的相應函數
-    function deleteShoppingCartItem(index) {
-        // 在此處你可以實現刪除商品的相應操作，例如從後端刪除，或者只是在前端刪除顯示
-        const cartItem = document.getElementById(`productName${index}`);
-        if (cartItem) {
-            cartItem.parentElement.remove();  // 這只是一個示例，請根據你的需求進行相應的刪除操作
+    function deleteShoppingCartItem(shoppingCartItemID) {
+        const isConfirmed = confirm("確定刪除該商品？");
+
+        if (isConfirmed) {
+            fetch(`/api/shoppingCart/deleteCartItem/${shoppingCartItemID}`)
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+            const cartItem = document.getElementById(`productName${shoppingCartItemID}`);
+            if (cartItem) {
+                cartItem.parentElement.parentElement.remove();
+            }
+        } else {
+            console.log("删除操作已取消");
         }
     }
 

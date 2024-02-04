@@ -38,7 +38,7 @@ public class ShoppingCartItemController {
     }
 
     @GetMapping("/deleteCartItem/{shoppingCartItemID}")
-    public String deleteCartItem(@RequestParam int shoppingCartItemID){
+    public String deleteCartItem(@PathVariable int shoppingCartItemID){
         shoppingCartItemService.deleteByShoppingCartItemID(shoppingCartItemID);
         return "Product deleted from cart successfully";
     }
