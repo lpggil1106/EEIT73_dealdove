@@ -259,7 +259,7 @@
             </div>
 
             <button id="payButton" type="submit" class="submit-btn" onclick="redirectToPayment()">下訂單</button>
-            <button style="display: none" id="payButtonmormal" type="submit" class="submit-btn" onclick="redirectToPayment()">下訂單</button>
+            <button style="display: none" id="payButtonNormal" type="submit" class="submit-btn" onclick="redirectToPayment()">下訂單</button>
 
             <input type="hidden" id="totalPriceInput" name="totalPrice" value="0">
         </div>
@@ -269,28 +269,41 @@
 
 <script type="module">
     import {auth, onAuthStateChanged} from "./js/firebase.js";
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const userID = user.uid; // 得到用戶uid
-            getCheckOutDetail(userID);
-            console.log("getCheckout end")
-            fetchCartInfo(userID);
-            console.log("目前登入的ID:", userID);
-
-
-        } else {
-            console.log("未登入");
-        }
+    // 当 DOM 完全加载后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                user.getIdToken().then(token => {
+                    fetch(`/09_checkoutPage/shoppingCart/cartItems`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ token })
+                    })
+                        .then(response => response.json())
+                        .then(cartItems => {
+                            // 假设您有一个函数来渲染购物车项目
+                            renderCartItems(cartItems);
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            } else {
+                console.log("用戶未登錄");
+            }
+        });
     });
 
-    function getCheckOutDetail(userID) {
-        fetch(`/checkoutDetail/${userID}`)
-            .then(response => response.json())
-            .then(details => {
-                return details; // 直接返回字符串
-            })
-            .catch(error => console.error('Error:', error));
-    }
+
+
+    // function getCheckOutDetail(userID) {
+    //     fetch(`/checkoutDetail/${userID}`)
+    //         .then(response => response.json())
+    //         .then(details => {
+    //             return details; // 直接返回字符串
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    // }
     function getProductImages(productID) {
         return fetch(`/09_checkoutPage/${productID}/images`)
             .then(response => {
@@ -320,116 +333,90 @@
             .catch(error => console.error('Error:', error));
     }
 
-    async function renderCartItems(cartItems) {
-        // 清空當前購物車項目列表
-        const cartContainer = document.querySelector('.container '); // 假設這是您的購物車項目容器
-        cartContainer.innerHTML = ''; // 清空現有內容
+    function renderCartItems(cartItems) {
+        const cartContainer = document.querySelector('.container'); // 确保选择正确的容器
+        cartContainer.innerHTML = ''; // 清空现有内容
 
-        // 对于每个购物车项目，先获取产品名称然后渲染
-        for (const item of cartItems) {
-            const productName = await getProductName(item.productID);
-            const images = await getProductImages(item.productID);
-            const imageSrc = images.length > 0 ? images[0] : '';
-            // 如果没有图片，可以设置一个默认图片路径
-            const totalPrice = item.price * item.quantity; // 计算总价
-
-            const cartItemElement = document.createElement('div');
-            cartItemElement.classList.add('cart-item');
-            cartItemElement.innerHTML = `
-            <img src="${imageSrc}" alt="Product Image">
-            <div class="item-name">
-                <p>${productName}</p>
-            </div>
-            <div class="item-model">
-                <p>${item.models}</p>
-            </div>
-            <div class="item-unit">
-                <p>${item.price}</p>
-            </div>
-            <div class="item-quantity">
-                <p>${item.quantity}</p>
-            </div>
-            <div class="item-total">
-                <p>$${totalPrice.toFixed(2)}</p>
-            </div>
-        `;
-            cartContainer.appendChild(cartItemElement);
-        }
-    }
-
-    // 獲取購物車項目資料的函數
-    function fetchCartInfo(userID) {
-        fetch(`/09_checkoutPage/shoppingCart/${userID}/cartItems`)
-            .then(response => {
-                if(response.ok) {
-                    return response.json();
-                }
-                throw new Error('Failed to fetch cart info');
-            })
-            .then(cartItems => {
-                renderCartItems(cartItems);
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-
-    // 更新購物車的總價
-    function updateCartItemTotal(item) {
-        const unitPriceElement = item.querySelector('.item-unit p');
-        const quantityElement = item.querySelector('.item-quantity p');
-        const totalElement = item.querySelector('.item-total p');
-
-        const unitPrice = parseFloat(unitPriceElement.textContent);
-        const quantity = parseInt(quantityElement.textContent);
-        const totalPrice = unitPrice * quantity;
-
-        totalElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`; // 更新 .item-total 的内容
-    }
-
-    // 更新所有购物车项的总价
-    function updateAllCartItemsTotal() {
-        const cartItems = document.querySelectorAll('.cart-item');
-        cartItems.forEach((item) => updateCartItemTotal(item));
-    }
-
-    // 更新订单摘要
-    function updateOrderSummary() {
-        let totalQuantity = 0;
-        let discountAmount = 0;
-        let totalAmount = 0;
-
-        const cartItems = document.querySelectorAll('.cart-item');
+        // 對於每個購物車項目，先獲取產品名稱然後渲染
         cartItems.forEach(item => {
+            getProductName(item.productID).then(productName => {
+                getProductImages(item.productID).then(images => {
+                    const imageSrc = images.length > 0 ? images[0] : 'https://down-tw.img.susercontent.com/file/tw-11134201-7r98r-lnc0ffucu9lpf9';
+                    // 如果没有图片，可以设置一个默认图片路径
+                    const cartItemElement = document.createElement('div');
+                    const totalPrice = item.price * item.quantity;
+                    cartItemElement.classList.add('cart-item');
+                    cartItemElement.innerHTML = `
+                <img src="${imageSrc}" alt="Product Image">
+                <div class="item-name">
+                    <p>${productName}</p>
+                </div>
+                <div class="item-model">
+                    <p>${item.models}</p>
+                </div>
+                <div class="item-unit">
+                    <p>${item.price}</p>
+                </div>
+                <div class="item-quantity">
+                    <p>${item.quantity}</p>
+                </div>
+                <div class="item-total">
+                    <p>$${totalPrice}</p>
+                </div>
+            `;
+                    cartContainer.appendChild(cartItemElement);
+                });
+            });
+        });
+
+        // 更新購物車的總價
+        function updateCartItemTotal(item) {
+            const unitPriceElement = item.querySelector('.item-unit p');
             const quantityElement = item.querySelector('.item-quantity p');
             const totalElement = item.querySelector('.item-total p');
 
-            const quantity = parseInt(quantityElement.textContent, 10);
-            const totalPrice = parseFloat(totalElement.textContent.replace('Total Price: $', ''));
+            const unitPrice = parseFloat(unitPriceElement.textContent);
+            const quantity = parseInt(quantityElement.textContent);
+            const totalPrice = unitPrice * quantity;
 
-            totalQuantity += quantity; // 累加商品数量
-            totalAmount += totalPrice; // 累加商品总价
-        });
+            totalElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`; // 更新 .item-total 的内容
+        }
 
-        // 更新显示
-        document.getElementById('productQuantity').textContent = totalQuantity;
-        document.getElementById('discountAmount').textContent = `$${discountAmount.toFixed(2)}`;
-        document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
+        // 更新所有购物车项的总价
+        function updateAllCartItemsTotal() {
+            const cartItems = document.querySelectorAll('.cart-item');
+            cartItems.forEach((item) => updateCartItemTotal(item));
+        }
 
-        // 更新隐藏的表单字段，以便可以提交总价
-        document.getElementById('totalPriceInput').value = totalAmount.toFixed(2);
+        // 更新订单摘要
+        function updateOrderSummary() {
+            let totalQuantity = 0;
+            let discountAmount = 0;
+            let totalAmount = 0;
+
+            const cartItems = document.querySelectorAll('.cart-item');
+            cartItems.forEach(item => {
+                const quantityElement = item.querySelector('.item-quantity p');
+                const totalElement = item.querySelector('.item-total p');
+
+                const quantity = parseInt(quantityElement.textContent, 10);
+                const totalPrice = parseFloat(totalElement.textContent.replace('Total Price: $', ''));
+
+                totalQuantity += quantity; // 累加商品数量
+                totalAmount += totalPrice; // 累加商品总价
+            });
+
+            // 更新显示
+            document.getElementById('productQuantity').textContent = totalQuantity;
+            document.getElementById('discountAmount').textContent = `$${discountAmount.toFixed(2)}`;
+            document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
+
+            // 更新隐藏的表单字段，以便可以提交总价
+            document.getElementById('totalPriceInput').value = totalAmount.toFixed(2);
+        }
     }
 </script>
-<script>
-    // 当 DOM 完全加载后执行
-    document.addEventListener('DOMContentLoaded', function() {
-        // 假设 renderCartItems 是您渲染购物车项的函数
-        renderCartItems(cartItems);
 
-        // 在渲染购物车项之后立即更新每项的总价和订单摘要
-        updateAllCartItemsTotal();
-        updateOrderSummary();
-    });
-</script>
 <script>
     function redirectToPayment() {
         fetch('/ecpayCheckout', {
@@ -490,7 +477,7 @@ console.error('Error:', error);
 });
 </script>
 <script>
-    document.getElementById('payButtonnormal').addEventListener('click', function(event) {
+    document.getElementById('payButtonNormal').addEventListener('click', function(event) {
         event.preventDefault(); // 阻止表单默认提交行为
 
         const buyerNote = document.getElementById('buyerNote').value;
@@ -526,7 +513,7 @@ console.error('Error:', error);
     window.onload = function() {
         // 獲取 radio button 和按鈕元素
         var cashRadio = document.getElementById('cash');
-        var payButtonNormal = document.getElementById('payButtonmormal');
+        var payButtonNormal = document.getElementById('payButtonNormal');
         var payButton = document.getElementById('payButton');
 
         // 為 radio button 添加 change 事件監聽器

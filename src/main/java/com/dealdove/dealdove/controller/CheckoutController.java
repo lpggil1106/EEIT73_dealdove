@@ -2,11 +2,13 @@ package com.dealdove.dealdove.controller;
 
 import com.dealdove.dealdove.model.dao.OrderRepository;
 import com.dealdove.dealdove.model.dto.OrderDto;
+import com.dealdove.dealdove.model.dto.TokenDto;
 import com.dealdove.dealdove.model.enitity.Order;
 import com.dealdove.dealdove.model.enitity.Product;
 import com.dealdove.dealdove.model.enitity.ShoppingCartItem;
 import com.dealdove.dealdove.service.CheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -76,15 +78,16 @@ public class CheckoutController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/shoppingCart/{userID}/cartItems")
-    public ResponseEntity<List<ShoppingCartItem>> getShoppingCartItems(@PathVariable String userID) {
-        List<ShoppingCartItem> cartItems = checkoutService.getCartItemsByUserId(userID);
-        if(cartItems != null && !cartItems.isEmpty()) {
+    @PostMapping("/shoppingCart/cartItems")
+    public ResponseEntity<?> getCartItems(@RequestBody TokenDto tokenDto) {
+        try {
+            List<ShoppingCartItem> cartItems = checkoutService.getCartItemsByToken(tokenDto.getToken());
             return ResponseEntity.ok(cartItems);
-        } else {
-            return ResponseEntity.notFound().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
 //    @GetMapping("/shoppingCart/{userID}/modelInfo")
 //    public ResponseEntity<?> getShoppingCartModelAndQuantity(@PathVariable String userID) {
 //        // 找商品規格
