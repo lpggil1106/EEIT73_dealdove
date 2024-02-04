@@ -21,6 +21,40 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findOrderByBuyerIDAndStatus2(@Param("buyerID") String buyerID,@Param("orderStatus") int orderStatus,
                                             @Param("start")int start,@Param("end") int end);
     Order save(Order order);
+
+    @Query(value = "WITH ProductImagesRanked AS (\n" +
+            "    SELECT\n" +
+            "        pi.productID,\n" +
+            "        pi.image,\n" +
+            "        ROW_NUMBER() OVER (PARTITION BY pi.productID ORDER BY pi.image) AS ImageRank\n" +
+            "    FROM\n" +
+            "        productImageTable pi\n" +
+            ")\n" +
+            "SELECT\n" +
+            "    u.userName,\n" +
+            "    o.buyerID,\n" +
+            "    o.orderID,\n" +
+            "    p.productName,\n" +
+            "    oi.quantity,\n" +
+            "    oi.model,\n" +
+            "    o.totalPrice,\n" +
+            "    o.orderStatus,\n" +
+            "    o.shippingAddress,\n" +
+            "    pir.image AS coverImageURL\n" +
+            "FROM\n" +
+            "    `order` o\n" +
+            "        JOIN\n" +
+            "    user u ON o.buyerID = u.userID\n" +
+            "        JOIN\n" +
+            "    orderItem oi ON o.orderID = oi.orderID\n" +
+            "        JOIN\n" +
+            "    product p ON oi.productID = p.productID\n" +
+            "        LEFT JOIN\n" +
+            "    ProductImagesRanked pir ON p.productID = pir.productID AND pir.ImageRank = 1\n" +
+            "WHERE\n" +
+            "    o.sellerID = :sellerID ;\n",nativeQuery = true)
+    List<Object[]> findOrderBySellerID(@Param("sellerID") String sellerID);
+
 }
 
 

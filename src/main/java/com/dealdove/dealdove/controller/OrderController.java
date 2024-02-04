@@ -1,18 +1,24 @@
 package com.dealdove.dealdove.controller;
 
+import com.dealdove.dealdove.model.dto.OrderDetailDTO;
+import com.dealdove.dealdove.model.dto.ShoppingCartDTO;
+import com.dealdove.dealdove.service.OrderDetailService;
 import com.dealdove.dealdove.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class OrderController {
     private OrderService orderService;
+    private OrderDetailService orderDetailService;
 
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderService orderService, OrderDetailService orderDetailService) {
         this.orderService = orderService;
+        this.orderDetailService = orderDetailService;
     }
 
     @PostMapping("/showOrderName")
@@ -44,7 +50,10 @@ public class OrderController {
         return "orderConfirmation";
     }
 
-
+    @PostMapping("/getOrderBySellerID")
+    public Map<String, List<OrderDetailDTO>> getOrderBySellerID(@RequestBody LinkedHashMap<String, String> user){
+        return orderDetailService.findOrderBySellerID(user);
+    }
 
 }
 

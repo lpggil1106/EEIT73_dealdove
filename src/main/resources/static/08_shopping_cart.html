@@ -145,7 +145,7 @@
             fetch(`/api/shoppingCart/updateCartItem/${shoppingCartItemID}/${quantity}`)
                 .then(response => response.text())
                 .then(data => {
-                    console.log(data);  // 這裡可以根據後端返回的數據進行相應的處理
+                    console.log(data);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -164,7 +164,7 @@
         fetch(`/api/shoppingCart/updateCartItem/${shoppingCartItemID}/${quantity}`)
             .then(response => response.text())
             .then(data => {
-                console.log(data);  // 這裡可以根據後端返回的數據進行相應的處理
+                console.log(data);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -221,9 +221,7 @@
 
         checkboxes.forEach(checkbox => {
             if (checkbox.checked) {
-                // 從checkbox id中提取sellerID
                 const index = checkbox.id.replace('select', '');
-                // 獲取屬於該sellerID的所有項目
                 const items = document.querySelectorAll(`[id^="total_${index}_"]`);
                 console.log("selected items: " + items.length);
                 count += items.length;

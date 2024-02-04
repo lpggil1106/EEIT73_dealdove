@@ -13,10 +13,6 @@ import "https://code.jquery.com/jquery-3.6.0.min.js";
                 console.log('no user')
             }
         }))
-    function test(idToken){
-        console.log('test' + idToken)
-    }
-
 
 function fetchProducts(idToken) {
     fetch('/api/shoppingCart/getCartItems',{
