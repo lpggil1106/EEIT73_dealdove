@@ -230,7 +230,6 @@
                     <p class="text-sm">付款方式:</p>
                 </div>
                 <div class="payment-options">
-<!--                    <button id="payButton" onclick="redirectToPayment()">前往付款</button>-->
                     <div id="ECPayPayment"></div>
                     <input type="radio" id="ecpayment" name="payment" value="ecpayment">
                     <label for="ecpayment">綠界支付</label>
@@ -246,7 +245,7 @@
                     <p>商品數量:</p>
                 </div>
                 <div class="summary-value">
-                    <p id="productQuantity">0</p>
+                    <p id="checkOutQuantity">0</p>
                 </div>
             </div>
             <div class="summary-item">
@@ -255,20 +254,20 @@
             </div>
             <div class="summary-item">
                 <p class="summary-label">總金額:</p>
-                <p id="totalAmount" class="summary-value">$0.00</p>
+                <p id="checkOutTotal" class="summary-value">$0.00</p>
             </div>
 
-            <button id="payButton" type="submit" class="submit-btn" onclick="redirectToPayment()">下訂單</button>
-            <button style="display: none" id="payButtonNormal" type="submit" class="submit-btn" onclick="redirectToPayment()">下訂單</button>
+            <button id="payButtonEcpay" type="submit" class="submit-btn" onclick="redirectToPayment()">下訂單</button>
+            <button id="payButtonCash" style="display: none"  type="submit" class="submit-btn" onclick="redirectToPaymentCash()">下訂單</button>
 
-            <input type="hidden" id="totalPriceInput" name="totalPrice" value="0">
+            <input type="hidden" id="checkOutTotalInput" name="checkOutTotalInput" value="0">
         </div>
     </div>
 </form>
 </div>
 
 <script type="module">
-    import {auth, onAuthStateChanged} from "./js/firebase.js";
+    import {auth} from "./js/firebase.js";
     // 当 DOM 完全加载后执行
     document.addEventListener('DOMContentLoaded', function() {
         auth.onAuthStateChanged(user => {
@@ -336,85 +335,54 @@
     function renderCartItems(cartItems) {
         const cartContainer = document.querySelector('.container'); // 确保选择正确的容器
         cartContainer.innerHTML = ''; // 清空现有内容
+        let totalQuantity = 0; // 初始化总数量累加器
+        let totalAmount = 0; // 初始化总金额累加器
 
-        // 對於每個購物車項目，先獲取產品名稱然後渲染
-        cartItems.forEach(item => {
-            getProductName(item.productID).then(productName => {
-                getProductImages(item.productID).then(images => {
-                    const imageSrc = images.length > 0 ? images[0] : 'https://down-tw.img.susercontent.com/file/tw-11134201-7r98r-lnc0ffucu9lpf9';
-                    // 如果没有图片，可以设置一个默认图片路径
-                    const cartItemElement = document.createElement('div');
+        // 使用 Promise.all 确保所有异步操作完成
+        const promises = cartItems.map(item => {
+            return getProductName(item.productID).then(productName => {
+                return getProductImages(item.productID).then(images => {
+                    const imageSrc = images.length > 0 ? images[0] : 'default-image-path';
                     const totalPrice = item.price * item.quantity;
+                    totalQuantity += item.quantity; // 累加商品数量
+                    totalAmount += totalPrice; // 累加商品总价
+
+                    const cartItemElement = document.createElement('div');
                     cartItemElement.classList.add('cart-item');
                     cartItemElement.innerHTML = `
-                <img src="${imageSrc}" alt="Product Image">
-                <div class="item-name">
-                    <p>${productName}</p>
-                </div>
-                <div class="item-model">
-                    <p>${item.models}</p>
-                </div>
-                <div class="item-unit">
-                    <p>${item.price}</p>
-                </div>
-                <div class="item-quantity">
-                    <p>${item.quantity}</p>
-                </div>
-                <div class="item-total">
-                    <p>$${totalPrice}</p>
-                </div>
-            `;
+                    <img src="${imageSrc}" alt="Product Image">
+                    <div class="item-name">
+                        <p>${productName}</p>
+                    </div>
+                    <div class="item-model">
+                        <p>${item.models}</p>
+                    </div>
+                    <div class="item-unit">
+                        <p>${item.price}</p>
+                    </div>
+                    <div class="item-quantity">
+                        <p>${item.quantity}</p>
+                    </div>
+                    <div class="item-total">
+                        <p>$${totalPrice.toFixed(2)}</p>
+                    </div>
+                `;
                     cartContainer.appendChild(cartItemElement);
                 });
             });
         });
 
-        // 更新購物車的總價
-        function updateCartItemTotal(item) {
-            const unitPriceElement = item.querySelector('.item-unit p');
-            const quantityElement = item.querySelector('.item-quantity p');
-            const totalElement = item.querySelector('.item-total p');
+        // 等待所有商品处理完成后更新总数量和总金额
+        Promise.all(promises).then(() => {
+            document.getElementById('checkOutQuantity').textContent = totalQuantity; // 更新总数量
+            document.getElementById('checkOutTotal').textContent = `${totalAmount}`; // 更新总金额
 
-            const unitPrice = parseFloat(unitPriceElement.textContent);
-            const quantity = parseInt(quantityElement.textContent);
-            const totalPrice = unitPrice * quantity;
+            // 更新隐藏的 input 字段，以便可以提交总价
+            document.getElementById('checkOutTotalInput').value = totalAmount;
+        });
 
-            totalElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`; // 更新 .item-total 的内容
-        }
-
-        // 更新所有购物车项的总价
-        function updateAllCartItemsTotal() {
-            const cartItems = document.querySelectorAll('.cart-item');
-            cartItems.forEach((item) => updateCartItemTotal(item));
-        }
-
-        // 更新订单摘要
-        function updateOrderSummary() {
-            let totalQuantity = 0;
-            let discountAmount = 0;
-            let totalAmount = 0;
-
-            const cartItems = document.querySelectorAll('.cart-item');
-            cartItems.forEach(item => {
-                const quantityElement = item.querySelector('.item-quantity p');
-                const totalElement = item.querySelector('.item-total p');
-
-                const quantity = parseInt(quantityElement.textContent, 10);
-                const totalPrice = parseFloat(totalElement.textContent.replace('Total Price: $', ''));
-
-                totalQuantity += quantity; // 累加商品数量
-                totalAmount += totalPrice; // 累加商品总价
-            });
-
-            // 更新显示
-            document.getElementById('productQuantity').textContent = totalQuantity;
-            document.getElementById('discountAmount').textContent = `$${discountAmount.toFixed(2)}`;
-            document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
-
-            // 更新隐藏的表单字段，以便可以提交总价
-            document.getElementById('totalPriceInput').value = totalAmount.toFixed(2);
-        }
     }
+
 </script>
 
 <script>
@@ -444,18 +412,19 @@
     }
 </script>
 <script>
-document.getElementById('payButton').addEventListener('click', function(event) {
+document.getElementById('payButtonEcpay').addEventListener('click', function(event) {
 event.preventDefault(); // 阻止表单默认提交行为
 
-const buyerNote = document.getElementById('buyerNote').value;
-const shippingAddress = document.getElementById('shippingAddress').value;
+    const buyerNote = document.getElementById('buyerNote').value;
+    const shippingAddress = document.getElementById('shippingAddress').value;
+    const checkOutTotalInput = document.getElementById('checkOutTotalInput').value;
 
 // 创建提交到后端的数据对象
-const orderData = {
-buyerComment: buyerNote,
-    shippingAddress: shippingAddress,
-
-};
+    const orderData = {
+        buyerComment: buyerNote,
+        shippingAddress: shippingAddress,
+        totalPrice: checkOutTotalInput,
+    };
 
 // 使用 fetch API 发送数据到后端
 fetch('/09_checkoutPage/submitOrder', {
@@ -477,17 +446,24 @@ console.error('Error:', error);
 });
 </script>
 <script>
-    document.getElementById('payButtonNormal').addEventListener('click', function(event) {
+    function redirectToPaymentCash() {
+        window.location.href = '/Dealdove';
+    }
+
+</script>
+<script>
+    document.getElementById('payButtonCash').addEventListener('click', function(event) {
         event.preventDefault(); // 阻止表单默认提交行为
 
         const buyerNote = document.getElementById('buyerNote').value;
         const shippingAddress = document.getElementById('shippingAddress').value;
+        const checkOutTotalInput = document.getElementById('checkOutTotalInput').value;
 
 // 创建提交到后端的数据对象
         const orderData = {
             buyerComment: buyerNote,
             shippingAddress: shippingAddress,
-
+            totalPrice: checkOutTotalInput,
         };
 
 // 使用 fetch API 发送数据到后端
@@ -511,21 +487,32 @@ console.error('Error:', error);
 </script>
 <script>
     window.onload = function() {
-        // 獲取 radio button 和按鈕元素
+        // 获取 radio button 和按钮元素
         var cashRadio = document.getElementById('cash');
-        var payButtonNormal = document.getElementById('payButtonNormal');
-        var payButton = document.getElementById('payButton');
+        var ecpayRadio = document.getElementById('ecpayment'); // 获取绿界支付的 radio button
+        var payButtonCash = document.getElementById('payButtonCash');
+        var payButtonEcpay = document.getElementById('payButtonEcpay');
 
-        // 為 radio button 添加 change 事件監聽器
+        // 为货到付款 radio button 添加 change 事件监听器
         cashRadio.addEventListener('change', function() {
             if (this.checked) {
-                // 當選擇貨到付款時，改變按鈕顯示狀態
-                payButtonNormal.style.display = 'block'; // 顯示
-                payButton.style.display = 'none'; // 隱藏
+                // 当选择货到付款时，改变按钮显示状态
+                payButtonCash.style.display = 'block'; // 显示
+                payButtonEcpay.style.display = 'none'; // 隐藏
+            }
+        });
+
+        // 为绿界支付 radio button 添加 change 事件监听器
+        ecpayRadio.addEventListener('change', function() {
+            if (this.checked) {
+                // 当选择绿界支付时，改变按钮显示状态
+                payButtonEcpay.style.display = 'block'; // 显示
+                payButtonCash.style.display = 'none'; // 隐藏
             }
         });
     };
 </script>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

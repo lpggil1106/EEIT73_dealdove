@@ -7,7 +7,8 @@ import lombok.Setter;
 @Setter
 public class OrderDto {
     private String buyerComment;
-    private String shippingAddress; // 新增的收貨地址欄位
+    private String shippingAddress;
+    private Integer totalPrice;
 
     // 默认构造函数
     public OrderDto() {}
@@ -26,5 +27,10 @@ public class OrderDto {
         this.shippingAddress = shippingAddress;
     }
 
-    // ...其他 getter 和 setter 方法
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }
