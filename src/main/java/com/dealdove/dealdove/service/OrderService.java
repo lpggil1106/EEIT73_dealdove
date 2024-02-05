@@ -112,6 +112,12 @@ public class OrderService {
     }
 
 
+        return orderRepository.save(order);
+    }
+
+    public List<Order> findOrderByBuyerIDAndStatus(String buyerID, int orderStatus) {
+        return orderRepository.findOrderByBuyerIDAndStatus(buyerID, orderStatus);
+    }
 }
 
 

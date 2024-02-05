@@ -17,20 +17,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-//@SqlResultSetMapping(
-//        name = "ProductHomeDTOMapping",
-//        classes = @ConstructorResult(
-//                targetClass = ProductHomeDTO.class,
-//                columns = {
-//                        @ColumnResult(name = "productID", type = Integer.class),
-//                        @ColumnResult(name = "productName", type = String.class),
-//                        @ColumnResult(name = "minPrice", type = Integer.class),
-//                        @ColumnResult(name = "maxPrice", type = Integer.class),
-//                        @ColumnResult(name = "avgRating", type = Double.class),
-//                        @ColumnResult(name = "coverImageURL", type = String.class)
-//                }
-//        )
-//)
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 

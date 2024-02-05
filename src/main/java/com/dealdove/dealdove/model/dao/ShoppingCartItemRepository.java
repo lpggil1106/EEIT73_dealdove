@@ -51,6 +51,7 @@ public interface ShoppingCartItemRepository extends JpaRepository<ShoppingCartIt
 
 
     // 透過 productID 和 userID 刪除購物車項目
+    @Transactional
     void deleteByShoppingCartItemID(Integer ShoppingCartItemID);
 
     @Modifying

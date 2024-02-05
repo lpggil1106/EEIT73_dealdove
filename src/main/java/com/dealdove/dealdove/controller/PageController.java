@@ -69,6 +69,11 @@ public class PageController {
         return "08_shopping_cart";
     }
 
+    @GetMapping("/orderDetail")
+    public String sellerOrder(){
+        return "07OrderDetail";
+    }
+
     @PostMapping("/cvs_callback")
     @ResponseBody
     public String cvs_callback(@RequestBody String callbackData){
@@ -78,6 +83,8 @@ public class PageController {
         String htmlContent = "<html><body><a href='/Member' style='text-decoration=none'>返回會員中心</a></body></html>";
         return "寄送店名:"+shopMap.get("storename")+"<br>店號:"+shopMap.get("storeid")+"<br>地址:"+shopMap.get("storeaddress")+"<br>"+htmlContent;
     }
+
+
 
 
 }
