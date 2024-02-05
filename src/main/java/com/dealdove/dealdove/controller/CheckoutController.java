@@ -3,15 +3,17 @@ package com.dealdove.dealdove.controller;
 import com.dealdove.dealdove.model.dao.OrderRepository;
 import com.dealdove.dealdove.model.dto.OrderDto;
 import com.dealdove.dealdove.model.dto.TokenDto;
-import com.dealdove.dealdove.model.enitity.Order;
-import com.dealdove.dealdove.model.enitity.Product;
-import com.dealdove.dealdove.model.enitity.ShoppingCartItem;
+import com.dealdove.dealdove.model.enitity.*;
 import com.dealdove.dealdove.service.CheckoutService;
+import com.dealdove.dealdove.service.CouponService;
+import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,30 +24,37 @@ import java.util.Map;
 public class CheckoutController {
 
     private final CheckoutService checkoutService;
+    private final CouponService couponService;
     private final OrderRepository orderRepository; // 添加对 OrderRepository 的引用
 
 
     @Autowired
-    public CheckoutController(CheckoutService checkoutService, OrderRepository orderRepository) {
+    public CheckoutController(CheckoutService checkoutService, OrderRepository orderRepository,CouponService couponService) {
         this.checkoutService = checkoutService;
-        this.orderRepository = orderRepository; // 初始化 orderRepository
+        this.orderRepository = orderRepository;
+        this.couponService = couponService;
     }
     @PostMapping("/submitOrder")
     public ResponseEntity<?> submitOrder(@RequestBody OrderDto orderDto) {
-        // 從OrderDto來取得前端回傳資料
-        String buyerComment = orderDto.getBuyerComment();
-        String shippingAddress = orderDto.getShippingAddress();
-        Integer totalPrice = orderDto.getTotalPrice();
-        Order order = new Order();
-        order.setBuyerComment(buyerComment);
-        order.setShippingAddress(shippingAddress);
-        order.setTotalPrice(totalPrice);
+        try {
+            Order order = new Order();
+            order.setBuyerComment(orderDto.getBuyerComment());
+            order.setShippingAddress(orderDto.getShippingAddress());
+            order.setTotalPrice(orderDto.getTotalPrice());
+            order.setPaymentID(orderDto.getPaymentID());
+            order.setOrderStatus(orderDto.getOrderStatus());
+            order.setBuyerID(orderDto.getBuyerID());
 
-        Order savedOrder = orderRepository.save(order);
-        // 創建響應
-        Map<String, Object> response = new HashMap<>();
-        response.put("orderId", savedOrder.getOrderID());
-        return ResponseEntity.ok(response);
+            order.setOrderDate(ZonedDateTime.now(ZoneId.of("Asia/Taipei")));
+
+            Order savedOrder = orderRepository.save(order);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("orderId", savedOrder.getOrderID());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Order submission failed");
+        }
     }
 
     //拿
@@ -90,23 +99,41 @@ public class CheckoutController {
         }
     }
 
-//    @GetMapping("/shoppingCart/{userID}/modelInfo")
-//    public ResponseEntity<?> getShoppingCartModelAndQuantity(@PathVariable String userID) {
-//        // 找商品規格
-//        String models = checkoutService.getModelsForUser(userID);
-//        // 找下單數量
-//        Integer quantity = checkoutService.getQuantityForUser(userID);
-//
-//        // 检查規格和下單量是否存在
-//        if(models != null && quantity != null) {
-//            // 如果两者都存在，将它们一起返回
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("models", models);
-//            response.put("quantity", quantity);
-//            return ResponseEntity.ok().body(response);
-//        } else {
-//            // 如果任一不存在，返回404 Not Found
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+//    優惠券
+
+    @PostMapping("/userCoupons")
+    public ResponseEntity<?> getUserCoupons(@RequestBody TokenDto tokenDto) {
+        try {
+            String userID = checkoutService.getUserIdFromToken(tokenDto.getToken());
+            List<Coupon> userCoupons = checkoutService.getUserCoupons(userID);
+            // 如果需要进一步处理优惠券数据，可以在这里进行
+            return ResponseEntity.ok(userCoupons);
+        } catch (FirebaseAuthException e) {
+            // 认证异常的处理
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authentication failed");
+        } catch (Exception e) {
+            // 其他异常的处理
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting coupons");
+        }
+    }
+
+    // 获取优惠券基础信息
+    @GetMapping("/couponBaseDetails/{couponBaseID}")
+    public ResponseEntity<?> getCouponBaseDetails(@PathVariable Integer couponBaseID) {
+        try {
+            CouponBase couponBaseDetails = checkoutService.getCouponBaseDetails(couponBaseID);
+            if (couponBaseDetails != null) {
+                // 如果需要对返回的数据结构进行调整，可以在这里进行
+                return ResponseEntity.ok(couponBaseDetails);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting coupon details");
+        }
+    }
+
+
+
+
 }
