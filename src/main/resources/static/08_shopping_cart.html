@@ -111,7 +111,9 @@
                 <li>總金額</li>
                 <li id = "checkOutTotal" class="red-text">$0</li>
             </ul>
-            <button>去買單</button>
+            <a href="./checkout">
+                <button>去買單</button>
+            </a>
         </div>
     </div>
 </div>
@@ -124,6 +126,7 @@
 <script src="./js/isLogin.js" type="module"></script>
 <script src="./js/shoppingCart.js" type="module"></script>
 <script>
+    let selectedItem = [];
     const selectAllCheckbox = document.getElementById('selectAll');
 
     // 全選checkbox
@@ -237,6 +240,7 @@
         checkoutTotalElement.innerText = `$${total}`;
         checkoutCountElement.innerText = `${count}`;
     }
+
 </script>
 </body>
 </html>

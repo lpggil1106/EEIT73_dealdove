@@ -287,6 +287,7 @@
                         .then(response => response.json())
                         .then(cartItems => {
                             // 假设您有一个函数来渲染购物车项目
+                            console.log(cartItems)
                             renderCartItems(cartItems);
                         })
                         .catch(error => console.error('Error:', error));
@@ -565,7 +566,7 @@ console.error('Error:', error);
         });
     };
 </script>
-
+f
 <script type="module">
     import { auth } from "./js/firebase.js";
 
