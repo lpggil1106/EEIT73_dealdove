@@ -282,7 +282,6 @@
                     })
                         .then(response => response.json())
                         .then(cartItems => {
-                            // 假设您有一个函数来渲染购物车项目
                             renderCartItems(cartItems);
                         })
                         .catch(error => console.error('Error:', error));
@@ -342,32 +341,62 @@
         const promises = cartItems.map(item => {
             return getProductName(item.productID).then(productName => {
                 return getProductImages(item.productID).then(images => {
-                    const imageSrc = images.length > 0 ? images[0] : 'default-image-path';
-                    const totalPrice = item.price * item.quantity;
-                    totalQuantity += item.quantity; // 累加商品数量
-                    totalAmount += totalPrice; // 累加商品总价
+                    // const imageSrc = images.length > 0 ? images[0] : 'default-image-path';
+                    // const totalPrice = item.price * item.quantity;
+                    // totalQuantity += item.quantity; // 累加商品数量
+                    // totalAmount += totalPrice; // 累加商品总价
 
-                    const cartItemElement = document.createElement('div');
-                    cartItemElement.classList.add('cart-item');
-                    cartItemElement.innerHTML = `
-                    <img src="${imageSrc}" alt="Product Image">
-                    <div class="item-name">
-                        <p>${productName}</p>
-                    </div>
-                    <div class="item-model">
-                        <p>${item.models}</p>
-                    </div>
-                    <div class="item-unit">
-                        <p>${item.price}</p>
-                    </div>
-                    <div class="item-quantity">
-                        <p>${item.quantity}</p>
-                    </div>
-                    <div class="item-total">
-                        <p>$${totalPrice.toFixed(2)}</p>
-                    </div>
-                `;
-                    cartContainer.appendChild(cartItemElement);
+                    if(item.shoppingCartItemID === 1 || item.shoppingCartItemID === 3 || item.shoppingCartItemID === 5 || item.shoppingCartItemID === 28){
+                        const imageSrc = images.length > 0 ? images[0] : 'default-image-path';
+                        const totalPrice = item.price * item.quantity;
+                        totalQuantity += item.quantity; // 累加商品数量
+                        totalAmount += totalPrice; // 累加商品总价
+
+                        const cartItemElement = document.createElement('div');
+                        cartItemElement.classList.add('cart-item');
+                        cartItemElement.innerHTML = `
+                        <img src="${imageSrc}" alt="Product Image">
+                        <div class="item-name">
+                            <p>${productName}</p>
+                        </div>
+                        <div class="item-model">
+                            <p>${item.models}</p>
+                        </div>
+                        <div class="item-unit">
+                            <p>${item.price}</p>
+                        </div>
+                        <div class="item-quantity">
+                            <p>${item.quantity}</p>
+                        </div>
+                        <div class="item-total">
+                            <p>$${totalPrice.toFixed(2)}</p>
+                        </div>
+                        `;
+                        cartContainer.appendChild(cartItemElement);
+                    }
+
+
+                //     const cartItemElement = document.createElement('div');
+                //     cartItemElement.classList.add('cart-item');
+                //     cartItemElement.innerHTML = `
+                //     <img src="${imageSrc}" alt="Product Image">
+                //     <div class="item-name">
+                //         <p>${productName}</p>
+                //     </div>
+                //     <div class="item-model">
+                //         <p>${item.models}</p>
+                //     </div>
+                //     <div class="item-unit">
+                //         <p>${item.price}</p>
+                //     </div>
+                //     <div class="item-quantity">
+                //         <p>${item.quantity}</p>
+                //     </div>
+                //     <div class="item-total">
+                //         <p>$${totalPrice.toFixed(2)}</p>
+                //     </div>
+                // `;
+                //     cartContainer.appendChild(cartItemElement);
                 });
             });
         });
