@@ -169,7 +169,7 @@
                     <div class="col-5">
                         <div class="col-7 d-flex">
                             <div class="col-5 profileImage"><img src="./images/userImg4.png" alt=""></div>
-                            <p class="sellerName">賣家名稱<br><span>粉絲數:<span>1532</span></span></p>
+                            <p class="sellerName">vervevogue<br><span>粉絲數:<span>1532</span></span></p>
                         </div>
                         <div class="col-7 d-flex collect">
                             <a href="">加入收藏</a>
@@ -323,17 +323,6 @@
         let param = urlParams.get('productID');
         console.log(param+"param");
         document.getElementById('productidmodel').innerText=param;
-        // fetch(`api/products/${param}/images`)
-        //     .then(response => response.json())
-        //     .then(images => {
-        //         // 在這裡更新圖片
-        //         if (images && images.length > 0) {
-        //             document.getElementById('mainImage').src = images[0];
-        //             document.getElementsByClassName('productCommentImage').src = images[0];
-        //         }else{
-        //             document.getElementById('mainImage').src ='https://down-tw.img.susercontent.com/file/tw-11134201-7r98r-lnc0ffucu9lpf9';
-        //         }
-        //     })
         fetch(`api/products/${param}/images`)
             .then(response => response.json())
             .then(images => {
