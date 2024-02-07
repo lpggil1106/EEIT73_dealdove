@@ -28,8 +28,8 @@ public interface ShoppingCartItemRepository extends JpaRepository<ShoppingCartIt
             "    pir.image AS coverImageURL,\n" +
             "    p.productName,\n" +
             "    sc.models,\n" +
-            "    sc.price\n," +
-            "    sc.quantity\n,"+
+            "    SUM(sc.price) AS total_price\n," +
+            "    SUM(sc.quantity) AS total_quantity\n,"+
             "    p.userID\n,"+
             "    u.userName\n"+
             "FROM\n" +
@@ -44,7 +44,7 @@ public interface ShoppingCartItemRepository extends JpaRepository<ShoppingCartIt
             "    user u ON p.userID = u.userID\n" +
             "WHERE sc.userID = :userID\n" +
             "GROUP BY\n" +
-            "    p.productID, p.productName, pir.image, p.userID;",nativeQuery = true)
+            "   sc.productID, sc.models;",nativeQuery = true)
     List<Object[]> findCheckoutDetailByUserID(@Param("userID") String userID);
 
 

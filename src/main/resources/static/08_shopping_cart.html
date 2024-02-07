@@ -111,9 +111,9 @@
                 <li>總金額</li>
                 <li id = "checkOutTotal" class="red-text">$0</li>
             </ul>
-            <a href="./checkout">
-                <button>去買單</button>
-            </a>
+<!--            <a href="./checkout">-->
+                <button id="goNextPage">去買單</button>
+<!--            </a>-->
         </div>
     </div>
 </div>
@@ -127,7 +127,12 @@
 <script src="./js/shoppingCart.js" type="module"></script>
 <script>
     const selectAllCheckbox = document.getElementById('selectAll');
+    const goNextPage = document.getElementById('goNextPage');
 
+    goNextPage.addEventListener('click', function () {
+        console.log('goNextPage');
+        console.log(localStorage.getItem(''));
+    });
     // 全選checkbox
     selectAllCheckbox.addEventListener('change', function () {
         const checkboxes = document.querySelectorAll('input[id^="select"]');

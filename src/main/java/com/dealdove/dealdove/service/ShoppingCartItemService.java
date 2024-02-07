@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -51,8 +52,8 @@ public class ShoppingCartItemService {
             String coverImageURL = (String) row[1];
             String productName = (String) row[2];
             String models = (String) row[3];
-            Integer price = (Integer) row[4];
-            Integer quantity = (Integer) row[5];
+            Integer price =  ((BigDecimal)row[4]).intValue();
+            Integer quantity = ((BigDecimal)row[5]).intValue();
             String sellerID = (String) row[6];
             String sellerName = (String) row[7];
 
