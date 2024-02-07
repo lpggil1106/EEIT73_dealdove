@@ -1,49 +1,16 @@
 package ecpay.logistics.integration;
 
-import java.util.Hashtable;
-import java.util.Set;
-
-import ecpay.logistics.integration.domain.CancelC2COrderObj;
-import ecpay.logistics.integration.domain.CreateCVSObj;
-import ecpay.logistics.integration.domain.CreateHomeObj;
-import ecpay.logistics.integration.domain.CreateTestDataObj;
-import ecpay.logistics.integration.domain.ExpressMapObj;
-import ecpay.logistics.integration.domain.LogisticsCheckAccountsObj;
-import ecpay.logistics.integration.domain.PrintFAMIC2COrderInfoObj;
-import ecpay.logistics.integration.domain.PrintHILIFEC2COrderInfoObj;
-import ecpay.logistics.integration.domain.PrintOKMARTC2COrderInfoObj;
-import ecpay.logistics.integration.domain.PrintTradeDocumentObj;
-import ecpay.logistics.integration.domain.PrintUniMartC2COrderInfoObj;
-import ecpay.logistics.integration.domain.QueryLogisticsTradeInfoObj;
-import ecpay.logistics.integration.domain.ReturnCVSObj;
-import ecpay.logistics.integration.domain.ReturnHiLifeCVSObj;
-import ecpay.logistics.integration.domain.ReturnHomeObj;
-import ecpay.logistics.integration.domain.ReturnUniMartCVSObj;
-import ecpay.logistics.integration.domain.UpdateShipmentInfoObj;
-import ecpay.logistics.integration.domain.UpdateStoreInfoObj;
+import ecpay.logistics.integration.domain.*;
 import ecpay.logistics.integration.ecpayOperator.EcpayFunction;
 import ecpay.logistics.integration.errorMsg.ErrorMessage;
 import ecpay.logistics.integration.exception.EcpayException;
-import ecpay.logistics.integration.verification.VerifyCancelC2COrder;
-import ecpay.logistics.integration.verification.VerifyCreate;
-import ecpay.logistics.integration.verification.VerifyCreateTestData;
-import ecpay.logistics.integration.verification.VerifyLogisticsCheckAccounts;
-import ecpay.logistics.integration.verification.VerifyMap;
-import ecpay.logistics.integration.verification.VerifyPrintFAMIC2COrderInfo;
-import ecpay.logistics.integration.verification.VerifyPrintHILIFEC2COrderInfo;
-import ecpay.logistics.integration.verification.VerifyPrintOKMARTC2COrderInfo;
-import ecpay.logistics.integration.verification.VerifyPrintTradeDocument;
-import ecpay.logistics.integration.verification.VerifyPrintUniMartC2COrderInfo;
-import ecpay.logistics.integration.verification.VerifyQueryLogisticsTradeInfo;
-import ecpay.logistics.integration.verification.VerifyReturnCVS;
-import ecpay.logistics.integration.verification.VerifyReturnHiLifeCVS;
-import ecpay.logistics.integration.verification.VerifyReturnHome;
-import ecpay.logistics.integration.verification.VerifyReturnUniMartCVS;
-import ecpay.logistics.integration.verification.VerifyUpdateShipmentInfo;
-import ecpay.logistics.integration.verification.VerifyUpdateStoreInfo;
+import ecpay.logistics.integration.verification.*;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+
+import java.util.Hashtable;
+import java.util.Set;
 
 
 /**
@@ -53,7 +20,7 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class AllInOne extends AllInOneBase{
 	private final static Logger log = Logger.getLogger(AllInOne.class.getName());
-	
+
 	public AllInOne(String log4jPropertiesPath){
 		super();
 		if(log4jPropertiesPath != "" && log4jPropertiesPath != null){
@@ -65,15 +32,15 @@ public class AllInOne extends AllInOneBase{
 			Logger.getRootLogger().setLevel(Level.OFF);
 		}
 	}
-	
+
 	public AllInOne(){
 		Logger.getRootLogger().setLevel(Level.OFF);
 	}
-	
+
 	/**
 	 * �ˬdHashtable�����ˬd�X�O�_���T(�T�O��ƥ��Q«��)
 	 * @param Hashtable params
-	 * @return boolean 
+	 * @return boolean
 	 */
 	public boolean compareCheckMacValue(Hashtable<String, String> params){
 		String checkMacValue = "";
@@ -91,9 +58,9 @@ public class AllInOne extends AllInOneBase{
 			return false;
 		}
 	}
-	
+
 	/**
-	 * �q�l�a�Ϧ걵(�� API ���W�Ө��f�ɿ�ܨ��f�����ɨϥ�) 
+	 * �q�l�a�Ϧ걵(�� API ���W�Ө��f�ɿ�ܨ��f�����ɨϥ�)
 	 * @param obj
 	 * @return string
 	 */
@@ -105,7 +72,7 @@ public class AllInOne extends AllInOneBase{
 		verify.verifyParams(obj);
 		return genHtmlCode(obj, mapUrl, false);
 	}
-	
+
 	/**
 	 * ���y�q�沣��
 	 * @param obj
@@ -156,7 +123,7 @@ public class AllInOne extends AllInOneBase{
 		System.out.println(result);
 		return result;
 	}
-	
+
 	/**
 	 * �v�t�f���y�q��
 	 * @param obj
@@ -190,7 +157,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * �W�Ө��f�f���y�q��(���a�W�� B2C)
 	 * @param obj
@@ -224,7 +191,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * ���a�f���y�ֱb(���a�W�� B2C)
 	 * @param obj
@@ -257,7 +224,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * �W�Ө��f�f���y�q��(�ܺ��I�W�� B2C)
 	 * @param obj
@@ -291,7 +258,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * �W�Ө��f�f���y�q��(�Τ@�W�� B2C)
 	 * @param obj
@@ -325,7 +292,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * ���Ѽt�ӭק�X�f����B���f����(�Τ@�W�� B2C)
 	 * @param obj
@@ -359,7 +326,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * ��s����(�Τ@�W��C2C)
 	 * @param obj
@@ -393,7 +360,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * �����q��(�Τ@�W��C2C)
 	 * @param obj
@@ -426,7 +393,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * ���y�q��d��
 	 * @param obj
@@ -460,7 +427,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	/**
 	 * ���ͦ��B��(�v�t)/�@�q��(�W�Ө��f)�榡(B2C)
 	 * @param obj
@@ -480,7 +447,7 @@ public class AllInOne extends AllInOneBase{
 		verify.verifyParams(obj);
 		return genHtmlCode(obj, printTradeDocumentUrl, true);
 	}
-	
+
 	/**
 	 * �C�Lú�ڳ�(�Τ@�W�� C2C)
 	 * @param obj
@@ -500,7 +467,7 @@ public class AllInOne extends AllInOneBase{
 		verify.verifyParams(obj);
 		return genHtmlCode(obj, printUniMartC2COrderInfoUrl, true);
 	}
-	
+
 	/**
 	 * ���a�C�L�p�ճ�(���a�W�� C2C)
 	 * @param obj
@@ -520,7 +487,7 @@ public class AllInOne extends AllInOneBase{
 		verify.verifyParams(obj);
 		return genHtmlCode(obj, printFAMIC2COrderInfoUrl, true);
 	}
-	
+
 	/**
 	 * �ܺ��I�C�L�p�ճ�(�ܺ��I�W�� C2C)
 	 * @param obj
@@ -554,7 +521,7 @@ public class AllInOne extends AllInOneBase{
 		verify.verifyParams(obj);
 		return genHtmlCode(obj, printOKMARTC2COrderInfoUrl, true);
 	}
-	
+
 	/**
 	 * ���� B2C ���и��
 	 * @param obj
@@ -584,7 +551,7 @@ public class AllInOne extends AllInOneBase{
 				log.info("CreateTestData post string: "+httpValue);
 				result = EcpayFunction.httpPost(createTestDataUrl, httpValue, "UTF-8");
 			}
-			
+
 		} catch(EcpayException e){
 			e.ShowExceptionMessage();
 			log.error(e.getNewExceptionMessage());
@@ -592,7 +559,7 @@ public class AllInOne extends AllInOneBase{
 		}
 		return result;
 	}
-	
+
 	private String genHtmlCode(Object obj, String url, boolean needCheckMacValue){
 		StringBuilder builder = new StringBuilder();
 		Hashtable<String, String> fieldValue = EcpayFunction.objToHashtable(obj);

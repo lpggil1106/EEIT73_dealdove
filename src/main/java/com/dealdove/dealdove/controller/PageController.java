@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 public class PageController {
@@ -59,10 +57,6 @@ public class PageController {
     @GetMapping("/Coupon")
     public String Coupon(){return "15_coupon_page";};
 
-    @GetMapping("ecpayReturn")
-    public String ecpayReturn(){
-        return "ecpayReturn";
-    }
 
     @GetMapping("/shoppingCart")
         public String shoppingCart(){
@@ -74,6 +68,11 @@ public class PageController {
         return "07OrderDetail";
     }
 
+    @PostMapping("/ecpayReturn")
+    public String ecpayReturn(@RequestBody String callbackData){
+        System.out.println(callbackData);
+        return "ecpayReturn";
+    }
     @PostMapping("/cvs_callback")
     @ResponseBody
     public String cvs_callback(@RequestBody String callbackData){

@@ -46,9 +46,9 @@ public class CouponService {
         //判斷是否重值
         boolean canInsert = true;
         for(Coupon temp :coupons){
-        if(temp.getOwnerID().equals(ownerID)&&temp.getCouponBase().getCouponBaseID()==couponBaseID) {
-            canInsert=false;
-        }
+            if(temp.getOwnerID().equals(ownerID)&&temp.getCouponBase().getCouponBaseID()==couponBaseID) {
+                canInsert=false;
+            }
         }
 
         if(canInsert){

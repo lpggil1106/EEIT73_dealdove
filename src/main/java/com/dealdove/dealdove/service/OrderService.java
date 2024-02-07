@@ -9,15 +9,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import ecpay.logistics.integration.domain.CreateCVSObj;
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutALL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
-import ecpay.payment.integration.AllInOne;
-import ecpay.payment.integration.domain.AioCheckOutALL;
 
 @Service
 public class OrderService {
@@ -87,10 +86,10 @@ public class OrderService {
         obj.setTradeDesc("test Description");
         obj.setItemName("TestItem");
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-        obj.setReturnURL(" https://7ff5-118-163-218-100.ngrok-free.app/ecpayReturn");
+        obj.setReturnURL("http://localhost:80/ecpayReturn");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
-        obj.setClientBackURL("http://192.168.1.37:8080/");
+        obj.setClientBackURL("http://localhost:80/Dealdove");
         String form = all.aioCheckOut(obj, null);
 
         return form;
