@@ -72,13 +72,14 @@ public class CheckoutController {
     }
 
     @GetMapping("/{productID}/images")
-    public ResponseEntity<List<String>> getProductImages(@PathVariable Integer productID) {
+    public void getProductImages(@PathVariable Integer productID) {
         List<String> images = checkoutService.getProductImages(productID);
-        if (images.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(images);
-        }
+        System.out.println(images);
+        //        if (images.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(images);
+//        }
     }
     @GetMapping("/product/details/{productID}")
     public ResponseEntity<String> getProductDetails(@PathVariable int productID) {
