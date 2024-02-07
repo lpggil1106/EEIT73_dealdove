@@ -128,8 +128,10 @@ function getProductImages(productID) {
 //                 // const totalPrice = item.price * item.quantity;
 //                 // totalQuantity += item.quantity; // 累加商品数量
 //                 // totalAmount += totalPrice; // 累加商品总价
+//                  const selectedItems = localStorage.getItem('selectedItems')
+//                  const itemsArray = JSON.parse(selectedItems);
 // // -----------------------------test1------------------------------------
-//                 if(item.shoppingCartItemID === 1 || item.shoppingCartItemID === 3 || item.shoppingCartItemID === 5 || item.shoppingCartItemID === 28){
+//                 if(containedInArray(itemsArray, item.shoppingCartItemID)){
 //                     const imageSrc = images.length > 0 ? images[0] : 'default-image-path';
 //                     const totalPrice = item.price * item.quantity;
 //                     totalQuantity += item.quantity; // 累加商品数量
@@ -184,7 +186,15 @@ function getProductImages(productID) {
 //         });
 //     });
 // // -----------------------------test2------------------------------------
-//
+//     //選擇商品函數by 沈東毅
+//      function containedInArray(array, value) {
+//         for(let i = 0; i < array.length; i++) {
+//             if(array[i] === value) {
+//                 return true;
+//             }
+//         }
+//         return false;
+//     }
 //     // 等待所有商品处理完成后更新总数量和总金额
 //     Promise.all(promises).then(() => {
 //         document.getElementById('checkOutQuantity').textContent = totalQuantity; // 更新总数量
