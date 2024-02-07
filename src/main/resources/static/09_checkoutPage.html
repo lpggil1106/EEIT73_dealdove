@@ -269,7 +269,8 @@
 <script type="module">
     import {auth} from "./js/firebase.js";
 
-    console.log(localStorage.getItem())
+    const selectedItems = localStorage.getItem('selectedItems')
+    const itemsArray = JSON.parse(selectedItems);
     // 当 DOM 完全加载后执行
     document.addEventListener('DOMContentLoaded', function() {
         auth.onAuthStateChanged(user => {
@@ -340,6 +341,7 @@
         let totalQuantity = 0; // 初始化总数量累加器
         let totalAmount = 0; // 初始化总金额累加器
 
+
         // 使用 Promise.all 确保所有异步操作完成
         const promises = cartItems.map(item => {
             return getProductName(item.productID).then(productName => {
@@ -349,7 +351,8 @@
                     // totalQuantity += item.quantity; // 累加商品数量
                     // totalAmount += totalPrice; // 累加商品总价
 
-                    if(item.shoppingCartItemID === 1 || item.shoppingCartItemID === 3 || item.shoppingCartItemID === 5 || item.shoppingCartItemID === 28){
+
+                    if(containedInArray(itemsArray, item.shoppingCartItemID)){
                         const imageSrc = images.length > 0 ? images[0] : 'default-image-path';
                         const totalPrice = item.price * item.quantity;
                         totalQuantity += item.quantity; // 累加商品数量
@@ -413,6 +416,14 @@
             document.getElementById('checkOutTotalInput').value = totalAmount;
         });
 
+    }
+    function containedInArray(array, value) {
+        for(let i = 0; i < array.length; i++) {
+            if(array[i] === value) {
+                return true;
+            }
+        }
+        return false;
     }
 
 </script>
