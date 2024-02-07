@@ -86,7 +86,7 @@ public class OrderService {
         obj.setTradeDesc("test Description");
         obj.setItemName("TestItem");
         // 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-        obj.setReturnURL("http://localhost:80/ecpayReturn");
+        obj.setReturnURL(" https://d5aa-220-132-47-88.ngrok-free.app/ecpayReturn");
         obj.setNeedExtraPaidInfo("N");
         // 商店轉跳網址 (Optional)
         obj.setClientBackURL("http://localhost:80/Dealdove");
