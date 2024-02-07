@@ -8,6 +8,7 @@ import "https://code.jquery.com/jquery-3.6.0.min.js";
                 user.getIdToken()
                     .then(idToken => {
                         fetchProducts(idToken);
+                        localStorage.setItem(`selectedItems`,"[]");
                     })
             }else{
                 console.log('no user')
@@ -99,6 +100,25 @@ function generateProductItems(products,index) {
 
         document.getElementById(`select${index}`).addEventListener('change', function() {
             updateCheckoutTotal();
+            if (this.checked) {
+                storeSelectedCartItemID(shoppingCartItemID);
+            } else {
+                removeSelectedCartItemID(shoppingCartItemID);
+            }
         });
     });
+}
+
+function storeSelectedCartItemID(shoppingCartItemID) {
+    let selectedItems = localStorage.getItem(`selectedItems`);
+    selectedItems = selectedItems ? JSON.parse(selectedItems) : [];
+    selectedItems.push(shoppingCartItemID);
+    localStorage.setItem(`selectedItems`, JSON.stringify(selectedItems));
+}
+
+function removeSelectedCartItemID(shoppingCartItemID) {
+    let selectedItems = localStorage.getItem(`selectedItems`);
+    selectedItems = selectedItems ? JSON.parse(selectedItems) : [];
+    const updatedItems = selectedItems.filter(id => id !== shoppingCartItemID);
+    localStorage.setItem(`selectedItems`, JSON.stringify(updatedItems));
 }
