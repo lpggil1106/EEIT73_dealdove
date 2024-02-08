@@ -116,27 +116,33 @@ public class OrderService {
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String userID = decodedToken.getUid();
         System.out.println(user.get("status"));
+        System.out.println(userID);
         int status =Integer.parseInt(user.get("status"));
         int start =(user.get("start")==null)?0:Integer.parseInt(user.get("start"));
         System.out.println(start+" : status:  "+status);
-        List<Object[]> orders = orderRepository.findOrderByBuyerIDAndStatus2(userID,status,0,4);
+        List<Object[]> orders = orderRepository.findOrderByBuyerIDAndStatus2(userID,status,start,3);
         List<HashMap<String,String>> orderList = new ArrayList<>();
         for(Object[] order:orders){
-            HashMap<String,String> orderMap = new HashMap<>();
-            OrderDto orderDto = new OrderDto();
-            orderDto.setImage((String) order[3]);
-            orderDto.setProductName((String) order[1]);
-            orderDto.setModel((String) order[2]);
-            orderDto.setQuantity((Integer) order[0]);
-
-            orderMap.put("image",orderDto.getImage());
-            orderMap.put("productName",orderDto.getProductName());
-            orderMap.put("model",orderDto.getModel());
-            orderMap.put("quantity",Integer.toString(orderDto.getQuantity()));
+            HashMap<String, String> orderMap = getStringStringHashMap(order);
             orderList.add(orderMap);
 
         }
            return  orderList;
+    }
+
+    private static HashMap<String, String> getStringStringHashMap(Object[] order) {
+        HashMap<String,String> orderMap = new HashMap<>();
+        OrderDto orderDto = new OrderDto();
+        orderDto.setImage((String) order[3]);
+        orderDto.setProductName((String) order[1]);
+        orderDto.setModel((String) order[2]);
+        orderDto.setQuantity((Integer) order[0]);
+
+        orderMap.put("image",orderDto.getImage());
+        orderMap.put("productName",orderDto.getProductName());
+        orderMap.put("model",orderDto.getModel());
+        orderMap.put("quantity",Integer.toString(orderDto.getQuantity()));
+        return orderMap;
     }
 }
 
