@@ -330,6 +330,15 @@
     border-radius: 0 0 15px 15px;
 }
 
+#page{
+    margin-top: 1vw;
+    align-self: center;
+}
+
+#page button{
+    border: none;
+    background: #F9F3E7;
+}
 
 .coupon-block {
     flex: 40%;

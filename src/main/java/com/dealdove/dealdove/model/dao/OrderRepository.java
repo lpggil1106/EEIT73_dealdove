@@ -17,9 +17,18 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT * FROM `order` WHERE buyerID= :buyerID AND orderStatus= :orderStatus",nativeQuery = true)
     List<Order> findOrderByBuyerIDAndStatus(@Param("buyerID") String buyerID,@Param("orderStatus") int orderStatus);
 
-    @Query(value = "SELECT * FROM  `order` WHERE buyerID= :buyerID AND orderStatus= :orderStatus LIMIT :start,:end",nativeQuery = true)
-    List<Order> findOrderByBuyerIDAndStatus2(@Param("buyerID") String buyerID,@Param("orderStatus") int orderStatus,
-                                            @Param("start")int start,@Param("end") int end);
+    @Query(value = """
+            SELECT oi.quantity, p.productName, oi.model, pIT.image\s
+            FROM orderItem oi
+            JOIN `order` o ON oi.orderID = o.orderID
+            JOIN product p ON oi.productID = p.productID
+            JOIN productImageTable pIT ON p.productID = pIT.productID
+            WHERE o.buyerID = :buyerID AND o.orderStatus = :orderStatus
+            ORDER BY oi.orderID\s
+            LIMIT :start, :end""",nativeQuery = true)
+    List<Object[]> findOrderByBuyerIDAndStatus2(@Param("buyerID") String buyerID,@Param("orderStatus") int orderStatus,
+                                            @Param("start")int start,@Param("end")int end);
+
     Order save(Order order);
 
     @Query(value = "WITH ProductImagesRanked AS (\n" +

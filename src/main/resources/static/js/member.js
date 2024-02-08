@@ -1,4 +1,4 @@
-import {auth, onAuthStateChanged} from './firebase.js';
+import {auth, onAuthStateChanged, signOut} from './firebase.js';
 import "https://code.jquery.com/jquery-3.6.0.min.js";
 import {showToast} from "./jquery.toast.js";
 
@@ -11,19 +11,9 @@ $(document).ready(() => {
                         showCoupon(idToken);
                         showOrderStatus(idToken);
                         resetOrder()
-                        showOrder(idToken);
-                        $('#status1').on('click', () => {
-                            resetOrder()
-                            showOrder(idToken, 1);
-                        });
-                        $('#status2').on('click', () => {
-                            resetOrder()
-                            showOrder(idToken, 2);
-                        });
-                        $('#status3').on('click', () => {
-                            resetOrder()
-                            showOrder(idToken, 3);
-                        });
+                        showOrders(idToken,1);
+                        selectStatus(idToken);
+
                     })
             }
         })
@@ -48,6 +38,10 @@ $(document).ready(() => {
     });
 
     $('#pick-shop').prop('href','https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=http://localhost:8080/cvs_callback')
+
+
+
+
 
 })
 
@@ -78,23 +72,18 @@ function setInfo(idToken, gender, birthday, address) {
         .then(data => console.log(data))
         .catch(error => console.log(error))
 }
-
-function showOrder(idToken, status) {
-    fetch('/showOrderName', {
+function showOrders(idToken,status,start){
+    fetch('/showOrders',{
         method: 'POST',
         headers: {'Content-Type': 'application/json;charset=utf-8'},
-        body: JSON.stringify({"idToken": idToken, "status": status})
-    })
-        .then(res => res.json())
-        .then(data=>data.forEach((orderItem, index) => {
-            console.log(orderItem.productName);
-                $(`#commodity${index}`).text('商品名: ' + orderItem.productName);
-                $(`#quantity${index}`).text('數量: ' + orderItem.orderQuantity);
-                $(`#img${index}`).prop('src',orderItem.productImage);
-                // console.log( $(`#quantity${index}`).text());
-            })
-        )
-        .catch(error => console.log(error))
+        body: JSON.stringify({"idToken": idToken,"status": status,"start": start})
+    }).then(res=>res.json())
+        .then(data=>data.forEach((orderItem,index)=>{
+            $(`#commodity${index}`).text('商品名: ' + orderItem.productName);
+            $(`#quantity${index}`).text('數量: ' + orderItem.quantity);
+            $(`#model${index}`).text('規格:'+orderItem.model);
+            $(`#img${index}`).prop('src',orderItem.image);
+        }));
 }
 function showOrderStatus(idToken) {
     fetch('/showOrderStatus', {
@@ -104,7 +93,6 @@ function showOrderStatus(idToken) {
     })
         .then(res => res.json())
         .then(data=>data.forEach((order, index) => {
-            console.log(order.image);
                 if(order.Status==='1'){
                     const status = '待出貨';
                     $(`#orderStatus${index}`).text('訂單狀態 :'+status);
@@ -139,15 +127,86 @@ function showCoupon(idToken) {
         }))
 }
 
+
+
 function resetOrder() {
     for (let i = 0; i < 99; i++) {
         $(`#commodity${i}`).text('商品名: ')
         $(`#quantity${i}`).text('數量: ');
+        $(`#model${i}`).text('規格: ');
         $(`#img${i}`).prop('src','./images/coupon3.png');
         $(`#img${i}`).prop('alt','');
     }
 }
 
+function selectStatus(idToken){
+    let status;
+    $('#status1').on('click', () => {
+        resetOrder();
+        status=1;
+        pageSelector(idToken,status);
+    });
+    $('#status2').on('click', () => {
+        resetOrder();
+        status=2;
+        pageSelector(idToken,status);
+    });
+    $('#status3').on('click', () => {
+        resetOrder();
+        status=3;
+        pageSelector(idToken,status);
+    });
+
+}
+
+function pageSelector(idToken,status){
+    let page = 1;
+    const pageSize = 3;
+    const start = (page-1)*pageSize;
+    showOrders(idToken,status,start);
+
+    $('#first').on('click',()=>{
+        page = 1;
+        console.log(status);
+        const start = (page-1)*pageSize;
+        showOrders(idToken,status,start);
+    })
+    $('#second').on('click',()=>{
+        page = 2;
+        console.log(status);
+        const start = (page-1)*pageSize;
+        showOrders(idToken,status,start);
+    })
+    $('#third').on('click',()=>{
+        page = 3;
+        const start = (page-1)*pageSize;
+        showOrders(idToken,status,start);
+    })
+    $('#prev').on('click',()=>{
+        if(page>0){
+            page--;
+            const start = (page-1)*pageSize;
+            showOrders(idToken,status,start);
+        }else{
+            page = 1;
+            const start = (page-1)*pageSize;
+            showOrders(idToken,status,start);
+        }
+    })
+    $('#next').on('click',()=>{
+        if(page<3){
+            page++;
+            const start = (page-1)*pageSize;
+            showOrders(idToken,status,start);
+        }else{
+            page=3;
+            const start = (page-1)*pageSize;
+            showOrders(idToken,status,start);
+        }
+    })
+}
 
 
+function sentStatusAndPage(idToken){
 
+}

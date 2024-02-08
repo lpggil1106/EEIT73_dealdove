@@ -24,7 +24,6 @@ public class OrderController {
     @PostMapping("/showOrderName")
     public List<HashMap<String,String>> getOrderItemsByOrderID(@RequestBody LinkedHashMap<String, String> user) {
         return orderService.getOrderItemsNameByOrderID(user);
-
     }
     @PostMapping("/showOrderStatus")
     public List<HashMap<String,String>> showOrderStatus(@RequestBody LinkedHashMap<String, String> user){
@@ -53,6 +52,11 @@ public class OrderController {
     @PostMapping("/getOrderBySellerID")
     public Map<String, List<OrderDetailDTO>> getOrderBySellerID(@RequestBody LinkedHashMap<String, String> user){
         return orderDetailService.findOrderBySellerID(user);
+    }
+
+    @PostMapping("/showOrders")
+    public List<HashMap<String,String>> showOrderInfo(@RequestBody LinkedHashMap<String, String> user){
+        return orderService.showOrderPage(user);
     }
 
 }

@@ -12,46 +12,26 @@ public class OrderDto {
     private Integer paymentID;
     private Integer orderStatus;
     private String buyerID;
-
+    private int quantity;
+    private String productName;
+    private String model;
+    private String image;
     // 默认构造函数
     public OrderDto() {}
 
-    // Getter 和 Setter 方法
-    public String getBuyerComment() {
-        return buyerComment;
-    }
-    public void setBuyerComment(String buyerComment) {
-        this.buyerComment = buyerComment;
-    }
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-    public Integer getTotalPrice() {
-        return totalPrice;
-    }
-    public void setTotalPrice(Integer totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-    public Integer getPaymentID() {
-        return paymentID;
-    }
-    public void setPaymentID(Integer paymentID) {
-        this.paymentID = paymentID;
-    }
-    public Integer getOrderStatus() {
-        return orderStatus;
-    }
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public String getBuyerID() {
-        return buyerID;
-    }
-    public void setBuyerID(String buyerID) {
-        this.buyerID = buyerID;
+    @Override
+    public String toString() {
+        return "OrderDto{" +
+                "buyerComment='" + buyerComment + '\'' +
+                ", shippingAddress='" + shippingAddress + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", paymentID=" + paymentID +
+                ", orderStatus=" + orderStatus +
+                ", buyerID='" + buyerID + '\'' +
+                ", quantity=" + quantity +
+                ", productName='" + productName + '\'' +
+                ", model='" + model + '\'' +
+                ", image='" + image + '\'' +
+                '}';
     }
 }

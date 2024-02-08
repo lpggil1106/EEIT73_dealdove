@@ -318,7 +318,6 @@
         fetch("/getProduct")
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 //本地儲存Product資料方便後續使用
                 localStorage.setItem('products', JSON.stringify(data));
                 renderProducts(data);
@@ -339,6 +338,7 @@
                 searchResult.innerText = keyword;
                 //本地儲存Product資料方便後續使用
                 localStorage.setItem('products', JSON.stringify(data));
+                console.log(data+"from here")
                 renderProducts(data);
             })
     })

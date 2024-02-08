@@ -1,6 +1,7 @@
 package com.dealdove.dealdove.service;
 
 import com.dealdove.dealdove.model.dao.OrderRepository;
+import com.dealdove.dealdove.model.dto.OrderDto;
 import com.dealdove.dealdove.model.enitity.Order;
 import com.dealdove.dealdove.model.enitity.OrderItem;
 import com.dealdove.dealdove.model.enitity.Product;
@@ -62,6 +63,7 @@ public class OrderService {
         String userID = decodedToken.getUid();
         orderRepository.findAllOrders(userID);
         List<Order> orders = orderRepository.findAllOrders(userID);
+
         List<HashMap<String,String>> orderList = new ArrayList<>();
         for(Order order : orders){
             List<OrderItem> orderItems = order.getOrderItems();
@@ -110,11 +112,31 @@ public class OrderService {
         return result;
     }
 
+    public   List<HashMap<String,String>> showOrderPage( LinkedHashMap<String, String> user){
+        FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
+        String userID = decodedToken.getUid();
+        System.out.println(user.get("status"));
+        int status =Integer.parseInt(user.get("status"));
+        int start =(user.get("start")==null)?0:Integer.parseInt(user.get("start"));
+        System.out.println(start+" : status:  "+status);
+        List<Object[]> orders = orderRepository.findOrderByBuyerIDAndStatus2(userID,status,0,4);
+        List<HashMap<String,String>> orderList = new ArrayList<>();
+        for(Object[] order:orders){
+            HashMap<String,String> orderMap = new HashMap<>();
+            OrderDto orderDto = new OrderDto();
+            orderDto.setImage((String) order[3]);
+            orderDto.setProductName((String) order[1]);
+            orderDto.setModel((String) order[2]);
+            orderDto.setQuantity((Integer) order[0]);
 
+            orderMap.put("image",orderDto.getImage());
+            orderMap.put("productName",orderDto.getProductName());
+            orderMap.put("model",orderDto.getModel());
+            orderMap.put("quantity",Integer.toString(orderDto.getQuantity()));
+            orderList.add(orderMap);
 
-
-    public List<Order> findOrderByBuyerIDAndStatus(String buyerID, int orderStatus) {
-        return orderRepository.findOrderByBuyerIDAndStatus(buyerID, orderStatus);
+        }
+           return  orderList;
     }
 }
 

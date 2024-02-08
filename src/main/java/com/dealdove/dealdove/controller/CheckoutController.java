@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,14 +73,14 @@ public class CheckoutController {
     }
 
     @GetMapping("/{productID}/images")
-    public void getProductImages(@PathVariable Integer productID) {
+    public  ResponseEntity<List<String>>  getProductImages(@PathVariable Integer productID) {
         List<String> images = checkoutService.getProductImages(productID);
-        System.out.println(images);
-        //        if (images.isEmpty()) {
-//            return ResponseEntity.notFound().build();
-//        } else {
-//            return ResponseEntity.ok(images);
-//        }
+//        return images;
+        if (images.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(images);
+        }
     }
     @GetMapping("/product/details/{productID}")
     public ResponseEntity<String> getProductDetails(@PathVariable int productID) {
@@ -91,11 +92,14 @@ public class CheckoutController {
         }
     }
     @PostMapping("/shoppingCart/cartItems")
-    public ResponseEntity<?> getCartItems(@RequestBody TokenDto tokenDto) {
+    public ResponseEntity<?> getCartItems(@RequestBody LinkedHashMap<String, String> idToken) {
+        System.out.println(idToken.get("idToken"));
         try {
-            List<ShoppingCartItem> cartItems = checkoutService.getCartItemsByToken(tokenDto.getToken());
+            List<ShoppingCartItem> cartItems = checkoutService.getCartItemsByToken(idToken.get("idToken"));
+            System.out.println(cartItems);
             return ResponseEntity.ok(cartItems);
         } catch (RuntimeException e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
