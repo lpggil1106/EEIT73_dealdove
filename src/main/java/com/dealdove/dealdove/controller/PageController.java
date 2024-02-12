@@ -2,11 +2,10 @@ package com.dealdove.dealdove.controller;
 
 import com.dealdove.dealdove.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 @Controller
@@ -83,7 +82,20 @@ public class PageController {
         return "寄送店名:"+shopMap.get("storename")+"<br>店號:"+shopMap.get("storeid")+"<br>地址:"+shopMap.get("storeaddress")+"<br>"+htmlContent;
     }
 
-
+    @PostMapping("/testImage")
+    public void testImage(@RequestParam("avatar") MultipartFile file){
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                // 在這裡進行你的檔案處理邏輯
+                System.out.println("檔案名稱：" + file.getOriginalFilename());
+                System.out.println("檔案大小：" + file.getSize());
+                System.out.println("檔案類型：" + file.getContentType());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 }

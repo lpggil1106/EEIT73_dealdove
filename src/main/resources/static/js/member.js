@@ -10,7 +10,6 @@ $(document).ready(() => {
                 user.getIdToken()
                     .then(idToken => {
                         token = idToken;
-
                         showInfoFromBack(idToken);
                         showCoupon(idToken);
                         showOrderStatus(idToken);
@@ -39,6 +38,8 @@ $(document).ready(() => {
                 }
             })
         )
+        // uploadImage();
+
     });
 
     $('#pick-shop').prop('href', 'https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=http://localhost:8080/cvs_callback')
@@ -164,6 +165,25 @@ $('#page > button').on('click', (e) => {
     currentPage = Number(page);
 
     showOrders(token, currentStatus, (currentPage - 1) * pageSize);
+})
+
+function uploadImage() {
+    const file = $('#avatar')[0].files[0];
+
+    const formData = new FormData();
+    formData.append('avatar',file);
+
+    fetch('/testImage',{
+        method: 'POST',
+        body: formData
+    }).then(res=>{
+        console.log(res)
+    })
+}
+
+
+$('#test').on('click', () => {
+    uploadImage()
 })
 
 
