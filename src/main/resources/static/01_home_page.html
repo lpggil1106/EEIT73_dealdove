@@ -7,456 +7,701 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/title_bar.css">
     <link rel="stylesheet" href="./css/01_home_page.css">
+    <link rel="stylesheet" href="./css/02-4_chat.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/e72344855b.js" ; crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
-    <header>
-        <nav class="header">
-            <div class="d-flex">
-                <a class="iconBorder" href=""><img class="icon" src="./images/icon.png"></a>
-                <div class="search-container">
-                    <div class="search-bar">
-                        <input type="text" class="search-input" placeholder="Search...">
-                        <div class="search-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
+<header>
+    <nav class="header">
+        <div class="d-flex">
+            <a class="iconBorder" href=""><img class="icon" src="./images/icon.png"></a>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search...">
+                    <div class="search-icon">
+                        <i class="fas fa-search"></i>
                     </div>
-                    <div class="popular-categories">
-                        <ul>
-                            <li>洗衣精</li>
-                            <li>花盆</li>
-                            <li>衛生紙</li>
-                            <li>吹風機</li>
-                            <li>剪刀</li>
-                            <li>手機殼</li>
-                            <li>梳子</li>
-                            <li>桌墊</li>
-                            <li>馬克杯</li>
-                            <li>聖誕樹</li>
-                            <li>聖誕裝飾品</li>
-                            <li>鉛筆盒</li>
-                            <li>耳機</li>
-                            <li>繪本</li>
-                        </ul>
-                    </div>
-
-
-
                 </div>
-                <br><br>
-                <div class="header_link">
+                <div class="popular-categories">
                     <ul>
-                        <li>
-                            <svg width="1.1vw" height="1.1vw" viewBox="0 0 22 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8.94965 9.24365L1.60819 15.6852C0.797271 16.3967 0.797271 17.5503 1.60819 18.2618C2.41909 18.9733 3.73385 18.9733 4.54476 18.2618L11.8862 11.8203"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M16.3651 12.1523L20.3917 15.6853C21.2027 16.3968 21.2027 17.5505 20.3917 18.2619C19.5809 18.9735 18.2661 18.9735 17.4552 18.2619L11.0093 12.6063"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M5.50522 4.95963L3.30278 5.60379L1.10034 2.38304L2.56863 1.09473L6.23937 3.02718L5.50522 4.95963ZM5.50522 4.95963L8.44367 7.53788"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M8.94955 9.2435C8.07349 7.28218 8.24477 4.70872 10.0508 3.12408C11.8568 1.53943 15.1898 1.19163 17.0252 2.15785L13.8682 4.9278L13.5748 7.76186L16.8048 7.50441L19.9617 4.73445C21.063 6.34483 20.6666 9.26929 18.8606 10.8539C17.0545 12.4385 14.1215 12.5889 11.8862 11.8201"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            </i><a href="./10_seller_home_page.html"
-                                class=" link-underline link-underline-opacity-0 text-secondary"> 賣場管理</a>
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw   " viewBox="0 0 20 22"
-                                fill="none">
-                                <path d="M1 21V19.75C1 14.9175 4.91751 11 9.75 11C14.5825 11 18.5 14.9175 18.5 19.75V21"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            </i><a href="./03_member.html"
-                                class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" viewBox="0 0 17 20"
-                                fill="none">
-                                <path
-                                    d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            </i><a href="./02-1_login.html"
-                                class=" link-underline link-underline-opacity-0 text-secondary">
-                                註冊/登入</a>
-                        </li>
+                        <li>洗衣精</li>
+                        <li>花盆</li>
+                        <li>衛生紙</li>
+                        <li>吹風機</li>
+                        <li>剪刀</li>
+                        <li>手機殼</li>
+                        <li>梳子</li>
+                        <li>桌墊</li>
+                        <li>馬克杯</li>
+                        <li>聖誕樹</li>
+                        <li>聖誕裝飾品</li>
+                        <li>鉛筆盒</li>
+                        <li>耳機</li>
+                        <li>繪本</li>
                     </ul>
                 </div>
-                <div class="cart_container">
-                    <a href="./08_shopping_cart.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="2.7vw" height="2.7vw" viewBox="0 0 40 32"
-                            fill="none">
+
+
+            </div>
+            <br><br>
+            <div class="header_link">
+                <ul>
+                    <li>
+                        <svg width="1.1vw" height="1.1vw" viewBox="0 0 22 20" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M39.1404 6.20728C38.947 5.97764 38.6949 5.79109 38.4043 5.66266C38.1136 5.53422 37.7927 5.4675 37.4673 5.46788L12.6088 5.48008L12.3246 4.26477C11.7939 1.79221 9.3536 -0.00140304 6.5207 8.23529e-07L2.0818 0.0021945C0.93 0.00272095 -0.00059971 0.821964 2.89972e-07 1.83082C0.00070029 2.83967 0.9323 3.65804 2.0842 3.65751L6.523 3.65532C7.352 3.65488 8.071 4.19554 8.2382 4.96854L8.869 7.67502C8.869 7.67862 8.8732 7.68046 8.8732 7.68414V7.69327L11.7886 19.5716C11.8884 19.9803 12.145 20.3466 12.5156 20.6092C12.8862 20.8718 13.3482 21.0149 13.8246 21.0145L30.7927 21.0061C33.4257 21.0049 35.4557 19.5545 36.2102 17.1727L39.46 7.82822C39.6534 7.27431 39.5322 6.67301 39.1403 6.20719L39.1404 6.20728ZM16.6801 23.7546C14.3826 23.7558 12.5151 25.3961 12.5165 27.412C12.5178 29.4279 14.3872 31.0664 16.6848 31.0653C18.9823 31.0641 20.8498 29.4238 20.8485 27.4079C20.8472 25.392 18.9777 23.7535 16.6801 23.7546ZM30.2196 23.748C27.9221 23.7491 26.0546 25.3894 26.056 27.4054C26.0573 29.4212 27.9267 31.0598 30.2243 31.0586C32.5218 31.0575 34.3893 29.4172 34.388 27.4013C34.3867 25.3854 32.5172 23.7468 30.2196 23.748Z"
-                                fill="white" />
+                                    d="M8.94965 9.24365L1.60819 15.6852C0.797271 16.3967 0.797271 17.5503 1.60819 18.2618C2.41909 18.9733 3.73385 18.9733 4.54476 18.2618L11.8862 11.8203"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                    d="M16.3651 12.1523L20.3917 15.6853C21.2027 16.3968 21.2027 17.5505 20.3917 18.2619C19.5809 18.9735 18.2661 18.9735 17.4552 18.2619L11.0093 12.6063"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                    d="M5.50522 4.95963L3.30278 5.60379L1.10034 2.38304L2.56863 1.09473L6.23937 3.02718L5.50522 4.95963ZM5.50522 4.95963L8.44367 7.53788"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                    d="M8.94955 9.2435C8.07349 7.28218 8.24477 4.70872 10.0508 3.12408C11.8568 1.53943 15.1898 1.19163 17.0252 2.15785L13.8682 4.9278L13.5748 7.76186L16.8048 7.50441L19.9617 4.73445C21.063 6.34483 20.6666 9.26929 18.8606 10.8539C17.0545 12.4385 14.1215 12.5889 11.8862 11.8201"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <br>
-    <nav class="navigation">
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">生活用品</a>
-            <div class="dropdown-content">
-                <a href="#">家具</a>
-                <a href="#">廚房用具</a>
-                <a href="#">清潔用品</a>
-            </div>
-        </div>
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">3C產品</a>
-            <div class="dropdown-content">
-                <a href="#">手機</a>
-                <a href="#">電腦</a>
-                <a href="#">相機</a>
-            </div>
-        </div>
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">文儀</a>
-            <div class="dropdown-content">
-                <a href="#">文儀1</a>
-                <a href="#">文儀2</a>
-                <a href="#">文儀3</a>
-            </div>
-        </div>
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">電玩遊戲</a>
-            <div class="dropdown-content">
-                <a href="#">遊戲1</a>
-                <a href="#">遊戲2</a>
-                <a href="#">遊戲3</a>
-            </div>
-        </div>
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">圖書音樂</a>
-            <div class="dropdown-content">
-                <a href="#">項目1</a>
-                <a href="#">項目2</a>
-                <a href="#">項目3</a>
-            </div>
-        </div>
-
-        <!-- 戶外用品 下拉菜单 -->
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">戶外用品</a>
-            <div class="dropdown-content">
-                <a href="#">項目1</a>
-                <a href="#">項目2</a>
-                <a href="#">項目3</a>
-            </div>
-        </div>
-
-        <!-- 美食 下拉菜单 -->
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">美食</a>
-            <div class="dropdown-content">
-                <a href="#">項目1</a>
-                <a href="#">項目2</a>
-                <a href="#">項目3</a>
-            </div>
-        </div>
-
-        <!-- 音樂 下拉菜单 -->
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">音樂</a>
-            <div class="dropdown-content">
-                <a href="#">項目1</a>
-                <a href="#">項目2</a>
-                <a href="#">項目3</a>
-            </div>
-        </div>
-
-        <!-- 用品 下拉菜单 -->
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">用品</a>
-            <div class="dropdown-content">
-                <a href="#">項目1</a>
-                <a href="#">項目2</a>
-                <a href="#">項目3</a>
-            </div>
-        </div>
-
-        <!-- 香水 下拉菜单 -->
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">香水</a>
-            <div class="dropdown-content">
-                <a href="#">項目1</a>
-                <a href="#">項目2</a>
-                <a href="#">項目3</a>
-            </div>
-        </div>
-
-        <!-- 包包 下拉菜单 -->
-        <div class="nav-item dropdown">
-            <a href="javascript:void(0)" class="dropbtn">包包</a>
-            <div class="dropdown-content">
-                <a href="#">項目1</a>
-                <a href="#">項目2</a>
-                <a href="#">項目3</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="screen"></div>
-
-    <!-- 輪播圖 -->
-    <div class="carousel">
-        <div class="container">
-            <a href="#" target="_blank"><img src="./images/1.jpeg" alt="Image 1" /></a>
-            <a href="#" target="_blank"><img src="./images/2.jpeg" alt="Image 2" /></a>
-            <a href="#" target="_blank"><img src="./images/3.jpeg" alt="Image 3" /></a>
-            <a href="#" target="_blank"><img src="./images/4.jpeg" alt="Image 4" /></a>
-            <a href="#" target="_blank"><img src="./images/5.jpeg" alt="Image 5" /></a>
-            <a href="#" target="_blank"><img src="./images/6.jpeg" alt="Image 6" /></a>
-            <a href="#" target="_blank"><img src="./images/7.jpeg" alt="Image 7" /></a>
-            <a href="#" target="_blank"><img src="./images/8.jpeg" alt="Image 8" /></a>
-            <a href="#" target="_blank"><img src="./images/9.jpeg" alt="Image 9" /></a>
-        </div>
-        <div class="shift">
-            <div class="btn left" onclick="shiftSlide(-1)">&lt;</div>
-            <div class="btn right" onclick="shiftSlide(1)">&gt;</div>
-        </div>
-        <div class="indicators"></div>
-    </div>
-
-    <br>
-
-    <!-- <div class="Popular product"> -->
-
-    <section>
-        <div class="hot">
-            <p>熱門商品</p>
-            <div class="div">
-            </div>
-        </div>
-    </section>
-
-    <br>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="hotpro" style="height: 400px;">
-                    <!-- 小区块 -->
-                    <div class="item">
-                        <img src="./images/a.svg" alt="Image 1">
-                        <p>寵物飾品</p>
-                    </div>
-                    <div class="item">
-                        <img src="./images/b.svg" alt="Image 2">
-                        <p>男裝襯衫</p>
-                    </div>
-                    <div class="item">
-                        <img src="./images/c.svg" alt="Image 3">
-                        <p>梳子</p>
-                    </div>
-                    <div class="item">
-                        <img src="./images/d.svg" alt="Image 4">
-                        <p>花盆</p>
-                    </div>
-                    <div class="item">
-                        <img src="./images/e.svg" alt="Image 5">
-                        <p>筆電</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="hotpro" style="height: 400px;">
-                    <!-- 小区块 -->
-                    <div class="item">
-                        <img src="./images/e.svg" alt="Image 1">
-                        <p>筆電</p>
-                    </div>
-                    <div class="item">
-                        <img src="./images/e.svg" alt="Image 2">
-                        <p>筆電</p>
-                    </div>
-                    <div class="item">
-                        <img src="./images/e.svg" alt="Image 5">
-                        <p>筆電</p>
-                    </div>
-                    <div class="item">
-                        <img src="./images/e.svg" alt="Image 5">
-                        <p>筆電</p>
-                    </div>
-                    <div class="item">
-                        <img src="./images/e.svg" alt="Image 5">
-                        <p>筆電</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-    <br>
-
-
-    </div>
-
-    <br><br><br>
-    <footer>
-        <div class="footer">
-            <div>
-                <ul class="footerList">
-                    <li class="h3">關於我們</li>
-                    <li>關於DealDove</li>
-                    <li>加入我們</li>
-                    <li>賣家中心</li>
-                    <li>限時特賣</li>
-                    <li>聯絡媒體</li>
-                </ul>
-            </div>
-            <div>
-                <ul class="footerList">
-                    <li class="h3">客服中心</li>
-                    <li>幫助中心</li>
-                    <li>退貨退款</li>
-                    <li>聯絡客服</li>
-                </ul>
-            </div>
-            <div>
-                <ul class="footerList">
-                    <li class="h3">關注我們</li>
-                    <li>關於DealDove</li>
-                    <li>加入我們</li>
-                    <li><img src="./images/icon _facebook.png"><span> </span>
-                        <img src="./images/icon _instagram.png">
+                        </i><a id="seller-home" href="./10_seller_home_page.html"
+                               class=" link-underline link-underline-opacity-0 text-secondary"> 賣場管理</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw   " viewBox="0 0 20 22"
+                             fill="none">
+                            <path d="M1 21V19.75C1 14.9175 4.91751 11 9.75 11C14.5825 11 18.5 14.9175 18.5 19.75V21"
+                                  stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                    d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        </i><a id="member" href="/Member"
+                               class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" viewBox="0 0 17 20"
+                             fill="none">
+                            <path
+                                    d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <a href="02-1_login.html" id="login" class="">
+                            註冊/登入</a>
                     </li>
                 </ul>
             </div>
-            <div>
-                <ul class="footerList">
-                    <li class="h3">法律與隱私</li>
-                    <li>隱私權政策</li>
-                    <li>DealDove條款</li>
+            <div class="cart_container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2.7vw" height="2.7vw" viewBox="0 0 40 32"
+                     fill="none">
+                    <path
+                            d="M39.1404 6.20728C38.947 5.97764 38.6949 5.79109 38.4043 5.66266C38.1136 5.53422 37.7927 5.4675 37.4673 5.46788L12.6088 5.48008L12.3246 4.26477C11.7939 1.79221 9.3536 -0.00140304 6.5207 8.23529e-07L2.0818 0.0021945C0.93 0.00272095 -0.00059971 0.821964 2.89972e-07 1.83082C0.00070029 2.83967 0.9323 3.65804 2.0842 3.65751L6.523 3.65532C7.352 3.65488 8.071 4.19554 8.2382 4.96854L8.869 7.67502C8.869 7.67862 8.8732 7.68046 8.8732 7.68414V7.69327L11.7886 19.5716C11.8884 19.9803 12.145 20.3466 12.5156 20.6092C12.8862 20.8718 13.3482 21.0149 13.8246 21.0145L30.7927 21.0061C33.4257 21.0049 35.4557 19.5545 36.2102 17.1727L39.46 7.82822C39.6534 7.27431 39.5322 6.67301 39.1403 6.20719L39.1404 6.20728ZM16.6801 23.7546C14.3826 23.7558 12.5151 25.3961 12.5165 27.412C12.5178 29.4279 14.3872 31.0664 16.6848 31.0653C18.9823 31.0641 20.8498 29.4238 20.8485 27.4079C20.8472 25.392 18.9777 23.7535 16.6801 23.7546ZM30.2196 23.748C27.9221 23.7491 26.0546 25.3894 26.056 27.4054C26.0573 29.4212 27.9267 31.0598 30.2243 31.0586C32.5218 31.0575 34.3893 29.4172 34.388 27.4013C34.3867 25.3854 32.5172 23.7468 30.2196 23.748Z"
+                            fill="white" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<br>
+
+<nav class="navigation">
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">生活用品</a>
+        <div class="dropdown-content">
+            <a href="#">家具</a>
+            <a href="#">廚房用具</a>
+            <a href="#">清潔用品</a>
+        </div>
+    </div>
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">3C產品</a>
+        <div class="dropdown-content">
+            <a href="#">手機</a>
+            <a href="#">電腦</a>
+            <a href="#">相機</a>
+        </div>
+    </div>
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">文儀</a>
+        <div class="dropdown-content">
+            <a href="#">筆記本、日記簿</a>
+            <a href="#">文具配件</a>
+            <a href="#">辦公設備</a>
+        </div>
+    </div>
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">電玩遊戲</a>
+        <div class="dropdown-content">
+            <a href="#">主機遊戲</a>
+            <a href="#">手持式遊戲機</a>
+            <a href="#">電腦遊戲</a>
+        </div>
+    </div>
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">圖書音樂</a>
+        <div class="dropdown-content">
+            <a href="#">小說、文學作品</a>
+            <a href="#">專業書籍</a>
+            <a href="#">音樂專輯</a>
+        </div>
+    </div>
+
+    <!-- 戶外用品 下拉菜单 -->
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">戶外用品</a>
+        <div class="dropdown-content">
+            <a href="#">露營裝備</a>
+            <a href="#">運動裝備</a>
+            <a href="#">旅行用品</a>
+        </div>
+    </div>
+
+    <!-- 美食 下拉菜单 -->
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">美食</a>
+        <div class="dropdown-content">
+            <a href="#">地方特產</a>
+            <a href="#">進口零食</a>
+            <a href="#">健康食品</a>
+        </div>
+    </div>
+
+    <!-- 音樂 下拉菜单 -->
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">音樂</a>
+        <div class="dropdown-content">
+            <a href="#">樂器</a>
+            <a href="#">音樂課程</a>
+            <a href="#">音樂製作設備</a>
+        </div>
+    </div>
+
+    <!-- 用品 下拉菜单 -->
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">用品</a>
+        <div class="dropdown-content">
+            <a href="#">家居用品</a>
+            <a href="#">個人護理用品</a>
+            <a href="#">辦公用品</a>
+        </div>
+    </div>
+
+    <!-- 香水 下拉菜单 -->
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">香水</a>
+        <div class="dropdown-content">
+            <a href="#">女士香水</a>
+            <a href="#">男士香水</a>
+            <a href="#">中性香水</a>
+        </div>
+    </div>
+
+    <!-- 包包 下拉菜单 -->
+    <div class="nav-item dropdown">
+        <a href="javascript:void(0)" class="dropbtn">包包</a>
+        <div class="dropdown-content">
+            <a href="#">手提包</a>
+            <a href="#">背包</a>
+            <a href="#">小型包類</a>
+        </div>
+    </div>
+</nav>
+
+<div class="screen"></div>
+
+<!--公告輪播圖 -->
+<div class="carousel">
+    <div class="container">
+        <a href="/Coupon" target="_blank"><img src="./images/new1.png" alt="Image 1" /></a>
+        <a href="/Coupon" target="_blank"><img src="./images/new2.png" alt="Image 2" /></a>
+        <a href="/Coupon" target="_blank"><img src="./images/new3.png" alt="Image 3" /></a>
+        <a href="/Coupon" target="_blank"><img src="./images/new4.png" alt="Image 4" /></a>
+        <a href="/Coupon" target="_blank"><img src="./images/new5.png" alt="Image 5" /></a>
+        <a href="/Coupon" target="_blank"><img src="./images/new6.png" alt="Image 6" /></a>
+    </div>
+    <button id="carousel-control-prev" class="carousel-control-prev" type="button" data-slide="prev"
+            onclick="shiftSlide(-1)">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button id="carousel-control-next" class="carousel-control-next" type="button" data-slide="next"
+            onclick="shiftSlide(1)">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    <div class="indicators"></div>
+</div>
+
+
+
+<br>
+<!--熱門商品-->
+<section>
+    <div class="hot">
+        <p>熱門商品</p>
+        <div class="div">
+        </div>
+    </div>
+</section>
+<!--熱門商品輪播-->
+<br>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="hotpro" style="height: 29vh;">
+                <!-- 小區塊 -->
+                <div class="item">
+                    <img src="./images/hotpro1.png" alt="Image 1">
+                    <p>冬季服飾</p>
+                </div>
+                <div class="item">
+                    <img src="./images/hotpro2.png" alt="Image 2">
+                    <p>男女鞋</p>
+                </div>
+                <div class="item">
+                    <img src="./images/hotpro3.png" alt="Image 3">
+                    <p>電子產品</p>
+                </div>
+                <div class="item">
+                    <img src="./images/hotpro4.png" alt="Image 4">
+                    <p>西裝襯衫</p>
+                </div>
+                <div class="item">
+                    <img src="./images/hotpro5.png" alt="Image 5">
+                    <p>精品配件</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="hotpro" style="height: 29vh;">
+                <!-- 小區塊2 -->
+                <div class="item">
+                    <img src="./images/hotpro6.png" alt="Image 1">
+                    <p>美妝保養</p>
+                </div>
+                <div class="item">
+                    <img src="./images/hotpro7.png" alt="Image 2">
+                    <p>露營用品</p>
+                </div>
+                <div class="item">
+                    <img src="./images/hotpro8.png" alt="Image 5">
+                    <p>保健護理</p>
+                </div>
+                <div class="item">
+                    <img src="./images/hotpro9.png" alt="Image 5">
+                    <p>寵物用品</p>
+                </div>
+                <div class="item">
+                    <img src="./images/hotpro10.png" alt="Image 5">
+                    <p>美食</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<br><br><br>
+<footer>
+    <div class="footer">
+        <div>
+            <ul class="footerList">
+                <li class="h3">關於我們</li>
+                <li>關於DealDove</li>
+                <li>加入我們</li>
+                <li>賣家中心</li>
+                <li>限時特賣</li>
+                <li>聯絡媒體</li>
+            </ul>
+        </div>
+        <div>
+            <ul class="footerList">
+                <li class="h3">客服中心</li>
+                <li>幫助中心</li>
+                <li>退貨退款</li>
+                <li>聯絡客服</li>
+            </ul>
+        </div>
+        <div>
+            <ul class="footerList">
+                <li class="h3">關注我們</li>
+                <li>關於DealDove</li>
+                <li>加入我們</li>
+                <li><img src="./images/icon _facebook.png"><span> </span>
+                    <img src="./images/icon _instagram.png">
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="footerList">
+                <li class="h3">法律與隱私</li>
+                <li>隱私權政策</li>
+                <li>DealDove條款</li>
+            </ul>
+        </div>
+        <img class="qrcode" src="./images/qrCode.png">
+    </div>
+</footer>
+
+<!-- //聊天室部分// -->
+<div class="user-form hidden" id="username-page">
+    <h2>進入聊聊</h2>
+    <form id="usernameForm">
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" name="nickname" required>
+
+        <label for="fullname">Real Name:</label>
+        <input type="text" id="fullname" name="realname" required>
+
+        <button type="submit">進入聊天室</button>
+    </form>
+</div>
+
+<div class="chat-container hidden" id="chat-page">
+
+    <div id="header_talk">
+        <div class="talk-title">聊聊</div>
+        <button id="toggle-button" onclick="toggleChat()">Ｘ</button>
+    </div>
+
+    <div id="chat-content">
+
+        <div class="users-list">
+
+            <div class="users-list-container">
+                <ul id="connectedUsers">
                 </ul>
             </div>
-            <img class="qrcode" src="./images/qrCode.png">
+            <br><br><br>
+            <div>
+                <p id="connected-user-fullname"></p>
+            </div>
         </div>
-    </footer>
 
-    <!-- js -->
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel .container a');
-        const totalSlides = slides.length;
+        <div class="chat-area">
+            <div id="chat-header" class="chat-header-container">
+                <span id="chatusername"></span>
+            </div>
+            <div class="chat-area" id="chat-messages">
+            </div>
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.style.transform = `translateX(-${index * 100}%)`);
-            updateIndicators(index);
+            <form id="messageForm" name="messageForm">
+                <!-- 輸入訊息 -->
+                <div class="message-input">
+                    <input autocomplete="off" type="text" id="message" placeholder="輸入訊息...">
+                </div>
+
+            </form>
+            <div id="chat-footer">
+                <!-- 表情 -->
+
+                <button id="sticker-button" onclick="toggleStickerPanel()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                         class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                                d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5" />
+                    </svg>
+                </button>
+
+                <div id="sticker-panel" style="display: none;">
+                    <!-- 表情符號選項 -->
+                    <span onclick="selectSticker('😁')">&#x1F601;</span>
+                    <span onclick="selectSticker('😂')">&#x1F602;</span>
+                    <span onclick="selectSticker('😃')">&#x1F603;</span>
+                    <span onclick="selectSticker('😄')">&#x1F604;</span>
+                    <span onclick="selectSticker('😅')">&#x1F605;</span>
+                    <span onclick="selectSticker('😆')">&#x1F606;</span>
+                    <span onclick="selectSticker('😉')">&#x1F609;</span>
+                    <span onclick="selectSticker('😊')">&#x1F60A;</span>
+                    <span onclick="selectSticker('😋')">&#x1F60B;</span>
+                    <span onclick="selectSticker('😌')">&#x1F60C;</span>
+                    <span onclick="selectSticker('😍')">&#x1F60D;</span>
+                    <span onclick="selectSticker('😏')">&#x1F60F;</span>
+                    <span onclick="selectSticker('😒')">&#x1F612;</span>
+                    <span onclick="selectSticker('😓')">&#x1F613;</span>
+                    <span onclick="selectSticker('😔')">&#x1F614;</span>
+                    <span onclick="selectSticker('😖')">&#x1F616;</span>
+                    <span onclick="selectSticker('😘')">&#x1F618;</span>
+                    <span onclick="selectSticker('😚')">&#x1F61A;</span>
+                    <span onclick="selectSticker('😜')">&#x1F61C;</span>
+                    <span onclick="selectSticker('😝')">&#x1F61D;</span>
+                    <span onclick="selectSticker('😞')">&#x1F61E;</span>
+                    <span onclick="selectSticker('😠')">&#x1F620;</span>
+                    <span onclick="selectSticker('😡')">&#x1F621;</span>
+                    <span onclick="selectSticker('😢')">&#x1F622;</span>
+                    <span onclick="selectSticker('😣')">&#x1F623;</span>
+                    <span onclick="selectSticker('😤')">&#x1F624;</span>
+                    <span onclick="selectSticker('😥')">&#x1F625;</span>
+                    <span onclick="selectSticker('😨')">&#x1F628;</span>
+                    <span onclick="selectSticker('😩')">&#x1F629;</span>
+                    <span onclick="selectSticker('😪')">&#x1F62A;</span>
+                    <span onclick="selectSticker('😫')">&#x1F62B;</span>
+                    <span onclick="selectSticker('😭')">&#x1F62D;</span>
+                    <span onclick="selectSticker('😰')">&#x1F630;</span>
+                    <span onclick="selectSticker('😱')">&#x1F631;</span>
+                    <span onclick="selectSticker('😲')">&#x1F632;</span>
+                    <span onclick="selectSticker('😳')">&#x1F633;</span>
+                    <span onclick="selectSticker('😵')">&#x1F635;</span>
+                    <span onclick="selectSticker('😷')">&#x1F637;</span>
+                    <span onclick="selectSticker('😸')">&#x1F638;</span>
+                    <span onclick="selectSticker('😹')">&#x1F639;</span>
+                    <span onclick="selectSticker('😺')">&#x1F63A;</span>
+                    <span onclick="selectSticker('😻')">&#x1F63B;</span>
+                    <span onclick="selectSticker('😼')">&#x1F63C;</span>
+                    <span onclick="selectSticker('😽')">&#x1F63D;</span>
+                    <span onclick="selectSticker('😾')">&#x1F63E;</span>
+                    <span onclick="selectSticker('😿')">&#x1F63F;</span>
+                    <span onclick="selectSticker('🙀')">&#x1F640;</span>
+                    <span onclick="selectSticker('🙅')">&#x1F645;</span>
+                    <span onclick="selectSticker('🙆')">&#x1F646;</span>
+                    <span onclick="selectSticker('🙇')">&#x1F647;</span>
+                    <span onclick="selectSticker('🙈')">&#x1F648;</span>
+                    <span onclick="selectSticker('🙉')">&#x1F649;</span>
+                    <span onclick="selectSticker('🙊')">&#x1F64A;</span>
+                    <span onclick="selectSticker('🙋')">&#x1F64B;</span>
+                    <span onclick="selectSticker('🙌')">&#x1F64C;</span>
+                    <span onclick="selectSticker('🙍')">&#x1F64D;</span>
+                    <span onclick="selectSticker('🙎')">&#x1F64E;</span>
+                    <span onclick="selectSticker('🙏')">&#x1F64F;</span>
+
+                </div>
+                <!-- 傳圖 -->
+                <input type="file" id="image-input" style="display: none;" accept="image/*"
+                       onchange="prepareImageUpload()">
+                <button id="upload-button" onclick="document.getElementById('image-input').click();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                         class="bi bi-image-fill" viewBox="0 0 16 16">
+                        <path
+                                d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
+                    </svg>
+                </button>
+                <!-- 傳送 -->
+                <button id="send-button" onclick="sendMessage()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3" class="bi bi-send"
+                         viewBox="0 0 16 16">
+                        <path
+                                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id="chat-icon" onclick="toggleChat()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#A2CAD3" class="bi bi-chat-square-dots"
+         viewBox="0 0 16 16">
+        <path
+                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+        <path
+                d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+    </svg>
+</button>
+<script src="./js/search.js"></script>
+<script>
+    // 聊天室縮放
+    function toggleChat() {
+        var chatpage = document.getElementById("chat-page");
+        var chatIcon = document.getElementById("chat-icon");
+
+        // 檢查聊天視窗的顯示狀態並切換
+        if (chatpage.style.display === "none" || chatpage.style.display === "") {
+            chatpage.style.display = "flex"; // 顯示聊天視窗
+            chatIcon.style.display = "none"; // 隱藏 chat-icon 按鈕
+        } else {
+            chatpage.style.display = "none"; // 隱藏聊天視窗
+            chatIcon.style.display = "block"; // 顯示 chat-icon 按鈕
         }
+    }
 
-        function updateIndicators(index) {
-            document.querySelectorAll('.carousel .indicators .indicator')
-                .forEach((indicator, i) => {
-                    indicator.style.opacity = i === index ? 1 : 0.5;
-                });
+    // 確保在頁面加載時設置正確的初始狀態
+    document.addEventListener("DOMContentLoaded", function () {
+        // 預設隱藏聊天視窗，顯示 chat-icon
+        document.getElementById("chat-page").style.display = "none";
+        document.getElementById("chat-icon").style.display = "block";
+    });
+
+    // 顯示或隱藏貼圖面板
+    function toggleStickerPanel() {
+        var panel = document.getElementById("sticker-panel");
+        panel.style.display = panel.style.display === "none" ? "block" : "none";
+    }
+
+    // 將選擇的貼圖添加到消息輸入框中
+    function selectSticker(sticker) {
+        var messageInput = document.getElementById('message');
+        var stickerPanel = document.getElementById('sticker-panel');
+
+        // 將表情符號添加到輸入框的現有內容中
+        messageInput.value += sticker;
+
+        // 將焦點設定回輸入框
+        messageInput.focus();
+
+        // 隱藏表情選擇視窗
+        stickerPanel.style.display = 'none';
+    }
+
+
+    // 選擇圖片後立即處理上傳
+    function prepareImageUpload() {
+        var fileInput = document.getElementById('image-input');
+
+        if (fileInput.files && fileInput.files[0]) {
+            uploadImageToChat(); // 直接調用上傳圖片函數
         }
+    }
 
-        function shiftSlide(step) {
-            currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+    // 上傳圖片到聊天歷史
+    function uploadImageToChat() {
+        var fileInput = document.getElementById('image-input');
+        var chatHistory = document.getElementById('chat-area');
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imgDiv = document.createElement('div');
+                imgDiv.classList.add('message', 'self');
+
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Uploaded Image';
+
+                imgDiv.appendChild(img);
+                chatHistory.appendChild(imgDiv);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="./js/chat.js" type="module"></script>
+<!-- //聊天室部分// -->
+
+<!-- 首頁js -->
+<!-- // 公告輪播圖// -->
+<script type="module">
+    // 公告輪播圖 //
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel .container a');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach(slide => {
+            slide.style.transform = `translateX(-${index * 100}%)`;
+        });
+        updateIndicators(index);
+    }
+
+    function updateIndicators(index) {
+        document.querySelectorAll('.carousel .indicators .indicator')
+            .forEach((indicator, i) => {
+                indicator.style.opacity = i === index ? 1 : 0.5;
+            });
+    }
+
+    function shiftSlide(step) {
+        currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    document.querySelector('#carousel-control-prev').addEventListener('click', () => shiftSlide(-1));
+    document.querySelector('#carousel-control-next').addEventListener('click', () => shiftSlide(1));
+
+    setInterval(() => shiftSlide(1), 3000);
+
+    function createIndicators() {
+        const indicatorsContainer = document.querySelector('.carousel .indicators');
+        for (let i = 0; i < totalSlides; i++) {
+            let indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            indicator.addEventListener('click', () => showSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+    }
+
+    createIndicators();
+    showSlide(0);
+
+</script>
+<!-- // 熱門商品輪播圖// -->
+<script type="module">
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // 獲取輪播圖容器
+        var carousel = document.getElementById('carouselExampleIndicators');
+
+        // 獲取所有幻燈片和指示器按鈕
+        var slides = carousel.querySelectorAll('.carousel-item');
+        var indicators = carousel.querySelectorAll('.carousel-indicators button');
+        var totalSlides = slides.length;
+
+        // 為左右控制按鈕添加事件監聽器
+        carousel.querySelector('.carousel-control-prev').addEventListener('click', function () {
+            shiftSlide(-1);
+        });
+        carousel.querySelector('.carousel-control-next').addEventListener('click', function () {
+            shiftSlide(1);
+        });
+
+        // 為指示器按鈕添加事件監聽器
+        indicators.forEach(function (indicator, index) {
+            indicator.addEventListener('click', function () {
+                showSlide(index);
+            });
+        });
+
+        var currentSlide = 0; // 當前顯示的幻燈片索引
+
+        // 切換幻燈片的函數
+        function shiftSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
             showSlide(currentSlide);
         }
 
-        // Automatically shift slide every 3 seconds
-        setInterval(() => shiftSlide(1), 3000);
+        // 顯示特定幻燈片的函數
+        function showSlide(index) {
+            // 更新幻燈片的顯示狀態
+            slides.forEach(function (slide) {
+                slide.classList.remove('active');
+            });
+            slides[index].classList.add('active');
 
-        function createIndicators() {
-            const indicatorsContainer = document.querySelector('.carousel .indicators');
-            for (let i = 0; i < totalSlides; i++) {
-                let indicator = document.createElement('div');
-                indicator.className = 'indicator';
-                indicator.addEventListener('click', () => showSlide(i));
-                indicatorsContainer.appendChild(indicator);
-            }
+            // 更新指示器按鈕的活動狀態
+            indicators.forEach(function (indicator) {
+                indicator.classList.remove('active');
+            });
+            indicators[index].classList.add('active');
+
+            currentSlide = index; // 更新當前幻燈片索引
         }
-
-        createIndicators();
-        showSlide(0);
-
-        // hotpro
-        document.addEventListener("DOMContentLoaded", function () {
-            // 獲取輪播圖容器
-            var carousel = document.getElementById('carouselExampleIndicators');
-
-            // 獲取所有幻燈片和指示器按鈕
-            var slides = carousel.querySelectorAll('.carousel-item');
-            var indicators = carousel.querySelectorAll('.carousel-indicators button');
-            var totalSlides = slides.length;
-
-            // 為左右控制按鈕添加事件監聽器
-            carousel.querySelector('.carousel-control-prev').addEventListener('click', function () {
-                shiftSlide(-1);
-            });
-            carousel.querySelector('.carousel-control-next').addEventListener('click', function () {
-                shiftSlide(1);
-            });
-
-            // 為指示器按鈕添加事件監聽器
-            indicators.forEach(function (indicator, index) {
-                indicator.addEventListener('click', function () {
-                    showSlide(index);
-                });
-            });
-
-            var currentSlide = 0; // 當前顯示的幻燈片索引
-
-            // 切換幻燈片的函數
-            function shiftSlide(direction) {
-                currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-                showSlide(currentSlide);
-            }
-
-            // 顯示特定幻燈片的函數
-            function showSlide(index) {
-                // 更新幻燈片的顯示狀態
-                slides.forEach(function (slide) {
-                    slide.classList.remove('active');
-                });
-                slides[index].classList.add('active');
-
-                // 更新指示器按鈕的活動狀態
-                indicators.forEach(function (indicator) {
-                    indicator.classList.remove('active');
-                });
-                indicators[index].classList.add('active');
-
-                currentSlide = index; // 更新當前幻燈片索引
-            }
-        });
-
-
-    </script>
-
+    });
+</script>
+<script src="./js/isLogin.js" type="module"></script>
 </body>
 
 </html>

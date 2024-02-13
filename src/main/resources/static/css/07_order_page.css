@@ -76,6 +76,11 @@
     cursor: pointer;
 }
 
+.delete-button{
+    background-color:transparent;
+    color:black;
+}
+
 .order-number {
     /* 添加訂單編號的樣式 */
 }
@@ -92,3 +97,11 @@
     text-align: center;
     width:6vw;
 }
+
+
+
+.item-name-shopping{
+
+    width:20vw;
+}
+

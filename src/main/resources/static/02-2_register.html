@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/02-2_register.css">
+    <link rel="stylesheet" href="./css/jquery.toast.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
@@ -15,7 +16,7 @@
     <header>
         <nav class="header">
             <div class="d-flex">
-                <a class="iconBorder" href="./01_home_page.html"><img class="icon" src="./images/icon.png"></a>
+                <a class="iconBorder" href="/Dealdove"><img class="icon" src="./images/icon.png"></a>
                 <div class="search-container">
                     <div class="search-bar"></div>
                 </div>
@@ -49,7 +50,7 @@
                                     d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            </i><a href="./03_member.html"
+                            </i><a href="/Member"
                                 class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
                         </li>
                         <li>
@@ -59,7 +60,7 @@
                                     d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            <a href="./02-1_login.html" class=" link-underline link-underline-opacity-0 text-secondary">
+                            <a href="/Login" class=" link-underline link-underline-opacity-0 text-secondary">
                                 註冊/登入</a>
                         </li>
                     </ul>
@@ -83,28 +84,23 @@
     <h1 class="register-title">註冊 </h1>
     <div class="register-container">
         <div class="register-form">
-            <div class="form-inputs">
-                <label for="username">帳號:</label>
-                <input type="text" id="username" name="username">
-
+            <form id="register-form" method="post" action="/verify" class="form-inputs">
+                <label for="email">電子信箱:</label>
+                <input type="email" id="email" name="email">
                 <label for="password">密碼:</label>
                 <input type="password" id="password" name="password">
 
                 <div class="account-options">
-                    <input type="checkbox" id="privacy-checkbox" class="custom-checkbox">
-                    <label for="privacy-checkbox" class="checkbox-label"></label>
+                    <input  type="checkbox" id="privacy-checkbox"  class="custom-checkbox">
+                    <label for="privacy-checkbox" class="checkbox-label" ></label>
 
-                    <a href="隱私條款">
-                        <button class="account-btn left">隱私條款</button>
+                    <a  href="隱私條款">
+                        <button  class="account-btn left">隱私條款</button>
                     </a>
-
-
-                    <a href="./02-1_login.html">
-                        <button class="account-btn right">已擁有帳號</button>
-                    </a>
+                        <a href="/Login" class="account-btn right">已擁有帳號</a>
                 </div>
 
-            </div>
+            </form>
 
             <div class="vertical-line-container">
                 <div class="vertical-line"></div>
@@ -121,7 +117,7 @@
         </div>
     </div>
 
-    <button class="register-button">註冊</button>
+    <button id="register-button" class="register-button">註冊</button>
 
 
 
@@ -168,9 +164,9 @@
     </footer>
 
     <!-- js -->
+    <script src="./js/register.js" type="module"></script>
+    <script src="./js/search.js"></script>
 
-
-    </script>
 
 </body>
 

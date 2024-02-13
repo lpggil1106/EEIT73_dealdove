@@ -5,13 +5,16 @@
     
 }
 
-.product .productImage .bigImage {
+.product .productImage .bigImage img,
+.product .productImage .smallImage img {
     width: 100%;
-    height: 25.7333vw;
+    height: 100%;
+    object-fit: contain; /* 等比例縮放，保持圖片完整顯示在容器內 */
 }
 
 .product .productImage .smallImage {
     height: 6vw;
+    object-fit: contain;
 }
 
 .smallImage button {
@@ -20,7 +23,7 @@
     font-size: 1vw;
     border: none;
     margin-top: 1.5vw;
-    background-color: white;
+    background-color: #F9F3E7;
 }
 
 .productDescribe{
@@ -60,6 +63,7 @@
     margin-bottom: 2vw;
     flex-wrap: wrap;
     display: flex;
+    align-items: center;
 }
 
 .specification .div {
@@ -69,6 +73,11 @@
     box-shadow: 1px 1px 1px rgb(119, 116, 116);
     border-radius: 12px;
     background-color: #F9F3E7;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
 }
 
 .quantity {
@@ -82,7 +91,7 @@
     margin-right: 1vw;
 }
 
-.quantity span {
+.quantity input {
     width: 3vw;
     border-width: 1px 0 1px 0;
     border-color: #000;
@@ -108,9 +117,9 @@
 
 .price span {
     width: 9.8667vw;
-    box-shadow: 1px 1px 1px rgb(119, 116, 116);
-    border-radius: 12px;
-    background-color: #F9F3E7;
+    /*box-shadow: 1px 1px 1px rgb(119, 116, 116);*/
+    /*border-radius: 12px;*/
+    /*background-color: #F9F3E7;*/
 }
 
 .buy {
@@ -150,7 +159,6 @@
     width: 100%;
     height: 7vw;
     border-radius: 50%;
-    border: 1px solid black;
     margin-right: 2vw;
     margin-left: 1.3vw;
 }
@@ -194,6 +202,9 @@
     border-radius: 12px;
     background-color: #F9F3E7;
     margin-bottom: 3vw;
+    flex-direction: column;
+    align-items: flex-start; /* 調整對齊方式，使內容左對齊 */
+
 }
 
 .productDescribe2 p {
@@ -204,9 +215,18 @@
 
 .productDescribe2 .div {
     width: 100%;
-    height: 13.3333vw;
+    height: 25vw;
+    /*height: 13.3333vw;*/
     border-radius: 12px;
     background-color: white;
+    display: inline-block;
+    max-width: 100%; /* 讓邊框的最大寬度不超過容器寬度 */
+}
+.descriptionBorder {
+    max-width: 100%;
+    padding: 10px;
+    display: inline-block;
+    overflow: auto;
 }
 
 /* ------------------------------------------------ */
@@ -282,8 +302,11 @@
     border-style: solid;
 }
 
-.productCommentImage {
+.productCommentImage img{
     height: 14vw;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 等比例縮放，保持圖片完整顯示在容器內 */
 }
 
 .replyBtn {

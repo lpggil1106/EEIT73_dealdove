@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
     <header>
         <nav class="header">
             <div class="d-flex">
-                <a class="iconBorder" href=""><img class="icon" src="./images/icon.png"></a>
+                <a class="iconBorder" href="/Dealdove"><img class="icon" src="./images/icon.png"></a>
                 <div class="search-container">
                     <div class="search-bar">
                         <input type="text" class="search-input" placeholder="Search...">
@@ -76,7 +76,7 @@
                                     d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            </i><a href="./03_member.html"
+                            </i><a id="member" href="/Member"
                                 class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
                         </li>
                         <li>
@@ -86,7 +86,7 @@
                                     d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            </i><a href="./02-1_login.html"
+                            </i><a id="login" href="/Login"
                                 class=" link-underline link-underline-opacity-0 text-secondary">
                                 註冊/登入</a>
                         </li>
@@ -120,32 +120,38 @@
             </div>
             <div class="content-area">
                 <!-- 新增的內容區塊 -->
-                <div id="info-content" class="content-section">
-                    <div><span>頭像：</span><input type="file" accept="image/*"></div>
-                    <div>
+                <form action="03_member.html" id="info-content" class="content-section">
+                    <div><span>頭像：</span><input type="file" id="avatar" accept="image/*"></div>
+                    <img src="" id="test123" alt="">
+                    <button id="test">test</button>
+                    <div class="gender">
                         <span>性別：</span>
-                        <button class="gender-btn">男性</button>
-                        <button class="gender-btn">女性</button>
-                        <button class="gender-btn">不願透露</button>
+                        <input type="radio" id="male"  name="gender" value="1" class="gender-btn"/>
+                        <label for="male"> 男性</label>
+                        <input type="radio" id="female" name="gender" value="2" class="gender-btn"/>
+                        <label for="female"> 女性</label>
+                        <input type="radio" id="secret" name="gender" value="3" class="gender-btn"/>
+                        <label for="secret">不願透漏</label>
                     </div>
-                    <div><span>生日：</span><input type="date"></div>
-                    <div><span>信箱：</span><input type="email"></div>
-                    <div><span>取件資料：</span><textarea></textarea></div>
-                </div>
+                    <div><span>生日：</span><input id="birthday" type="date"></div>
+                    <div><span>信箱：</span><input id="email" type="email"></div>
+                    <div><span>取件資料：</span><textarea id="address"></textarea><a id="pick-shop" >選取門市</a></div>
+                    <input id="update" type="submit" value="確定">
+                </form>
                 <div id="list-content" class="content-section-list">
                     <nav id="list-content-component" class="list-content-component">
-                        <button class="btn">待出貨</button>
-                        <button class="btn">待收貨</button>
-                        <button class="btn">已完成</button>
+                        <button id="status1" class="btn" data-status="1">待出貨</button>
+                        <button id="status2" class="btn" data-status="2">待收貨</button>
+                        <button id="status3" class="btn" data-status="3">已完成</button>
                         <button class="btn">已取消</button>
                     </nav>
                     <div class="list-content-component-pro">
                         <div class="item">
-                            <img src="./images/e.svg" alt="圖片描述" class="item-image">
+                            <img id="img0" src="./images/coupon3.png" alt="圖片描述" class="item-image">
                             <div class="item-text">
-                                <p>商品名</p>
-                                <p>規格</p>
-                                <p>數量</p>
+                                <p id="commodity0">商品名</p>
+                                <p id="model0">規格</p>
+                                <p id="quantity0">數量</p>
                             </div>
                         </div>
                         <p class="bottom-text">右下角的文字</p>
@@ -154,11 +160,11 @@
                     </div>
                     <div class="list-content-component-pro">
                         <div class="item">
-                            <img src="./images/e.svg" alt="圖片描述" class="item-image">
+                            <img id="img1" src="./images/coupon3.png" alt="圖片描述" class="item-image">
                             <div class="item-text">
-                                <p>商品名</p>
-                                <p>規格</p>
-                                <p>數量</p>
+                                <p id="commodity1">商品名</p>
+                                <p id="model1">規格</p>
+                                <p id="quantity1">數量</p>
                             </div>
                         </div>
                         <p class="bottom-text">右下角的文字</p>
@@ -166,24 +172,30 @@
                     </div>
                     <div class="list-content-component-pro">
                         <div class="item">
-                            <img src="./images/e.svg" alt="圖片描述" class="item-image">
+                            <img id="img2" src="./images/coupon3.png" alt="圖片描述" class="item-image">
                             <div class="item-text">
-                                <p>商品名</p>
-                                <p>規格</p>
-                                <p>數量</p>
+                                <p id="commodity2">商品名</p>
+                                <p id="model2">規格</p>
+                                <p id="quantity2">數量</p>
                             </div>
                         </div>
                         <p class="bottom-text">右下角的文字</p>
                         <div class="yellow-line"></div> <!-- 新增黃線 -->
-
+                    </div>
+                    <div id="page">
+                        <button id="prev">&lt</button>
+                        <button id="first" data-page="1">1</button>
+                        <button id="second" data-page="2">2</button>
+                        <button id="third" data-page="3">3</button>
+                        <button id="next">&gt</button>
                     </div>
                 </div>
                 <div id="notifications-content" class="content-section-list">
                     <div class="list-content-component-pro">
                         <div class="item">
-                            <img src="./images/e.svg" alt="圖片描述" class="item-image">
+                            <img id="orderImg0" src="./images/coupon3.png" alt="圖片描述" class="item-image">
                             <div class="item-text">
-                                <p>訂單狀態</p>
+                                <p id="orderStatus0">訂單狀態</p>
                                 <p>更新通知</p>
                             </div>
                         </div>
@@ -192,9 +204,9 @@
                     </div>
                     <div class="list-content-component-pro">
                         <div class="item">
-                            <img src="./images/e.svg" alt="圖片描述" class="item-image">
+                            <img id="orderImg1" src="./images/coupon3.png" alt="圖片描述" class="item-image">
                             <div class="item-text">
-                                <p>訂單狀態</p>
+                                <p id="orderStatus1">訂單狀態</p>
                                 <p>更新通知</p>
                             </div>
                         </div>
@@ -203,9 +215,9 @@
                     <div class="list-content-component-pro">
 
                         <div class="item">
-                            <img src="./images/e.svg" alt="圖片描述" class="item-image">
+                            <img id="orderImg3" src="./images/coupon3.png" alt="圖片描述" class="item-image">
                             <div class="item-text">
-                                <p>訂單狀態</p>
+                                <p id="orderStatus3">訂單狀態</p>
                                 <p>更新通知</p>
                             </div>
                         </div>
@@ -213,9 +225,9 @@
                     </div>
                     <div class="list-content-component-pro">
                         <div class="item">
-                            <img src="./images/e.svg" alt="圖片描述" class="item-image">
+                            <img id="orderImg4" src="./images/coupon3.png" alt="圖片描述" class="item-image">
                             <div class="item-text">
-                                <p>訂單狀態</p>
+                                <p id="orderStatus4">訂單狀態</p>
                                 <p>更新通知</p>
                             </div>
                         </div>
@@ -225,31 +237,27 @@
                 </div>
                 <div id="coupons-content" class="content-section-list">
                     <div class="container-coupons">
-                        <!-- 上部分 - 圖片 -->
-                        <div class="top-section">
-                            <img src="./images/c.jpeg" alt="主圖片">
-                        </div>
                         <!-- 下部分 - 四格區塊 -->
-                        <nav id="list-content-component" class="list-content-component">
+                        <nav id="list-content-component1" class="list-content-component">
                             <button class="btn">可使用</button>
                             <button class="btn">即將到期</button>
                         </nav>
                         <div class="bottom-section">
                             <div class="coupon-block">
-                                <img src="./images/c.jpeg" alt="圖片 1">
-                                <p>滿千折百</p>
+                                <img src="./images/coupon2.png" alt="圖片 1">
+                                <p id="desc0"></p>
                             </div>
                             <div class="coupon-block">
-                                <img src="./images/c.jpeg" alt="圖片 2">
-                                <p>文字描述 2</p>
+                                <img src="./images/coupon2.png" alt="圖片 2">
+                                <p id="desc1"></p>
                             </div>
                             <div class="coupon-block">
-                                <img src="./images/c.jpeg" alt="圖片 3">
-                                <p>文字描述 3</p>
+                                <img src="./images/coupon2.png" alt="圖片 3">
+                                <p id="desc2"></p>
                             </div>
                             <div class="coupon-block">
-                                <img src="./images/c.jpeg" alt="圖片 4">
-                                <p>文字描述 4</p>
+                                <img src="./images/coupon2.png" alt="圖片 4">
+                                <p id="desc3"></p>
                             </div>
                         </div>
                     </div>
@@ -305,6 +313,7 @@
         </div>
     </footer>
     <!-- js -->
+    <script src="./js/isLogin.js" type="module"></script>
     <script>
         // 獲取所有性別按鈕
         const genderButtons = document.querySelectorAll('.gender-btn');
@@ -339,7 +348,8 @@
         });
 
     </script>
-
+    <script src="./js/member.js" type="module"></script>
+    <script src="./js/search.js"></script>
 </body>
 
 </html>

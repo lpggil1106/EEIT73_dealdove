@@ -138,7 +138,7 @@
 .captchaimg {
     height: auto;
     border: none;
-    background-color: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: 0  4px 10px rgba(0, 0, 0, 0.2);
     padding: 3px;
     margin: 0px 0px 12px 10px;
     border-radius: 15px;

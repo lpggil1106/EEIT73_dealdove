@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+<body>
+
+<button id="payButton" onclick="redirectToPayment()">前往付款</button>
+<div id="ECPayPayment"></div>
+<script src="https://ecpg-stage.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116"></script>
+<script>
+    function redirectToPayment() {
+        fetch('/ecpayCheckout', {
+            method: 'POST'
+        }).then(res => res.text())
+            .then(data => {
+                    var div = document.createElement('div');
+                    div.innerHTML = data;
+
+                    // 將 div 中的 form 元素添加到 body 中
+                    var form = div.querySelector('form');
+                    if (form) {
+                        document.body.appendChild(form);
+                        // 提交表單
+                        form.submit();
+                    } else {
+                        console.error('Form element not found in HTML content.');
+                    }
+                }
+            )
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+
+    }
+
+
+
+</script>
+</body>
+</html>

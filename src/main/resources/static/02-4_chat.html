@@ -7,523 +7,317 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/02-4_chat.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header>
-        <nav class="header">
-            <div class="d-flex">
-                <a class="iconBorder" href="./01_home_page.html"><img class="icon" src="./images/icon.png"></a>
-                <div class="search-container">
-                    <div class="search-bar"></div>
-                </div>
-                <div class="header_link">
-                    <ul>
-                        <li>
-                            <svg width="1.1vw" height="1.1vw" viewBox="0 0 22 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8.94965 9.24365L1.60819 15.6852C0.797271 16.3967 0.797271 17.5503 1.60819 18.2618C2.41909 18.9733 3.73385 18.9733 4.54476 18.2618L11.8862 11.8203"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M16.3651 12.1523L20.3917 15.6853C21.2027 16.3968 21.2027 17.5505 20.3917 18.2619C19.5809 18.9735 18.2661 18.9735 17.4552 18.2619L11.0093 12.6063"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M5.50522 4.95963L3.30278 5.60379L1.10034 2.38304L2.56863 1.09473L6.23937 3.02718L5.50522 4.95963ZM5.50522 4.95963L8.44367 7.53788"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M8.94955 9.2435C8.07349 7.28218 8.24477 4.70872 10.0508 3.12408C11.8568 1.53943 15.1898 1.19163 17.0252 2.15785L13.8682 4.9278L13.5748 7.76186L16.8048 7.50441L19.9617 4.73445C21.063 6.34483 20.6666 9.26929 18.8606 10.8539C17.0545 12.4385 14.1215 12.5889 11.8862 11.8201"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            </i><a href="./10_seller_home_page.html"
-                                class=" link-underline link-underline-opacity-0 text-secondary"> 賣場管理</a>
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw   " viewBox="0 0 20 22"
-                                fill="none">
-                                <path d="M1 21V19.75C1 14.9175 4.91751 11 9.75 11C14.5825 11 18.5 14.9175 18.5 19.75V21"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
-                                    d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            </i><a href="./03_member.html"
-                                class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" viewBox="0 0 17 20"
-                                fill="none">
-                                <path
-                                    d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <a href="./02-1_login.html" class=" link-underline link-underline-opacity-0 text-secondary">
-                                註冊/登入</a>
-                        </li>
-                    </ul>
-                </div>
-                </a>
-
-                <div class="cart_container">
-                    <a href="./08_shopping_cart.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="2.7vw" height="2.7vw" viewBox="0 0 40 32"
-                            fill="none">
+<header>
+    <nav class="header">
+        <div class="d-flex">
+            <a class="iconBorder" href="./01_home_page.html"><img class="icon" src="./images/icon.png"></a>
+            <div class="search-container">
+                <div class="search-bar"></div>
+            </div>
+            <div class="header_link">
+                <ul>
+                    <li>
+                        <svg width="1.1vw" height="1.1vw" viewBox="0 0 22 20" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M39.1404 6.20728C38.947 5.97764 38.6949 5.79109 38.4043 5.66266C38.1136 5.53422 37.7927 5.4675 37.4673 5.46788L12.6088 5.48008L12.3246 4.26477C11.7939 1.79221 9.3536 -0.00140304 6.5207 8.23529e-07L2.0818 0.0021945C0.93 0.00272095 -0.00059971 0.821964 2.89972e-07 1.83082C0.00070029 2.83967 0.9323 3.65804 2.0842 3.65751L6.523 3.65532C7.352 3.65488 8.071 4.19554 8.2382 4.96854L8.869 7.67502C8.869 7.67862 8.8732 7.68046 8.8732 7.68414V7.69327L11.7886 19.5716C11.8884 19.9803 12.145 20.3466 12.5156 20.6092C12.8862 20.8718 13.3482 21.0149 13.8246 21.0145L30.7927 21.0061C33.4257 21.0049 35.4557 19.5545 36.2102 17.1727L39.46 7.82822C39.6534 7.27431 39.5322 6.67301 39.1403 6.20719L39.1404 6.20728ZM16.6801 23.7546C14.3826 23.7558 12.5151 25.3961 12.5165 27.412C12.5178 29.4279 14.3872 31.0664 16.6848 31.0653C18.9823 31.0641 20.8498 29.4238 20.8485 27.4079C20.8472 25.392 18.9777 23.7535 16.6801 23.7546ZM30.2196 23.748C27.9221 23.7491 26.0546 25.3894 26.056 27.4054C26.0573 29.4212 27.9267 31.0598 30.2243 31.0586C32.5218 31.0575 34.3893 29.4172 34.388 27.4013C34.3867 25.3854 32.5172 23.7468 30.2196 23.748Z"
-                                fill="white" />
+                                    d="M8.94965 9.24365L1.60819 15.6852C0.797271 16.3967 0.797271 17.5503 1.60819 18.2618C2.41909 18.9733 3.73385 18.9733 4.54476 18.2618L11.8862 11.8203"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path
+                                    d="M16.3651 12.1523L20.3917 15.6853C21.2027 16.3968 21.2027 17.5505 20.3917 18.2619C19.5809 18.9735 18.2661 18.9735 17.4552 18.2619L11.0093 12.6063"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path
+                                    d="M5.50522 4.95963L3.30278 5.60379L1.10034 2.38304L2.56863 1.09473L6.23937 3.02718L5.50522 4.95963ZM5.50522 4.95963L8.44367 7.53788"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path
+                                    d="M8.94955 9.2435C8.07349 7.28218 8.24477 4.70872 10.0508 3.12408C11.8568 1.53943 15.1898 1.19163 17.0252 2.15785L13.8682 4.9278L13.5748 7.76186L16.8048 7.50441L19.9617 4.73445C21.063 6.34483 20.6666 9.26929 18.8606 10.8539C17.0545 12.4385 14.1215 12.5889 11.8862 11.8201"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    </a>
-                </div>
+                        <a href="./10_seller_home_page.html"
+                           class=" link-underline link-underline-opacity-0 text-secondary"> 賣場管理</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw   " viewBox="0 0 20 22"
+                             fill="none">
+                            <path d="M1 21V19.75C1 14.9175 4.91751 11 9.75 11C14.5825 11 18.5 14.9175 18.5 19.75V21"
+                                  stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path
+                                    d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <a href="./03_member.html"
+                           class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" viewBox="0 0 17 20"
+                             fill="none">
+                            <path
+                                    d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <a href="./02-1_login.html" class=" link-underline link-underline-opacity-0 text-secondary">
+                            註冊/登入</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
 
-    <div id="chat-container">
-
-        <div id="header_talk">
-            <div class="talk-title">聊聊</div>
-            <button id="toggle-button" onclick="toggleChat()">Ｘ</button>
+            <div class="cart_container">
+                <a href="./08_shopping_cart.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2.7vw" height="2.7vw" viewBox="0 0 40 32"
+                         fill="none">
+                        <path
+                                d="M39.1404 6.20728C38.947 5.97764 38.6949 5.79109 38.4043 5.66266C38.1136 5.53422 37.7927 5.4675 37.4673 5.46788L12.6088 5.48008L12.3246 4.26477C11.7939 1.79221 9.3536 -0.00140304 6.5207 8.23529e-07L2.0818 0.0021945C0.93 0.00272095 -0.00059971 0.821964 2.89972e-07 1.83082C0.00070029 2.83967 0.9323 3.65804 2.0842 3.65751L6.523 3.65532C7.352 3.65488 8.071 4.19554 8.2382 4.96854L8.869 7.67502C8.869 7.67862 8.8732 7.68046 8.8732 7.68414V7.69327L11.7886 19.5716C11.8884 19.9803 12.145 20.3466 12.5156 20.6092C12.8862 20.8718 13.3482 21.0149 13.8246 21.0145L30.7927 21.0061C33.4257 21.0049 35.4557 19.5545 36.2102 17.1727L39.46 7.82822C39.6534 7.27431 39.5322 6.67301 39.1403 6.20719L39.1404 6.20728ZM16.6801 23.7546C14.3826 23.7558 12.5151 25.3961 12.5165 27.412C12.5178 29.4279 14.3872 31.0664 16.6848 31.0653C18.9823 31.0641 20.8498 29.4238 20.8485 27.4079C20.8472 25.392 18.9777 23.7535 16.6801 23.7546ZM30.2196 23.748C27.9221 23.7491 26.0546 25.3894 26.056 27.4054C26.0573 29.4212 27.9267 31.0598 30.2243 31.0586C32.5218 31.0575 34.3893 29.4172 34.388 27.4013C34.3867 25.3854 32.5172 23.7468 30.2196 23.748Z"
+                                fill="white"/>
+                    </svg>
+                </a>
+            </div>
         </div>
+    </nav>
+</header>
 
-        <div id="chat-content">
 
-            <div id="contact-list">
-                <!-- 联系人项目 -->
-                <div class="contact-item">
-                    <img src="./images/t.jpeg" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人1</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <!-- 添加更多联系人项目 -->
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人2</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人3</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人4</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人5</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">时间</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人6</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人7</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人8</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人9</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <img src="path_to_photo" alt="Contact Photo">
-                    <div class="contact-info">
-                        <div class="contact-name">聯絡人10</div>
-                        <div class="contact-message">最後消息...</div>
-                        <div class="contact-time">時間</div>
-                    </div>
-                </div>
-                <!-- 可以继续添加更多联系人 -->
-            </div>
+<div class="user-form hidden" id="username-page">
+    <h2>進入聊聊</h2>
+    <form id="usernameForm">
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" name="nickname" required>
 
-            <div id="chatbox">
-                <div id="chat-header">
-                    <span id="username">用戶名</span>
-                </div>
-                <div id="chat-history">
-                    <!-- 客戶的訊息 -->
-                    <div class="message other">
-                        <span class="message-content">您好，這件商品還有庫存嗎？</span>
-                        <span class="timestamp">08:10 AM</span>
-                    </div>
-                    <!-- 商家的回覆 -->
-                    <div class="message self">
-                        <span class="message-content">您好，這件商品目前庫存充足。</span>
-                        <span class="timestamp">08:12 AM</span>
-                    </div>
-                    <!-- 客戶的詢問 -->
-                    <div class="message other">
-                        <span class="message-content">請問有什麼顏色可以選擇？</span>
-                        <span class="timestamp">08:15 AM</span>
-                    </div>
-                    <!-- 商家的回覆 -->
-                    <div class="message self">
-                        <span class="message-content">我們提供黑色、白色和藍色三種選擇。</span>
-                        <span class="timestamp">08:17 AM</span>
-                    </div>
-                    <!-- 客戶的詢問 -->
-                    <div class="message other">
-                        <span class="message-content">運送需要多久時間？</span>
-                        <span class="timestamp">08:20 AM</span>
-                    </div>
-                    <!-- 商家的回覆 -->
-                    <div class="message self">
-                        <span class="message-content">一般情況下，運送時間為3至5個工作日。</span>
-                        <span class="timestamp">08:22 AM</span>
-                    </div>
-                    <!-- 客戶的詢問 -->
-                    <div class="message other">
-                        <span class="message-content">可以提供折扣嗎？</span>
-                        <span class="timestamp">08:25 AM</span>
-                    </div>
-                    <!-- 商家的回覆 -->
-                    <div class="message self">
-                        <span class="message-content">訂單超過$100可以享受10%的折扣。</span>
-                        <span class="timestamp">08:27 AM</span>
-                    </div>
-                </div>
+        <label for="fullname">Real Name:</label>
+        <input type="text" id="fullname" name="realname" required>
 
-                <div id="chat-footer">
-                    <textarea id="message-input" placeholder="輸入訊息..."></textarea>
-                    <button id="sticker-button" onclick="toggleStickerPanel()">
-                        <img src="./images/emoji-smile.svg" alt="貼圖" />
-                    </button>
+        <button type="submit">進入聊天室</button>
+    </form>
+</div>
 
-                    <div id="sticker-panel" style="display: none;">
-                        <!-- 表情符號選項 -->
-                        <span onclick="selectSticker('😁')">&#x1F601;</span>
-                        <span onclick="selectSticker('😂')">&#x1F602;</span>
-                        <span onclick="selectSticker('😃')">&#x1F603;</span>
-                        <span onclick="selectSticker('😄')">&#x1F604;</span>
-                        <span onclick="selectSticker('😅')">&#x1F605;</span>
-                        <span onclick="selectSticker('😆')">&#x1F606;</span>
-                        <span onclick="selectSticker('😉')">&#x1F609;</span>
-                        <span onclick="selectSticker('😊')">&#x1F60A;</span>
-                        <span onclick="selectSticker('😋')">&#x1F60B;</span>
-                        <span onclick="selectSticker('😌')">&#x1F60C;</span>
-                        <span onclick="selectSticker('😍')">&#x1F60D;</span>
-                        <span onclick="selectSticker('😏')">&#x1F60F;</span>
-                        <span onclick="selectSticker('😒')">&#x1F612;</span>
-                        <span onclick="selectSticker('😓')">&#x1F613;</span>
-                        <span onclick="selectSticker('😔')">&#x1F614;</span>
-                        <span onclick="selectSticker('😖')">&#x1F616;</span>
-                        <span onclick="selectSticker('😘')">&#x1F618;</span>
-                        <span onclick="selectSticker('😚')">&#x1F61A;</span>
-                        <span onclick="selectSticker('😜')">&#x1F61C;</span>
-                        <span onclick="selectSticker('😝')">&#x1F61D;</span>
-                        <span onclick="selectSticker('😞')">&#x1F61E;</span>
-                        <span onclick="selectSticker('😠')">&#x1F620;</span>
-                        <span onclick="selectSticker('😡')">&#x1F621;</span>
-                        <span onclick="selectSticker('😢')">&#x1F622;</span>
-                        <span onclick="selectSticker('😣')">&#x1F623;</span>
-                        <span onclick="selectSticker('😤')">&#x1F624;</span>
-                        <span onclick="selectSticker('😥')">&#x1F625;</span>
-                        <span onclick="selectSticker('😨')">&#x1F628;</span>
-                        <span onclick="selectSticker('😩')">&#x1F629;</span>
-                        <span onclick="selectSticker('😪')">&#x1F62A;</span>
-                        <span onclick="selectSticker('😫')">&#x1F62B;</span>
-                        <span onclick="selectSticker('😭')">&#x1F62D;</span>
-                        <span onclick="selectSticker('😰')">&#x1F630;</span>
-                        <span onclick="selectSticker('😱')">&#x1F631;</span>
-                        <span onclick="selectSticker('😲')">&#x1F632;</span>
-                        <span onclick="selectSticker('😳')">&#x1F633;</span>
-                        <span onclick="selectSticker('😵')">&#x1F635;</span>
-                        <span onclick="selectSticker('😷')">&#x1F637;</span>
-                        <span onclick="selectSticker('😸')">&#x1F638;</span>
-                        <span onclick="selectSticker('😹')">&#x1F639;</span>
-                        <span onclick="selectSticker('😺')">&#x1F63A;</span>
-                        <span onclick="selectSticker('😻')">&#x1F63B;</span>
-                        <span onclick="selectSticker('😼')">&#x1F63C;</span>
-                        <span onclick="selectSticker('😽')">&#x1F63D;</span>
-                        <span onclick="selectSticker('😾')">&#x1F63E;</span>
-                        <span onclick="selectSticker('😿')">&#x1F63F;</span>
-                        <span onclick="selectSticker('🙀')">&#x1F640;</span>
-                        <span onclick="selectSticker('🙅')">&#x1F645;</span>
-                        <span onclick="selectSticker('🙆')">&#x1F646;</span>
-                        <span onclick="selectSticker('🙇')">&#x1F647;</span>
-                        <span onclick="selectSticker('🙈')">&#x1F648;</span>
-                        <span onclick="selectSticker('🙉')">&#x1F649;</span>
-                        <span onclick="selectSticker('🙊')">&#x1F64A;</span>
-                        <span onclick="selectSticker('🙋')">&#x1F64B;</span>
-                        <span onclick="selectSticker('🙌')">&#x1F64C;</span>
-                        <span onclick="selectSticker('🙍')">&#x1F64D;</span>
-                        <span onclick="selectSticker('🙎')">&#x1F64E;</span>
-                        <span onclick="selectSticker('🙏')">&#x1F64F;</span>
+<div class="chat-container hidden" id="chat-page">
 
-                        <!-- 繼續添加更多表情符號 -->
-                        <!-- ... -->
-                    </div>
-
-                    <input type="file" id="image-input" style="display: none;" accept="image/*"
-                        onchange="prepareImageUpload()">
-
-                    <button id="upload-button" onclick="document.getElementById('image-input').click();">
-                        <img src="./images/image.svg" alt="上傳圖片" />
-                    </button>
-
-                    <button id="send-button" onclick="sendMessage()">
-                        <img src="./images/message.svg" alt="發送" />
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
+    <div id="header_talk">
+        <div class="talk-title">聊聊</div>
+        <button id="toggle-button" onclick="toggleChat()">Ｘ</button>
     </div>
-    <button id="chat-icon" onclick="toggleChat()">
-        <img src="./images/message (1).svg" alt="訊息" />
-    </button>
 
-    <script>
+    <div id="chat-content">
+
+        <div class="users-list">
+
+            <div class="users-list-container">
+                <ul id="connectedUsers">
+                </ul>
+            </div>
+            <br><br><br>
+            <div>
+                <p id="connected-user-fullname"></p>
+            </div>
+        </div>
+
+        <div class="chat-area">
+            <div id="chat-header" class="chat-header-container">
+                <span id="chatusername"></span>
+            </div>
+            <div class="chat-area" id="chat-messages">
+            </div>
+
+            <form id="messageForm" name="messageForm">
+                <!-- 輸入訊息 -->
+                <div class="message-input">
+                    <input autocomplete="off" type="text" id="message" placeholder="輸入訊息...">
+                </div>
+
+            </form>
+            <div id="chat-footer">
+                <!-- 表情 -->
+
+                <button id="sticker-button" onclick="toggleStickerPanel()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                         class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                                d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5" />
+                    </svg>
+                </button>
+
+                <div id="sticker-panel" style="display: none;">
+                    <!-- 表情符號選項 -->
+                    <span onclick="selectSticker('😁')">&#x1F601;</span>
+                    <span onclick="selectSticker('😂')">&#x1F602;</span>
+                    <span onclick="selectSticker('😃')">&#x1F603;</span>
+                    <span onclick="selectSticker('😄')">&#x1F604;</span>
+                    <span onclick="selectSticker('😅')">&#x1F605;</span>
+                    <span onclick="selectSticker('😆')">&#x1F606;</span>
+                    <span onclick="selectSticker('😉')">&#x1F609;</span>
+                    <span onclick="selectSticker('😊')">&#x1F60A;</span>
+                    <span onclick="selectSticker('😋')">&#x1F60B;</span>
+                    <span onclick="selectSticker('😌')">&#x1F60C;</span>
+                    <span onclick="selectSticker('😍')">&#x1F60D;</span>
+                    <span onclick="selectSticker('😏')">&#x1F60F;</span>
+                    <span onclick="selectSticker('😒')">&#x1F612;</span>
+                    <span onclick="selectSticker('😓')">&#x1F613;</span>
+                    <span onclick="selectSticker('😔')">&#x1F614;</span>
+                    <span onclick="selectSticker('😖')">&#x1F616;</span>
+                    <span onclick="selectSticker('😘')">&#x1F618;</span>
+                    <span onclick="selectSticker('😚')">&#x1F61A;</span>
+                    <span onclick="selectSticker('😜')">&#x1F61C;</span>
+                    <span onclick="selectSticker('😝')">&#x1F61D;</span>
+                    <span onclick="selectSticker('😞')">&#x1F61E;</span>
+                    <span onclick="selectSticker('😠')">&#x1F620;</span>
+                    <span onclick="selectSticker('😡')">&#x1F621;</span>
+                    <span onclick="selectSticker('😢')">&#x1F622;</span>
+                    <span onclick="selectSticker('😣')">&#x1F623;</span>
+                    <span onclick="selectSticker('😤')">&#x1F624;</span>
+                    <span onclick="selectSticker('😥')">&#x1F625;</span>
+                    <span onclick="selectSticker('😨')">&#x1F628;</span>
+                    <span onclick="selectSticker('😩')">&#x1F629;</span>
+                    <span onclick="selectSticker('😪')">&#x1F62A;</span>
+                    <span onclick="selectSticker('😫')">&#x1F62B;</span>
+                    <span onclick="selectSticker('😭')">&#x1F62D;</span>
+                    <span onclick="selectSticker('😰')">&#x1F630;</span>
+                    <span onclick="selectSticker('😱')">&#x1F631;</span>
+                    <span onclick="selectSticker('😲')">&#x1F632;</span>
+                    <span onclick="selectSticker('😳')">&#x1F633;</span>
+                    <span onclick="selectSticker('😵')">&#x1F635;</span>
+                    <span onclick="selectSticker('😷')">&#x1F637;</span>
+                    <span onclick="selectSticker('😸')">&#x1F638;</span>
+                    <span onclick="selectSticker('😹')">&#x1F639;</span>
+                    <span onclick="selectSticker('😺')">&#x1F63A;</span>
+                    <span onclick="selectSticker('😻')">&#x1F63B;</span>
+                    <span onclick="selectSticker('😼')">&#x1F63C;</span>
+                    <span onclick="selectSticker('😽')">&#x1F63D;</span>
+                    <span onclick="selectSticker('😾')">&#x1F63E;</span>
+                    <span onclick="selectSticker('😿')">&#x1F63F;</span>
+                    <span onclick="selectSticker('🙀')">&#x1F640;</span>
+                    <span onclick="selectSticker('🙅')">&#x1F645;</span>
+                    <span onclick="selectSticker('🙆')">&#x1F646;</span>
+                    <span onclick="selectSticker('🙇')">&#x1F647;</span>
+                    <span onclick="selectSticker('🙈')">&#x1F648;</span>
+                    <span onclick="selectSticker('🙉')">&#x1F649;</span>
+                    <span onclick="selectSticker('🙊')">&#x1F64A;</span>
+                    <span onclick="selectSticker('🙋')">&#x1F64B;</span>
+                    <span onclick="selectSticker('🙌')">&#x1F64C;</span>
+                    <span onclick="selectSticker('🙍')">&#x1F64D;</span>
+                    <span onclick="selectSticker('🙎')">&#x1F64E;</span>
+                    <span onclick="selectSticker('🙏')">&#x1F64F;</span>
+
+                </div>
+                <!-- 傳圖 -->
+                <input type="file" id="image-input" style="display: none;" accept="image/*"
+                       onchange="prepareImageUpload()">
+                <button id="upload-button" onclick="document.getElementById('image-input').click();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                         class="bi bi-image-fill" viewBox="0 0 16 16">
+                        <path
+                                d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
+                    </svg>
+                </button>
+                <!-- 傳送 -->
+                <button id="send-button" onclick="sendMessage()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3" class="bi bi-send"
+                         viewBox="0 0 16 16">
+                        <path
+                                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id="chat-icon" onclick="toggleChat()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#A2CAD3" class="bi bi-chat-square-dots"
+         viewBox="0 0 16 16">
+        <path
+                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+        <path
+                d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+    </svg>
+</button>
 
 
-        // websocket
+<script>
+    // 聊天室縮放
+    function toggleChat() {
+        var chatpage = document.getElementById("chat-page");
+        var chatIcon = document.getElementById("chat-icon");
 
-        document.addEventListener("DOMContentLoaded", event => {
-            let keyinDom = document.querySelector('#txtInput')
-            let showDom = document.querySelector('#txtShow')
-
-            document.querySelector('#btnSend').addEventListener('click', () => {
-                let txt = keyinDom.value;
-                ws.send(txt);
-            })
-
-            //建立WebSocket (本範例server端於本地運行)
-            let url = 'ws://localhost:3000'
-            var ws = new WebSocket(url)
-            //監聽連線
-            ws.onopen = () => {
-                console.log('open connection')
-            }
-            ws.onclose = () => {
-                console.log('close connection')
-            }
-            //接收Server發送的訊息
-            ws.onmessage = event => {
-                let txt = event.data
-                if (!showDom.value) showDom.value = txt
-                else showDom.value = showDom.value + "\n" + txt
-                keyinDom.value = ""
-            }
-        })
-        // 聯絡人切換
-        function toggleChat() {
-            var chatContainer = document.getElementById("chat-container");
-            var chatIcon = document.getElementById("chat-icon");
-
-            if (chatContainer.style.display === "flex") {
-                chatContainer.style.display = "none";
-                chatIcon.style.display = "block";
-            } else {
-                chatContainer.style.display = "flex";
-                chatIcon.style.display = "none";
-            }
+        // 檢查聊天視窗的顯示狀態並切換
+        if (chatpage.style.display === "none" || chatpage.style.display === "") {
+            chatpage.style.display = "flex"; // 顯示聊天視窗
+            chatIcon.style.display = "none"; // 隱藏 chat-icon 按鈕
+        } else {
+            chatpage.style.display = "none"; // 隱藏聊天視窗
+            chatIcon.style.display = "block"; // 顯示 chat-icon 按鈕
         }
+    }
 
-        document.querySelectorAll('.contact-item').forEach(item => {
-            item.addEventListener('click', function () {
-                // 更新聊天框內容，這裡需要根據您的實際情況進行調整
-                document.getElementById('username').textContent = this.querySelector('.contact-name').textContent;
-                // 清空當前聊天歷史
-                document.getElementById('chat-history').innerHTML = '';
-                // 可以添加更多的功能，例如加載該聯絡人的聊天歷史
-            });
-        });
+    // 確保在頁面加載時設置正確的初始狀態
+    document.addEventListener("DOMContentLoaded", function() {
+        // 預設隱藏聊天視窗，顯示 chat-icon
+        document.getElementById("chat-page").style.display = "none";
+        document.getElementById("chat-icon").style.display = "block";
+    });
 
+    // 顯示或隱藏貼圖面板
+    function toggleStickerPanel() {
+        var panel = document.getElementById("sticker-panel");
+        panel.style.display = panel.style.display === "none" ? "block" : "none";
+    }
 
-        window.onload = function () {
-            var chatContainer = document.getElementById("chat-container");
-            var chatIcon = document.getElementById("chat-icon");
-            chatContainer.style.display = "none";
-            chatIcon.style.display = "block";
-        };
-        document.addEventListener("DOMContentLoaded", () => {
-            // 預設的聯絡人名稱
-            updateUsername('聯絡人1');
+    // 將選擇的貼圖添加到消息輸入框中
+    function selectSticker(sticker) {
+        var messageInput = document.getElementById('message');
+        var stickerPanel = document.getElementById('sticker-panel');
 
-            // 監聽所有聯絡人項目的點擊事件
-            document.querySelectorAll('.contact-item').forEach(item => {
-                item.addEventListener('click', function () {
-                    let contactName = this.querySelector('.contact-name').textContent;
-                    updateUsername(contactName);
+        // 將表情符號添加到輸入框的現有內容中
+        messageInput.value += sticker;
 
-                    // 這裡可以添加更多功能，例如加載該聯絡人的聊天歷史等
-                });
-            });
-        });
+        // 將焦點設定回輸入框
+        messageInput.focus();
+
+        // 隱藏表情選擇視窗
+        stickerPanel.style.display = 'none';
+    }
 
 
-        // 更新聊天頭部的使用者名稱
-        function updateUsername(name) {
-            document.getElementById('username').textContent = name;
+    // 選擇圖片後立即處理上傳
+    function prepareImageUpload() {
+        var fileInput = document.getElementById('image-input');
+
+        if (fileInput.files && fileInput.files[0]) {
+            uploadImageToChat(); // 直接調用上傳圖片函數
         }
+    }
 
-        // 如果需要根據最後對話時間進行排序，則需要從後端獲取數據並在這裡實現排序邏輯
-        // ...
-        function loadChat(contactName) {
-            // 更新聊天標題
-            document.getElementById('username').textContent = contactName;
+    // 上傳圖片到聊天歷史
+    function uploadImageToChat() {
+        var fileInput = document.getElementById('image-input');
+        var chatHistory = document.getElementById('chat-area');
 
-            // 假設這裡是聯絡人1的對話
-            if (contactName === '聯絡人1') {
-                document.getElementById('chat-history').innerHTML = `
-            <!-- 聯絡人1的對話內容 -->
-            <!-- 對話內容... -->
-        `;
-            }
-            // 其他聯絡人的對話加載邏輯...
-        }
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imgDiv = document.createElement('div');
+                imgDiv.classList.add('message', 'self');
 
-        function toggleStickerPanel() {
-            var panel = document.getElementById("sticker-panel");
-            panel.style.display = panel.style.display === "none" ? "block" : "none";
-        }
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Uploaded Image';
 
-        function selectSticker(stickerPath) {
-            // 處理選擇的貼圖
-            console.log("選擇的貼圖: " + stickerPath);
-            // 您可以在這裡添加將貼圖插入聊天框的邏輯
-        }
-
-        function selectSticker(sticker) {
-            var messageInput = document.getElementById('message-input');
-            var stickerPanel = document.getElementById('sticker-panel');
-
-            // 將表情符號添加到輸入框的現有內容中
-            messageInput.value += sticker;
-
-            // 將焦點設定回輸入框
-            messageInput.focus();
-
-            // 隱藏表情選擇視窗
-            stickerPanel.style.display = 'none';
-        }
-
-
-        // 選擇圖片後立即處理上傳
-        function prepareImageUpload() {
-            var fileInput = document.getElementById('image-input');
-
-            if (fileInput.files && fileInput.files[0]) {
-                uploadImageToChat(); // 直接調用上傳圖片函數
-            }
-        }
-
-        // 上傳圖片到聊天歷史
-        function uploadImageToChat() {
-            var fileInput = document.getElementById('image-input');
-            var chatHistory = document.getElementById('chat-history');
-
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var imgDiv = document.createElement('div');
-                    imgDiv.classList.add('message', 'self');
-
-                    var img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.alt = 'Uploaded Image';
-
-                    imgDiv.appendChild(img);
-                    chatHistory.appendChild(imgDiv);
-                    chatHistory.scrollTop = chatHistory.scrollHeight;
-                };
-
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        }
-        // 獲取當前時間的函數
-        function getCurrentTime() {
-            var now = new Date();
-            return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-        }
-
-
-
-        // 以下是處理發送訊息的 JavaScript 函數
-        function sendMessage() {
-            var messageInput = document.getElementById('message-input');
-            var chatHistory = document.getElementById('chat-history');
-            var messageText = messageInput.value.trim();
-
-            if (messageText) {
-                var messageDiv = document.createElement('div');
-                messageDiv.classList.add('message', 'self');
-
-                var contentSpan = document.createElement('span');
-                contentSpan.classList.add('message-content');
-                contentSpan.textContent = messageText;
-
-                var timestampSpan = document.createElement('span');
-                timestampSpan.classList.add('timestamp');
-                timestampSpan.textContent = getCurrentTime();
-
-                messageDiv.appendChild(contentSpan);
-                messageDiv.appendChild(timestampSpan);
-
-                chatHistory.appendChild(messageDiv);
+                imgDiv.appendChild(img);
+                chatHistory.appendChild(imgDiv);
                 chatHistory.scrollTop = chatHistory.scrollHeight;
+            };
 
-                messageInput.value = '';
-            }
+            reader.readAsDataURL(fileInput.files[0]);
         }
-        function getCurrentTime() {
-            var now = new Date();
-            return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-        }
-
-        document.getElementById('message-input').addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault(); // 防止預設的換行行為
-                sendMessage();
-            }
-        });
-
-
-
-    </script>
-
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="./js/chat.js" type="module"></script>
+<script src="./js/search.js"></script>
 </body>
 
 </html>

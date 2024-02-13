@@ -12,15 +12,25 @@ body {
     text-align: center;
   }
 
+
+
   .checkout-container {
-    max-width: 83vw;
+    max-width: 90vw;
     margin: 0px auto;
     padding-top:0;
-    background-color: #fff;
     padding: 20px;
     padding-top:10px;
     border-radius: 70px;
   }
+.checkout-container2 {
+  max-width: 300vw;
+  margin: 0px auto;
+  padding-top:0;
+  background-color: #fff;
+  padding: 20px;
+  padding-top:10px;
+  border-radius: 70px;
+}
 
   .cart-section {
     margin-top: 20px;
@@ -59,10 +69,18 @@ body {
     max-width: 800px;
     margin: 20px auto;
     background-color: #F9F3E7;
-    padding: 20px;
+    padding:20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+.container2 {
+  max-width: 1800px;
+  background-color: #F9F3E7;
+  padding:20px;
+  border-radius: 10px;
+  margin-bottom: -1.3vw;
+}
   .custom-hr {
     width: 83vw;      
     margin: 0 auto;  
@@ -79,12 +97,28 @@ body {
     
     text-wrap: wrap;
   }
+
+.cart-item-head {
+  display: flex;
+
+  /* justify-content: space-between; */
+  align-items: center;
+  border-bottom: 4px solid #FFFFFF;
+  padding: 10px 10px;
+
+  text-wrap: wrap;
+}
   
 
   .cart-item img {
     margin-left:3vw;
     width: 5vw; 
   }
+
+.cart-item-head img {
+  margin-left:3vw;
+  width: 5vw;
+}
 
   .cart-item input {
     margin-right:0.5vw;
@@ -93,7 +127,7 @@ body {
     font-size:1vw;
   }
 
-  .cart-item p{
+  .cart-item-head p{
     font-size:1vw;
     margin:0;
 
@@ -109,7 +143,7 @@ body {
   }
 
   .item-info{
-    width: 10vw; 
+    width: 10vw;
     padding-left: 3.5vw;
   }
 
@@ -119,11 +153,18 @@ body {
     text-wrap:wrap;
     width:20vw;
   }
+
   .item-model{
     margin-right:4vw;
     text-wrap:wrap;
     width:20vw;
   }
+
+.item-model-head{
+  margin-right:4vw;
+  text-wrap:wrap;
+  width:20vw;
+}
 
   .item-unit{
     margin-right:4vw;
@@ -131,12 +172,27 @@ body {
     text-align: center;
     width:6vw;
   }
+
+.item-unit-head{
+  margin-right:4vw;
+  text-wrap:wrap;
+  text-align: center;
+  width:6vw;
+}
+
   .item-quantity{
     margin-right:4vw;
     text-align: center;
     text-wrap:wrap;
     width:6vw;
   }
+
+.item-quantity-head{
+  margin-right:4vw;
+  text-align: center;
+  text-wrap:wrap;
+  width:6vw;
+}
 
   .item-total{
     margin-right:2vw;
@@ -145,7 +201,396 @@ body {
     width:10vw;
   }
 
+.item-total-cart{
+  margin-right:3.5vw;
+  padding-left:0vw;
+  text-wrap:wrap;
+  width:8vw;
+}
+.item-total-head{
+  margin-right:2vw;
+  padding-left:2.5vw;
+  text-wrap:wrap;
+  width:10vw;
+}
+
   .checkout-form-input{
     width:200px; 
     height:2.5vw;
   }
+
+  .coupon-container{
+    display: flex;
+    padding-left: 3.5vw;
+
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20px;
+    font-size: 1.5vw;
+    font-weight: bold;
+
+  }
+
+.coupon-container p {
+  padding-left: 4vw;
+  margin: 0;
+}
+
+.form-p{
+  margin-left:1.4vw;
+  padding-left:1vw;
+}
+
+.form-p p{
+  font-size:1.3vw
+}
+
+.container-checkout {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-checkout input[type="radio"] {
+  display: none; /* 隱藏原始的 radio 按鈕 */
+}
+
+.container-checkout label {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease; /* 添加過渡效果 */
+
+}
+
+.container-checkout input[type="radio"] {
+  display: none; /* 隱藏原始的 radio 按鈕 */
+}
+
+.container-checkout label {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease; /* 添加過渡效果 */
+  color: #777; /* 選中前的文字顏色 */
+}
+
+.container-checkout input[type="radio"] {
+  display: none; /* 隱藏原始的 radio 按鈕 */
+}
+
+.container-checkout label {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease; /* 添加過渡效果 */
+  color: #777; /* 選中前的文字顏色 */
+}
+
+.container-checkout input[type="radio"]:checked + label {
+  color: #000; /* 選中後的文字顏色 */
+  border-color: #A2CAD3; /* 選中後的邊框色 */
+}
+
+.payment-option, .payment-options {
+  margin-right: 20px;
+}
+
+.payment-options input[type="radio"] {
+  display: none;
+}
+
+.payment-options label {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 1vw;
+  border-radius: 10px;
+  border: 3px solid #9D9D9D;
+  background: transparent; /* 背景透明 */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  color: #777; /* 選中前的文字顏色 */
+}
+
+.payment-options input[type="radio"]:checked + label {
+  color: #000; /* 選中後的文字顏色 */
+  border-color: #A2CAD3; /* 選中後的邊框色 */
+}
+
+.payment-options {
+  display: flex;
+  align-items: center;
+}
+
+/*嘗試*/
+.container-checkout input[type="radio"] {
+  display: none; /* 隱藏原始的 radio 按鈕 */
+}
+
+.container-checkout label {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease; /* 添加過渡效果 */
+  color: #777; /* 選中前的文字顏色 */
+  position: relative;
+}
+
+.container-checkout input[type="radio"]:checked + label {
+  color: #000; /* 選中後的文字顏色 */
+  border-color: #A2CAD3; /* 選中後的邊框色 */
+}
+
+.container-checkout input[type="radio"]:checked + label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 25px 0 0;
+  border-color: #A2CAD3 transparent transparent transparent;
+}
+
+.payment-option, .payment-options {
+  margin-right: 20px;
+}
+
+.payment-options input[type="radio"] {
+  display: none;
+}
+
+.payment-options label {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 1vw;
+  border-radius: 10px;
+  border: 3px solid #9D9D9D;
+  background: transparent; /* 背景透明 */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  color: #777; /* 選中前的文字顏色 */
+  position: relative;
+}
+
+.payment-options input[type="radio"]:checked + label {
+  color: #000; /* 選中後的文字顏色 */
+  border-color: #A2CAD3; /* 選中後的邊框色 */
+}
+
+.payment-options input[type="radio"]:checked + label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 25px 0 0;
+  border-color: #A2CAD3 transparent transparent transparent;
+}
+
+.payment-options {
+  display: flex;
+  align-items: center;
+}
+
+/*勾勾style*/
+.container-checkout input[type="radio"]:checked + label::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  border-color: #fff;
+  transform: rotate(45deg);
+}
+
+/*結帳總結*/
+
+#orderSummary {
+  display: flex;
+  flex-direction: column; /* 將子元素垂直排列 */
+  justify-content: space-between; /* 將子元素在垂直方向上均勻分佈 */
+  height: 100%; /* 讓容器充滿父容器的高度 */
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.summary-label, .summary-value {
+  flex: 1;
+}
+
+.summary-label {
+  margin-right: 10px;
+  text-align:right;
+}
+
+.summary-value {
+  text-align: left;
+}
+
+
+.submit-btn {
+  align-self: flex-end; /* 將按鈕置於容器的右下角 */
+  padding: 10px 20px;
+  background-color: #E2C89C;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+
+label {
+  font-size: 18px;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  margin: 0 10px;
+  height: 30px;
+}
+
+.function-button{
+  padding:0;
+  padding-left:0.25vw;
+  background-color: #E2C89C;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width:1vw;
+  height:2vw;
+}
+
+.quantity-input {
+  margin: 0;
+}
+
+/*嘗試*/
+.checkout-submit span{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 2vw;
+}
+.checkout-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-detail ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding-top: 1.5vw;
+}
+
+.checkout-detail button{
+  padding: 10px 20px;
+  width: 10vw;
+  background-color: #E2C89C;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 2vw;
+}
+.checkout-detail ul li {
+  font-size:1.6vw;
+  margin-right: 20px; /* 根據需要調整項目之間的間距 */
+  align-items: center;
+}
+
+li label{
+  margin-top: 10px;
+  top: 50%;
+  transform: translateY(-35%);
+}
+
+.checkout-detail ul li.spacing {
+  margin-right:30vw; /* 調整"全選商品"和"商品數量 3個"之間的間距 */
+}
+
+.checkout-detail ul li.red-text {
+  color: red; /* 設置文本顏色為紅色 */
+}
+
+.small-text {
+  font-size: 8px; /* 或者您想要的任何尺寸 */
+}
+
+.coupon-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 10px; /* Adjust the space between cards */
+}
+
+.coupon-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 0.666em; /* Scale down font size to 1/3 */
+}
+
+.coupon-card img {
+  width: 10%; /* Make image responsive */
+  height: auto;
+}
+
+.product-details, .product-pricing {
+  padding: 5px; /* Adjust padding */
+}
+
+.get-coupon {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8em; /* Adjust button font size */
+}
+
+.coupon-card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.coupon-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.selected {
+  border: 2px solid #007bff; /* 蓝色边框表示选中 */
+}

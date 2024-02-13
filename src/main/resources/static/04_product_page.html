@@ -10,13 +10,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/02-4_chat.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <header">
+    <header>
         <nav class="header">
             <div class="d-flex">
-                <a class="iconBorder" href="./01_home_page.html"><img class="icon" src="./images/icon.png"></a>
+                <a class="iconBorder" href="/Dealdove"><img class="icon" src="./images/icon.png"></a>
                 <div class="search-container">
                     <div class="search-bar">
                         <input type="text" class="search-input" placeholder="Search...">
@@ -47,42 +49,45 @@
                     <ul>
                         <li>
                             <svg width="1.1vw" height="1.1vw" viewBox="0 0 22 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
-                                    d="M8.94965 9.24365L1.60819 15.6852C0.797271 16.3967 0.797271 17.5503 1.60819 18.2618C2.41909 18.9733 3.73385 18.9733 4.54476 18.2618L11.8862 11.8203"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        d="M8.94965 9.24365L1.60819 15.6852C0.797271 16.3967 0.797271 17.5503 1.60819 18.2618C2.41909 18.9733 3.73385 18.9733 4.54476 18.2618L11.8862 11.8203"
+                                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 <path
-                                    d="M16.3651 12.1523L20.3917 15.6853C21.2027 16.3968 21.2027 17.5505 20.3917 18.2619C19.5809 18.9735 18.2661 18.9735 17.4552 18.2619L11.0093 12.6063"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        d="M16.3651 12.1523L20.3917 15.6853C21.2027 16.3968 21.2027 17.5505 20.3917 18.2619C19.5809 18.9735 18.2661 18.9735 17.4552 18.2619L11.0093 12.6063"
+                                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 <path
-                                    d="M5.50522 4.95963L3.30278 5.60379L1.10034 2.38304L2.56863 1.09473L6.23937 3.02718L5.50522 4.95963ZM5.50522 4.95963L8.44367 7.53788"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        d="M5.50522 4.95963L3.30278 5.60379L1.10034 2.38304L2.56863 1.09473L6.23937 3.02718L5.50522 4.95963ZM5.50522 4.95963L8.44367 7.53788"
+                                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 <path
-                                    d="M8.94955 9.2435C8.07349 7.28218 8.24477 4.70872 10.0508 3.12408C11.8568 1.53943 15.1898 1.19163 17.0252 2.15785L13.8682 4.9278L13.5748 7.76186L16.8048 7.50441L19.9617 4.73445C21.063 6.34483 20.6666 9.26929 18.8606 10.8539C17.0545 12.4385 14.1215 12.5889 11.8862 11.8201"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        d="M8.94955 9.2435C8.07349 7.28218 8.24477 4.70872 10.0508 3.12408C11.8568 1.53943 15.1898 1.19163 17.0252 2.15785L13.8682 4.9278L13.5748 7.76186L16.8048 7.50441L19.9617 4.73445C21.063 6.34483 20.6666 9.26929 18.8606 10.8539C17.0545 12.4385 14.1215 12.5889 11.8862 11.8201"
+                                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            </i><a href="./11_basic_information.html" class=" link-underline link-underline-opacity-0 text-secondary"> 賣場管理</a>
+                            </i><a href="./10_seller_home_page.html"
+                                   class=" link-underline link-underline-opacity-0 text-secondary"> 賣場管理</a>
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw   " viewBox="0 0 20 22"
-                                fill="none">
+                                 fill="none">
                                 <path d="M1 21V19.75C1 14.9175 4.91751 11 9.75 11C14.5825 11 18.5 14.9175 18.5 19.75V21"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                      stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 <path
-                                    d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
+                                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            </i><a href="./03_member.html" class="member link-underline link-underline-opacity-0 text-secondary">
-                                會員中心</a>
+                            </i><a id="member" href="/Member"
+                                   class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" viewBox="0 0 17 20"
-                                fill="none">
+                                 fill="none">
                                 <path
-                                    d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
+                                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            <a href="./02-1_login.html" class="login link-underline link-underline-opacity-0 text-secondary"> 註冊/登入</a>
+                            </i><a id="login" href="/Login"
+                                   class=" link-underline link-underline-opacity-0 text-secondary">
+                            註冊/登入</a>
                         </li>
                     </ul>
                 </div>
@@ -101,102 +106,72 @@
         </header>
         <main>
             <section class="mb-5" >
-                <div class="row product mt-5 border border-dark">
+                <div class="row product mt-5">
                     <div class="col-5 productImage">
-                        <div class="row col-12 text-center bigImage"></div>
-                        <div class="row col-12 justify-content-center smallImage">
-                            <div class="col-1"><button>&lt</button></div>
-                            <div class="col-3 border border-dark"></div>
-                            <div class="col-3 border border-dark"></div>
-                            <div class="col-3 border border-dark"></div>
-                            <div class="col-1 ps-0"><button>&gt</button></div>
+                        <div class="row col-12 text-center bigImage">
+                            <img id="mainImage" src="" alt="圖片描述">
                         </div>
+<!--                        <div class="row col-12 justify-content-center smallImage" style="margin-bottom: 1vw">-->
+<!--                            <div class="col-1"><button id="prevBtn">&lt</button></div>-->
+<!--                            <div class="col-3" >-->
+<!--                                <img src="./images/p1.jpeg" alt="圖片描述">-->
+<!--                            </div>-->
+<!--                            <div class="col-3 ">-->
+<!--                                <img src="./images/p2.jpeg" alt="圖片描述">-->
+<!--                            </div>-->
+<!--                            <div class="col-3">-->
+<!--                                <img src="./images/p3.jpeg" alt="圖片描述">-->
+<!--                            </div>-->
+<!--                            <div class="col-3">-->
+<!--                                <img src="./images/商品圖.png" alt="圖片描述">-->
+<!--                            </div>-->
+<!--                            <div class="col-3">-->
+<!--                                <img src="./images/商品圖2.jpg" alt="圖片描述">-->
+<!--                            </div>-->
+<!--                            <div class="col-1 ps-0"><button id="nextBtn">&gt</button></div>-->
+<!--                        </div>-->
                     </div>
+
                     <div class="col-7 productDescribe">
-                        <p class="productName">商品名稱</p>
+                        <p id="productidmodel" style="display: none"></p>
+                        <p class="productName" id="productName">商品名稱</p>
                         <ul class="col-12 justify-content-start evaluate ">
-                            <li class="col-1">3.1</li>
-                            <li class="col-1">3.1</li>
-                            <li class="col-3">69評價</li>
+<!--                            <li class="col-1">3.1</li>-->
+<!--                            <li class="col-1"></li>-->
+                            <li class="col-3">84評價</li>
                             <li class="col-3">810售出</li>
-                            <li class="col-3"><a href="">加入收藏</a></li>
+<!--                            <li class="col-3"><a href="">加入收藏</a></li>-->
                         </ul>
-                        <div class="col-12 mt-3 specification">
-                            <p class="col-2">規格</p>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                            <div class="div"></div>
-                        </div>
+                        <div id="specificContainer"></div>
+
                         <div class="col-12 quantity">
                             <p>數量</p>
-                            <button>+</button>
-                            <span></span>
-                            <button style="margin-right: 2vw;">-</button>
-                            <p>庫存數</p>
+                            <button id="increaseBtn">+</button>
+                            <input id="quantityValue" style="padding:0.5vw 1.4vw; width:4vw;" value="1" readonly/>
+                            <button id="decreaseBtn" style="margin-right: 2vw;">-</button>
+                            <p>庫存 <p id="quantity"></p></p>
+                            <input name="firstModelid" style="display: none;"/>
+                            <input name="secondModelid" style="display: none;"/>
 
                         </div>
                         <div class="col-12 price">
                             <p>價格</p>
-                            <span></span>
+                            <span id="price"></span>
                         </div>
                         <div class="col-12 d-flex text-center">
                             <button class="buy">直接下單</button>
-                            <button class="add">加入購物車</button>
+                            <button class="add" id="addCart">加入購物車</button>
                         </div>
                     </div>
                 </div>
             </section>
             <section>
+                <div id="userid"></div>
                 <div class="row seller">
                     <div class="col-5">
                         <div class="col-7 d-flex">
-                            <div class="col-5 profileImage"><img src="./images/使用者頭像.png" alt=""></div>
-                            <p class="sellerName">賣家名稱<br><span>粉絲數:<span>155555</span></span></p>
+                            <div class="col-5 profileImage"><img src="./images/userImg4.png" alt=""></div>
+                            <p class="sellerName">vervevogue<br><span>粉絲數:<span>1532</span></span></p>
                         </div>
                         <div class="col-7 d-flex collect">
                             <a href="">加入收藏</a>
@@ -205,20 +180,21 @@
                     </div>
                     <div class="col-7 d-flex text-center sellerDecribe">
                         <div class="col-3">
-                            <p>300</p>
+                            <p>154</p>
                             <p>商品總數</p>
                         </div>
                         <div class="col-3">
-                            <p>200</p>
+                            <p>56</p>
                             <p>賣場評價</p>
                         </div>
                         <div class="col-3">
-                            <p>300</p>
-                            <p>不成功率</p>
+                            <p>98%</p>
+                            <p>聊聊回應率</p>
+
                         </div>
                         <div class="col-3">
-                            <p>100</p>
-                            <p>聊聊回應率</p>
+                            <p>1.2%</p>
+                            <p>不成功率</p>
                         </div>
                     </div>
                 </div>
@@ -226,8 +202,8 @@
             <section>
                 <div class="row p-4 productDescribe2">
                     <p>商品描述</p>
-                    <div class="div">
-
+                    <div class="div descriptionBorder">
+                        <div id="descriptionContent"></div>
                     </div>
                 </div>
             </section>
@@ -241,26 +217,26 @@
                         <div class="col-1">3星<span></span></div>
                         <div class="col-1">2星<span></span></div>
                         <div class="col-1">1星<span></span></div>
-                        <span class="col-5  text-center">5.0/5</span>
+<!--                        <span class="col-5  text-center">5.0/5</span>-->
                     </div>
                     <div class="row userComment">
                         <div class="user">
-                            <span class="userName">使用者名稱:<img class="userIcon" src="./images/使用者頭像.png" ><span><b>@buydeep</b></span></span>
+                            <span class="userName">使用者名稱:<img class="userIcon" src="./images/userImg2.jpeg" ><span><b>@buydeep</b></span></span>
                             <span class="commentContainer">評價內容</span>
                         </div>
                         <div class="row productComment">
-                            <div class="col-2 div  productCommentImage"></div>
+                            <div class="col-2 div  productCommentImage"><img src="" ></div>
                             <div class="col-2 div "></div>
-                            <div class="col-7 div "></div>
+                            <div class="col-7 div " style="margin-top:1.5vw">賣家寄貨快速包裝仔細，摸起來質感很不錯，尺寸也相當適合，價錢也是相當超值，準備洗過以後來穿了，以後有機會再來買</div>
                         </div>
                         <div class="user">
-                            <span class="userName">使用者名稱:<img class="userIcon" src="./images/使用者頭像.png" ><span><b>@buydeep</b></span></span>
+                            <span class="userName">使用者名稱:<img class="userIcon" src="./images/userImg1.jpeg" ><span><b>@buydeep</b></span></span>
                             <span class="commentContainer">評價內容</span>
                         </div>
                         <div class="row productComment">
-                            <div class="col-2 div  productCommentImage"></div>
+                            <div class="col-2 div  productCommentImage"><img src="" ></div>
                             <div class="col-2 div "></div>
-                            <div class="col-7 div "></div>
+                            <div class="col-7 div " style="margin-top:1.5vw">賣家出貨速度很快，商品包裝妥當沒有任何破損，材質是純棉的穿起來超舒服，訂價也合適整體來說CP值很高，已經再這店家買過好幾次了下次如果還有需要會再回購，謝謝。</div>
                         </div>
                         <div class="commentPage d-flex justify-content-end ">
                             <button>&lt</button>
@@ -273,32 +249,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="row similar">
-                    <div class="title">類似商品</div>
-                    <div class="row similarProduct">
-                        <div class="col-3 border border-dark"></div>
-                        <div class="col-3"></div>
-                        <div class="col-3"></div>
-                        <div class="col-3"></div>
-                    </div>
-                    <div class="row similarProduct">
-                        <div class="col-3 border border-dark"></div>
-                        <div class="col-3"></div>
-                        <div class="col-3"></div>
-                        <div class="col-3"></div>
-                    </div>
-                    <div class="similarPage d-flex justify-content-center ">
-                        <button>&lt</button>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>&gt</button>
-                    </div>
-                </div>
+<!--                <div class="row similar">-->
+<!--                    <div class="title">類似商品</div>-->
+<!--                    <div class="row similarProduct">-->
+<!--                        <div class="col-3 border border-dark"></div>-->
+<!--                        <div class="col-3"></div>-->
+<!--                        <div class="col-3"></div>-->
+<!--                        <div class="col-3"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row similarProduct">-->
+<!--                        <div class="col-3 border border-dark"></div>-->
+<!--                        <div class="col-3"></div>-->
+<!--                        <div class="col-3"></div>-->
+<!--                        <div class="col-3"></div>-->
+<!--                    </div>-->
+<!--                    <div class="similarPage d-flex justify-content-center ">-->
+<!--                        <button>&lt</button>-->
+<!--                        <button>1</button>-->
+<!--                        <button>2</button>-->
+<!--                        <button>3</button>-->
+<!--                        <button>4</button>-->
+<!--                        <button>5</button>-->
+<!--                        <button>&gt</button>-->
+<!--                    </div>-->
+<!--                </div>-->
             </section>
         </main>
+    <br><br><br>
         <footer>
             <div class="footer">
                 <div>
@@ -338,6 +315,505 @@
                 <img class="qrcode" src="./images/qrCode.png">
             </div>
         </footer>
+
+    <!-- //聊天室部分// -->
+    <div class="user-form hidden" id="username-page">
+        <h2>進入聊聊</h2>
+        <form id="usernameForm">
+            <label for="nickname">Nickname:</label>
+            <input type="text" id="nickname" name="nickname" required>
+
+            <label for="fullname">Real Name:</label>
+            <input type="text" id="fullname" name="realname" required>
+
+            <button type="submit">進入聊天室</button>
+        </form>
+    </div>
+
+    <div class="chat-container hidden" id="chat-page">
+
+        <div id="header_talk">
+            <div class="talk-title">聊聊</div>
+            <button id="toggle-button" onclick="toggleChat()">Ｘ</button>
+        </div>
+
+        <div id="chat-content">
+
+            <div class="users-list">
+
+                <div class="users-list-container">
+                    <ul id="connectedUsers">
+                    </ul>
+                </div>
+                <br><br><br>
+                <div>
+                    <p id="connected-user-fullname"></p>
+                </div>
+            </div>
+
+            <div class="chat-area">
+                <div id="chat-header" class="chat-header-container">
+                    <span id="chatusername"></span>
+                </div>
+                <div class="chat-area" id="chat-messages">
+                </div>
+
+                <form id="messageForm" name="messageForm">
+                    <!-- 輸入訊息 -->
+                    <div class="message-input">
+                        <input autocomplete="off" type="text" id="message" placeholder="輸入訊息...">
+                    </div>
+
+                </form>
+                <div id="chat-footer">
+                    <!-- 表情 -->
+
+                    <button id="sticker-button" onclick="toggleStickerPanel()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                             class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                    d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5" />
+                        </svg>
+                    </button>
+
+                    <div id="sticker-panel" style="display: none;">
+                        <!-- 表情符號選項 -->
+                        <span onclick="selectSticker('😁')">&#x1F601;</span>
+                        <span onclick="selectSticker('😂')">&#x1F602;</span>
+                        <span onclick="selectSticker('😃')">&#x1F603;</span>
+                        <span onclick="selectSticker('😄')">&#x1F604;</span>
+                        <span onclick="selectSticker('😅')">&#x1F605;</span>
+                        <span onclick="selectSticker('😆')">&#x1F606;</span>
+                        <span onclick="selectSticker('😉')">&#x1F609;</span>
+                        <span onclick="selectSticker('😊')">&#x1F60A;</span>
+                        <span onclick="selectSticker('😋')">&#x1F60B;</span>
+                        <span onclick="selectSticker('😌')">&#x1F60C;</span>
+                        <span onclick="selectSticker('😍')">&#x1F60D;</span>
+                        <span onclick="selectSticker('😏')">&#x1F60F;</span>
+                        <span onclick="selectSticker('😒')">&#x1F612;</span>
+                        <span onclick="selectSticker('😓')">&#x1F613;</span>
+                        <span onclick="selectSticker('😔')">&#x1F614;</span>
+                        <span onclick="selectSticker('😖')">&#x1F616;</span>
+                        <span onclick="selectSticker('😘')">&#x1F618;</span>
+                        <span onclick="selectSticker('😚')">&#x1F61A;</span>
+                        <span onclick="selectSticker('😜')">&#x1F61C;</span>
+                        <span onclick="selectSticker('😝')">&#x1F61D;</span>
+                        <span onclick="selectSticker('😞')">&#x1F61E;</span>
+                        <span onclick="selectSticker('😠')">&#x1F620;</span>
+                        <span onclick="selectSticker('😡')">&#x1F621;</span>
+                        <span onclick="selectSticker('😢')">&#x1F622;</span>
+                        <span onclick="selectSticker('😣')">&#x1F623;</span>
+                        <span onclick="selectSticker('😤')">&#x1F624;</span>
+                        <span onclick="selectSticker('😥')">&#x1F625;</span>
+                        <span onclick="selectSticker('😨')">&#x1F628;</span>
+                        <span onclick="selectSticker('😩')">&#x1F629;</span>
+                        <span onclick="selectSticker('😪')">&#x1F62A;</span>
+                        <span onclick="selectSticker('😫')">&#x1F62B;</span>
+                        <span onclick="selectSticker('😭')">&#x1F62D;</span>
+                        <span onclick="selectSticker('😰')">&#x1F630;</span>
+                        <span onclick="selectSticker('😱')">&#x1F631;</span>
+                        <span onclick="selectSticker('😲')">&#x1F632;</span>
+                        <span onclick="selectSticker('😳')">&#x1F633;</span>
+                        <span onclick="selectSticker('😵')">&#x1F635;</span>
+                        <span onclick="selectSticker('😷')">&#x1F637;</span>
+                        <span onclick="selectSticker('😸')">&#x1F638;</span>
+                        <span onclick="selectSticker('😹')">&#x1F639;</span>
+                        <span onclick="selectSticker('😺')">&#x1F63A;</span>
+                        <span onclick="selectSticker('😻')">&#x1F63B;</span>
+                        <span onclick="selectSticker('😼')">&#x1F63C;</span>
+                        <span onclick="selectSticker('😽')">&#x1F63D;</span>
+                        <span onclick="selectSticker('😾')">&#x1F63E;</span>
+                        <span onclick="selectSticker('😿')">&#x1F63F;</span>
+                        <span onclick="selectSticker('🙀')">&#x1F640;</span>
+                        <span onclick="selectSticker('🙅')">&#x1F645;</span>
+                        <span onclick="selectSticker('🙆')">&#x1F646;</span>
+                        <span onclick="selectSticker('🙇')">&#x1F647;</span>
+                        <span onclick="selectSticker('🙈')">&#x1F648;</span>
+                        <span onclick="selectSticker('🙉')">&#x1F649;</span>
+                        <span onclick="selectSticker('🙊')">&#x1F64A;</span>
+                        <span onclick="selectSticker('🙋')">&#x1F64B;</span>
+                        <span onclick="selectSticker('🙌')">&#x1F64C;</span>
+                        <span onclick="selectSticker('🙍')">&#x1F64D;</span>
+                        <span onclick="selectSticker('🙎')">&#x1F64E;</span>
+                        <span onclick="selectSticker('🙏')">&#x1F64F;</span>
+
+                    </div>
+                    <!-- 傳圖 -->
+                    <input type="file" id="image-input" style="display: none;" accept="image/*"
+                           onchange="prepareImageUpload()">
+                    <button id="upload-button" onclick="document.getElementById('image-input').click();">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3"
+                             class="bi bi-image-fill" viewBox="0 0 16 16">
+                            <path
+                                    d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
+                        </svg>
+                    </button>
+                    <!-- 傳送 -->
+                    <button id="send-button" onclick="sendMessage()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#A2CAD3" class="bi bi-send"
+                             viewBox="0 0 16 16">
+                            <path
+                                    d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="chat-icon" onclick="toggleChat()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#A2CAD3" class="bi bi-chat-square-dots"
+             viewBox="0 0 16 16">
+            <path
+                    d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+            <path
+                    d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+        </svg>
+    </button>
+    <script src="./js/search.js"></script>
+    <script>
+        // 聊天室縮放
+        function toggleChat() {
+            var chatpage = document.getElementById("chat-page");
+            var chatIcon = document.getElementById("chat-icon");
+
+            // 檢查聊天視窗的顯示狀態並切換
+            if (chatpage.style.display === "none" || chatpage.style.display === "") {
+                chatpage.style.display = "flex"; // 顯示聊天視窗
+                chatIcon.style.display = "none"; // 隱藏 chat-icon 按鈕
+            } else {
+                chatpage.style.display = "none"; // 隱藏聊天視窗
+                chatIcon.style.display = "block"; // 顯示 chat-icon 按鈕
+            }
+        }
+
+        // 確保在頁面加載時設置正確的初始狀態
+        document.addEventListener("DOMContentLoaded", function () {
+            // 預設隱藏聊天視窗，顯示 chat-icon
+            document.getElementById("chat-page").style.display = "none";
+            document.getElementById("chat-icon").style.display = "block";
+        });
+
+        // 顯示或隱藏貼圖面板
+        function toggleStickerPanel() {
+            var panel = document.getElementById("sticker-panel");
+            panel.style.display = panel.style.display === "none" ? "block" : "none";
+        }
+
+        // 將選擇的貼圖添加到消息輸入框中
+        function selectSticker(sticker) {
+            var messageInput = document.getElementById('message');
+            var stickerPanel = document.getElementById('sticker-panel');
+
+            // 將表情符號添加到輸入框的現有內容中
+            messageInput.value += sticker;
+
+            // 將焦點設定回輸入框
+            messageInput.focus();
+
+            // 隱藏表情選擇視窗
+            stickerPanel.style.display = 'none';
+        }
+
+
+        // 選擇圖片後立即處理上傳
+        function prepareImageUpload() {
+            var fileInput = document.getElementById('image-input');
+
+            if (fileInput.files && fileInput.files[0]) {
+                uploadImageToChat(); // 直接調用上傳圖片函數
+            }
+        }
+
+        // 上傳圖片到聊天歷史
+        function uploadImageToChat() {
+            var fileInput = document.getElementById('image-input');
+            var chatHistory = document.getElementById('chat-area');
+
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imgDiv = document.createElement('div');
+                    imgDiv.classList.add('message', 'self');
+
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Uploaded Image';
+
+                    imgDiv.appendChild(img);
+                    chatHistory.appendChild(imgDiv);
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="./js/chat.js" type="module"></script>
+    <!-- //聊天室部分// -->
+
+    <script src="./js/isLogin.js" type="module"></script>
+    <script>
+        let firName='';
+        let secName='';
+
+        //新增取得URL參數
+        let urlParams = new URLSearchParams(window.location.search);
+        let param = urlParams.get('productID');
+        console.log(param+"param");
+        document.getElementById('productidmodel').innerText=param;
+        fetch(`api/products/${param}/images`)
+            .then(response => response.json())
+            .then(images => {
+                // 在這裡更新圖片
+                if (images && images.length > 0) {
+                    const mainImage = document.getElementById('mainImage');
+                    const commentImages = document.getElementsByClassName('productCommentImage');
+
+                    if (mainImage) {
+                        mainImage.src = images[0];
+                    }
+
+                    // 更新所有評論圖片
+                    for (let i = 0; i < commentImages.length; i++) {
+                        commentImages[i].getElementsByTagName('img')[0].src = images[0];
+                    }
+                } else {
+                    // 如果沒有圖片，設定預設圖片
+                    const defaultImage = 'https://down-tw.img.susercontent.com/file/tw-11134201-7r98r-lnc0ffucu9lpf9';
+
+                    if (mainImage) {
+                        mainImage.src = defaultImage;
+                    }
+
+                    // 設定所有評論圖片的預設圖片
+                    for (let i = 0; i < commentImages.length; i++) {
+                        commentImages[i].getElementsByTagName('img')[0].src = defaultImage;
+                    }
+                }
+            })
+
+        .catch(error => console.error('Error:', error));
+                fetch(`api/products/getProduct/${param}`)
+                    .then(response => response.json())
+                    .then(product => product.forEach((product)=>{
+                        document.getElementById('productName').innerText =product.productName;
+                        document.getElementById('descriptionContent').innerText = product.productDes;
+
+                        // 清空原有的內容
+                        document.getElementById('specificContainer').innerHTML = '';
+                        // 使用 Fetch API 來呼叫後端 API 取得產品規格
+                        fetch(`api/products/${param}/specifications`)
+                            .then(response => response.json())
+                            .then(specifications => {
+                                // 將規格資料動態生成到 HTML 中
+                                Object.entries(specifications).forEach(([specType, specValues]) => {
+
+                                    const specTypeContainer = document.createElement('div');
+                                    specTypeContainer.classList.add('col-12', 'mt-3', 'specification');
+                                    specTypeContainer.id = `container${specType}`;
+                                    // 產生規格名稱的區塊
+                                    const specTypeLabel = document.createElement('p');
+                                    specTypeLabel.classList.add('col-2');
+                                    if('name' in specValues){
+                                        specTypeLabel.textContent = specValues['name'];
+                                    }
+                                    specTypeContainer.appendChild(specTypeLabel);
+
+                                    // 產生規格內容的區塊
+                                    specValues.dataMapList.forEach(data => {
+                                        const specValuesContainer = document.createElement('div');
+                                        specValuesContainer.classList.add('div');
+                                        specValuesContainer.classList.add(`${specType}modelinfos`); //black
+                                        specValuesContainer.textContent = data.name;
+
+                                        const specValuesContainerName = document.createElement('div');
+                                        specValuesContainerName.classList.add(`modelName`);
+                                        specValuesContainerName.textContent = data.name;
+                                        specValuesContainerName.style.display = 'none';
+
+                                        const specValuesContainer2 = document.createElement('div');
+                                        specValuesContainer2.classList.add('modelid');
+                                        specValuesContainer2.textContent = data.id;
+                                        specValuesContainer2.style.display = 'none';
+
+                                        specTypeContainer.appendChild(specValuesContainer);
+                                        specValuesContainer.appendChild(specValuesContainer2);
+                                        specValuesContainer.appendChild(specValuesContainerName);
+
+                                        // 註冊點擊事件
+                                        specValuesContainer.addEventListener('click', function() {
+                                            const modelId = specValuesContainer.querySelector('.modelid').innerText;
+                                            const modelName = specValuesContainer.querySelector('.modelName').innerText;
+
+
+                                            if(`${specType}` === "map1"){
+                                                const firstModelidInput = document.getElementsByName('firstModelid')[0];
+                                                console.log(firstModelidInput+"firstModelidInput");
+                                                const modelId1 = modelId; // 替換為實際的值
+                                                console.log(modelId1+"modelId1");
+                                                // 設置元素的值
+                                                firstModelidInput.value = modelId1;
+                                                // 創建 input 事件
+                                                const inputEvent = new Event('input', {
+                                                    bubbles: true,
+                                                    cancelable: true,
+                                                });
+                                                // 分派 input 事件
+                                                firstModelidInput.dispatchEvent(inputEvent);
+                                                // selectedModelFir.push(modelName);
+                                                firName=modelName;
+                                                console.log(firName);
+                                            }else{
+                                                const secondModelidInput = document.getElementsByName('secondModelid')[0];
+                                                const modelId2 = modelId;
+                                                secondModelidInput.value = modelId2;
+                                                const inputEvent = new Event('input', {
+                                                    bubbles: true,
+                                                    cancelable: true,
+                                                });
+                                                secondModelidInput.dispatchEvent(inputEvent);
+                                                // selectedModelSec.push(modelName);
+                                                secName=modelName;
+                                                console.log(secName);
+                                            }
+                                        });
+                                    });
+
+                                    // 將整個規格區塊加入到主容器中
+                                    document.getElementById('specificContainer').appendChild(specTypeContainer);
+
+                                    // 新增換行元素
+                                    const lineBreak = document.createElement('br');
+                                    document.getElementById('specificContainer').appendChild(lineBreak);
+                                });
+                            })
+                            .catch(error => console.log(error));
+                    })).catch(error => console.log(error));
+
+
+        const firstModelidInput = document.getElementsByName('firstModelid')[0];
+        const secondModelidInput = document.getElementsByName('secondModelid')[0];
+
+            firstModelidInput.addEventListener("input", handleInput);
+            secondModelidInput.addEventListener("input", handleInput);
+
+            function handleInput() {
+                const firstModelid = firstModelidInput.value;
+                const secondModelid = secondModelidInput.value;
+                if(firstModelid!= '' && secondModelid != ''){   // 取到兩值才顯示庫存、價格
+            fetch(`api/products/${param}/${firstModelid}/${secondModelid}/modelinfo`)
+                .then(response => response.json())
+                .then(modelinfo => {
+                    document.getElementsByClassName('modelinfos');
+
+                    document.getElementById('quantity').innerText = modelinfo.quantity;
+                    document.getElementById('price').innerText = modelinfo.price;
+                })
+                .catch(error => console.log(error));
+                }
+        };
+        document.addEventListener('DOMContentLoaded', function() {
+            // 取得相關元素
+            const quantityInput = document.getElementById('quantityValue');
+            const increaseBtn = document.getElementById('increaseBtn');
+            const decreaseBtn = document.getElementById('decreaseBtn');
+            const quantitySpan = document.getElementById('quantity');
+
+            // 初始化數量
+            let quantity = 1;
+
+            // 假設庫存為 10
+            const stockQuantity = 50;
+            //quantitySpan.textContent = stockQuantity;
+
+            // 增加按鈕點擊事件
+            increaseBtn.addEventListener('click', function() {
+                if (quantity < stockQuantity) {
+                    quantity++;
+                    quantityInput.value = quantity;
+                }
+            });
+
+            // 減少按鈕點擊事件
+            decreaseBtn.addEventListener('click', function() {
+                if (quantity > 1) {
+                    quantity--;
+                    quantityInput.value = quantity;
+                }
+            });
+        });
+
+    </script>
+<!--    圖片-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImage = document.getElementById('mainImage');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const smallImages = document.querySelectorAll('.smallImage .col-3');
+            const totalImages = smallImages.length;
+            const imagesPerSet = 3;
+            let currentImageIndex = 0;
+
+            // 初始化顯示前三個小圖
+            showSmallImages(0, imagesPerSet - 1);
+
+            prevBtn.addEventListener('click', function() {
+                // 如果已經顯示到第一組小圖，則鎖定在前三個區塊
+                console.log(currentImageIndex+"click");
+                if (currentImageIndex <= 2) {
+                    currentImageIndex = 0;
+                    showSmallImages(0, imagesPerSet - 1);
+                }else{
+                    // 顯示上一個三個小圖
+                    showSmallImages(currentImageIndex - imagesPerSet, currentImageIndex - 1);
+                }
+            });
+            nextBtn.addEventListener('click', function() {
+                // 顯示下一個三個console.log(currentImageIndex+"000currentImageIndex");小圖
+                console.log(currentImageIndex+"11currentImageIndex");
+                console.log(totalImages+"11hii");
+                console.log(imagesPerSet+"11imagesPerSet");
+                showSmallImages(currentImageIndex, currentImageIndex + imagesPerSet - 1);
+
+                console.log(currentImageIndex+"currentImageIndex");
+                console.log(totalImages+"hii");
+                console.log(imagesPerSet+"imagesPerSet");
+                // 如果已經顯示到最後一組小圖，則鎖定在倒數三個區塊
+                if (currentImageIndex >= totalImages - imagesPerSet) {
+                    currentImageIndex = totalImages - imagesPerSet;
+                    showSmallImages(currentImageIndex, totalImages - 1);
+                }
+            });
+            function showSmallImages(startIndex, endIndex) {
+                // 隱藏所有小圖
+                hideAllSmallImages();
+
+                // 顯示指定範圍的小圖
+                for (let i = startIndex; i <= endIndex; i++) {
+                    if (smallImages[i]) {
+                        smallImages[i].style.display = 'block';
+                    }
+                }
+
+                // 更新目前顯示的小圖索引
+                currentImageIndex = endIndex;
+            }
+
+            function hideAllSmallImages() {
+                smallImages.forEach(image => {
+                    image.style.display = 'none';
+                });
+            }
+        });
+
+    </script>
+    <script src="./js/productpage.js" type="module"></script>
+    <script src="./js/search.js"></script>
 </body>
 
 </html>

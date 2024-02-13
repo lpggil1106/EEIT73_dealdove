@@ -45,7 +45,13 @@
     font-size: 24px;
     text-align: center;
 }
-
+#pick-shop{
+    margin-left: 1vw;
+    align-self: center;
+    color: black;
+    text-decoration: none;
+    background-color: #F9F3E7;
+}
 .content-area {
     flex: 2;
     position: absolute;
@@ -58,6 +64,16 @@
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
+}
+
+.gender{
+    display: flex;
+    align-items: center;
+}
+.gender-btn{
+    margin-right: 0.5vw;
+    margin-left: 1vw;
+    background: #F9F3E7;
 }
 
 .content-section {
@@ -75,11 +91,11 @@
     padding: 0px 20px 20px 20px;
 }
 
-.content-section-couponst {
+.content-section-coupons {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 0px 20px 20px 20px;
+    padding: 0 20px 20px 20px;
 }
 
 
@@ -111,6 +127,13 @@
     background-color: #F9F3E7;
     border: none;
     border-radius: 5px;
+}
+
+#update{
+    width: 3vw;
+    align-self: center;
+    background:  #F9F3E7;
+    border: none;
 }
 
 .divider {
@@ -279,7 +302,7 @@
 
 .container-coupons {
     display: flex;
-    height: 800px;
+    height: auto;
     width: 800px;
     flex-direction: column;
 
@@ -290,16 +313,16 @@
 }
 
 .top-section img {
-    width: 100%;
-    height: auto;
+    width: 70%;
+    height: 15vw;
     padding: 0px 0px 30px 0px;
 }
 
 .bottom-section {
     width: 800px;
-    height: 370px;
-    border: 20px solid #F9F3E7;
-    border-width: 0 20px 20px;
+    height: auto;
+    border:solid #F9F3E7;
+    border-width:0 20px 20px 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -307,23 +330,34 @@
     border-radius: 0 0 15px 15px;
 }
 
+#page{
+    margin-top: 1vw;
+    align-self: center;
+}
+
+#page button{
+    border: none;
+    background: #F9F3E7;
+}
 
 .coupon-block {
-    flex: 1 1 40%;
+    flex: 40%;
+    width: 360px;
+    font-size: 15px;
     display: flex;
-    align-items: center;
-    margin: 10px;
+    align-self: center;
+    margin:1px 10px 1px 1px
 }
 
 .coupon-block img {
-
-    width: 150px;
-    height: 150px;
-    width: 50%;
+    width: 140px;
+    height: 110px;
+    /*width: 50%;*/
 }
 
 .coupon-block p {
     width: 50%;
+    height: 110px;
 }
 
 .selected {

@@ -1,14 +1,21 @@
-#chat-container {
-    width: 42vw;
-    height: 50.5vh;
+.hidden {
+    display: none;
+}
+
+#chat-page {
+    width: 43vw;
+    height: 50.7vh;
     position: fixed;
     bottom: 10px;
     right: 10px;
     flex-direction: column;
-    /* 垂直布局 */
     z-index: 1000;
     border: 3px solid #A2CAD3;
     background-color: #A2CAD3;
+}
+
+#chatusername {
+    color: #666666;
 }
 
 #header_talk {
@@ -17,104 +24,81 @@
     background-color: #A2CAD3;
     display: flex;
     justify-content: space-between;
-    /* 元素分布：一个靠左，一个靠右 */
     align-items: center;
     padding: 10px;
     width: 100%;
-    /* 宽度充满父容器 */
 }
 
 #chat-content {
+    height: 50vh;
     display: flex;
     flex-direction: row;
-    /* 水平布局 */
     flex-grow: 1;
-    /* 允许扩展以占据剩余空间 */
 }
 
-#contact-list {
-    width: 12vw;
+.users-list-container {
     height: 45vh;
-    overflow-y: auto;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-right: 2px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* 在这里居中内部元素 */
-}
-
-#chatbox {
-    width: 30vw;
-    height: 45vh;
+    /*overflow-y: auto;*/
     background-color: white;
     display: flex;
     flex-direction: column;
-}
-
-.contact-item {
-    width: 100%;
-    /* 根据需要调整宽度 */
-    cursor: pointer;
-    display: flex;
     align-items: center;
-    padding: 5px;
-    border-top: 1px solid #A2CAD3;
-    /* 为每个项添加顶部边框 */
-    border-bottom: 1px solid #A2CAD3;
-    /* 底部边框保持原样 */
+    overflow-y: scroll;
+    justify-content: space-between;
+    border-right: 3px solid #A2CAD3;
 }
 
-.contact-item:first-child {
-    border-top: none;
-    /* 移除第一个项的顶部边框 */
+.cart_container {
+    width: 100px;
+    height: 100px;
+    margin-left: 3vw;
+    margin-top: 2vw;
+
 }
 
-.contact-item img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    margin-right: 10px;
+.cart_container svg {
+    transform: translateY(1.3vw);
+
+    /* z-index: 100; */
 }
 
-.contact-info {
+.users-list h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.users-list ul {
+    width: 11.5vw;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-area {
+    width: 31.5vw;
+    height: 45vh;
+    background-color: white;
     display: flex;
     flex-direction: column;
-}
-
-.contact-name {
-    font-weight: bold;
-}
-
-.contact-message {
-    font-size: 0.8em;
-    color: #666;
-}
-
-.contact-time {
-    font-size: 0.7em;
-    color: #999;
 }
 
 #chat-header {
+    height: 5vh;
     padding: 5px;
     background-color: #F9F3E7;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #A2CAD3;
+    border-bottom: 3px solid #A2CAD3;
 }
 
-#chat-history {
+#chat-messages {
     display: flex;
     flex-direction: column;
-    width: 30vw;
+    width: 30.5vw;
     height: 30vh;
     overflow-y: auto;
-    /* 允許滾動 */
     max-height: 300px;
-    /* 可調整的最大高度 */
 }
 
 .message-content {
@@ -123,72 +107,50 @@
     min-height: 1vh;
     padding: 5px;
     font-size: 1em;
-    display: inline-block;
+    /*display: inline-block;*/
 }
 
 .message.other {
     margin-top: 5px;
     margin-left: 15px;
     align-self: flex-start;
-    /* 對方訊息靠左對齊 */
     background-color: #f1f0f0;
-    /* 背景顏色 */
 }
 
 .message.self {
     margin-top: 5px;
     margin-right: 15px;
     align-self: flex-end;
-    /* 自己的訊息靠右對齊 */
     background-color: #a0e1eb;
-    /* 背景顏色 */
 }
 
-.message {
+.message picture {
     position: relative;
     max-width: 80%;
     margin-bottom: 5px;
     border-radius: 5px;
     word-wrap: break-word;
-    padding-bottom: 12px;
+}
+
+.message {
+    position: relative;
+    max-width: 80%;
+    margin: 5px;
+    border-radius: 5px;
+    word-wrap: break-word;
+    /*padding-bottom: 12px;*/
 }
 
 .timestamp {
     position: absolute;
     bottom: 5px;
-    /* 固定在底部 */
-    right: 0px;
-    /* 固定在右側 */
     font-size: 0.7em;
-    /* 適當的字體大小 */
     color: #666666;
-    /* 字體顏色 */
     white-space: nowrap;
-    /* 防止文字換行 */
-}
-
-#send-button {
-    color: #A2CAD3;
-    background: none;
-    /* 移除按鈕背景 */
-    border: none;
-    /* 移除邊框 */
-    cursor: pointer;
-    /* 鼠標懸停時顯示指針形狀 */
-}
-
-#send-button img {
-    width: 24px;
-    /* 設置圖標大小，可根據需要調整 */
-    height: auto;
-}
-
-#username {
-    font-weight: bold;
 }
 
 #chat-icon {
-    display: block;
+    /*display: block;*/
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -196,18 +158,14 @@
     color: white;
     border: none;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 50px;
+    font-size: 40px;
     cursor: pointer;
     z-index: 1000;
 }
 
 #chat-icon img {
     width: 50px;
-    /* 設置圖標的寬度為 50px */
     height: 50px;
-    /* 設置圖標的高度為 50px */
 }
 
 #toggle-button {
@@ -220,53 +178,176 @@
     width: 30px;
     height: 30px;
     left: 30px;
-    /* 根據第一個按鈕的寬度和期望的間距調整 */
 }
 
 
-#chat-footer {
+#messageForm {
     height: 10vh;
     width: 100%;
     position: relative;
     display: flex;
-    align-items: flex-end; /* 對齊至底部 */
-    padding-top: 5px; /* 為 message-input 提供頂部空間 */
-    padding-bottom: 35px;
     border-top: 2px solid #A2CAD3;
     justify-content: space-between;
 }
 
+#message,
+.message-input {
+    height: 4vh;
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.message-input::placeholder {
+    text-align: left;
+    vertical-align: top;
+}
+
+.user-item {
+    width: max-content;
+    cursor: pointer;
+    /*display: flex;*/
+    padding: 5px;
+}
+
+.user-item.active {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.user-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-item span {
+    /*font-weight: bold;*/
+}
+
+.separator {
+    height: 0.3vh;
+    /*margin: 5px;*/
+    background-color: #A2CAD3;
+}
+
+.message p {
+    margin-bottom: 5px;
+    padding: 0 5px;
+    border-radius: 15px;
+    word-wrap: break-word;
+}
+
+.message img {
+    width: 10rem;
+    height: 10rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.user-item span.nbr-msg {
+    margin-left: 10px;
+    background-color: #f8fa6f;
+    color: white;
+    padding: 5px;
+    width: 10px;
+    border-radius: 50%;
+    height: 10px;
+}
+
+.sender {
+    background-color: #a0e1eb;
+    color: black;
+    align-self: flex-end;
+}
+
+.receiver {
+    background-color: #ecf0f1;
+    color: #333;
+    align-self: flex-start;
+}
+
+.user-form {
+    max-width: 400px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.user-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.user-form input {
+    width: 100%;
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.user-form button {
+    padding: 12px;
+    border: none;
+    background-color: #a0e1eb;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
 
 
+/* ////// */
+#chat-footer {
+    height: 1vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-top: 5px;
+    padding-bottom: 35px;
+    justify-content: space-between;
+}
 
-#sticker-button, #upload-button {
+#send-button {
     position: absolute;
-    bottom: 5px; /* 距離底部的距離 */
+    right: 5px;
+    bottom: 5px;
     height: 30px;
+    border: none;
+    background: none;
+}
+
+#upload-button {
+    left: 35px;
+    position: absolute;
+    bottom: 5px;
+    height: 30px;
+    width: 30px;
     border: none;
     background: none;
 }
 
 #sticker-button {
-    left: 5px; /* 距離左邊的距離 */
-}
-
-#upload-button {
-    left: 35px; /* 距離左邊的距離 */
-}
-
-#send-button {
     position: absolute;
-    right: 5px; /* 距離右邊的距離 */
-    bottom: 5px; /* 距離底部的距離 */
+    bottom: 5px;
     height: 30px;
+    width: 30px;
     border: none;
     background: none;
-}
-
-#sticker-button img, #upload-button img, #send-button img {
-    width: 20px;
-    height: 20px;
 }
 
 #sticker-panel {
@@ -279,44 +360,8 @@
 }
 
 #sticker-panel span {
-    flex: 0 0 10%; /* 每個貼圖佔據容器寬度的10% */
-    text-align: center; /* 中心對齊貼圖 */
-    margin-bottom: 5px; /* 貼圖之間的間距 */
+    flex: 0 0 10%;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
-#message-input {
-    height: 6vh; /* 初始高度，可根據需要調整 */
-    width: calc(100% - 50px); /* 考慮右邊按鈕的寬度 */
-    border: none;
-    outline: none;
-    resize: none; /* 禁止手動調整大小 */
-    overflow: auto; /* 超出時顯示滾動條 */
-    padding: 5px; /* 提供內部間隙 */
-    box-sizing: border-box; /* 確保寬度包括內邊距 */
-    /* 可以添加更多樣式來美化外觀 */
-}
-
-#message-input::placeholder {
-    text-align: left;
-    vertical-align: top;
-}
-.message.self {
-    align-self: flex-end;
-    /* 其他樣式 */
-}
-
-.message.other {
-    align-self: flex-start;
-    /* 其他樣式 */
-}
-
-.message img {
-    width: 10rem;
-    height: 10rem;
-    display: block;
-    margin: 0 auto; /* Center the image */
-}
-#username{
-    color: gray;
-    font: 1rem sans-serif;
-}

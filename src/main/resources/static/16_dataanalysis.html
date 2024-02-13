@@ -7,220 +7,395 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/16_dataanalysis.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e72344855b.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 </head>
 
 <body>
-    <header>
-        <nav class="header">
-            <div class="d-flex">
-                <a class="iconBorder" href="./01_home_page.html"><img class="icon" src="./images/icon.png"></a>
-                <div class="search-container">
-                    <div class="search-bar"></div>
-                </div>
-                <div class="header_link">
-                    <ul>
-                        <li>
-                            <svg width="1.1vw" height="1.1vw" viewBox="0 0 22 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
+<header>
+    <nav class="header">
+        <div class="d-flex">
+            <a class="iconBorder" href="./01_home_page.html"><img class="icon" src="./images/icon.png"></a>
+            <div class="search-container">
+                <div class="search-bar"></div>
+            </div>
+            <div class="header_link">
+                <ul>
+                    <li>
+                        <svg width="1.1vw" height="1.1vw" viewBox="0 0 22 20" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path
                                     d="M8.94965 9.24365L1.60819 15.6852C0.797271 16.3967 0.797271 17.5503 1.60819 18.2618C2.41909 18.9733 3.73385 18.9733 4.54476 18.2618L11.8862 11.8203"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
+                            <path
                                     d="M16.3651 12.1523L20.3917 15.6853C21.2027 16.3968 21.2027 17.5505 20.3917 18.2619C19.5809 18.9735 18.2661 18.9735 17.4552 18.2619L11.0093 12.6063"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
+                            <path
                                     d="M5.50522 4.95963L3.30278 5.60379L1.10034 2.38304L2.56863 1.09473L6.23937 3.02718L5.50522 4.95963ZM5.50522 4.95963L8.44367 7.53788"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
+                            <path
                                     d="M8.94955 9.2435C8.07349 7.28218 8.24477 4.70872 10.0508 3.12408C11.8568 1.53943 15.1898 1.19163 17.0252 2.15785L13.8682 4.9278L13.5748 7.76186L16.8048 7.50441L19.9617 4.73445C21.063 6.34483 20.6666 9.26929 18.8606 10.8539C17.0545 12.4385 14.1215 12.5889 11.8862 11.8201"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            </i><a href="./10_seller_home_page.html"
-                                class=" link-underline link-underline-opacity-0 text-secondary"> 賣場管理</a>
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw   " viewBox="0 0 20 22"
-                                fill="none">
-                                <path d="M1 21V19.75C1 14.9175 4.91751 11 9.75 11C14.5825 11 18.5 14.9175 18.5 19.75V21"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                <path
+                        </svg>
+                        </i><a href="./10_seller_home_page.html"
+                               class=" link-underline link-underline-opacity-0 text-secondary"> 賣場管理</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw   " viewBox="0 0 20 22"
+                             fill="none">
+                            <path d="M1 21V19.75C1 14.9175 4.91751 11 9.75 11C14.5825 11 18.5 14.9175 18.5 19.75V21"
+                                  stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
                                     d="M9.75 11C12.5114 11 14.75 8.76138 14.75 6C14.75 3.23857 12.5114 1 9.75 1C6.98857 1 4.75 3.23857 4.75 6C4.75 8.76138 6.98857 11 9.75 11Z"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            </i><a href="./03_member.html"
-                                class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" viewBox="0 0 17 20"
-                                fill="none">
-                                <path
+                        </svg>
+                        </i><a href="./03_member.html"
+                               class=" link-underline link-underline-opacity-0 text-secondary "> 會員中心</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" viewBox="0 0 17 20"
+                             fill="none">
+                            <path
                                     d="M13.5 9.86888H15.25C15.6642 9.86888 16 10.1635 16 10.5269V17.985C16 18.3484 15.6642 18.643 15.25 18.643H1.75C1.33579 18.643 1 18.3484 1 17.985V10.5269C1 10.1635 1.33579 9.86888 1.75 9.86888H3.5M13.5 9.86888V5.48181C13.5 4.01945 12.5 1.09473 8.5 1.09473C4.5 1.09473 3.5 4.01945 3.5 5.48181V9.86888M13.5 9.86888H3.5"
                                     stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <a href="./02-1_login.html" class=" link-underline link-underline-opacity-0 text-secondary">
-                                註冊/登入</a>
-                        </li>
-                    </ul>
-                </div>
-                </a>
-    
-                <div class="cart_container">
-                    <a href="./08_shopping_cart.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="2.7vw" height="2.7vw" viewBox="0 0 40 32"
-                            fill="none">
-                            <path
+                        </svg>
+                        <a href="./02-1_login.html" class=" link-underline link-underline-opacity-0 text-secondary">
+                            註冊/登入</a>
+                    </li>
+                </ul>
+            </div>
+            </a>
+
+            <div class="cart_container">
+                <a href="./08_shopping_cart.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2.7vw" height="2.7vw" viewBox="0 0 40 32"
+                         fill="none">
+                        <path
                                 d="M39.1404 6.20728C38.947 5.97764 38.6949 5.79109 38.4043 5.66266C38.1136 5.53422 37.7927 5.4675 37.4673 5.46788L12.6088 5.48008L12.3246 4.26477C11.7939 1.79221 9.3536 -0.00140304 6.5207 8.23529e-07L2.0818 0.0021945C0.93 0.00272095 -0.00059971 0.821964 2.89972e-07 1.83082C0.00070029 2.83967 0.9323 3.65804 2.0842 3.65751L6.523 3.65532C7.352 3.65488 8.071 4.19554 8.2382 4.96854L8.869 7.67502C8.869 7.67862 8.8732 7.68046 8.8732 7.68414V7.69327L11.7886 19.5716C11.8884 19.9803 12.145 20.3466 12.5156 20.6092C12.8862 20.8718 13.3482 21.0149 13.8246 21.0145L30.7927 21.0061C33.4257 21.0049 35.4557 19.5545 36.2102 17.1727L39.46 7.82822C39.6534 7.27431 39.5322 6.67301 39.1403 6.20719L39.1404 6.20728ZM16.6801 23.7546C14.3826 23.7558 12.5151 25.3961 12.5165 27.412C12.5178 29.4279 14.3872 31.0664 16.6848 31.0653C18.9823 31.0641 20.8498 29.4238 20.8485 27.4079C20.8472 25.392 18.9777 23.7535 16.6801 23.7546ZM30.2196 23.748C27.9221 23.7491 26.0546 25.3894 26.056 27.4054C26.0573 29.4212 27.9267 31.0598 30.2243 31.0586C32.5218 31.0575 34.3893 29.4172 34.388 27.4013C34.3867 25.3854 32.5172 23.7468 30.2196 23.748Z"
                                 fill="white" />
-                        </svg>
-                    </a>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+
+    <section>
+        <br><br>
+        <div class="title-bar">
+            <button onclick="{location.href='10_seller_home_page.html'}">首 頁</button>
+            <button onclick="{location.href='訂單頁面7.html'}">訂單管理</button>
+            <button onclick="{location.href='14-1_product_management.html'}">商品管理</button>
+            <button onclick="{location.href='11_basic_information.html'}">賣場管理</button>
+            <button style="background-color: #A2CAD3">數據分析</button>
+        </div>
+        <br><br>
+        <div style="width: 100%; border-radius: 5px; height: 0px; border: 6px #F9F3E7 solid"></div>
+        <br>
+        <div class="box1">
+            <span>每日關鍵指標</span>
+            <div class="divider"></div>
+            <div class="row" style="width: 100%; height: 15vw; margin: 2vw;">
+                <div class="row">
+                    <button class="col-3 orderManage" style="width: 24%;" onclick="updateChart('2024-02-07')">
+                        <span>每日銷售額</span>
+                        <p>30000</p>
+                    </button>
+                    <button class="col-3 orderManage" style="width: 24%;" onclick="updateChart('2024-02-14')">
+                        <span>每日訪客數</span>
+                        <p>2500</p>
+                    </button>
+                    <button class="col-3 orderManage" style="width: 24%;" onclick="updateChart('2024-02-21')">
+                        <span>每日轉換率</span>
+                        <p>6.5%</p>
+                    </button>
+                    <br><br><br>
+                    <label class="col-1 d-flex align-items-center" for="chooseDate"
+                           style="font-weight: bold;">資料期間:</label>
+                    <input class="col-3" style="border-radius: 10px; height: 5vw; width: 10vw;" type="date"
+                           id="chooseDate" name="chooseDate" value="2024-02-07" />
+                </div>
+                <br>
+                <div id="curve_chart" style="width: 100%; height: 20vh; margin-top: 2vh"></div>
+            </div>
+        </div>
+
+        <br>
+        <div class="box2">
+            <span>買家分析</span>
+            <div class="divider"></div>
+            <div class="row" style="width: 100%; height: 15vw; margin: 2vw;">
+
+                <div class="col-6 border border-success" id="piechart"
+                     style="width: 50%; height: 20vw; margin-left: 3vw; border:none;"></div>
+
+                <div class="col-4"
+                     style="margin-left: 3vw; margin-top: 2.5vw; padding-left: 2vw;padding-bottom: 2vw;">
+                    <button class="col-5 orderManage">
+                        <span>新註冊買家</span>
+                        <p>150</p>
+                    </button>
+                    <button class="col-5 orderManage">
+                        <span>回購買家</span>
+                        <p>300</p>
+                    </button><br><br><br>
+                    <button class="col-5 orderManage">
+                        <span>活躍買家</span>
+                        <p>450</p>
+                    </button>
+                    <button class="col-5 orderManage">
+                        <span>沉睡買家</span>
+                        <p>100</p>
+                    </button>
                 </div>
             </div>
-        </nav>
-        </header>
-        <main>
+        </div>
 
-            <section>
-                <br><br>
-                <div class="title-bar">
-                    <button onclick="{location.href='10_seller_home_page.html'}">首 頁</button>
-                    <button onclick="{location.href='訂單頁面7.html'}">訂單管理</button>
-                    <button onclick="{location.href='14-1_product_management.html'}">商品管理</button>
-                    <button onclick="{location.href='11_basic_information.html'}">賣場管理</button>
-                    <button style="background-color: #A2CAD3">數據分析</button>
-                </div>
-                <br><br>
-                <div style="width: 100%; border-radius: 5px; height: 0px; border: 6px #F9F3E7 solid"></div>
-                <br><br>
-                <div class="box1">
-                    <span>關鍵指標</span>
-                    <div class="divider"></div>
-                    <div class="row" style="width: 100%; height: 15vw; margin: 2vw;">
-                        <div class="row">
-                            <button class="col-3 orderManage">
-                                <span>銷售額</span>
-                                <p>NT$3600</p>
-                            </button>
-                            <button class="col-3 orderManage">
-                                <span>訂單數量</span>
-                                <p>200</p>
-                            </button><br><br><br>
-                            <label class="col-1  d-flex align-items-center" for="chooseDate" style="font-weight: bold;">資料期間:</label>
-                        <input class="col-3" style="border-radius: 10px; height:5vw ; width: 10vw;" type="date" id="chooseDate" name="chooseDate"/>
-                        </div>                 
-                        <div class="col-6 border border-success" style="width: 100%; height:10vw ; margin-top: 2vw;" >折線圖</div>
-                    </div>
-                   
+        <br>
+        <div class="box3">
+            <span>商品排名</span>
+        </div>
+        <br>
+        <div class="bottom-bar">
+            <button>銷售額</button>
+            <button>售出數量</button>
+            <button>商品瀏覽數</button>
+            <button>加入購物車</button>
+        </div>
+        <br><br>
+        <div class="item-container"></div>
+        <div class="row">
+            <div class="col-2 d-flex align-items-center">排名</div>
+            <div class="col-6 d-flex align-items-center">商品</div>
+            <div class="col-2 d-flex align-items-center">銷售額</div>
+            <div class="col-2 d-flex align-items-center">數量</div>
+        </div>
+        <div class="divider2"></div>
+        <div class="row">
+            <div class="col-2 d-flex align-items-center">1</div>
+            <div class="col-2 d-flex align-items-center"><img src="./images/黃金.jpeg"
+                                                              style="max-width: 60%; height: auto;"></div>
+            <div class="col-4 d-flex align-items-center">StarBucks星巴克黃金烘焙咖啡豆</div>
+            <div class="col-2 d-flex align-items-center">32850</div>
+            <div class="col-2 d-flex align-items-center">31</div>
+        </div>
+        <div class="divider2"></div>
+        <div class="row">
+            <div class="col-2 d-flex align-items-center">2</div>
+            <div class="col-2 d-flex align-items-center"><img src="./images/法式.jpeg"
+                                                              style="max-width: 60%; height: auto;"></div>
+            <div class="col-4 d-flex align-items-center">StarBucks法式烘焙咖啡</div>
+            <div class="col-2 d-flex align-items-center">23100</div>
+            <div class="col-2 d-flex align-items-center">28</div>
+        </div>
+        <div class="divider2"></div>
+        <div class="row">
+            <div class="col-2 d-flex align-items-center">3</div>
+            <div class="col-2 d-flex align-items-center"><img src="./images/冬季.jpeg"
+                                                              style="max-width: 60%; height: auto;"></div>
+            <div class="col-4 d-flex align-items-center">StarBucks冬季限定咖啡豆</div>
+            <div class="col-2 d-flex align-items-center">12980</div>
+            <div class="col-2 d-flex align-items-center">20</div>
+        </div>
+        <div class="divider2"></div>
 
-                </div>
-                <br><br><br>
-                <div class="box2">
-                    <span>買家分析</span>
-                    <div class="divider"></div>
-                    <div class="row" style="width: 100%; height: 15vw; margin: 2vw;">
-                        <div class="col-6 border border-success" style="margin-left: 3vw;">圓餅圖</div>
-                        <div class="col-4" style="margin-left: 3vw; margin-top: 2.5vw; padding-left: 2vw;">
-                            <button class="col-5 orderManage">
-                                <span>全部買家</span>
-                                <p>200</p>
-                            </button>
-                            <button class="col-5 orderManage">
-                                <span>回購率</span>
-                                <p>200</p>
-                            </button><br><br><br>
-                            <button class="col-5 orderManage">
-                                <span>既有買家</span>
-                                <p>200</p>
-                            </button>
-                            <button class="col-5 orderManage">
-                                <span>潛在買家</span>
-                                <p>200</p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <br><br><br>
-                <div class="box3">
-                    <span>商品排名</span>
-                </div>
-               
-                <br>
-                <div class="bottom-bar">
-                    <button>銷售額</button>
-                    <button>售出數量</button>
-                    <button>商品溜覽數</button>
-                    <button>加入購物車</button>
-                </div>
-                <br><br>
-                <div class="item-container"></div>
-                    <div class="row">
-                        <div class="col-2 d-flex align-items-center">排名</div>
-                        <div class="col-6 d-flex align-items-center">商品</div>
-                        <div class="col-2 d-flex align-items-center">銷售額</div>
-                        <div class="col-2 d-flex align-items-center">數量</div>
-                    </div>
-                    <div class="divider2"></div>
-                    <div class="row">
-                        <div class="col-2 d-flex align-items-center" >1</div>
-                        <div class="col-2 d-flex align-items-center"><img src="./images/商品圖.png" style="max-width: 60%; height: auto;"></div>
-                        <div class="col-4 d-flex align-items-center">StarBucks星巴克黃金烘焙咖啡豆</div>
-                        <div class="col-2 d-flex align-items-center">20000</div>
-                        <div class="col-2 d-flex align-items-center">2</div>
-                    </div><br>
-                    <div class="divider2"></div>
-                    <div class="row">
-                        <div class="col-2 d-flex align-items-center">2</div>
-                        <div class="col-2 d-flex align-items-center"><img src="./images/商品圖2.jpg" style="max-width: 60%; height: auto;"></div>
-                        <div class="col-4 d-flex align-items-center">StarBucks星巴克經典咖啡豆</div>
-                        <div class="col-2 d-flex align-items-center">34567</div>
-                        <div class="col-2 d-flex align-items-center">5</div>
-                    </div>
-           
-                <br><br><br><br><br><br>
-            </section>
-            <footer>
-                <div class="footer">
-                    <div>
-                        <ul class="footerList">
-                            <li class="h3">關於我們</li>
-                            <li>關於DealDove</li>
-                            <li>加入我們</li>
-                            <li>賣家中心</li>
-                            <li>限時特賣</li>
-                            <li>聯絡媒體</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul class="footerList">
-                            <li class="h3">客服中心</li>
-                            <li>幫助中心</li>
-                            <li>退貨退款</li>
-                            <li>聯絡客服</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul class="footerList">
-                            <li class="h3">關注我們</li>
-                            <li>關於DealDove</li>
-                            <li>加入我們</li>
-                            <li><img src="./images/icon _facebook.png"><span> </span>
-                                <img src="./images/icon _instagram.png">
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul class="footerList">
-                            <li class="h3">法律與隱私</li>
-                            <li>隱私權政策</li>
-                            <li>DealDove條款</li>
-                        </ul>
-                    </div>
-                    <img class="qrcode" src="./images/qrCode.png">
-                </div>
-            </footer>
-        </main>
+        <br><br><br>
+    </section>
 
+    <footer>
+        <div class="footer">
+            <div>
+                <ul class="footerList">
+                    <li class="h3">關於我們</li>
+                    <li>關於DealDove</li>
+                    <li>加入我們</li>
+                    <li>賣家中心</li>
+                    <li>限時特賣</li>
+                    <li>聯絡媒體</li>
+                </ul>
+            </div>
+            <div>
+                <ul class="footerList">
+                    <li class="h3">客服中心</li>
+                    <li>幫助中心</li>
+                    <li>退貨退款</li>
+                    <li>聯絡客服</li>
+                </ul>
+            </div>
+            <div>
+                <ul class="footerList">
+                    <li class="h3">關注我們</li>
+                    <li>關於DealDove</li>
+                    <li>加入我們</li>
+                    <li><img src="./images/icon _facebook.png"><span> </span>
+                        <img src="./images/icon _instagram.png">
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="footerList">
+                    <li class="h3">法律與隱私</li>
+                    <li>隱私權政策</li>
+                    <li>DealDove條款</li>
+                </ul>
+            </div>
+            <img class="qrcode" src="./images/qrCode.png">
+        </div>
+    </footer>
+</main>
+
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawPieChart);
+    google.charts.setOnLoadCallback(drawLineChart);
+
+    // 折線圖//
+    var selectedDate = '2024-02-07'; // 初始選擇的日期
+
+    function updateChart(date) {
+        selectedDate = date;
+        drawLineChart();
+    }
+
+    function drawLineChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Day', '銷售額 (千)', '訪客數 (百)', '轉換率 (%)'],
+            ['星期一', 20, 15, 4.5],
+            ['星期二', 22, 18, 5.0],
+            ['星期三', 18, 12, 4.0],
+            ['星期四', 25, 20, 5.5],
+            ['星期五', 28, 22, 6.0],
+            ['星期六', 30, 25, 6.5],
+            ['星期日', 24, 19, 5.5]
+        ]);
+
+        var options = {
+            title: '每周關鍵指標分析',
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            vAxis: {
+                title: '值'
+            },
+            hAxis: {
+                title: '日期'
+            },
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        chart.draw(data, options);
+    }
+
+    // 初次載入頁面時執行一次
+    drawLineChart();
+
+    // 圓餅圖//
+    function drawPieChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Buyer Type', 'Number'],
+            ['新註冊買家', 150],
+            ['回購買家', 300],
+            ['活躍買家', 450],
+            ['沉睡買家', 100]
+        ]);
+
+        var options = {
+            title: '買家分析',
+            pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
+
+</script>
+<!-- 新增一個函數來處理日期變化並更新圖表 -->
+<script>
+    document.getElementById('chooseDate').addEventListener('change', function () {
+        var chosenDate = new Date(this.value);
+        updateChartBasedOnDate(chosenDate);
+    });
+
+    function updateChartBasedOnDate(chosenDate) {
+        // 假設這裡有一個函數 getFilteredData 用來根据選定的日期範圍獲取過濾後的數據
+        var filteredData = getFilteredData(chosenDate);
+
+        // 更新圖表
+        var data = google.visualization.arrayToDataTable(filteredData);
+        var options = {
+            title: '每周關鍵指標分析',
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            vAxis: {
+                title: '值'
+            },
+            hAxis: {
+                title: '日期'
+            },
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        chart.draw(data, options);
+    }
+
+    function getFilteredData(chosenDate) {
+        // 這裡實現根据選擇的日期範圍獲取或生成過濾後的數據
+        // 範例數據，實際應用中應根据選擇的日期範圍從您的數據源獲取數據
+        var exampleData = [
+            ['Day', '銷售額 (萬元)', '訪客數 (千人)', '轉換率 (%)'],
+            // ... 根据 chosenDate 過濾或調整的數據 ...
+        ];
+
+        return exampleData;
+    }
+</script>
+<script>
+    fetch('您的後端API路徑')
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            console.log(data);
+            // 在這裡使用您從後端獲取的數據來更新您的圖表
+        })
+        .catch(error => {
+            console.error('Fetching data failed:', error);
+        });
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+
+        // 假設我們有一個包含所有商品信息的陣列
+        var items = [
+            { id: 1, name: 'StarBucks星巴克黃金烘焙咖啡豆', sales: 20000, quantity: 2, views: 100, cartAdds: 10 },
+            { id: 2, name: 'StarBucks星巴克經典咖啡豆', sales: 34567, quantity: 5, views: 150, cartAdds: 20 },
+            // ... 其他商品
+        ];
+
+        function sortBy(category) {
+            // 根據類別對商品進行排序
+            items.sort(function (a, b) {
+                return b[category] - a[category];
+            });
+
+            // 這裡你需要根據排序後的結果更新HTML
+            // 例如：重新渲染商品列表
+        }
+
+        // 為每個按鈕添加點擊事件監聽器
+        document.getElementById('sales').addEventListener('click', function () { sortBy('sales'); });
+        document.getElementById('sold-quantity').addEventListener('click', function () { sortBy('quantity'); });
+        document.getElementById('views').addEventListener('click', function () { sortBy('views'); });
+        document.getElementById('cart-adds').addEventListener('click', function () { sortBy('cartAdds'); });
+    });
+
+
+</script>
 
 </body>
 

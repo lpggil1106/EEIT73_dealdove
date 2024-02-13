@@ -18,8 +18,9 @@
     border-radius: 23px;
 }
 .popularSeller div{
-    margin-left: 3.5vw;
-    margin-top: 2vw;
+    margin-left: 3.2vw;
+    margin-top: 1.5vw;
+    margin-bottom: 1.3vw;
     height:17vw ;
     width: 12vw;
     text-align: center;
@@ -43,7 +44,7 @@
 .result{
     width: 100%;
     height: 4vw; 
-    margin-top: 4vw;
+    margin-top: 2vw;
 }
 .result .selector{
     height: 3vw;
@@ -95,3 +96,123 @@
 }
 
 
+/*商品卡 css*/
+.col-3 {
+    width: 33.33%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.product-card {
+    position: relative;
+    width: 100%;
+    height:30vw;
+    background: #F3F3F3;
+    padding-left: 1vw;
+    padding-right: 0.5vw;
+    border: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s; /* 添加移動動畫效果 */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* 移動卡片向上5像素 */
+}
+
+.product-image {
+    width: 90%;
+    margin-top: 0.5vw;
+    margin-left: 0.8vw;
+    margin-bottom: 1vw ;
+    height: 60%;
+}
+
+.product-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 33%;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.product-price {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.product-rating-sold {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    color: #ffc107;
+    margin: 0 2px;
+}
+
+.product-sold {
+    font-size: 14px;
+    color: #555;
+}
+
+/* 在 .product-card 中添加一個絕對定位的按鈕，並將其初始化為隱藏狀態 */
+.product-button {
+    z-index: 999;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.product-card:hover .product-button {
+    opacity: 1; /* 在 hover 時顯示按鈕 */
+}
+
+.col-3 a{
+    text-decoration: none;
+    color: black;
+}
+
+.selector-item {
+    cursor: pointer;
+    margin-right: 10px;
+    position: relative;
+    text-decoration: none; /* 去除連結的下劃線 */
+    color: #333; /* 設定連結顏色 */
+}
+
+.sort-arrow {
+    display: inline-block;
+    z-index: 99;
+    margin-left: 5px;
+}
+
+.asc:after {
+    content: " ↑";
+}
+
+.desc:after {
+    content: " ↓";
+}
