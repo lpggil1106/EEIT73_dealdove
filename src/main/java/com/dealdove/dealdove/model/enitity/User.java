@@ -68,5 +68,9 @@ public class User {
         this.lastedit = lastedit;
         this.avatar = avatar;
     }
+
+    public User() {
+
+    }
 }
 
