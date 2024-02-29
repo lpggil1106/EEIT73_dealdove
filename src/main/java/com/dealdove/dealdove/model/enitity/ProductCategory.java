@@ -1,8 +1,10 @@
 package com.dealdove.dealdove.model.enitity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "productCategory", schema = "dealdove")
 public class ProductCategory {
     @Id
@@ -16,28 +18,5 @@ public class ProductCategory {
     @Column(name = "parentCategoryID")
     private Integer parentCategoryID;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public Integer getParentCategoryID() {
-        return parentCategoryID;
-    }
-
-    public void setParentCategoryID(Integer parentCategoryID) {
-        this.parentCategoryID = parentCategoryID;
-    }
 
 }

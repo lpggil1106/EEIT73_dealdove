@@ -10,14 +10,9 @@ import java.util.Date;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Table(name = "chat_message")
 public class ChatMessage {
-
     @GeneratedValue(strategy = GenerationType.UUID)
-
     @Id
     @Column(name = "id")
     private String id;

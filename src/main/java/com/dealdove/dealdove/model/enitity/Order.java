@@ -1,14 +1,14 @@
 package com.dealdove.dealdove.model.enitity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.ZonedDateTime;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "`order`")
 public class Order {
@@ -20,14 +20,6 @@ public class Order {
 
     @Column(name = "sellerID", nullable = true)
     private String sellerID;
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
 
     @OneToMany
     @JoinColumn(name = "orderID")

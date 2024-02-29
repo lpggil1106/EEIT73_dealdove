@@ -1,6 +1,7 @@
 package com.dealdove.dealdove.model.enitity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
@@ -10,8 +11,7 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 @DynamicInsert
 @Table(name = "user")
@@ -54,14 +54,6 @@ public class User {
     @OneToMany
     @JoinColumn(name = "userID", nullable = true)
     private List<ShoppingCartItem> shoppingCartItems;
-
-
-    public User() {
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
 
     // Constructor for User
     public User(String ID, String username, String password, String email, boolean status, int gender, LocalDate birthdate, ZonedDateTime createtime, ZonedDateTime lastedit, String avatar) {

@@ -3,6 +3,7 @@ package com.dealdove.dealdove.model.enitity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +11,7 @@ import java.time.Instant;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "product", schema = "dealdove")
 public class Product {
     @Id
@@ -42,22 +42,6 @@ public class Product {
     @Column(name = "productImageID", nullable = true)
     private Integer productImageID;
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
-
-    public List<ProductImageTable> getProductImageTables() {
-        return productImageTables;
-    }
-
-    public void setProductImageTable(List<ProductImageTable> productImageTable) {
-        this.productImageTables = productImageTable;
-    }
-
     //      @OneToMany(mappedBy = "productImageTable", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(mappedBy = "product")
     @JsonManagedReference
@@ -71,81 +55,6 @@ public class Product {
 
     @Column(name = "lastEdit", nullable = true)
     private Instant lastEdit;
-
-    public Integer getProductID() {
-        return productID;
-    }
-
-    public void setProductID(Integer productID) {
-        this.productID = productID;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
-
-    public Integer getProductCategoryID() {
-        return productCategoryID;
-    }
-
-    public void setProductCategoryID(Integer productCategoryID) {
-        this.productCategoryID = productCategoryID;
-    }
-
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userId) {
-        this.userID = userID;
-    }
-
-
-    public Integer getProductImageID() {
-        return productImageID;
-    }
-
-    public void setProductImageID(Integer productImageID) {
-        this.productImageID = productImageID;
-    }
-
-
-    public Byte getIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(Byte isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
-    public Instant getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Instant createTime) {
-        this.createTime = createTime;
-    }
-
-    public Instant getLastEdit() {
-        return lastEdit;
-    }
-
-    public void setLastEdit(Instant lastEdit) {
-        this.lastEdit = lastEdit;
-    }
 
     public void addProductImage(ProductImageTable productImagetable) {
         productImageTables.add(productImagetable);

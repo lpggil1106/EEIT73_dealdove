@@ -97,21 +97,6 @@ public class OrderService {
         return form;
     }
 
-    public String ecpayMap(String name, String phone){
-        ecpay.logistics.integration.AllInOne all = new ecpay.logistics.integration.AllInOne("");
-        CreateCVSObj obj = new CreateCVSObj();
-        String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
-        obj.setMerchantID(uuId);
-        obj.setMerchantID("2000132");
-        obj.setMerchantTradeDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
-        obj.setSenderName(name);
-        obj.setSenderCellPhone(phone);
-        obj.setIsCollection("N");
-        obj.setServerReplyURL("幹你娘");
-        String result = all.create(obj);
-        return result;
-    }
-
     public   List<HashMap<String,String>> showOrderPage( LinkedHashMap<String, String> user){
         FirebaseToken decodedToken = getFirebaseToken(user.get("idToken"));
         String userID = decodedToken.getUid();
