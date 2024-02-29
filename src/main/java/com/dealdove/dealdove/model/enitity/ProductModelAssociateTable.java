@@ -1,10 +1,11 @@
 package com.dealdove.dealdove.model.enitity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 
 @Entity
-
+@Data
 @Table(name = "productModelAssociateTable", schema = "dealdove")
 public class ProductModelAssociateTable {
     @Id
@@ -20,37 +21,4 @@ public class ProductModelAssociateTable {
 
     @Column(name = "parentModelID")
     private Integer parentModelID;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getProductID() {
-        return productID;
-    }
-
-    public void setProductID(Integer productID) {
-        this.productID = productID;
-    }
-
-    public String getModelName() {
-        return modelName;
-    }
-
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
-    }
-
-    public Integer getParentModelID() {
-        return parentModelID;
-    }
-
-    public void setParentModelID(Integer parentModelID) {
-        this.parentModelID = parentModelID;
-    }
-
 }

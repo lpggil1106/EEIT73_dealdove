@@ -1,8 +1,10 @@
 package com.dealdove.dealdove.model.enitity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "applicableCategoriesAssociationTable")
 public class ApplicableCategoriesAssociationTable {
     @Id
@@ -15,22 +17,4 @@ public class ApplicableCategoriesAssociationTable {
 
     @Column(name = "categoriesID", nullable = false)
     private Integer categoriesID;
-
-    public Integer getApplicableCategoriesID() {
-        return applicableCategoriesID;
-    }
-
-    public void setApplicableCategoriesID(Integer applicableCategoriesID) {
-        this.applicableCategoriesID = applicableCategoriesID;
-    }
-
-    public Integer getCouponID() {
-        return couponID;
-    }
-
-    public void setCouponID(Integer couponID) {
-        this.couponID = couponID;
-    }
-
-
 }

@@ -3,13 +3,13 @@ package com.dealdove.dealdove.model.enitity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "orderItem")
 public class OrderItem {

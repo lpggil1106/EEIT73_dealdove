@@ -1,11 +1,11 @@
 package com.dealdove.dealdove.model.enitity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "shoppingCartItem", schema = "dealdove")
 public class ShoppingCartItem {

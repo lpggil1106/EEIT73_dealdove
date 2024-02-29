@@ -1,8 +1,10 @@
 package com.dealdove.dealdove.model.enitity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "modelInfo", schema = "dealdove")
 public class ModelInfo {
     @Id
@@ -24,53 +26,4 @@ public class ModelInfo {
 
     @Column(name = "quantity", nullable = true)
     private Integer quantity;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getProductID() {
-        return productID;
-    }
-
-    public void setProductID(Integer productID) {
-        this.productID = productID;
-    }
-
-    public Integer getFirstModelID() {
-        return firstModelID;
-    }
-
-    public void setFirstModelID(Integer firstModelID) {
-        this.firstModelID = firstModelID;
-    }
-
-    public Integer getSecondModelID() {
-        return secondModelID;
-    }
-
-    public void setSecondModelID(Integer secondModelID) {
-        this.secondModelID = secondModelID;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
 }

@@ -3,17 +3,16 @@ package com.dealdove.dealdove.model.enitity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
-
-@Getter
-@Setter
 @Entity
 @DynamicInsert
+@Data
 @Table(name = "coupon", schema = "dealdove")
 public class Coupon {
     @Id
@@ -30,7 +29,6 @@ public class Coupon {
     @Column(name = "creationDate", nullable = true)
     private ZonedDateTime creationDate;
 
-    // 由于@JsonBackReference的存在，我们添加了一个新的字段来显式存储couponBaseID
     @Column(name = "couponBaseID", insertable = false, updatable = false)
     private Integer couponBaseID;
 

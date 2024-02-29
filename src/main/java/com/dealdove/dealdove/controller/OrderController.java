@@ -30,18 +30,9 @@ public class OrderController {
         return orderService.findAllOrder(user);
     }
 
-    @CrossOrigin(origins = "*",maxAge = 3600)
     @PostMapping("/ecpayCheckout")
     public String ecpayCheckout() {
-        String aioCheckOutALLForm = orderService.ecpayCheckout();
-        return  aioCheckOutALLForm;
-    }
-
-//    遊戲直接結束
-    @PostMapping("/ecpayMapChoosing")
-    public String ecpayMapChoosing() {
-        String map = orderService.ecpayMap("Dylan", "0978095607");
-        return map;
+        return  orderService.ecpayCheckout();
     }
 
     @GetMapping("/orderConfirmation")

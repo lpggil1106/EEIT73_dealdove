@@ -3,8 +3,10 @@ package com.dealdove.dealdove.model.enitity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "productImageTable", schema = "dealdove")
 public class ProductImageTable {
     @Id
@@ -19,29 +21,4 @@ public class ProductImageTable {
 
     @Column(name = "image")
     private String image;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
 }

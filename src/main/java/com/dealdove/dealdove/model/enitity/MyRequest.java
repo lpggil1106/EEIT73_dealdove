@@ -1,16 +1,9 @@
 package com.dealdove.dealdove.model.enitity;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.context.annotation.Configuration;
+import lombok.Data;
 
-@Getter
-@Setter
-@Configuration
+@Data
 public class MyRequest {
-        private String name;
-        private String email;
-
-        private String password;
-
+    private String email;
+    private String password;
 }

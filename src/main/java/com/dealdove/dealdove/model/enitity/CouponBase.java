@@ -2,6 +2,7 @@ package com.dealdove.dealdove.model.enitity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +11,7 @@ import java.util.List;
 
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "couponBase", schema = "dealdove")
 public class CouponBase {
     @Id
