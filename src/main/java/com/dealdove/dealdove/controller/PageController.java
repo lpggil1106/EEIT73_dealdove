@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 @Controller
@@ -80,6 +83,23 @@ public class PageController {
         HashMap<String,String> shopMap = userService.decoded(callbackData);
         String htmlContent = "<html><body><a href='/Member' style='text-decoration=none'>返回會員中心</a></body></html>";
         return "寄送店名:"+shopMap.get("storename")+"<br>店號:"+shopMap.get("storeid")+"<br>地址:"+shopMap.get("storeaddress")+"<br>"+htmlContent;
+    }
+
+    @PostMapping("/cvs_callback2")
+    public String cvs_callback2(@RequestBody String callbackData)  {
+        System.out.println("收到cvs_callback");
+        System.out.println(callbackData);
+        HashMap<String,String> shopMap = userService.decoded(callbackData);
+        System.out.println("寄送店名:"+shopMap.get("storename")+"<br>店號:"+shopMap.get("storeid")+"<br>地址:"+shopMap.get("storeaddress"));
+
+        String storename = shopMap.get("storename");
+        try {
+            String encodedStorename = URLEncoder.encode(storename, StandardCharsets.UTF_8.toString());
+            String redirectUrl = "/checkout?storename=" + encodedStorename;
+            return "redirect:" + redirectUrl;
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping("/testImage")
