@@ -5,6 +5,14 @@ import "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js";
 import "https://ecpg-stage.ecpay.com.tw/Scripts/sdk-1.0.0.js?t=20210121100116";
 
 $(document).ready(()=>{
+    window.onload = function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var storename = urlParams.get('storename');
+        if (storename) {
+            document.getElementById('shippingAddress').value = decodeURIComponent(storename);
+            document.getElementById('shippingAddress').innerText = decodeURIComponent(storename);
+        }
+    };
     onAuthStateChanged(auth,user=>{
         if(user){
             user.getIdToken()

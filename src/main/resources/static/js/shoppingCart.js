@@ -122,3 +122,4 @@ function removeSelectedCartItemID(shoppingCartItemID) {
     const updatedItems = selectedItems.filter(id => id !== shoppingCartItemID);
     localStorage.setItem(`selectedItems`, JSON.stringify(updatedItems));
 }
+
