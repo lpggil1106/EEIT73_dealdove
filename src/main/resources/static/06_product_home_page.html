@@ -148,29 +148,29 @@
         <div class="container-fluid">
             <div class="row similar">
 
-<!--                <div class="col-3">-->
-<!--                    <a href="">-->
-<!--                        <div class="product-card">-->
-<!--                            <img class="product-image" src="https://via.placeholder.com/200" alt="Product Image">-->
-<!--                            <div class="product-info">-->
-<!--                                <div>-->
-<!--                                    <div class="product-name">商品名稱很長很長的商品名稱可能會跑好幾行</div>-->
-<!--                                    <div class="product-price">$ 100.00</div>-->
-<!--                                </div>-->
-<!--                                <div class="product-rating-sold">-->
-<!--                                    <div class="product-rating">-->
-<!--                                        <span class="star">&#9733;</span>-->
-<!--                                        <span class="star">&#9733;</span>-->
-<!--                                        <span class="star">&#9733;</span>-->
-<!--                                        <span class="star">&#9734;</span>-->
-<!--                                        <span class="star">&#9734;</span>-->
-<!--                                    </div>-->
-<!--                                    <div class="product-sold">已售出: 100 件</div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </a>-->
-<!--                </div>-->
+                <!--                <div class="col-3">-->
+                <!--                    <a href="">-->
+                <!--                        <div class="product-card">-->
+                <!--                            <img class="product-image" src="https://via.placeholder.com/200" alt="Product Image">-->
+                <!--                            <div class="product-info">-->
+                <!--                                <div>-->
+                <!--                                    <div class="product-name">商品名稱很長很長的商品名稱可能會跑好幾行</div>-->
+                <!--                                    <div class="product-price">$ 100.00</div>-->
+                <!--                                </div>-->
+                <!--                                <div class="product-rating-sold">-->
+                <!--                                    <div class="product-rating">-->
+                <!--                                        <span class="star">&#9733;</span>-->
+                <!--                                        <span class="star">&#9733;</span>-->
+                <!--                                        <span class="star">&#9733;</span>-->
+                <!--                                        <span class="star">&#9734;</span>-->
+                <!--                                        <span class="star">&#9734;</span>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="product-sold">已售出: 100 件</div>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </a>-->
+                <!--                </div>-->
 
                 <!-- ... (repeat for other cards) ... -->
 
@@ -257,27 +257,30 @@
         renderProducts(products);
     });
 
-        function updateSort(newOrderBy) {
-            console.log('orderBy:', orderBy)
-            console.log('orderDirection:', orderDirection)
-            // 判斷是否同一個排序欄位
-            if (orderBy === newOrderBy) {
-                // 如果是同一個排序欄位，切換排序方向
-                orderDirection = orderDirection === 'asc' ? 'desc' : 'asc';
-            } else {
-                // 如果是不同的排序欄位，默認升序排序
-                orderDirection = 'asc';
-            }
+    function updateSort(newOrderBy) {
+
+        // 判斷是否同一個排序欄位
+        if (orderBy === newOrderBy) {
+            // 如果是同一個排序欄位，切換排序方向
+            orderDirection = orderDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            // 如果是不同的排序欄位，默認升序排序
+            orderDirection = 'asc';
+        }
 
         // 更新排序欄位和方向到 localStorage
         localStorage.setItem('orderBy', newOrderBy);
         localStorage.setItem('orderDirection', orderDirection);
+
+        orderBy = newOrderBy;
 
         // 根據排序方式和方向排序
         sortProducts(products, newOrderBy, orderDirection);
 
         // 渲染排序後的產品
         renderProducts(products);
+        console.log('orderBy:', orderBy)
+        console.log('orderDirection:', orderDirection)
     }
 
     function sortProducts(products, orderBy, orderDirection) {
@@ -338,7 +341,7 @@
                 searchResult.innerText = keyword;
                 //本地儲存Product資料方便後續使用
                 localStorage.setItem('products', JSON.stringify(data));
-                console.log(data+"from here")
+                console.log(data + "from here")
                 renderProducts(data);
             })
     })

@@ -166,6 +166,10 @@ document.getElementById('cash').addEventListener('change', function () {
     }
 });
 
+document.getElementById('payButtonEcpay').addEventListener('click', function (event) {
+    redirectToPayment();
+});
+
 function redirectToPayment() {
     fetch('/ecpayCheckout', {
         method: 'POST'
@@ -196,9 +200,12 @@ document.getElementById('payButtonEcpay').addEventListener('click', function (ev
     const buyerNote = document.getElementById('buyerNote').value;
     const shippingAddress = document.getElementById('shippingAddress').value;
     const checkOutTotalInput = document.getElementById('checkOutTotalInput').value;
-    const paymentInput = document.getElementById('paymentInput').value;
-    const statusInput = document.getElementById('statusInput').value;
-    const userIDInput = document.getElementById('userIDInput').value;
+    // const paymentInput = document.getElementById('paymentInput').value;
+    // const statusInput = document.getElementById('statusInput').value;
+    // const userIDInput = document.getElementById('userIDInput').value;
+    const userIDInput = localStorage.getItem('userIDInput');
+    const paymentInput = "1";
+    const statusInput = "1";
 
     // 創建提交到後端的數據對象
     const orderData = {
@@ -277,7 +284,8 @@ document.getElementById('payButtonCash').addEventListener('click', function (eve
 onAuthStateChanged(auth, user => {
     if (user) {
         const userID = user.uid;
-        document.getElementById('userIDInput').value = userID;
+        localStorage.setItem('userIDInput', userID);
+        console.log("已登錄"+ userID);
     } else {
         console.log("未登錄");
     }
