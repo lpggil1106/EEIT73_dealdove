@@ -650,7 +650,7 @@
                                             const modelName = specValuesContainer.querySelector('.modelName').innerText;
 
 
-                                            if(`${specType}` === "map1"){
+                                            if(`${specType}` === "map1"){   //取商品規格值
                                                 const firstModelidInput = document.getElementsByName('firstModelid')[0];
                                                 console.log(firstModelidInput+"firstModelidInput");
                                                 const modelId1 = modelId; // 替換為實際的值
@@ -692,7 +692,8 @@
                                 });
                             })
                             .catch(error => console.log(error));
-                    })).catch(error => console.log(error));
+                    }))
+                    .catch(error => console.log(error));
 
 
         const firstModelidInput = document.getElementsByName('firstModelid')[0];
